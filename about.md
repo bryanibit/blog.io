@@ -7,7 +7,7 @@ header-img: "img/green.jpg"
 
 
 <center>
-    <p><img src="http://7xlfkx.com1.z0.glb.clouddn.com/white2.jpg" align="center"></p>
+    <p><img src="/home/inin//bryanibit.github.io/img/IMG_2736.JPG" align="center"></p>
 </center>
 
 我是于华超，北京理工大学在读研究生。
@@ -31,7 +31,7 @@ header-img: "img/green.jpg"
 
 ### 我的朋友们
 
-- [MasterIzumi](https://github.com/MasterIzumi)
+- [MasterIzumi](https://MasterIzumi.github.io)
 - [jfqiu](https://github.com/jfqiu)
 
 ### 联系
