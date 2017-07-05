@@ -30,6 +30,7 @@ device for boot loader installation:
 
 Note that: reinstall partition should have something different from before!!
 
+
 ### Install Sougou pinyin
 
 Ubuntu 14.04 install sougoupinyin
@@ -40,20 +41,41 @@ go to fcitx configure (in windows and search a penguin called fcitxconfigure) an
 
 reboot!
 
-### setting github
+### Setting github ssh
 1.install git  sign up an account for github
 
 2.配置Name和Email
         命令格式：    git config --global user.name "your name"
-                       git config --global user.email "your email address" 
+                      git config --global user.email "your email address" 
 3.成Public/Private RSA Key
         命令格式：    ssh-keygen -C "your email address" -t rsa
  注意图中红色数字标注：
         1、设置Public RSA Key的保存位置，直接回车采用默认地址；
         2、设置一个密码，并再次输入确认(这里不建议设置，方便本地使用)
-        3、Public RSA Key的保存路径：c:\users\username\.ssh\id_rsa.pub
+        3、Public RSA Key的保存路径：c:\users\username\.ssh\id_rsa.pub(windows) /home/inin/.ssh/id_rsa.pub(linux)
 4.将Public Key告知Github
         请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
+
+Now you can try push a project now:
+
+在 github.com 上
+new repository (选add readme） 
+在本地文件夹下
+git clone git@github.com:bryanibit/pySfM.git
+git init
+touch README.md (由于选择了readme)
+git add README.md
+git commit -m 'first_commit'
+git remote add origin https://github.com/findingsea/myRepoForBlog.git
+git push -u origin master (-u is the first time to upload)
+ 
+
+### Install Cmake 3.0 +
+
+sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
+sudo -E apt-get update
+sudo apt-get install cmake
+
 
 
 
