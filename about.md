@@ -14,13 +14,13 @@ header-img: "img/green.jpg"
 
 现在研习 **三维重建（SfM）** 。
 
-###坚信
+### 坚信
 
 
 - 「持续」并不是坚持，写就是最好的回报
 
 
-###关注：
+### 关注：
 
 
 - Python
@@ -29,16 +29,14 @@ header-img: "img/green.jpg"
 
 
 
-###我的朋友们
+### 我的朋友们
 
 - [MasterIzumi](https://github.com/MasterIzumi)
-- [jfqiu]https://github.com/jfqiu)
+- [jfqiu](https://github.com/jfqiu)
 
-###联系
-
+### 联系
 
 - [微博](http://weibo.com/u/2393223365)
-
 
 
 
