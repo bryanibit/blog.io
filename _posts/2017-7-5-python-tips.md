@@ -12,19 +12,19 @@ np.nonzero(ok1 * ok2)[0]
 其中ok1和ok2都是一个一维数组bool型的
 如果加[0]会使得到的结果仍为一维数组
 
->>> ok1*ok2
+>> ok1*ok2
 array([False,  True, False, False], dtype=bool)
->>> np.nonzero(ok1*ok2)[0]
+>> np.nonzero(ok1*ok2)[0]
 array([1])
->>> np.nonzero(ok1*ok2)
+>> np.nonzero(ok1*ok2)
 (array([1]),)
 
 
->>> b1*b2
+>> b1*b2
 array([False,  True,  True, False], dtype=bool)
->>> np.nonzero(b1*b2)
+>> np.nonzero(b1*b2)
 (array([1, 2]),)
->>> np.nonzero(b1*b2)[0]
+>> np.nonzero(b1*b2)[0]
 array([1, 2])
 
 ## 文本读取
@@ -53,19 +53,19 @@ normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]
 
 e.g.
 
->>> bearing_b3
+>> bearing_b3
 array([[1, 2, 3],
        [4, 5, 6],
        [7, 8, 9],
        [2, 5, 8]])
 
->>> np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]
+>> np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]
 array([[  3.74165739],
        [  8.77496439],
        [ 13.92838828],
        [  9.64365076]])
 
->>> np.linalg.norm(bearing_b3, axis=1)
+>> np.linalg.norm(bearing_b3, axis=1)
 array([  3.74165739,   8.77496439,  13.92838828,   9.64365076])
 
 ## cv2.Rodrigues
