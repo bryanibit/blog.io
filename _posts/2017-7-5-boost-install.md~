@@ -35,8 +35,7 @@ Depending on where it installs, at the completion of ./b2
 ## Windows中下载boost安装包
 
 ### 在visual studio中使用boost
-
-可能失败的原因
+失败的原因
 Boost has a few libraries that are not standalone and require installation of 3rd party libraries. These are:
 Boost.IOStreams Bzip2 filters
 Boost.IOStreams Zlib filters
