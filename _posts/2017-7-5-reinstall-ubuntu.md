@@ -4,7 +4,7 @@ title: Linux Tips
 date: 2017-7-5
 categories: blog
 tags: [总结,知识管理]
-description: Linux中的一些问题，总结一下
+description: Linux重装系统&软件
 ---
 
 ##我们开始吧
@@ -29,7 +29,7 @@ device for boot loader installation:
  
 选择 Ubuntu安装的/boot位置
 
-Note that: reinstall partition should have something different from before!!
+         Note that: reinstall partition should have something different from before!!
 
 ### Install Sougou pinyin
 
@@ -74,20 +74,45 @@ reboot!
 在本地文件夹下
 
 >git clone git@github.com:bryanibit/pySfM.git
+
 >git init
+
 >touch README.md (由于选择了readme)
+
 >git add README.md
+
 >git commit -m 'first_commit'
+
 >git remote add origin https://github.com/findingsea/myRepoForBlog.git
+
 >git push -u origin master (-u is the first time to upload)
- 
+
 ### Install Cmake 3.0 +
 
-sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
+>sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
 
-sudo -E apt-get update
+>sudo -E apt-get update
 
-sudo apt-get install cmake
+>sudo apt-get install cmake
+
+### Install meshlab
+
+>$ sudo add-apt-repository ppa:zarquon42/meshlab
+
+>$ sudo apt-get update
+
+>$ sudo apt-get install meshlab
+
+  Optional, to remove meshlab, do:
+
+>$ sudo apt-get remove meshlab
+
+  Or, if you want to uninstall meshlab, disable the recently added PPA and downgrade all the packages that got updated via the PPA, do:
+
+>$ sudo apt-get install ppa-purge
+
+>$ sudo ppa-purge ppa:zarquon42/meshlab
+
 
 
 
