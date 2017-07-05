@@ -3,7 +3,7 @@ layout: post
 title: Linux Tips
 date: 2017-7-5
 categories: blog
-tags: [总结,知识管理]
+tags: [技术总结]
 description: Linux重装系统&软件
 ---
 

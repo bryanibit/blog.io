@@ -22,7 +22,6 @@ With R and t you can now move a point from the world coordinate system (WC) to t
 >0 = RC + t where C is the 3D coordinates of the camera center in WC. By solving for C we get,
 >C = -R-1t
 
-And by the way,
-A correction in your documentation
+And by the way,A correction in your documentation
 Transposing and multiplying the rotation matrix does not change the rotation matrix --- a rotation matrix is orthogonal which means it's transpose is equal to its inverse and therefore, (RT)-1 = R.
 

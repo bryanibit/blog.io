@@ -33,13 +33,15 @@ device for boot loader installation:
 
 ### Install Sougou pinyin
 
+
 Ubuntu 14.04 install sougoupinyin
 
-first, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
 
-go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
+>first, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
 
-reboot!
+>go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
+
+>reboot!
 
 ### Setting github ssh
 

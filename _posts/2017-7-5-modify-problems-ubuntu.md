@@ -3,7 +3,7 @@ layout: post
 title: Ubuntu unmet problems
 date: 2017-7-5
 categories: blog
-tags: [总结,知识管理]
+tags: [技术总结]
 description: Linux中的一些问题，总结一下
 ---
 

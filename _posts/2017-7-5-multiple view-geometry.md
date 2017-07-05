@@ -3,7 +3,7 @@ layout: post
 title: Multiview Geometry
 date: 2017-7-5
 categories: blog
-tags: [总结,知识管理]
+tags: [理论梳理]
 description: SfM中的多视图问题
 ---
 
