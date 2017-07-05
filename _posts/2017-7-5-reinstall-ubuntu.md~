@@ -4,7 +4,7 @@ title: Linux Tips
 date: 2017-7-5
 categories: blog
 tags: [总结,知识管理]
-description: Linux重装系统
+description: Linux重装系统&软件
 ---
 
 ##我们开始吧
@@ -95,8 +95,21 @@ reboot!
 
 >sudo apt-get install cmake
 
+### Install meshlab
 
+>$ sudo add-apt-repository ppa:zarquon42/meshlab
 
+>$ sudo apt-get update
 
+>$ sudo apt-get install meshlab
 
+  Optional, to remove meshlab, do:
+
+>$ sudo apt-get remove meshlab
+
+  Or, if you want to uninstall meshlab, disable the recently added PPA and downgrade all the packages that got updated via the PPA, do:
+
+>$ sudo apt-get install ppa-purge
+
+>$ sudo ppa-purge ppa:zarquon42/meshlab
 
