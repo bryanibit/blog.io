@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux Question Tips
+title: Linux Tips
 date: 2017-7-5
 categories: blog
 tags: [总结,知识管理]
