@@ -7,7 +7,7 @@ header-img: "img/green.jpg"
 
 
 <center>
-    <p><img src="img/IMG_2736.JPG" align="center"></p>
+    <p><img src="http://ww4.sinaimg.cn/mw1024/8ea5b0c5jw1emvm32p24xj20bv0cy76a.jpg" align="center"></p>
 </center>
 
 我是于华超，北京理工大学在读研究生。
