@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux Tips
+title: Linux Install Tips
 date: 2017-7-5
 categories: blog
 tags: [技术总结]
@@ -115,3 +115,9 @@ Ubuntu 14.04 install sougoupinyin
 
 >$ sudo ppa-purge ppa:zarquon42/meshlab
 
+### Install pycharm and crack it
+...
+Download official version professional
+go to  [crack](idea.qinxi1992.cn)
+add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
+...

@@ -6,6 +6,10 @@ categories: blog
 tags: [技术总结]
 description: Using python in Linux
 ---
+## 使用pycharm时import第三方库
+...
+settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
+...
 
 ## 两个维数相同的bool类型数组做与运算
 np.nonzero(ok1 * ok2)[0]
