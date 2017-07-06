@@ -13,11 +13,18 @@ description: Linux中cmakelists问题
   ""中的内容应该包含OpenCVConfig.cmake
 ```
 
-## 
-
-### Using external libraries (CMake:How To Find Libraries)
+## Using external libraries (CMake:How To Find Libraries)
 
 Cmake help you with 'find_package' command
 
-cmake comes with numerous libraries
+cmake comes with numerous libraries.
+
+### cmake default setting
+
+Where is your path is?
+
+The module path is /usr/share/cmake/Modules
+
+cmake --help-module
+
 
