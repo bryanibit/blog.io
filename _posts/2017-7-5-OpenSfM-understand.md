@@ -25,13 +25,12 @@ def default_config():
 
 The above function default_config() return a dict, {'use_exif_size': yes  }
 
-# Reconstruction
+# Incremental reconstruction
 
-**Incremental reconstruction**
 
 ## Initialization from 2 images with most matches
 
-### 找到两张图共有的feature（feature-id, feature-x-y, feature-color, ）
+**找到两张图共有的feature（feature-id, feature-x-y, feature-color, ）后，执行一下步骤**
 
 ### two_view_reconstruction
 
@@ -53,8 +52,27 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
 
-2. R, t and inliers
+### R, t and inliers
 
-> 通过OpenGV找到矫正feature points关系，算出两视图R和t，
+> 通过OpenGV找到矫正feature points关系，算出两视图R和t，及使用到的inliers
+
+> 以上是使用两种方法计算inliers，同时优化R,t
+
+> RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
+
+3. if len(inliers) > 5:Bundle Adjustment 优化
+
+4. triangulation and bundle adjustment
+
+## Grow reconstruction
+
+### 3D-2D corresponding (PnP)
+
+pass
+
+## Bundle adjustment
+
+
+
 
 
