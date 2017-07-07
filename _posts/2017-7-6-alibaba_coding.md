@@ -7,7 +7,7 @@ tags: [考试经验总结]
 description: c++问题
 ---
 
-该题目的介绍以及初步程序代码已经长传[GitHub](https://github.com/bryanibit/2018-alibaba-CodeTest-online)
+该题目的介绍以及初步程序代码已经上传[GitHub](https://github.com/bryanibit/2018-alibaba-CodeTest-online)
 
 在此整理一些编程问题
 

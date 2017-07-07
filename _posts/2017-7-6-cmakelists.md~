@@ -57,9 +57,12 @@ For this work, you need to put FindLibXML++.cmake file to cmake module path.
 * namely, if (Qt_QtXML_FOUND)  巴拉巴拉
 
 ### How package find working?
+
 1. CMAKE hecks all directories in ${CMAKE_MODULE_PATH}
 
-   then it looks its own directory <CMAKE_Root>/share/cmake-x.y/Modules
+   then it looks its own directory 
+
+> <CMAKE_Root>/share/cmake-x.y/Modules
 
    <CMAKE_Root> 一般指 /usr/
 
@@ -67,12 +70,12 @@ For this work, you need to put FindLibXML++.cmake file to cmake module path.
    or <low-case-name>-config.cmake 
 
    no matter what mode is used, the following will be defined:
-
+```
    <NAME>_FOUND
    <NAME>_INCLUDE_DIRS or <NAME>_INCLUDES
    <NAME>_LIBRARIES or <NAME>_LIBS
    <NAME>_DEFINITIONS
-
+```
 _All this_ takes places in the Find<NAME>.cmake file
 
 套用上页用到的if found， include， target
@@ -80,6 +83,7 @@ _All this_ takes places in the Find<NAME>.cmake file
 ### pkg-config
 
 小心使用
+
 pkg-config is a build-helping tool, based on '.pc' files that record the location of _ library files _ and _ include files _
 
 

@@ -58,7 +58,7 @@ For this work, you need to put FindLibXML++.cmake file to cmake module path.
 
 ### How package find working?
 
-1. CMAKE hecks all directories in ${CMAKE_MODULE_PATH}
+1. CMAKE checks all directories in ${CMAKE_MODULE_PATH}
 
    then it looks its own directory 
 
