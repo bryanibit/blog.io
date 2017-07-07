@@ -80,4 +80,29 @@ R' = cv2.Rodrigues(R)[0]
 
 Note that: [0]
 
+## 两个大小一致的数组，满足条件的配对
+
+'''
+results = np.array([7,8,9,10])
+dists = np.array([1,2,3,4])
+good = dists &lt 2
+*array([ True, False, False, False], dtype=bool)*
+matches = zip(results[good],good.nonzero()[0])
+*[(7, array([0]))]* \# matches is a list
+
+## np.array中两个维度相同的数组互相相乘注意
+
+'
+ok1 = np.array([ True, False, False, False], dtype=bool)
+ok2 = np.array([ True, False, True, False], dtype=bool)
+ok1*ok2
+*array([ True, False, False, False], dtype=bool)*
+np.nonzero(ok1*ok2)
+*(array([0]),)*
+np.nonzero(ok1*ok2)[0]
+*array([0])*
+'
+This is 
+
+
 
