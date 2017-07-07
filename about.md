@@ -39,13 +39,4 @@ header-img: "img/green.jpg"
 - [微博](http://weibo.com/u/2393223365)
 
 
-
-<center>
-    <p><img src="http://wx3.sinaimg.cn/mw1024/8ea5b0c5ly1ffkzbp8uxrj20zk0qojzg.jpg" align="center"></p>
-</center>
-
-
-
-
-
-
+![Moi](img/IMG_2736.JPG)
