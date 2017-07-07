@@ -60,9 +60,9 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
 
-3. if len(inliers) > 5:Bundle Adjustment 优化
+2. if len(inliers) > 5:Bundle Adjustment 优化
 
-4. triangulation and bundle adjustment
+3. triangulation and bundle adjustment
 
 ## Grow reconstruction
 
@@ -72,7 +72,7 @@ pass
 
 ## Bundle adjustment
 
-
+pass
 
 
 
