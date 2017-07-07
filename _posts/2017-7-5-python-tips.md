@@ -6,14 +6,19 @@ categories: blog
 tags: [技术总结]
 description: Using python in Linux
 ---
+
 ## 使用pycharm时import第三方库
+
 ...
 settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
 ...
 
 ## 两个维数相同的bool类型数组做与运算
+
 np.nonzero(ok1 * ok2)[0]
+
 其中ok1和ok2都是一个一维数组bool型的
+
 如果加[0]会使得到的结果仍为一维数组
 
          > ok1*ok2
@@ -30,6 +35,7 @@ np.nonzero(ok1 * ok2)[0]
          (array([1, 2]),)
          > np.nonzero(b1*b2)[0]
          array([1, 2])
+
 
 ## 文本读取
 
@@ -53,6 +59,7 @@ e.g.
 ## 矢量求范数
 
 bearing_b3 是一个n×3的矩阵
+
 normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]
 
 e.g.
@@ -82,17 +89,17 @@ Note that: [0]
 
 ## 两个大小一致的数组，满足条件的配对
 
-'''
+```
 results = np.array([7,8,9,10])
 dists = np.array([1,2,3,4])
 good = dists &lt 2
 *array([ True, False, False, False], dtype=bool)*
 matches = zip(results[good],good.nonzero()[0])
 *[(7, array([0]))]* \# matches is a list
-
+```
 ## np.array中两个维度相同的数组互相相乘注意
 
-'
+```
 ok1 = np.array([ True, False, False, False], dtype=bool)
 ok2 = np.array([ True, False, True, False], dtype=bool)
 ok1*ok2
@@ -101,7 +108,7 @@ np.nonzero(ok1*ok2)
 *(array([0]),)*
 np.nonzero(ok1*ok2)[0]
 *array([0])*
-'
+```
 This is 
 
 

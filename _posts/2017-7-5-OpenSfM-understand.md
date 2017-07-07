@@ -9,7 +9,8 @@ description: 边看程序，边总结一下原理和代码书写风格
 # 控制整个工程的参数方法
 
 **renew a file called config.py**
-`import os
+```
+import os
 import yaml
 default_config_yaml = '''
 \# Metadata
@@ -19,7 +20,7 @@ def default_config():
     '''Return default configuration
     '''
     return yaml.load(default_config_yaml)
-`
+```
 ---
 
 The above function default_config() return a dict, {'use_exif_size': yes  }
@@ -35,14 +36,23 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 ### two_view_reconstruction
 
 1. pixel_bearing
+
 > 首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))
+
 > 该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]
+
 > 如果是[[],[],[]]这种，用reshape((-1,1,2))
+
 > K为np.array([[a,b,c],[a,b,c],[a,b,c]])
+
 > distortion为np.array([a,b,c,d])
+
 > 将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1
+
 > homogeneous / np.linalg.norm(b, axis = 1)[:, np.newaxis]
+
 > 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
+
 2. R, t and inliers
 
 > 通过OpenGV找到矫正feature points关系，算出两视图R和t，
