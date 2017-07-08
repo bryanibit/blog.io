@@ -72,7 +72,7 @@ pass
 
 ## Bundle adjustment
 
-pass
+使用[Ceres Solver](http://www.ceres-solver.org)
 
 
 
