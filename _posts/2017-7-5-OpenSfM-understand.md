@@ -6,7 +6,7 @@ categories: blog
 tags: [技术总结]
 description: 边看程序，边总结一下原理和代码书写风格
 ---
-# 控制整个工程的参数方法
+# 一 控制整个工程的参数方法
 
 **renew a file called config.py**
 ```
@@ -25,14 +25,14 @@ def default_config():
 
 The above function default_config() return a dict, {'use_exif_size': yes  }
 
-# Incremental reconstruction
+# 二 Incremental reconstruction
 
 
-## Initialization from 2 images with most matches
+## 2.1 Initialization from 2 images with most matches
 
 **找到两张图共有的feature（feature-id, feature-x-y, feature-color, ）后，执行一下步骤**
 
-### two_view_reconstruction
+### 2.1.1 two_view_reconstruction
 
 - pixel_bearing
 
@@ -52,7 +52,7 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
 
-### R, t and inliers
+### 2.1.2 R, t and inliers
 
 > 通过OpenGV找到矫正feature points关系，算出两视图R和t，及使用到的inliers
 
@@ -64,9 +64,9 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 2. triangulation and bundle adjustment
 
-## Grow reconstruction
+## 2.2 Grow reconstruction
 
-### 3D-2D corresponding (PnP)
+### 2.2.1 3D-2D corresponding (PnP)
 
 pass
 
