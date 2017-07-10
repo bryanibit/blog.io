@@ -199,3 +199,44 @@ int fac(int n)
 void select_sort(int array[], int n);
 ```
 
+### 5.3 字符数组
+
+- char str[] = {"I am happy"} <== \> char str[]="I am happy"
+- char str[] = {'I',' ','a','m',' ','h','a','p','p','y','\0'}
+- 以上三种写法等价，和下面这种不一样
+- char str[] = {'I',' ','a','m',' ','h','a','p','p','y'}
+- 输出一个字符串数组，cout << str,只要遇到'\0'即停止输出
+
+### 5.4 字符串处理函数简介
+
+- #include <cstring\> <string\>
+- char *strcat(char *restrict s1, const char *restrict s2);
+- 在s1末尾追加s2
+- char *strcpy(char *restrict s1, const char *restrict s2, int n);
+- 清空s1，将s2赋值到s1中
+- int strcmp(const char *restrict s1, const char *restrict s2);
+- 直到出现第一个不相同的字符，以此为标准输出
+- int strlen(const char * s)
+
+### 5.5 字符串变量(避免数组越界)
+- str1=str2 *correct*
+- string word="then";
+  word[2]='a'; *correct*
+- 字符串常量以'\0'结尾，但是将字符串常量存在字符串变量中，只存放字符串本身，无'\0'，这与char *不同
+
+### 5.6 字符串变量的运算
+
+- string1 = string2  char *strcpy 复制
+- string1 = string1+ string2 连接
+- 直接使用== > 来控制
+
+### 5.7 字符串数组
+空
+
+## 6. 指针
+
+
+
+
+
+
