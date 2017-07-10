@@ -293,7 +293,7 @@ int main(int argc, char **argv)
 
 }
 //传进来的正是指针，所以修改了name内容
-void sort_select(char **name,int n)
+void sort_select(char **name,int n)//void sort_select(char *name[],int n)
 {
     for(int i =0;i <n-1;++i)
     {
