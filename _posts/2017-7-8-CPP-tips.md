@@ -278,8 +278,8 @@ int *p[4];
 下面举个例子
 - 对一个数组{"basic","fortune","c++","pascal"}进行排序并显示输出
 ```
-#include <iostream>
-#include <cstring>
+\#include <iostream>
+\#include <cstring>
 using namespace std;
 void sort_select(char **name,int n);
 void print_screen(char **name, int n);
@@ -315,7 +315,8 @@ void print_screen(char **name, int n)
 ```
 
 > std::string to char *
-```std::string str = "string";
+```
+std::string str = "string";
 char *cstr = new char[str.length() + 1];
 strcpy(cstr, str.c_str());
 // do stuff
