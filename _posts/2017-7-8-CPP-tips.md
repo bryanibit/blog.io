@@ -313,8 +313,7 @@ void print_screen(char **name, int n)
     }
 }
 ```
-
-> std::string to char *
+- std::string to char *
 ```
 std::string str = "string";
 char *cstr = new char[str.length() + 1];
