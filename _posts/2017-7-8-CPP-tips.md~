@@ -235,8 +235,89 @@ void select_sort(int array[], int n);
 
 ## 6. 指针
 
+- 指针定义方法： 基类型 *指针变量名；
+- 基类型决定了指针移动时，移动的字节数目
+```
+int a[10];
+int *p;
+p= &a;
+```
+```
+const char *str = "I love you";
+string str = "I love you";
+char str[]="I love you";
+```
+- char *背后的含义是：给我个字符串，我要修改它,传给函数的字面常量是没法被修改的,所以说，比较和理的办法是把参数类型修改为const char *
 
+```
+int two_dimen_array[3][4]={{1,2,3,4},{5,6,7,8},{1,2,3,4}};
+```
+* 针对以上二维数组，two_dimen_array+1和two_dimen_array[0]+1在内存中移动的位数不同的
+* 前者移动了4*4=16个字节，后者只移动了4个字节，已知int型占4个字节
+* 所以说指针类型很重要，在定义一个指针时必不可少的部分
+### 6.1 函数指针
 
+- 函数在编译时分配一个入口地址就是函数的指针
+- 函数名代表函数入口
+```
+int max(int x,int y);
+int (*p)(int,int);//定义指向函数的指针变量p
+p=max;//由于max才是函数入口，而不是max(int a,int b)
+```
+调用形式为
+```
+int a=0,b=0;
+m=p(a,b);
+```
+#### 6.2 指针数组
+```
+int *p[4];
+```
+有点迷惑了吧
 
+下面举个例子
+- 对一个数组{"basic","fortune","c++","pascal"}进行排序并显示输出
+```
+#include <iostream>
+#include <cstring>
+using namespace std;
+void sort_select(char **name,int n);
+void print_screen(char **name, int n);
+int main(int argc, char **argv)
+{
+    //There will have a warning about **const**
+    char * name[]={"basic","fortune","c++","pascal"};
+    //string name[]={"basic","fortune","c++","pascal"};
+    sort_select(name,4);
+    print_screen(name, 4);
 
+}
+//传进来的正是指针，所以修改了name内容
+void sort_select(char **name,int n)
+{
+    for(int i =0;i <n-1;++i)
+    {
+        if(strcmp(name[i],name[i+1])>0)
+        {
+            char *temp=name[i];
+            name[i]=name[i+1];
+            name[i+1]=temp;
+        }
+    }
+}
+void print_screen(char **name, int n)
+{
+    for(int i = 0;i < n;++i)
+    {
+        cout<<name[i]<<endl;
+    }
+}
+```
 
+> std::string to char *
+```std::string str = "string";
+char *cstr = new char[str.length() + 1];
+strcpy(cstr, str.c_str());
+// do stuff
+delete [] cstr;
+```
