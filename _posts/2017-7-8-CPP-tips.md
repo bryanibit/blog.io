@@ -277,42 +277,42 @@ int *p[4];
 
 下面举个例子
 - 对一个数组{"basic","fortune","c++","pascal"}进行排序并显示输出
-```
-\#include <iostream>
-\#include <cstring>
-using namespace std;
-void sort_select(char **name,int n);
-void print_screen(char **name, int n);
-int main(int argc, char **argv)
-{
-    //There will have a warning about **const**
-    char * name[]={"basic","fortune","c++","pascal"};
-    //string name[]={"basic","fortune","c++","pascal"};
-    sort_select(name,4);
-    print_screen(name, 4);
 
-}
-//传进来的正是指针，所以修改了name内容
-void sort_select(char **name,int n)//void sort_select(char *name[],int n)
-{
-    for(int i =0;i <n-1;++i)
-    {
-        if(strcmp(name[i],name[i+1])>0)
-        {
-            char *temp=name[i];
-            name[i]=name[i+1];
-            name[i+1]=temp;
-        }
-    }
-}
-void print_screen(char **name, int n)
-{
-    for(int i = 0;i < n;++i)
-    {
-        cout<<name[i]<<endl;
-    }
-}
-```
+          #include <iostream>
+          #include <cstring>
+          using namespace std;
+          void sort_select(char **name,int n);
+          void print_screen(char **name, int n);
+          int main(int argc, char **argv)
+          {
+              //There will have a warning about **const**
+              char * name[]={"basic","fortune","c++","pascal"};
+              //string name[]={"basic","fortune","c++","pascal"};
+              sort_select(name,4);
+              print_screen(name, 4);
+          
+          }
+          //传进来的正是指针，所以修改了name内容
+          void sort_select(char **name,int n)//void sort_select(char *name[],int n)
+          {
+              for(int i =0;i <n-1;++i)
+              {
+                  if(strcmp(name[i],name[i+1])>0)
+                  {
+                      char *temp=name[i];
+                      name[i]=name[i+1];
+                      name[i+1]=temp;
+                  }
+              }
+          }
+          void print_screen(char **name, int n)
+          {
+              for(int i = 0;i < n;++i)
+              {
+                  cout<<name[i]<<endl;
+              }
+          }
+
 - std::string to char *
 ```
 std::string str = "string";
@@ -320,4 +320,16 @@ char *cstr = new char[str.length() + 1];
 strcpy(cstr, str.c_str());
 // do stuff
 delete [] cstr;
+```
+data type in all
+```
+int i;
+int *p;
+int a[n];
+int *p[n];
+int (*p)[n];
+int f();
+int *p();
+int (*p)()
+int **p
 ```
