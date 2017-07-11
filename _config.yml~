@@ -1,6 +1,6 @@
 # Site settings
 title: 屋顶上的鱼
-header-img: "img/green.jpg"
+header-img: "img/twitter.jpg"
 tagline: "cn"  
 description: "于华超"  
 baseurl: ""
@@ -14,7 +14,7 @@ owner:
 
 # Data
 gavatar: http://dreamofbook.qiniudn.com/Az..png
-favicon: img/favicon.png
+favicon: img/bearlittle.png
 
 douban_username:  
 twitter_username: 

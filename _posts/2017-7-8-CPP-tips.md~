@@ -277,42 +277,42 @@ int *p[4];
 
 下面举个例子
 - 对一个数组{"basic","fortune","c++","pascal"}进行排序并显示输出
-```
-\#include <iostream>
-\#include <cstring>
-using namespace std;
-void sort_select(char **name,int n);
-void print_screen(char **name, int n);
-int main(int argc, char **argv)
-{
-    //There will have a warning about **const**
-    char * name[]={"basic","fortune","c++","pascal"};
-    //string name[]={"basic","fortune","c++","pascal"};
-    sort_select(name,4);
-    print_screen(name, 4);
 
-}
-//传进来的正是指针，所以修改了name内容
-void sort_select(char **name,int n)//void sort_select(char *name[],int n)
-{
-    for(int i =0;i <n-1;++i)
-    {
-        if(strcmp(name[i],name[i+1])>0)
-        {
-            char *temp=name[i];
-            name[i]=name[i+1];
-            name[i+1]=temp;
-        }
-    }
-}
-void print_screen(char **name, int n)
-{
-    for(int i = 0;i < n;++i)
-    {
-        cout<<name[i]<<endl;
-    }
-}
-```
+          #include <iostream>
+          #include <cstring>
+          using namespace std;
+          void sort_select(char **name,int n);
+          void print_screen(char **name, int n);
+          int main(int argc, char **argv)
+          {
+              //There will have a warning about **const**
+              char * name[]={"basic","fortune","c++","pascal"};
+              //string name[]={"basic","fortune","c++","pascal"};
+              sort_select(name,4);
+              print_screen(name, 4);
+          
+          }
+          //传进来的正是指针，所以修改了name内容
+          void sort_select(char **name,int n)//void sort_select(char *name[],int n)
+          {
+              for(int i =0;i <n-1;++i)
+              {
+                  if(strcmp(name[i],name[i+1])>0)
+                  {
+                      char *temp=name[i];
+                      name[i]=name[i+1];
+                      name[i+1]=temp;
+                  }
+              }
+          }
+          void print_screen(char **name, int n)
+          {
+              for(int i = 0;i < n;++i)
+              {
+                  cout<<name[i]<<endl;
+              }
+          }
+
 - std::string to char *
 ```
 std::string str = "string";
@@ -321,3 +321,48 @@ strcpy(cstr, str.c_str());
 // do stuff
 delete [] cstr;
 ```
+data type in all
+```
+int i;
+int *p;
+int a[n];
+int *p[n];
+int (*p)[n];
+int f();
+int *p();
+int (*p)()
+int **p
+```
+指针的使用优势：1.提高程序效率 2.在调用函数的时候，如果改变被调用函数中某些变量的值，这些值能为主调函数使用 3.实现动态存储分配
+
+#### 6.3 引用
+- int a;
+- int &b=a;
+- b是a的一个引用，b和a占内存同一个存储单元，具有同一个地址
+- 引用不能用来代表数组和指针
+#### 引用作为函数参数
+- 它作为函数参数，可以扩充函数传递数据的功能
+- 当引用作为函数参数，可以看成传进函数的是地址，所以形参也会跟着被调用函数操作而变化
+
+e.g. 值传递的不同方式
+```
+void swap(int * p1, int * p2);
+int main(int argc,char **argv)
+{
+	int a,b;
+	swap(&a,&b);
+}
+``` 
+
+```
+void swap(int &p1, int &p2);
+int main(int argc,char **argv)
+{
+	int a,b;
+	swap(a,b);
+}
+```
+## 7.自定义数据类型 struct
+
+
+
