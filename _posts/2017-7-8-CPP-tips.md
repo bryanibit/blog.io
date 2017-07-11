@@ -371,4 +371,20 @@ struct 结构体类型名
 - 先定义在声明，一般放在某个文件中，使用的时候\#include该文件即可
 - student.name 其中.是成员运算符，是所有运算符中优先级最高的
 * 结构体变量指针
-- 
+```
+Student stu;
+Student *p = &stu;
+```
+- p->name, ->是指向运算符
+
+#### 使用结构体设计链表
+```
+struct Student
+{
+	int num;
+	float score;
+	Student * next;
+};
+```
+
+
