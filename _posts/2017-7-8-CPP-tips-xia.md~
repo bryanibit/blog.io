@@ -153,7 +153,65 @@ Box box2(box1);
 
 Box box2 = box1;
 
-### 9.5 静态成员
+### 9.5 类的静态成员
+
+- 静态成员变量不隶属于任何一个对象，它是类的成员，即使不定义对象，静态数据成员也被分配空间，也可被引用
+- 静态成员变量不随对象的撤销而释放，它是类的成员。
+- 静态成员变量只能在类外进行初始化
+```
+int Box::height = 10;//height is static variable of class Box
+```
+- 初始化（构造函数）中不能操作静态变量
+```
+Box b = new Box();
+b.height;//可以使用对象名访问静态成员
+```
+#### 类的静态函数
+
+- 静态函数存在的价值主要是操作静态变量
+- 静态函数是类的而不是对象的成员，所以它没有this指针，所以无法访问本类中的非静态成员
+因为
+```
+int Box::volume()
+{
+	return (height\*width\*length);
+}
+
+change to the following
+
+int Box::volume(Box *this)
+{
+	return (this->height\*this->width\*this->length);
+}
+```
+- 由于静态变量没有this指针，找不到内存中当前需要操作的成员变量
+- Therefore, 保证静态函数只操作静态变量，当然也可以操作非静态，只有在对静态变量时，才显得最简介易懂
+
+### 9.6 友元
+
+不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
