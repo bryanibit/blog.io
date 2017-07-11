@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C++ textbook
+title: C++ textbook 上
 date: 2017-07-08
 categories: blog
 tags: [技术总结]
@@ -426,4 +426,21 @@ union data
 ```
 - 节省存储空间，每次只能存在一个成员变量，对新的成员变量赋值，其他成员变量就消失，其在内存中所占的存储空间是最长的字符所占的存储空间
 
+#### 7.5 枚举类型
+
+- enum weekday{Sun=7,Mon=1,Tue,Wed,Tur,Fri,Sat};
+- enum 枚举类型名 {枚举常量列表}
+- weekday workday； the same with the following:
+- enum {Sun,Mon,Tue,Wed,Tur,Fri,Sat} workday；
+
+* 不能直接对枚举类型赋值 Sun=0；
+* 不能直接这样： workday = 0；
+
+#### 7.6 typedef
+
+空
+
+
+
+***
 
