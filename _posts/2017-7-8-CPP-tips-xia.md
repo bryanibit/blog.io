@@ -189,10 +189,29 @@ int Box::volume(Box *this)
 
 ### 9.6 友元
 
-不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～
+- 不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～
+- 
 
 
-
+```
+class Time
+{
+	Time(int,int,int);
+	friend void display(Time &);
+	int hour;
+	int minute;
+	int second;
+};
+Time::Time(int a, int b, int c)
+{
+	hour = h;
+	minute = m;
+	sec = s;
+}
+Void display(Time &t)
+{
+	cout << t.hour << ":"<< t.minute<<":"<< t.second<< endl;
+}
 
 
 
