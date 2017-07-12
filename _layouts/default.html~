@@ -4,10 +4,9 @@
 {% include head.html %}
 
 
-<!--
+
 <link rel="shortcut icon" type="image/png" href="img/favicon.png">
 </link>
--->
 
 <body ontouchstart="">
 
