@@ -190,28 +190,103 @@ int Box::volume(Box *this)
 ### 9.6 友元
 
 - 不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～
-- 
-
-
+- 友元存在的价值在于虽可以不属于本类，但作为其友元，可以访问其的私有成员变量；友元函数实现多个类的数据共享；
+* 下面的程序展示了Date中的友元函数由Time中的成员函数担任，使之能访问两个类的成员，注意访问的方式
 ```
+class Date;//对Date类的提前引用声明
 class Time
 {
-	Time(int,int,int);
-	friend void display(Time &);
-	int hour;
-	int minute;
-	int second;
+public: Time(int, int, int);
+		void display(Date &);
+private:int hour;
+		int minute;
+		int sec;
 };
 Time::Time(int a, int b, int c)
 {
-	hour = h;
-	minute = m;
-	sec = s;
+	hour = a;
+	minute = b;
+	sec = c;
 }
-Void display(Time &t)
+
+class Date
 {
-	cout << t.hour << ":"<< t.minute<<":"<< t.second<< endl;
+public:Date(int, int, int);
+	  friend void Time::display(Date &);
+private:int month;
+		int day;
+		int year;
+};
+Date::Date(int a, int b, int c)
+{
+	month = a;
+	day = b;
+	year = c;
 }
+
+void Time::display(Date &d)//对Date对象的引用
+{
+	cout << d.day << ":" << d.month << ":" << d.year << endl;//访问私有成员
+	cout << hour << ":" << minute << ":" << sec << endl;
+}
+
+int main()
+{
+	Time t1(10, 13, 56);
+	Date d1(12, 25, 2004);
+	t1.display(d1);
+	return 0;
+}
+```
+下面的程序，友元函数不是类的成员函数，通过重载访问两个类的私有数据
+```
+class Time
+{
+public: Time(int, int, int);
+		friend void display(Time &);
+private:int hour;
+		int minute;
+		int sec;
+};
+Time::Time(int a, int b, int c)
+{
+	hour = a;
+	minute = b;
+	sec = c;
+}
+class Date
+{
+public:Date(int, int, int);
+	  friend void display(Date &);
+private:int month;
+		int day;
+		int year;
+};
+Date::Date(int a, int b, int c)
+{
+	month = a;
+	day = b;
+	year = c;
+}
+void display(Date & d)
+{
+	cout << d.day << "/" << d.month << "/" << d.year << endl;
+}
+void display(Time & t)
+{
+	cout << t.hour << "/" << t.minute << "/" << t.sec << endl;
+}
+int main()
+{
+	Time t1(10, 13, 56);
+	Date d1(12, 25, 2004);
+	display(d1);
+	display(t1);
+	return 0;
+}
+```
+
+
 
 
 
