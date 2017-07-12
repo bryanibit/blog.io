@@ -60,7 +60,7 @@ e.g.
 
 bearing_b3 是一个n×3的矩阵
 
-normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]
+'normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]'
 
 e.g.
 
@@ -109,7 +109,7 @@ np.nonzero(ok1*ok2)
 np.nonzero(ok1*ok2)[0]
 *array([0])*
 ```
-This is 
+
 
 
 
