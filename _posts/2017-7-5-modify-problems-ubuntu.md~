@@ -3,7 +3,7 @@ layout: post
 title: Ubuntu unmet problems
 date: 2017-7-5
 categories: blog
-tags: [总结,知识管理]
+tags: [技术总结]
 description: Linux中的一些问题，总结一下
 ---
 
@@ -39,4 +39,11 @@ description: Linux中的一些问题，总结一下
         sudo mkdir -p lists/partial
         sudo apt-get clean 
         sudo apt-get update
+
+## uninstall sublime from terminal
+
+sudo rm -r /opt/Sublime\ Text\ 2
+sudo rm /usr/bin/sublime
+sudo rm /usr/share/applications/sublime.desktop
+sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/defaults.list
 

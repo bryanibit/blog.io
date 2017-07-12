@@ -40,3 +40,11 @@ description: Linux中的一些问题，总结一下
         sudo apt-get clean 
         sudo apt-get update
 
+## uninstall sublime from terminal
+```
+sudo rm -r /opt/Sublime\ Text\ 2
+sudo rm /usr/bin/sublime
+sudo rm /usr/share/applications/sublime.desktop
+sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/defaults.list
+```
+
