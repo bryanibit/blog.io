@@ -184,6 +184,7 @@ int Box::volume(Box *this)
 	return (this->height\*this->width\*this->length);
 }
 ```
+
 - 由于静态变量没有this指针，找不到内存中当前需要操作的成员变量
 - Therefore, 保证静态函数只操作静态变量，当然也可以操作非静态，只有在对静态变量时，才显得最简介易懂
 
