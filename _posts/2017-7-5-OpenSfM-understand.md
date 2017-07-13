@@ -70,6 +70,38 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 ### Triangulation
 ![Trangulation](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png)
 
+The following is [OpenGV code](https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp)
+```
+opengv::triangulation::triangulate(
+    const relative_pose::RelativeAdapterBase & adapter,
+    size_t index )
+{
+  translation_t t12 = adapter.gett12();
+  rotation_t R12 = adapter.getR12();
+  Eigen::Matrix<double,3,4> P1 = Eigen::Matrix<double,3,4>::Zero();
+  P1.block<3,3>(0,0) = Eigen::Matrix3d::Identity();
+  Eigen::Matrix<double,3,4> P2 = Eigen::Matrix<double,3,4>::Zero();
+  P2.block<3,3>(0,0) = R12.transpose();
+  P2.block<3,1>(0,3) = -R12.transpose()*t12;
+  bearingVector_t f1 = adapter.getBearingVector1(index);
+  bearingVector_t f2 = adapter.getBearingVector2(index);
+
+  Eigen::MatrixXd A(4,4);
+  A.row(0) = f1[0] * P1.row(2) - f1[2] * P1.row(0);
+  A.row(1) = f1[1] * P1.row(2) - f1[2] * P1.row(1);
+  A.row(2) = f2[0] * P2.row(2) - f2[2] * P2.row(0);
+  A.row(3) = f2[1] * P2.row(2) - f2[2] * P2.row(1);
+
+  Eigen::JacobiSVD< Eigen::MatrixXd > mySVD(A, Eigen::ComputeFullV );
+  point_t worldPoint;
+  worldPoint[0] = mySVD.matrixV()(0,3);
+  worldPoint[1] = mySVD.matrixV()(1,3);
+  worldPoint[2] = mySVD.matrixV()(2,3);
+  worldPoint = worldPoint / mySVD.matrixV()(3,3);
+
+  return worldPoint;
+};
+```
 
 ## 2.2 Grow reconstruction
 
