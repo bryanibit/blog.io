@@ -60,6 +60,35 @@ def match_low(feature1,feature2):
     matches = set(matches1).intersection(matches2)
     return np.array(list(matches), dtype=int)
 ```
+> note that:
+**cv2.flann_Index()**
+
+        Summary:
+        This method does a fast local approximate nearest neighbors (FLANN) calculation between two sets of feature vectors. The result are two numpy arrays the first one is a list of indexes of the matches and the second one is the match distance value. For the match indices or idx, the index values correspond to the values of td, and the value in the array is the index in td. I.
+        I.e. j = idx[i] is where td[i] matches sd[j].
+        The second numpy array (dist), at the index i is the match distance between td[i] and sd[j].
+        Lower distances mean better matches.
+  
+        Parameters:
+        sd - A numpy array of feature vectors of any size.         (t is template)
+        td - A numpy array of feature vectors of any size, this vector is used for indexing
+             and the result arrays will have a length matching this vector. (s is source)
+  
+        Returns:
+        Two numpy arrays, the first one, idx, is the idx of the matches of the vector td with sd.
+        The second one, dist, is the distance value for the closest match.
+
+        try:
+            import cv2
+        except:
+            logger.warning("Can't run FLANN Matches without OpenCV >= 2.3.0")
+            return
+        FLANN_INDEX_KDTREE = 1  # bug: flann enums are missing
+        flann_params = dict(algorithm = FLANN_INDEX_KDTREE, trees = 4)
+        flann = cv2.flann_Index(sd, flann_params)
+        idx, dist = flann.knnSearch(td, 1, params = {}) # bug: need to provide empty dict
+        del flann
+        return idx,dist
 
 
 ## CPP OpenCV
