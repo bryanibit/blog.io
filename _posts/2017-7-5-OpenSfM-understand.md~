@@ -54,7 +54,28 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 ### 2.1.2 R, t and inliers
 
-> 通过OpenGV找到矫正feature points关系，算出两视图R和t，及使用到的inliers
+> 通过OpenGV找到矫正feature points关系,得到矫正后的2D points: b1 and b2，**算出两视图R和t(with OpenGV)**，及使用到的inliers
+
+### 插播一下inliers求法
+
+- 需要通过R，t和事先设定的阈值，删除不满足阈值的feature points: b1 and b2,具体函数为
+
+```
+def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
+    p = pyopengv.triangulation_triangulate(b1, b2, t, R)
+
+    br1 = p.copy()
+    br1 /= np.linalg.norm(br1, axis=1)[:, np.newaxis]
+
+    br2 = R.T.dot((p - t).T).T
+    br2 /= np.linalg.norm(br2, axis=1)[:, np.newaxis]
+
+    ok1 = np.linalg.norm(br1 - b1, axis=1) < threshold
+    ok2 = np.linalg.norm(br2 - b2, axis=1) < threshold
+    return np.nonzero(ok1 * ok2)[0], p
+```
+- 解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
+R, t 是第二视图变换到第一视图的坐标变换阵，hence， R×br2 + t = br1 ==> (p-t).dot(R)
 
 > 以上是使用两种方法计算inliers，同时优化R,t
 
@@ -62,15 +83,13 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 1. if len(inliers) > 5: Bundle Adjustment 优化
 
-### Bundle_single_view
-空
-
 2. triangulation and bundle adjustment
 
 ### Triangulation
 ![Trangulation](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png)
 
-The following is [OpenGV code](https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp)
+The following is parts of [OpenGV code](https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp) for triangulation.
+And the matrixv maybe the most approximate solution for X satifying AX=0
 ```
 opengv::triangulation::triangulate(
     const relative_pose::RelativeAdapterBase & adapter,
@@ -104,6 +123,9 @@ opengv::triangulation::triangulate(
 ```
 
 ## 2.2 Grow reconstruction
+<center>
+    <p><img src="img/doc/triangulation.png" align="center"></p>
+</center>
 
 ### 2.2.1 3D-2D corresponding (PnP)
 
