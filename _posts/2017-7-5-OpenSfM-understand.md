@@ -40,7 +40,7 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > 该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]
 
-> 如果是[[],[],[]]这种，用reshape((-1,1,2))
+> 如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape
 
 > K为np.array([[a,b,c],[a,b,c],[a,b,c]])
 
@@ -60,9 +60,16 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
 
-1. if len(inliers) > 5:Bundle Adjustment 优化
+1. if len(inliers) > 5: Bundle Adjustment 优化
+
+### Bundle_single_view
+空
 
 2. triangulation and bundle adjustment
+
+### Triangulation
+tdv-2012-07-anot.pdf
+
 
 ## 2.2 Grow reconstruction
 
