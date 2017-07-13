@@ -68,7 +68,7 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 2. triangulation and bundle adjustment
 
 ### Triangulation
-![](img/doc/triangulation.png)
+![Trangulation](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png)
 
 
 ## 2.2 Grow reconstruction
