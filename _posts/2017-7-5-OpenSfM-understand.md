@@ -1,7 +1,7 @@
 ---
 layout: post
 title: OpenSfM opensource textbook
-date: 2017-07-07
+date: 2017-07-14
 categories: blog
 tags: [技术总结]
 description: 边看程序，边总结一下原理和代码书写风格
@@ -124,7 +124,7 @@ opengv::triangulation::triangulate(
 ```
 ### coordinate system R, t
 
-![one coordinate define]()
+![one coordinate define](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/one_coordinate_define.png)
 I recall we can define the corner system any way we want it for Bob. 
 And we would define the corner system in the first person perspective. That's the world is measured according to Bob's corner system. 
 So Bob is the center of the universe. 
