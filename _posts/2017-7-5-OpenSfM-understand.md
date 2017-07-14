@@ -48,7 +48,7 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > 将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1
 
-> homogeneous / np.linalg.norm(b, axis = 1)[:, np.newaxis]
+> homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]
 
 > 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
 
@@ -86,11 +86,13 @@ R, t 是**第二视图变换到第一视图**的坐标变换阵，hence， R×br
 2. triangulation and bundle adjustment
 
 ### Triangulation
+
 ![Trangulation](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png)
 
 The following is parts of [OpenGV code](https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp) for triangulation.
 The code is corresponding to the theory.
-And the matrixv maybe the most approximate solution for X satifying AX=0
+And the matrixv maybe the most approximate solution for X satifying *AX=0*
+
 ```
 opengv::triangulation::triangulate(
     const relative_pose::RelativeAdapterBase & adapter,
@@ -124,12 +126,17 @@ opengv::triangulation::triangulate(
 ```
 ### coordinate system R, t
 
+There is R, t defined by the following words and figure:
+
 ![one coordinate define](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/one_coordinate_define.png)
-I recall we can define the corner system any way we want it for Bob. 
-And we would define the corner system in the first person perspective. That's the world is measured according to Bob's corner system. 
-So Bob is the center of the universe. 
-And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t. 
-So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D. 
+
+- I recall we can define the corner system any way we want it for Bob. 
+- And we would define the corner system in the first person perspective. That's the world is measured according to Bob's corner system.
+- So Bob is the center of the universe. 
+- And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t. 
+- So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D. 
+
+> The R, t can transform 3D points in Bob's first coordinate system to Mike's first coordinate system.
 
 ## 2.2 Grow reconstruction
 

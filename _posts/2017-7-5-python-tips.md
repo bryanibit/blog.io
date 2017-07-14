@@ -110,6 +110,11 @@ np.nonzero(ok1*ok2)[0]
 *array([0])*
 ```
 
+## python运算符优先级
+
+从上到下优先级依次递减
+
+![python运算符优先级](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png)
 
 
 
