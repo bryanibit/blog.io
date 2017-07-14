@@ -75,9 +75,9 @@ def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
     return np.nonzero(ok1 * ok2)[0], p
 ```
 - 解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
-R, t 是第二视图变换到第一视图的坐标变换阵，hence， R×br2 + t = br1 ==> (p-t).dot(R)
+R, t 是**第二视图变换到第一视图**的坐标变换阵，hence， R×br2 + t = br1 ==> (p-t).dot(R)
 
-> 以上是使用两种方法计算inliers，同时优化R,t
+> 以上是使用了两种方法计算inliers，RANSAC和非线性优化方法，同时优化R,t
 
 > RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
 
@@ -89,6 +89,7 @@ R, t 是第二视图变换到第一视图的坐标变换阵，hence， R×br2 + 
 ![Trangulation](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png)
 
 The following is parts of [OpenGV code](https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp) for triangulation.
+The code is corresponding to the theory.
 And the matrixv maybe the most approximate solution for X satifying AX=0
 ```
 opengv::triangulation::triangulate(
@@ -121,11 +122,17 @@ opengv::triangulation::triangulate(
   return worldPoint;
 };
 ```
+### coordinate system R, t
+
+![one coordinate define]()
+I recall we can define the corner system any way we want it for Bob. 
+And we would define the corner system in the first person perspective. That's the world is measured according to Bob's corner system. 
+So Bob is the center of the universe. 
+And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t. 
+So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D. 
 
 ## 2.2 Grow reconstruction
-<center>
-    <p><img src="img/doc/triangulation.png" align="center"></p>
-</center>
+
 
 ### 2.2.1 3D-2D corresponding (PnP)
 
