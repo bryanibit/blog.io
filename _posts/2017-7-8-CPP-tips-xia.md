@@ -412,7 +412,7 @@ C++继承可以增加代码可重用性，继承主要学会使用protected
 
 构建一个派生类包括以下3部分工作：
 1. 从基类接收其全部成员
-2. 调整从基类接收的成员：声明一个参数和函数名都相同的函数覆盖原来基类的函数
+2. 调整从基类接收的成员：声明一个参数和函数名和函数返回值类型都相同的函数覆盖原来基类的函数
 3. 声明派生类时增加成员
 
 ### 11.1成员的访问属性
@@ -449,10 +449,31 @@ Student_derivedclass(int n,string name, char s, int a, string ad):Student(n,nam,
 
 类定义中含有类的对象，就像结构体中含有结构体
 - 子对象的初始化是在建立派生类时通过调用派生类构造函数实现的
+定义派生类构造函数的一般形式为
+**派生类构造函数名（总参数列表）：基类构造函数名（参数表列），子对象名（参数表列）**
+**{派生类中新增数据成员初始化语句}**
+下面是一个例子，monitor是子对象，是基类的对象
+```
+class Student
+{public:
+ Student(int n, string nam)
+ {num = n;
+  name=nam;}
+ protected:
+ int num; string name;
+};
 
-
-
-
+class Student1: public Student
+{public:
+ Student1(int n, string nam, int n1, string nam1, int a, string ad):Student(n,nam),monitor(n1,nam1)
+{age = a;
+ addr = ad;}//构造函数
+private:
+ Student monitor;//派生类子对象
+ int age;
+ string addr;
+```
+### 11.4 虚基类
 
 
 
