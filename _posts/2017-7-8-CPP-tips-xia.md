@@ -195,8 +195,8 @@ int Box::volume(Box *this)
 - 不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～
 - 友元存在的价值在于虽可以不属于本类，但作为其友元，可以访问其的私有成员变量；友元函数实现多个类的数据共享；
 * 下面的程序展示了Date中的友元函数由Time中的成员函数担任，使之能访问两个类的成员，注意访问的方式
-```
 
+```
 class Date;//对Date类的提前引用声明
 class Time
 {
@@ -247,7 +247,6 @@ int main()
 - 下面的程序，友元函数不是类的成员函数，通过重载访问两个类的私有数据
 
 ```
-
 class Time
 {
 public: Time(int, int, int);
@@ -298,6 +297,23 @@ int main()
 
 ### 10.1 重载的方法
 
+- 函数类型 operator 运算符名称 （形参表列）
+- {对运算符的重载处理}
+e.g.
+int operator + (int a, int b)
+
+```
+class Complex
+{public:Complex(){real=0;img=0;}
+Comlex(double a, double b){real=a;img=b}
+Complex operator + (Complex &);
+private:double real;
+double img;};
+
+Complex Complex::operator + (Complex &c2)
+{return Complex(c2.real+this->real,c2.img+img);// 直接返回一个无名对象
+}
+```
 
 
 
