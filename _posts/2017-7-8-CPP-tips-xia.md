@@ -321,7 +321,7 @@ Complex c = c1+c2;//c = c1.operator+(c2)
 ```
 
 不能重载的运算符有5个:
-- .  .*  ::  sizeof  ?:
+- . | .* | :: | sizeof | ?:
 
 重载不改变运算符优先级，重载运算符参数必须至少包含一个用户自定义的类或struct，否则就失去了重载运算符的意义，而且发生错误。
 **一般情况：双目运算符重载为类的友元函数，单目运算符重载为类的成员函数**
@@ -343,21 +343,65 @@ Complex c2(13.5,3.4);
 Complex c = c1+c2;//c = c1.operator+(c2)
 }
 ```
-构造函数复习（revise）
-默认构造函数
-- Complex()
-- Complex(double, double);
-- Complex(Comlex &);//e.g.在类成员函数的声明体中声明一个表示自身的对象 Complex temp(*this),最后return temp，将本身返回
-
 ### 重载流运算符
 
 ```
 istream & operator >> (istream &, 自定义类 &);
 ostream & operator << (ostream &, 自定义类 &);
 ```
+重载流运算符函数必须作为友元函数不能作为类的成员函数，原因显而易见，位置已经被stream &占据
+
+```
+class Complex
+{public:Complex(){real=0;img=0;}
+Comlex(double a, double b){real=a;img=b}
+friend ostream operator << (ostream &, Complex &);
+friend istream operator >> (istream &, Complex &);
+private:double real;
+double img;};
+
+friend ostream operator << (ostream & os, Complex & c)
+{return os<<c.real<<" + "<<c.img<<"i"<<endl;
+}
+friend istream operator >> (istream & is, Complex & c)
+{return is>>c.real>>c.img;
+}
+int main()
+{Complex c1;
+Complex c2;
+cin>>c2>>c1;//手动输入4个数字
+cout<<c1<<c2;//(cout<<c1)return ostream所以可以继续<<c2
+}
+```
+
+### 构造函数as强制类型转换
+
+构造函数复习（revise）
+默认构造函数
+- Complex()
+- Complex(double, double);
+- Complex(Comlex &);//e.g.在类成员函数的声明体中声明一个表示自身的对象 Complex temp(*this),最后return temp，将本身返回
+
+Complex(double r){real=r;img=0;}
+
+Complex(2.5) 比较 int(2.5)
+- 可以认为二者都是进行了强制类型转换
+- c=c1+int(2.5) false; c=c1+Complex(2.5) true
+
+### 类型转换函数进行类型转换
+
+类型转换函数作用是将一个类对象转换成另一个类型的数据，在Complex类中定义类型转换函数：
+```
+operator double()
+ {return real;}
+```
+- 抽象一般形式为
+```operator 类型名()
+   {实现转换的语句}```
+*在函数名前面不能指定函数类型，而且函数没有参数*
 
 
-
+## 11.继承与派生
 
 
 
