@@ -1,9 +1,9 @@
 ---
 layout: post
 title: How to fly over GFW
-date: 2015-09-15
+date: 2017-07-19
 categories: blog
-tags: [GFW]
+tags: [技术总结]
 description: Cross GFW and use Goagent in terminal
 ---
 
@@ -19,7 +19,7 @@ description: Cross GFW and use Goagent in terminal
 2. 因为要使用自己的账号，所以需要在chrome中上传
 3. use it
 
-### Ubuntu firefox
+### 在Ubuntu中结合foxyproxy实现翻墙
 
 1. 下载foxproxy
 2. Proxies 中 添加 goagent
@@ -53,3 +53,27 @@ check the ip address
 Of course, you should install curl
 
         sudo apt-get install curl
+
+### 解除GoAgent占用端口问题
+
+**直接关闭GoAgent会占用8087端口问题**
+
+```
+inin@inin-pc:~$ sudo lsof -i:8087
+COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
+python  2274 root    6u  IPv4  16595      0t0  TCP localhost:8087 (LISTEN)
+inin@inin-pc:~$ kill 2274
+```
+
+## xx-net使用
+
+登录[xx-net](https://github.com/XX-net/XX-Net/wiki/How-to-use)的使用方法一节，下载源码，无需下载百度云盘中的GoAgent源码
+
+```
+sudo apt-get install python-openssl
+sudo apt-get install libffi-dev
+sudo apt-get install python-gtk2
+sudo apt-get install python-appindicator
+sudo apt-get install libnss3-tools
+```
+
