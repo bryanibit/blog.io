@@ -7,7 +7,7 @@ tags: [技术总结]
 description: Linux中cmakelists问题
 ---
 
-[CMake Docs Link](https://cmake.org/Wiki/CMake_2.4.6_Docs)
+[**CMake Docs Link**(```man cmake```)](https://cmake.org/Wiki/CMake_2.4.6_Docs)
 
 ## Use OpenCV install not in default location
 ```

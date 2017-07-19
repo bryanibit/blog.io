@@ -7,6 +7,8 @@ tags: [技术总结]
 description: Linux中cmakelists问题
 ---
 
+[**CMake Docs Link**(```man cmake```)](https://cmake.org/Wiki/CMake_2.4.6_Docs)
+
 ## Use OpenCV install not in default location
 ```
   set(OpenCV "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
