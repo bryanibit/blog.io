@@ -32,13 +32,23 @@ the ownership of that folder with:
             $ sudo chown -R <your_username> ~/.ros
 
 改变节点名称：
-      rosrun turtlesim turtlesim_node __name:=my_turtle
+        rosrun turtlesim turtlesim_node __name:=my_turtle
 新名称是my_turtle,原来名称是turtlesim
 
 **查看各个节点topic关系**
-       rosrun rqt_graph rqt_graph
-
+        rosrun rqt_graph rqt_graph
 **查看topic的数据类型**
-       rostopic type /topic_name
+        rostopic type /topic_name
 **可以继续查看topic type的具体参数（float，double等）**
-       rosmsg show /topic_type
+        rosmsg show /topic_type
+
+## rosdep
+
+rosdep是一个你可以用来安装ROS package系统依赖的工具
+         rosdep install [package]
+如果你是第一次使用rosdep，你会看到一个error
+	   sudo rosdep init
+   	   rosdep update
+## roslanch
+
+

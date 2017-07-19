@@ -7,6 +7,8 @@ tags: [技术总结]
 description: Linux中cmakelists问题
 ---
 
+[CMake Docs Link](https://cmake.org/Wiki/CMake_2.4.6_Docs)
+
 ## Use OpenCV install not in default location
 ```
   set(OpenCV "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
@@ -86,4 +88,8 @@ _All this_ takes places in the Find<NAME>.cmake file
 
 pkg-config is a build-helping tool, based on '.pc' files that record the location of _ library files _ and _ include files _
 
+## INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES
 
+INCLUDE_DIRECTORIES 增加include路径
+LINK_DIRECOTRIES（"×××.so"） 添加需要链接的库文件路径
+TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
