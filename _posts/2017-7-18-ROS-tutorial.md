@@ -99,6 +99,43 @@ rostopic pub [topic] [msg_type] [args]
 e.g.控制乌龟运动
 
 ```
- rostopic pub -1 /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
+ rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
                   topic_name                    (topic type /topic_name)    (rosmsg show /topic_type)
+```
+
+## rqt_plot绘制topic的曲线图
+
+- add any topic to the plot.
+
+## ROS service
+- send a request and receive a response.
+
+## ROS launch
+
+````
+roslaunch [package] [filename.launch]
+```
+在beginner_tutorials中新建一个launch的方法
+
+```
+roscd beginner_tutorials
+mkdir launch
+touch launch
+
+--------------------------------------------------------------
+<launch>
+  <group ns="turtlesim1">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  </group>
+  <group ns="turtlesim2">
+    <node pkg="turtlesim" name="sim" type="turtlesim_node"/>
+  </group>
+
+  <node pkg="turtlesim" name="mimic" type="mimic">
+    <remap from="input" to="turtlesim1/turtle1"/>
+    <remap from="output" to="turtlesim2/turtle1"/>
+  </node>
+</launch>
+--------------------------------------------------------------
+
 ```
