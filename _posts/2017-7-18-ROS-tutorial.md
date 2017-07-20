@@ -10,6 +10,7 @@ description: ROS 相关问题
 - 自己用catkin_create_pkg创建的包需要使用
 - source ~/catkin_ws/devel/setup.bash将自己建的包放在ros_package_path中
 - package.xml中含有
+
 ```
 <buildtool_depend>catkin</buildtool_depend>
 <build_depend>roscpp</build_depend>
@@ -19,6 +20,7 @@ description: ROS 相关问题
 <run_depend>rospy</run_depend>
 <run_depend>std_msgs</run_depend>
 ```
+
 - 这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs
 
 ## ros节点
@@ -32,23 +34,23 @@ the ownership of that folder with:
             $ sudo chown -R <your_username> ~/.ros
 
 改变节点名称：
-        rosrun turtlesim turtlesim_node __name:=my_turtle
+
+             rosrun turtlesim turtlesim_node __name:=my_turtle
+
 新名称是my_turtle,原来名称是turtlesim
 
 **查看各个节点topic关系**
-        rosrun rqt_graph rqt_graph
+             rosrun rqt_graph rqt_graph
 **查看topic的数据类型**
-        rostopic type /topic_name
+             rostopic type /topic_name
 **可以继续查看topic type的具体参数（float，double等）**
-        rosmsg show /topic_type
+             rosmsg show /topic_type
 
 ## rosdep
 
 rosdep是一个你可以用来安装ROS package系统依赖的工具
-         rosdep install [package]
+               rosdep install [package]
 如果你是第一次使用rosdep，你会看到一个error
-	   sudo rosdep init
-   	   rosdep update
+	             sudo rosdep init
+   	           rosdep update
 ## roslanch
-
-
