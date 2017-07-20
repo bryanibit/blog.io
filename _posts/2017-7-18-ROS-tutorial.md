@@ -152,3 +152,55 @@ msgs are just simple text files with a field type and field name per line. The f
     Header
 ```
 - The header contains a **timestamp** and **coordinate frame** information that are commonly used in ROS.
+- srv files are just like msg files, except they contain two parts: a request and a response. The two parts are separated by a '---' line.
+- e.g. Here is an example of a srv file:
+
+```
+int64 A
+int64 B
+---
+int64 Sum
+```
+这时候我们可以在beginner_tutorials中新建一个文件msg/Num.msg,也可以在根目录中新建
+
+同时在该包的package.xml中加上两句话，以便msg可以编译为c++，python可以识别的样子
+
+```
+<build_depend>message_generation</build_depend>
+<run_depend>message_runtime</run_depend>
+```
+同时在CmakeLists.txt中添加以下内容，此是为了buildDependencies
+
+```
+find_package(catkin REQUIRED COMPONENTS
+   roscpp
+   rospy
+   std_msgs
+   message_generation
+)
+```
+
+Export the message runtime dependency
+
+```
+catkin_package(
+  ...
+  CATKIN_DEPENDS message_runtime ...
+  ...)
+```
+
+CMake knows when it has to reconfigure the project after adding other .msg files
+```
+add_message_files(
+  FILES
+  Num.msg
+)
+```
+
+最后产生message可以读到的message，申明依赖的message
+```
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+)
+```
