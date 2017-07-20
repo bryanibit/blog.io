@@ -73,3 +73,46 @@ Firefox is already running, but is not responding. To open a new window, you mus
 **solution:**
          sudo /usr/sbin/update-grub
 
+## install ros an error code
+dpkg: error processing package ros-kinetic-desktop-full (--configure):
+ dependency problems - leaving unconfigured
+No apport report written because MaxReports is reached already
+                                                              Processing triggers for libc-bin (2.23-0ubuntu9) ...
+Errors were encountered while processing:
+ libopenni0
+ libopenni-dev
+ openni-utils
+ libopenni-sensor-pointclouds0
+ libpcl-io1.7:amd64
+ libpcl-visualization1.7:amd64
+ libpcl1.7
+ libpcl-dev
+ ros-kinetic-pcl-conversions
+ ros-kinetic-pcl-ros
+ ros-kinetic-perception-pcl
+ ros-kinetic-perception
+ ros-kinetic-desktop-full
+E: Sub-process /usr/bin/dpkg returned an error code (1)
+
+**solution:**
+
+          cd /var/lib/dpkg
+	  sudo mv info info.bak
+	  sudo mkdir info
+
+重新sudo apt-get install ××××××
+
+## Apport错误提示，要求发送错误报告
+
+```
+ls /var/crash
+sudo rm -rf /var/crash/*
+sudo reboot
+
+如果还有该错误提示
+
+sudo /etc/default/apport
+找到 enabled=1 这一行，并改变到0(zero)
+```
+
+
