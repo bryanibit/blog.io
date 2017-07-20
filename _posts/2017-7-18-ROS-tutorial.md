@@ -22,6 +22,7 @@ description: ROS 相关问题
 ```
 
 - 这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs
+- 使用rospack denpend1 beginner_tutorials查看
 
 ## ros节点
 ROS client libraries allow nodes written in different programming languages to communicate:
@@ -40,17 +41,47 @@ the ownership of that folder with:
 新名称是my_turtle,原来名称是turtlesim
 
 **查看各个节点topic关系**
+
              rosrun rqt_graph rqt_graph
+
 **查看topic的数据类型**
+
              rostopic type /topic_name
+
 **可以继续查看topic type的具体参数（float，double等）**
+
              rosmsg show /topic_type
 
 ## rosdep
 
 rosdep是一个你可以用来安装ROS package系统依赖的工具
+
                rosdep install [package]
+
 如果你是第一次使用rosdep，你会看到一个error
+
 	             sudo rosdep init
    	           rosdep update
-## roslanch
+
+## package.xml
+
+### build, Run, and Test Dependancies
+
+build tool dependencies
+- 基本上只需要catkin
+build denpenencies
+- include header from these packages at compilation time,linking against libraries from these packages at build time
+- e.g. find_package()-ed in CMake
+Run dependencies
+- when depend on share libraries include headers
+- e.g. catkin_package() in CMake
+test dependencies
+- 可选的依赖，和build和run都不重复的依赖
+
+在package.xml中四部分写法
+```
+<buildtool_depend>依赖名</buildtool_depend>
+<build_depend>依赖名</build_depend>
+<run_depend>依赖名</run_depend>
+<test_depend>依赖名</test_depend>
+```
