@@ -40,6 +40,8 @@ the ownership of that folder with:
 
 新名称是my_turtle,原来名称是turtlesim
 
+## ros topic
+
 **查看各个节点topic关系**
 
              rosrun rqt_graph rqt_graph
@@ -67,15 +69,18 @@ rosdep是一个你可以用来安装ROS package系统依赖的工具
 
 ### build, Run, and Test Dependancies
 
-build tool dependencies
+Build tool dependencies
 - 基本上只需要catkin
-build denpenencies
+
+Build denpenencies
 - include header from these packages at compilation time,linking against libraries from these packages at build time
 - e.g. find_package()-ed in CMake
+
 Run dependencies
 - when depend on share libraries include headers
 - e.g. catkin_package() in CMake
-test dependencies
+
+Test dependencies
 - 可选的依赖，和build和run都不重复的依赖
 
 在package.xml中四部分写法
@@ -84,4 +89,16 @@ test dependencies
 <build_depend>依赖名</build_depend>
 <run_depend>依赖名</run_depend>
 <test_depend>依赖名</test_depend>
+```
+
+## 通过命令行发送topic
+
+```
+rostopic pub [topic] [msg_type] [args]
+```
+e.g.控制乌龟运动
+
+```
+ rostopic pub -1 /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
+                  topic_name                    (topic type /topic_name)    (rosmsg show /topic_type)
 ```
