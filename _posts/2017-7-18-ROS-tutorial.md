@@ -137,5 +137,18 @@ touch launch
   </node>
 </launch>
 --------------------------------------------------------------
+```
+## 自定义一个msg和srv
+
+msgs are just simple text files with a field type and field name per line. The field types you can use are:
 
 ```
+    int8, int16, int32, int64 (plus uint*)
+    float32, float64
+    string
+    time, duration
+    other msg files
+    variable-length array[] and fixed-length array[C]
+    Header
+```
+- The header contains a **timestamp** and **coordinate frame** information that are commonly used in ROS.
