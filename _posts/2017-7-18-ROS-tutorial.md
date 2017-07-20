@@ -161,6 +161,9 @@ int64 B
 ---
 int64 Sum
 ```
+
+### 新建msg
+
 这时候我们可以在beginner_tutorials中新建一个文件msg/Num.msg,也可以在根目录中新建
 
 同时在该包的package.xml中加上两句话，以便msg可以编译为c++，python可以识别的样子
@@ -204,3 +207,37 @@ generate_messages(
   std_msgs
 )
 ```
+
+使用rosmsg show topic_type可以查看具体内容
+
+### 新建srv
+
+mkdir srv
+
+touch ××.srv (roscp rospy_tutorials AddTwoInts.srv srv/AddTwoInts.srv)
+
+package.xml添加和msg中相同内容，在cmakelists中添加相同内容，唯一不同的地方如下（msg是add_message_files）：
+
+```
+add_service_files(
+  FILES
+  AddTwoInts.srv
+)
+```
+
+使用 rossrv show beginner_tutorials/AddTwoInts可以查看到以下具体内容
+
+```
+int64 a
+int64 b
+---
+int64 sum
+```
+
+- Any .msg file in the msg directory will generate code for use in all supported languages. The C++ message header file will be generated in ~/catkin_ws/devel/include/beginner_tutorials/.
+- The Python script will be created in ~/catkin_ws/devel/lib/python2.7/dist-packages/beginner_tutorials/msg.
+- The lisp file appears in ~/catkin_ws/devel/share/common-lisp/ros/beginner_tutorials/msg/.
+
+Similarly, any .srv files in the srv directory will have generated code in supported languages.
+- For C++, this will generate header files in the same directory as the message header files.
+- For Python and Lisp, there will be an 'srv' folder beside the 'msg' folders.
