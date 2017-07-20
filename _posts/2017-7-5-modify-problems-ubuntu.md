@@ -48,3 +48,28 @@ sudo rm /usr/share/applications/sublime.desktop
 sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/defaults.list
 ```
 
+## Firefox reminder: running and not responding
+
+Firefox is already running, but is not responding. To open a new window, you must first close the existing Firefox process, or restart your system.
+
+**solution:** 
+           pkill firefox
+           cd /home/inin/.mozilla/firefox/×××××.default
+           rm .parentlock
+## Upgrade to Ubuntu 16.04 /boot空间不足问题
+
+1. df -h （查看Ubuntu的文件系统 使用情况） 
+2. uname -a (查看当前使用的内核版本) 
+3. sudo apt-get remove linux-image- （按两次tab键） 
+4. sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核) 
+5. 再查看下内核和磁盘容量，发现释放了很多空间。 
+
+- 最后如果出现了这个警告：
+- The link /vmlinuz.old is a damaged link
+- Removing symbolic link vmlinuz.old
+- you may need to re-run your boot loader[grub]
+- The link /initrd.img.old is a damaged link
+- Removing symbolic link initrd.img.old 
+**solution:**
+         sudo /usr/sbin/update-grub
+
