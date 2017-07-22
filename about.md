@@ -39,6 +39,7 @@ header-img: "img/green.jpg"
 
 - [微博](http://weibo.com/u/2393223365)
 - [Facebook](https://www.facebook.com/profile.php?id=100009262672437&ref=bookmarks)
+- [github](https://github.com/bryanibit)
 
 
 ![Moi](img/IMG_2736.JPG)

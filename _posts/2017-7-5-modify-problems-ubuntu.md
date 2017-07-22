@@ -114,5 +114,32 @@ sudo reboot
 sudo /etc/default/apport
 找到 enabled=1 这一行，并改变到0(zero)
 ```
+## .bashrc文件失效
 
+**Problem:** .bashrc文件无论写入什么东西似乎都没有用
+**Solution:**
+*原理：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile。
+
+所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了rm -rf *)
+
+1. 恢复.bashrc
+```
+/bin/cp /etc/skel/.bashrc ~/
+```
+2. touch .bash_profile
+复制以下内容到其中
+```
+# .bash_profile
+
+/# If .bash_profile exists, bash doesn't read .profile
+if [[ -f ~/.profile ]]; then
+  . ~/.profile
+fi
+
+/# If the shell is interactive and .bashrc exists, get the aliases and functions
+if [[ $- == *i* && -f ~/.bashrc ]]; then
+    . ~/.bashrc
+fi
+```
+重新登录对应的账号
 

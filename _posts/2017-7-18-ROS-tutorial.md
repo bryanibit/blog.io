@@ -241,3 +241,45 @@ int64 sum
 Similarly, any .srv files in the srv directory will have generated code in supported languages.
 - For C++, this will generate header files in the same directory as the message header files.
 - For Python and Lisp, there will be an 'srv' folder beside the 'msg' folders.
+
+## Write publisher node
+
+```
+ros::init(argc, argv, "talker");
+```
+初始化Ros和赋node name（不能有/）
+
+
+```
+ros::NodeHandle n;
+```
+初始化node，新建句柄
+
+
+```
+ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
+```
+告诉roscore，要publish一个topic，名叫chatter，类型叫std_msgs::String， 1000 是 the size of our publishing queue（buffer）.
+
+
+```
+ ros::Rate loop_rate(10);
+```
+配合Rate::sleep()使用，10指的是10Hz
+
+Ctrl-C will cause ros::ok() to return false
+
+```
+ros::spinOnce();
+```
+If you were to add a subscription into this application, and did not have ros::spinOnce() here, your callbacks would never get called.
+
+
+
+
+
+
+
+
+
+
