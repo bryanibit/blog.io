@@ -285,6 +285,8 @@ If you were to add a subscription into this application, and did not have ros::s
         ros::spin();
 *ros::spin()* enters a loop, calling message callbacks as fast as possible.
 
+## Understanding ROS Services and Parameters
+
 
 
 
