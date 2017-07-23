@@ -253,18 +253,19 @@ ros::init(argc, argv, "talker");
 ```
 ros::NodeHandle n;
 ```
-初始化node，新建句柄
 
+初始化node，新建句柄
 
 ```
 ros::Publisher chatter_pub = n.advertise<std_msgs::String>("chatter", 1000);
 ```
-告诉roscore，要publish一个topic，名叫chatter，类型叫std_msgs::String， 1000 是 the size of our publishing queue（buffer）.
 
+告诉roscore，要publish一个topic，名叫chatter，类型叫std_msgs::String， 1000 是 the size of our publishing queue（buffer）.
 
 ```
  ros::Rate loop_rate(10);
 ```
+
 配合Rate::sleep()使用，10指的是10Hz
 
 Ctrl-C will cause ros::ok() to return false
@@ -272,7 +273,17 @@ Ctrl-C will cause ros::ok() to return false
 ```
 ros::spinOnce();
 ```
+
 If you were to add a subscription into this application, and did not have ros::spinOnce() here, your callbacks would never get called.
+
+## Write a subscribe node
+
+        ros::NodeHandle n;
+        ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback);
+订阅chatter，回调函数是chatterCallback, The 2nd argument is the queue size, in case we are not able to process messages fast enough. In this case, if the queue reaches 1000 messages.
+
+        ros::spin();
+*ros::spin()* enters a loop, calling message callbacks as fast as possible.
 
 
 
