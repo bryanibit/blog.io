@@ -14,15 +14,11 @@ header-img: "img/green.jpg"
 
 现在研习 **三维重建（SfM）** 。
 
-### 坚信
-
-
-- 「持续」并不是坚持，写就是最好的回报
-
 
 ### 关注：
 
 
+- [Leetcode](https://leetcode.com/problemset/algorithms/)
 - Python
 - [Boost.Python](https://github.com/bryanibit/boost-python-examples)
 - [OpenSfM](https://github.com/mapillary/OpenSfM/)
@@ -34,6 +30,7 @@ header-img: "img/green.jpg"
 
 - [MasterIzumi](https://MasterIzumi.github.io)
 - [jfqiu](https://github.com/jfqiu)
+- [leooo48](https://leooo48.github.io)
 
 ### 联系
 
