@@ -209,7 +209,7 @@ void select_sort(int array[], int n);
 
 ### 5.4 字符串处理函数简介
 
-- #include <cstring\> <string\>
+- #include <cstring\> <string\> or <strng.h\>
 - char *strcat(char *restrict s1, const char *restrict s2);
 - 在s1末尾追加s2
 - char *strcpy(char *restrict s1, const char *restrict s2, int n);
@@ -217,6 +217,27 @@ void select_sort(int array[], int n);
 - int strcmp(const char *restrict s1, const char *restrict s2);
 - 直到出现第一个不相同的字符，以此为标准输出
 - int strlen(const char * s)
+
+#### 5.4.1 遍历char*
+
+```
+void foreach(char* str)
+{
+  int len = strlen(str);
+  for(int i = 0; i <\ len; ++i)
+    {
+       printf("%c", str[i]);
+    }
+}
+void foreach(char* str)
+{
+   while(*str)
+   {
+       printf("%c", str[i]);
+       ++str;
+   }
+}
+```
 
 ### 5.5 字符串变量(避免数组越界)
 - str1=str2 *correct*
