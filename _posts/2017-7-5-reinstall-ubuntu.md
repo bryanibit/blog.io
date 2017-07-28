@@ -118,6 +118,7 @@ Ubuntu 14.04 install sougoupinyin
 ### Install pycharm and crack it
 ...
 Download official version professional
-go to  [crack](idea.qinxi1992.cn)
+go to  
+- [crack](idea.qinxi1992.cn)
 add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 ...
