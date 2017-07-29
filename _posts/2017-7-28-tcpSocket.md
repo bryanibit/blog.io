@@ -62,6 +62,5 @@ print str2                           # (20, 400)  流==>int
 print repr(str2)                     # (20, 400)  
 ```
 
-http://blog.csdn.net/w83761456/article/details/21171085
 
-http://www.cnblogs.com/coser/archive/2011/12/17/2291160.html
+
