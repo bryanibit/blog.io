@@ -43,7 +43,8 @@ description: tcp connect socket
 - struct.unpack
 用于将字节流转换成python数据类型。它的函数原型为：struct.unpack(fmt, string)，该函数返回一个**元组**
 
-```a = 20  
+```
+a = 20  
 b = 400   
 str = struct.**pack**("ii", a, b)  
 print 'length: ', len(str)          # length:  8  
