@@ -1,7 +1,7 @@
 ---
 layout: post
 title: socket tcp python实现
-date: 2017-7-13
+date: 2017-7-29
 categories: blog
 tags: [技术总结]
 description: tcp connect socket
@@ -21,6 +21,7 @@ description: tcp connect socket
    netmask 255.255.255.0  
    gateway 192.168.0.1
    3. sudo /etc/init.d/networking restart
+```
 
 ## push_frame(can_id, data)
 
