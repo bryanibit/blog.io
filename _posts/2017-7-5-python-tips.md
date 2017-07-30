@@ -37,9 +37,16 @@ np.nonzero(ok1 * ok2)[0]
          array([1, 2])
 
 
-## 文本读取
+## 文本读取打开
 
 使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
+
+```
+with open(filename,'a') as filepoint:
+    filepoint.write(string)
+```
+
+文件打开方式 a append,  w empty then write,  r read
 
 ## 两个数组合并/某个添加一列
 
