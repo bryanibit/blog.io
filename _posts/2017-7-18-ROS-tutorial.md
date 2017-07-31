@@ -143,7 +143,7 @@ touch launch
 msgs are just simple text files with a field type and field name per line. The field types you can use are:
 
 ```
-    int8, int16, int32, int64 (plus uint*)
+    int8, int16, int32, int64 (plus uint*, e.g. uint8 unsigned 8-bit int)
     float32, float64
     string
     time, duration
@@ -285,14 +285,45 @@ If you were to add a subscription into this application, and did not have ros::s
         ros::spin();
 *ros::spin()* enters a loop, calling message callbacks as fast as possible.
 
-## Understanding ROS Services and Parameters
+## ROS MSG
 
+总结ros msg [网页](wiki.ros.org/msg)
 
+Message descriptions are stored in .msg files in the msg/ subdirectory of a ROS package.
 
+msg名称：
+- the file geometry_msgs/msg/Twist.msg is commonly referred to as geometry_msgs/Twist.
 
+msg基本格式：
+- Fixed- or variable-length arrays (lists) of the above, such as "float32[] ranges" or "Point32[10] points"
+- the special Header type, which maps to std_msgs/Header
 
+**Build-in type:**
 
+```
+Primitive Type       Serialization(序列化)        C++             Python
 
+  bool                unsigned 8-bit int        uint8_t           bool
+  int8                  signed 8-bit int         int8_t            int
+  uint8               unsigned 8-bit int        uint8_t            int
+  int16                 signed 16-bit int        int16_t           int
+  uint16              unsigned 16-bit int       uint16_t           int
+  ---32                    ----32------           --32--           int
+  ---64                 -------64------           --64--           long
+  float32             32-bit IEEE float         float              float
+  float64             64-bit IEEE float         double             float
+  string               ascii  string            std::string        str
+```
 
+其中，uint8在Python中有特殊意义，uint8[]在Python中视为Python bytes,在ros msg中弃用的别名char(uint8弃用的别名)和byte(int8弃用的别名)
 
+**Array handling**
 
+```
+Array Type            Serialization                        C++                             Python
+
+fixed-length       no-extra serialization     0.11+:boost::array,otherwise:std::vector     tuple
+variable-length    uint32 length prefix              std::vector                           tuple
+uint8[]               see above                          as above                          bytes
+bool[]                see above                   std::vecotor<uint8_t>                    list of bool
+```
