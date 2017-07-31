@@ -305,7 +305,7 @@ Primitive Type       Serialization(序列化)        C++             Python
 
   bool                unsigned 8-bit int        uint8_t           bool
   int8                  signed 8-bit int         int8_t            int
-  uint8               unsigned 8-bit int        uint8_t            int
+  uint8               unsigned 8-bit int        uint8_t            int   0-255
   int16                 signed 16-bit int        int16_t           int
   uint16              unsigned 16-bit int       uint16_t           int
   ---32                    ----32------           --32--           int
@@ -324,6 +324,10 @@ Array Type            Serialization                        C++                  
 
 fixed-length       no-extra serialization     0.11+:boost::array,otherwise:std::vector     tuple
 variable-length    uint32 length prefix              std::vector                           tuple
-uint8[]               see above                          as above                          bytes
-bool[]                see above                   std::vecotor<uint8_t>                    list of bool
+uint8[]               see above                      std::vector                           bytes
+bool[]                see above                   std::vector<uint8_t>                    list of bool
 ```
+
+- rospy把uint8视为bytes，在Python2中，同str
+- rospy将arrays反序列化为元组，同struct.unpack return 一个元组
+- Header is not a built-in type (it's defined in std_msgs/msg/Header.msg
