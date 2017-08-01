@@ -343,7 +343,30 @@ bool[]                see above                   std::vector<uint8_t>          
 
 - Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). 
 
+### ROS文件结构 c++ & python
 
+```
+package_name
+             --include
+                   --package_name
+                            --××.h
+             --src
+		    --package_name
+                            --××.py
+                    --××.cpp
+ 	      --CMakeLists.txt
+	      --package.xml
+	      --setup.py
+```
+
+1. ××.h定义namespace space_name,××.cpp using namespace space_name,完成C++类和函数/命名空间的定义
+2. 有两个包装类，一个是C++，一个是Python
+
+- C++包装类将输入的序列化内容==>C++ message
+- C++包装类将输出的C++ message==>序列化的内容
+- Python包装类将输入的Python message==>序列化的内容
+- Python包装类将输出的序列化内容==>Python message
+- [**现在有些懵逼**](http://wiki.ros.org/ROS/Tutorials/Using%20a%20C%2B%2B%20class%20in%20Python)
 
 
 
