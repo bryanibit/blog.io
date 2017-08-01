@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ros tutorials
+title: ROS tutorials
 date: 2017-07-18
 categories: blog
 tags: [技术总结]
@@ -23,6 +23,7 @@ description: ROS 相关问题
 
 - 这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs
 - 使用rospack denpend1 beginner_tutorials查看
+- 使用rosdep install [package],可以安装包依赖
 
 ## ros节点
 ROS client libraries allow nodes written in different programming languages to communicate:
@@ -331,3 +332,27 @@ bool[]                see above                   std::vector<uint8_t>          
 - rospy把uint8视为bytes，在Python2中，同str
 - rospy将arrays反序列化为元组，同struct.unpack return 一个元组
 - Header is not a built-in type (it's defined in std_msgs/msg/Header.msg
+
+## 分布式计算使用ROS
+
+- You only need one master. Select one machine to run it on.
+
+- All nodes must be configured to use the same master, via ROS_MASTER_URI.
+
+- There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).
+
+- Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). 
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -66,18 +66,21 @@ For this work, you need to put FindLibXML++.cmake file to cmake module path.
 
 > <CMAKE_Root>/share/cmake-x.y/Modules
 
-   <CMAKE_Root> 一般指 /usr/
+> <CMAKE_Root> 一般指 /usr/
+
 
 2. If no such file is found, it looks for <NAME>Config.cmake e.g. OpenCVConfig.cmake
    or <low-case-name>-config.cmake 
 
    no matter what mode is used, the following will be defined:
+
 ```
    <NAME>_FOUND
    <NAME>_INCLUDE_DIRS or <NAME>_INCLUDES
    <NAME>_LIBRARIES or <NAME>_LIBS
    <NAME>_DEFINITIONS
 ```
+
 _All this_ takes places in the Find<NAME>.cmake file
 
 套用上页用到的if found， include， target
@@ -97,6 +100,7 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
 ## CMake中一些预定义变量
 
 ### cmake变量
+
 ```
     **PROJECT_SOURCE_DIR** 工程的根目录
     **PROJECT_BINARY_DIR** 运行cmake命令的目录,通常是${PROJECT_SOURCE_DIR}/build
@@ -114,6 +118,7 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
 ```
 
 ### 系统信息
+
 
 ```
     CMAKE_MAJOR_VERSION cmake主版本号,如2.8.6中的2
