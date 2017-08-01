@@ -48,8 +48,7 @@ std::string s = std::to_string(42);
 ## long int to string
 
 ```
-\#include <sstream>
-// ...
+#include <sstream>
 std::string number;
 std::stringstream strstream;
 strstream << 1L;
