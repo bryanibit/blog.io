@@ -150,6 +150,8 @@ pass
 使用[Ceres Solver](http://www.ceres-solver.org)
 fi(⋅) is a CostFunction that depends on the parameter blocks {xi1,...,xik}.
 
+<img src="http://chart.googleapis.com/chart?cht=tx&chl= 在此插入Latex公式" style="border:none;">
+
 \begin{split}\min_{\mathbf{x}} &\quad \frac{1}{2}\sum_{i}
 \rho_i\left(\left\|f_i\left(x_{i_1},
 ... ,x_{i_k}\right)\right\|^2\right)  \\
