@@ -368,8 +368,33 @@ package_name
 - Python包装类将输出的序列化内容==>Python message
 - [**现在有些懵逼**](http://wiki.ros.org/ROS/Tutorials/Using%20a%20C%2B%2B%20class%20in%20Python)
 
+对于以上懵逼内容的见解：
 
+摘自 [github](https://github.com/luator/boost_python_catkin_example)
 
+1. When using ROS, there is one important thing to keep in mind: Assume you have a ROS node written in Python, that uses some C++ code via Boost::Python. If the C++ code needs a ros::NodeHandle, for example to fetch some parameters from the parameter server, it will crash, because the rospy.init_node() does not initialize roscpp!
+
+To get around this, you need the MoveIt ROS planning interface which is available in the ROS repos (sudo apt-get install ros-groovy-moveit-ros-planning-interface). Once installed, add the following code to your Python node:
+
+```
+from moveit_ros_planning_interface._moveit_roscpp_initializer import roscpp_init
+roscpp_init('node_name', [])
+```
+
+Now everything should work fine.
+
+note that: ros::NodeHandle在与master交互时候使用
+
+2. CMakeLists:
+
+uncomment catkin_python_setup(). This will set up the destination path of the python module. You also need a basic setup.py in the packages root directory.
+
+3. CMakeLists: add_libraries 添加的生成的库文件使用set_target_properties命令应该放在
+
+```
+/catkin_ws/devel/lib/python2.7/dist-packages/
+```
+so it can be found by python.
 
 
 
