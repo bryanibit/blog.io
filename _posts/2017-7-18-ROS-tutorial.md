@@ -396,6 +396,8 @@ uncomment catkin_python_setup(). This will set up the destination path of the py
 ```
 so it can be found by python.
 
+## Dynamic reconfigure
+
 
 
 
