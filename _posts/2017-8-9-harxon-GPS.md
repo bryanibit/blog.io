@@ -45,11 +45,9 @@ description: Harxon smart antenna TS102 Differential GPS
 
 4. 使用[千寻社区](https://bbs.qxwz.com/read.php?tid=514)提供的工具，Ntrip client测试千寻差分账号是否正常，按照[社区教程](https://bbs.qxwz.com/read.php?tid=453)配置软件，需要登录账号发言后才能下载该软件
 
-5. 接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机：
+5. 接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机，以下命令无需进入3G用户模式，直接在连接上接收机后即可输入以下命令
 
         $CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
-
-以上命令无需进入3G用户模式，直接在连接上接收机后即可输入上面的命令
 
 6. 在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据
 
@@ -59,6 +57,7 @@ description: Harxon smart antenna TS102 Differential GPS
 
 #### 配置命令都已回车(windows中/r/n)结束
 #### 一个差分账号只能同时一个设备用，否则会出现互踢现象
+#### 接收机电源线连接时，对准红点插入即可，拔出时，把前面的铁头往外拉，固定后方的线，此时可以拔出插头
 
 #### GPS数据解析
 
