@@ -3,7 +3,7 @@ layout: post
 title: 每日更新-plan
 date: 2018-8-2
 categories: blog
-tags: [技术总结]
+tags: [个人总结]
 description: 每日计划总结
 ---
 
