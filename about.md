@@ -31,6 +31,7 @@ header-img: "img/green.jpg"
 - [MasterIzumi](https://MasterIzumi.github.io)
 - [jfqiu](https://github.com/jfqiu)
 - [leooo48](https://leooo48.github.io)
+- [gddxz_zhouhao](http://blog.csdn.net/gddxz_zhouhao)
 
 ### 联系
 
