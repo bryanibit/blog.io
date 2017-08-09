@@ -17,35 +17,30 @@ description: Harxon smart antenna TS102 Differential GPS
 1. 连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×
 2. 在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示
 
-```
-Output from Receiver:
+        Output from Receiver:
 
-*****************MODULE SELFTEST*****************
-DTU MODULE: RX 451.12500 MHz
-            TX 451.12500 MHz
-            PRT TRIMTALK
-            BAUD 9600 
-            MODNM 1006D
-            E003.03.01  
-CAN MODULE: $GCAN=CANBUS_29B_250k
-            GC117033626
-            17031603
-GNSS MODULE: "UB280", SW_VER "R4.10Build15042"
-************************end**************************
-3G MODULE: SIM  #QSS: 1
-            CLASS 2
-            CSQ 
-            IP   ××.×××.×××.×××
-```
-
+        *****************MODULE SELFTEST*****************
+        DTU MODULE: RX 451.12500 MHz
+                    TX 451.12500 MHz
+                    PRT TRIMTALK
+                    BAUD 9600 
+                    MODNM 1006D
+                    E003.03.01  
+        CAN MODULE: $GCAN=CANBUS_29B_250k
+                    GC117033626
+                    17031603
+        GNSS MODULE: "UB280", SW_VER "R4.10Build15042"
+        ************************end**************************
+        3G MODULE: SIM  #QSS: 1
+                    CLASS 2
+                    CSQ 
+                    IP   ××.×××.×××.×××
 
 3. **正常情况**下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用命令
 
-```
-$CFG 3G U   //进入user模式，此时接受机返回 *>ok*
-AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
-AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
-```
+        $CFG 3G U   //进入user模式，此时接受机返回 *>ok*
+        AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
+        AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
 
 以上如果表现正常，说明接收机(smart antenna) SIM卡没有问题
 
@@ -53,23 +48,19 @@ AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
 
 5. 接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机：
 
-```
-$CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
-```
+        $CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
 
 以上命令无需进入3G用户模式，直接在连接上接收机后即可输入上面的命令
 
 6. 在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据
 
-```
-$GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
-```
+        $GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
 
 ## 备注
 
-### 配置命令都已回车(windows中/r/n)结束
+#### 配置命令都已回车(windows中/r/n)结束
 
-### GPS数据解析
+#### GPS数据解析
 
 $GPGSA:(模式、位置)
 - 模式, 定位形式, PRN数字, PDOP位置, HDOP水平精度因子, VDOP垂直精度因子, 检验位
