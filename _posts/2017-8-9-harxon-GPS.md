@@ -15,7 +15,8 @@ description: Harxon smart antenna TS102 Differential GPS
 ## 配置方法
 
 1. 连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×
-2. 在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示
+
+2. 在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示：
 
         Output from Receiver:
 
@@ -36,7 +37,7 @@ description: Harxon smart antenna TS102 Differential GPS
                     CSQ 
                     IP   ××.×××.×××.×××
 
-3. **正常情况**下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用命令
+3. 正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用命令
 
         $CFG 3G U   //进入user模式，此时接受机返回 *>ok*
         AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
