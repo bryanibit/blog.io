@@ -37,13 +37,11 @@ description: Harxon smart antenna TS102 Differential GPS
                     CSQ 
                     IP   ××.×××.×××.×××
 
-3. 正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用命令
+3. 正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题
 
         $CFG 3G U   //进入user模式，此时接受机返回 *>ok*
         AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
         AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
-
-以上如果表现正常，说明接收机(smart antenna) SIM卡没有问题
 
 4. 使用[千寻社区](https://bbs.qxwz.com/read.php?tid=514)提供的工具，Ntrip client测试千寻差分账号是否正常，按照[社区教程](https://bbs.qxwz.com/read.php?tid=453)配置软件，需要登录账号发言后才能下载该软件
 
