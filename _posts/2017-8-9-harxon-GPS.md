@@ -60,6 +60,7 @@ description: Harxon smart antenna TS102 Differential GPS
 ## 备注
 
 #### 配置命令都已回车(windows中/r/n)结束
+#### 一个差分账号只能同时一个设备用，否则会出现互踢现象
 
 #### GPS数据解析
 
