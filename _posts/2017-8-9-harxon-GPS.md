@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Harxon smart antenna
-date: 2018-8-9
+date: 2017-8-9
 categories: blog
 tags: [技术总结]
 description: Harxon smart antenna TS102 Differential GPS
