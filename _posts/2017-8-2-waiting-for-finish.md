@@ -14,4 +14,11 @@ description: 每日计划总结
 3. 算法导论看第四章
 
 ## finished
+ok
+
+# 2017-8-8/9/10
+## finished
+
+1. DGPS输出为固定解
+2. 测试了接受到的GPS位置精度-github
 
