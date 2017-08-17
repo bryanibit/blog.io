@@ -116,9 +116,37 @@ Ubuntu 14.04 install sougoupinyin
 >$ sudo ppa-purge ppa:zarquon42/meshlab
 
 ### Install pycharm and crack it
-...
+
+```
 Download official version professional
 go to  
 - [crack](idea.qinxi1992.cn)
 add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
-...
+```
+
+#### 配置pycharm使用ros
+
+* 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
+
+```
+gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
+```
+
+或者
+
+```
+gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
+```
+
+修改Exec变量一行，在=后添加 bash -i -c 即改为（若为zsh，则改为zsh)
+
+```
+Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
+```
+
+#### 使用pycharm时import第三方库
+
+```
+settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
+```
+
