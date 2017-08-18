@@ -132,3 +132,30 @@ parser.add_argument("-v", "--verbosity", action="store_true", help="increase out
 ```
 
 如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
+
+## ord() chr()
+
+ord('a') -> 97 # 返回ascII
+
+chr(97) --> 'a' # return 字符
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

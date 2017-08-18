@@ -62,6 +62,12 @@ print str2                           # (20, 400)  流==>int
 print repr(str2)                     # (20, 400)  
 ```
 
+打包之后的数据所占用的字节数与C语言中的struct十分相似:
+![format对照表](http://images.cnblogs.com/cnblogs_com/coser/201112/201112171613441943.png)
+
+打包的后的字节顺序默认上是由操作系统的决定的，当然struct模块也提供了自定义字节顺序的功能:
+![library对照表](http://images.cnblogs.com/cnblogs_com/coser/201112/20111217161345373.png)
+
 可以查看下列网站寻找 [详细信息](http://blog.csdn.net/w83761456/article/details/21171085)
 
 ### python str和repr的区别
