@@ -117,5 +117,18 @@ np.nonzero(ok1*ok2)[0]
 
 ![python运算符优先级](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png)
 
+## argparse
 
+```
+parser = argparse.ArgumentParser()
+parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
+××.py -v 1
 
+parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")
+××.py -vv --verbosity --verbosity
+
+parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
+××.py -v
+```
+
+如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
