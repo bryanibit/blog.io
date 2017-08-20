@@ -56,6 +56,19 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 > 通过OpenGV找到矫正feature points关系,得到矫正后的2D points: b1 and b2，**算出两视图R和t(with OpenGV)**，及使用到的inliers
 
+### 插播一下R和t求法
+
+```
+def run_relative_pose_ransac(b1, b2, method, threshold, iterations):
+    return pyopengv.relative_pose_ransac(b1, b2, method, threshold, iterations)
+
+def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
+    return pyopengv.relative_pose_optimize_nonlinear(b1, b2, t, R)
+```
+
+* 由于需要8对点才能计算基本矩阵（相机内参已知的情况下），所以会有Ransac方法和最小二乘法
+
+
 ### 插播一下inliers求法
 
 - 需要通过R，t和事先设定的阈值，删除不满足阈值的feature points: b1 and b2,具体函数为
@@ -124,6 +137,7 @@ opengv::triangulation::triangulate(
   return worldPoint;
 };
 ```
+
 ### coordinate system R, t
 
 There is R, t defined by the following words and figure:
