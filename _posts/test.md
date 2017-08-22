@@ -1,10 +1,11 @@
+----
 layout: post
-title: "Test math"
-author: Haixing Hu
+title: Test math
 date: 2017-8-30
 category: misc
 tags: [test]
 use_math: true
+-----
 
 Let's test some inline math $x$, $y$, $x_1$, $y_1$.
 
