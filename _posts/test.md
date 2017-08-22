@@ -1,6 +1,7 @@
 layout: post
 title: "Test math"
 author: Haixing Hu
+date: 2017-8-30
 category: misc
 tags: [test]
 use_math: true
