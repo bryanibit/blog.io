@@ -3,7 +3,7 @@ layout: post
 title: Leetcode
 date: 2017-7-28
 categories: blog
-tags: [技术总结]
+tags: [理论梳理]
 description: leetcode 题目心得总结
 ---
 
@@ -88,3 +88,22 @@ std::stringstream ss(s);
 double number=0;
 ss>>number;
 ```
+
+
+
+
+## 二叉搜索树
+
+同一层的情况下，右边的元素一定比左边的大
+
+* 插入一个数
+
+```
+```
+
+* 删除一个数
+
+```
+```
+
+

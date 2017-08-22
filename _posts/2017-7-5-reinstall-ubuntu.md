@@ -160,3 +160,19 @@ sudo reboot
 ```
 copy ros content in .bashrc to .zshrc
 
+### install vim
+
+```
+sudo apt-get install vim
+```
+
+renew a file called .vimrc:
+
+```
+set nu
+set confirm
+set mouse=a
+set tabstop=4
+set cindent
+syntax on
+```
