@@ -26,7 +26,7 @@ Now I think I should do it, write them down and log everything. I am exciting no
 分区完成后，选择/home 作为Ubuntu安装位置
  
 device for boot loader installation:
- 
+
 选择 Ubuntu安装的/boot位置
 
          Note that: reinstall partition should have something different from before!!
