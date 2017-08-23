@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="于华超">
+
+    <title>2018-Alibaba-coding-online - 屋顶上的鱼</title>
+
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/alibaba_coding/">
+
+    <!-- Icons -->
+  <link rel="shortcut icon" href="img/favicon.ico">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/clean-blog.css">
+
+    <!-- Pygments Github CSS -->
+    <link rel="stylesheet" href="/css/syntax.css">
+
+    <!-- Custom Fonts -->
+    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+
+
+<link rel="shortcut icon" type="image/png" href="img/favicon.png">
+</link>
+
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">屋顶上的鱼</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="/">Home</a>
+                </li>
+                
+                <li>
+                    <a href="/about/">About</a>
+                </li>
+                
+                <li>
+                    <a href="/archive/">Archive</a>
+                </li>
+                
+                <li>
+                    <a href="/milestone/">milestone</a>
+                </li>
+                
+                <li>
+                    <a href="/tags/">Tags</a>
+                </li>
+                
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+
+    <!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/black.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="Tags">
+                        
+                        <a class="tag" href="/Tags/#考试经验总结" title="考试经验总结">考试经验总结</a>
+                        
+                    </div>
+                    <h1>2018-Alibaba-coding-online</h1>
+                    
+                    <span class="meta">Posted by Bryan on July 5, 2017</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
+
+                <p>该题目的介绍以及初步程序代码已经上传<a href="https://github.com/bryanibit/2018-alibaba-CodeTest-online">GitHub</a></p>
+
+<p>在此整理一些编程问题</p>
+
+<p>7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num_all_point == num_hull</p>
+
+<p>博主有空将尽快更新</p>
+
+<p>首先这道算法题应该就是先找到凸包点，之后遍历点对，查询其余点在该点对生成直线的两侧的数量，</p>
+
+<p>进而得到两侧中较大的数字，加上2（脑补一下）就是实际上其能看到的城堡数量</p>
+
+<h2 id="cmakeliststxt">CMakeLists.txt</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>project(point_group)
+cmake_minimum_required(VERSION 2.8)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
+＞　# OpenCV is not install in default location, if not delete that.
+set(OpenCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
+# Find OpenCV at the default location
+find_package(OpenCV REQUIRED)
+set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)
+include_directories(${OpenCV_INCLUDE_DIRS})
+# Add source directory
+aux_source_directory("./src" SRC_LIST)
+# Add exectuteable
+add_executable(${PROJECT_NAME} ${SRC_LIST})
+target_link_libraries(point_group ${OpenCV_LIBS})
+</code></pre>
+</div>
+
+<p>这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置</p>
+
+<p>有篇CMakeLists的博文（好像是7月5号更新的）里面写了指定${CMAKE_MODULE_PATH},</p>
+
+<p>然后把.cmake copy 到工程根目录下</p>
+
+<h2 id="c数据结构----">C++数据结构 (*). == -&gt;</h2>
+
+<h3 id="c-文件结构">c++ 文件结构</h3>
+
+<p>在编程快结束后，博主感觉还是需要找到凸包上的点，于是在网上找了一个程序，
+凸包查找（找到后附上链接），该链接将一些数学问题很好的整理，只要
+include<cmath>即刻，但是存在复制的代码和自己的代码数据结构不同的情况。</cmath></p>
+
+<p>此时新建一个.cpp和.h，将函数具体实现放在.cpp中并include**.h;
+头文件和struct和class放在.h中，并</p>
+
+<p>//#ifndef <strong>hull</strong>
+//#define <strong>hull</strong> #endif</p>
+
+<p>在自己的.cpp(main(int argc,char** argv)在此)加上include “.h”</p>
+
+<h3 id="读取文件c">读取文件C++</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  #include&lt;fstream&gt;
+  // read-mode
+  ifstream infile;
+ 
+  infile.open("./1.txt");
+  string s;
+
+  // get a line
+  getline(infile, s);
+</code></pre>
+</div>
+
+<h3 id="c-split">C++ split()</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>std::vector&lt;std::string&gt; split(const std::string&amp; s, char seperator)
+{
+	std::vector&lt;std::string&gt; output;
+
+	std::string::size_type prev_pos = 0, pos = 0;
+
+	while ((pos = s.find(seperator, pos)) != std::string::npos)
+	{
+		std::string substring(s.substr(prev_pos, pos - prev_pos));
+
+		output.push_back(substring);
+
+		prev_pos = ++pos;
+	}
+
+	output.push_back(s.substr(prev_pos, pos - prev_pos)); // Last word
+
+	return output;
+}
+</code></pre>
+</div>
+<h3 id="遍历一个vector-v">遍历一个vector<double> v</double></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
+{
+		double a = *iterator
+}
+</code></pre>
+</div>
+
+<h3 id="遍历一个vector-vector--v">遍历一个vector&lt; vector<double> &gt; v</double></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
+{
+	double b = (*iterator)[3]//取每个vector中的第四个元素
+	for(auto iter = (*iterator).begin(); iter != (*iterator).end(); ++iter)
+	{
+		double a = *iter//取每个vector中的每个vector的每个元素
+    }
+}
+</code></pre>
+</div>
+
+<h3 id="平面点集表示-vectorpairdouble-double">平面点集表示 vector&lt;pair&lt;double, double»</h3>
+
+<p>使用std::vector<string> point(每个string的
+形式为 "3.5,12.3" 形式)填满point_num</string></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>for (vector&lt;string&gt;::iterator ite = point.begin(); ite != point.end(); ++ite)
+	{
+		// xy=split(*ite, ',');
+		a = *ite;
+		xy = split(a, ',');
+		double x = atof(xy.at(0).c_str());
+		double y = atof(xy.at(1).c_str());
+		point_num.push_back(std::make_pair(x, y));
+
+	}
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>遍历读取point_num的数字
+
+for (auto iter1 = point_num.begin(); iter1 != point_num.end(); ++iter1)
+	{
+		double first_number = iter1-&gt;first
+		double second_number = iter2-&gt;first
+	}
+</code></pre>
+</div>
+
+<h3 id="struct的遍历和表示">struct的遍历和表示</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>struct POINT
+{
+	double x;
+	double y;
+	bool value = false;
+	POINT(double a = 0, double b = 0) { x = a; y = b; } //constructor   
+};
+
+POINT ch[100];
+std::vector&lt; pair&lt;double,double&gt; &gt; point_hull;
+...
+得到一个ch，赋值的ch的value变为true，此时遍历ch，
+注意此时的指针使用
+for (auto ite = ch; ite-&gt;value != false; ++ite)
+	{
+		point_hull.push_back(std::make_pair(ite-&gt;x, ite-&gt;y));
+		//make_pair 会将后面接的数字强制转化为double型
+	}
+</code></pre>
+</div>
+
+
+                <hr>
+
+                <ul class="pager">
+                    
+                    <li class="previous">
+                        <a href="/blog/2017/07/05/usage-install-opencv/" data-toggle="tooltip" data-placement="top" title="OpenCV 3.0 + Install and Usage">&larr; Previous Post</a>
+                    </li>
+                    
+                    
+                    <li class="next">
+                        <a href="/blog/2017/07/05/cmakelists/" data-toggle="tooltip" data-placement="top" title="CMakeLists">Next Post &rarr;</a>
+                    </li>
+                    
+                </ul>
+
+                <!-- Duoshuo Share start -->
+                <style>
+                    .ds-share{
+                        text-align: right;
+                    }
+
+                    @media only screen and (max-width: 700px) {
+                        .ds-share {
+
+                        }
+                    }
+                </style>
+
+                <div class="ds-share"
+                    data-thread-key="/blog/2017/07/05/alibaba_coding" data-title="2018-Alibaba-coding-online"
+                    data-images="http://bryanibit/img/black.jpg"
+                    data-content="该题目的介绍以及初步程序代码已经上传GitHub
+
+在此整理一些编程问题
+
+7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/05/alibaba_coding/">
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+
+                        <!-- <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li> -->
+                         <!-- <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>-->
+                        <!-- <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li> -->
+                        <!-- <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li> -->
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- Duoshuo Share end-->
+
+
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/alibaba_coding" data-title="2018-Alibaba-coding-online" data-url="http://bryanibit/blog/2017/07/05/alibaba_coding/"></div>
+                </div>
+                <!-- 多说评论框 end -->
+            </div>
+        </div>
+    </div>
+</article>
+
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+var duoshuoQuery = {short_name:"cnfeat"};
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                    <!-- kill the Facebook and Weibo -->
+                    <li>
+                        <a href="/feed.xml">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                    
+
+                    
+                    
+                    <!--
+                    
+                    -->
+
+                    <!--
+                    
+                    -->
+
+                    
+                    <!--
+                    
+                    -->
+
+                </ul>
+                <p class="copyright text-muted">
+                &copy; 2017  Bryan ❖ Powered by Jekyll.
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js "></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js "></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/clean-blog.min.js "></script>
+
+
+
+<!-- Highlight.js -->
+<script>
+    async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js",function(){
+        hljs.initHighlightingOnLoad();
+    })
+</script>
+<link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+
+
+</body>
+
+</html>

@@ -20,5 +20,8 @@
 - 一切技能皆可习得，包括写作
 - 「持续」并不是坚持，写就是最好的回报
 
+<center>
+    <p><img src="http://img.aoji.cn/2016/1012/WfyYOJe2jy9t.png" align="center"></p>
+</center>
 
 
