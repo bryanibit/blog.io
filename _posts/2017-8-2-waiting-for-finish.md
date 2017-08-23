@@ -24,6 +24,8 @@ ok
 
 ## blog native compile
 
+[部署自己的博客：Github+Jekyll](http://harttle.com/2013/10/18/github-homepage-tutorial.html)
+
 1. install jekyll
 
 - solve the problem that gem install jekyll error:
