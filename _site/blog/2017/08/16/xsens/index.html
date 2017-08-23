@@ -10,7 +10,7 @@
 
     <title>Xsens-710 - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/08/16/xsens/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/08/16/xsens/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -132,35 +132,51 @@
 
 <h2 id="xsens-prerequisites">Xsens Prerequisites</h2>
 
-<ul>
+<ol>
   <li>Install the MTi USB Serial Driver</li>
-</ul>
+</ol>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>$ git clone https://github.com/xsens/xsens_mt.git
 $ cd ~/xsens_mt
 $ make
 $ sudo modprobe usbserial
 $ sudo insmod ./xsens_mt.ko # install module to /lib/modules/$(uname -r)/driver/usb/serial
+$ sudo reboot
 </code></pre>
 </div>
 
-<ul>
+<ol>
+  <li>Run mtsdk_linux_4.8.sh in the “MT_Software_Suite_Linux_4.8”</li>
+</ol>
+
+<blockquote>
+  <p>Download official software “MT_Software_Suite_Linux_4.8”.
+Test hardware connection and communication. Enter the installation directory you like.
+To test hardware, go to installed directory “MT_software/examples/mtsdk”, type “make src_cpp”; 
+run “./example”, enter COM port name:/dev/ttyUSB0, baud rate: 115200
+The result shows the following:</p>
+</blockquote>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png" alt="" /></p>
+
+<ol>
   <li>
     <p>Install gps_common</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>  $ sudo apt-get install ros-distro-gps-common
+    <div class="highlighter-rouge"><pre class="highlight"><code> $ sudo apt-get install ros-distro-gps-common
 </code></pre>
     </div>
   </li>
-</ul>
+</ol>
 
 <h2 id="xsens-driver-in-ros">Xsens driver in Ros</h2>
 
 <div class="highlighter-rouge"><pre class="highlight"><code>sudo chmod 777 /dev/ttyUSB0
-rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50
+rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50 #publish sensor data,set as 50Hz
 roslaunch xsens_driver xsens_driver.launch
 </code></pre>
 </div>
+<p>说明：iu UTMtime， oe Euler angle， aa acceleration， wr rate of turn， pl latitudeLongitude， vv velocity</p>
 
 <h2 id="xsens-message-格式">Xsens message 格式</h2>
 
@@ -168,7 +184,7 @@ roslaunch xsens_driver xsens_driver.launch
 
 <p>以上文档中的page10注明了Xsens发出的信息格式详细情况</p>
 
-<h2 id="xsens-driver大致流程">Xsens driver大致流程</h2>
+<h2 id="xsens-driver程序大致流程">Xsens driver程序大致流程</h2>
 
 <ul>
   <li>二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的</li>
@@ -204,6 +220,16 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 </code></pre>
 </div>
 
+<h2 id="calibration-in-windows">Calibration (in windows)</h2>
+
+<p>Mti-710 needs sufficient velocity to do good heading estimation– search north</p>
+
+<p>Since the yaw of the MTi-G-700/710 is referenced by comparing GNSS acceleration with the on-board accelerometers, more movement (when GNSS is available) will result in a better yaw.</p>
+
+<p>The minimal acceleration and movement for the yaw to be estimated is above 7 m/s.</p>
+
+<p>In general, the more accelerations and movement will result in a better yaw. At lower speeds the yaw might be less accurate and take longer. If the velocity is lower, a good option might be to select the GeneralMag filter profile which also uses the magnetometer to stabilize the yaw.</p>
+
 
 
                 <hr>
@@ -236,13 +262,13 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710"
-                    data-images="http://bryanibit/img/black.jpg"
+                    data-images="http://localhost:4000/img/black.jpg"
                     data-content="Xsens wire
 
 使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。
 
 ... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/08/16/xsens/">
+                    data-url="http://localhost:4000/blog/2017/08/16/xsens/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -261,7 +287,7 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710" data-url="http://bryanibit/blog/2017/08/16/xsens/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710" data-url="http://localhost:4000/blog/2017/08/16/xsens/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>
