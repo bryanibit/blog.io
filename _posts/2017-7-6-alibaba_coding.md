@@ -64,15 +64,45 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 ### 读取文件C++
 
-      #include<fstream>
-      // read-mode
-      ifstream infile;
-	 
-	  infile.open("./1.txt");
-	  string s;
+         #include<fstream>
+         // read-mode
+         std::ifstream infile;
+         infile.open("./1.txt");
+         string s;
+         // get a line
+         getline(infile, s);
 
-	  // get a line
-	  getline(infile, s);
+### 写入文件c++
+
+```
+ //write-mode
+ std::ofstream onfile;
+ double x = 80.90809;
+ onfile.open("absolute dir", std::ios::app);
+ onfile<<std::fixed<<std::setprecision(8)<<x<<endl;
+```
+
+### 文件打开方式
+
+用oftream或者ifstream对象的构造函数或者open()函数指定一种打开方式
+
+ios::in        打开文件进行读操作，即读取文件中的数据
+
+ios::out     打开文件进行写操作，即输出数据到文件中
+
+ios::ate    打开文件时文件指针指向文件末尾，但是你可以在文件中的任何地方写数据
+
+ios::app   打开文件不会清空数据，文件指针始终在文件末尾，因此只能在文件末尾写数据
+
+ios:trunc  默认，若打开文件已存在，测清空文件的内容
+
+ios::nocreate    若打开文件不存在则不建立，返回打开失败信息
+
+ios::noreplace  打开文件时不能覆盖，若文件存在测返回打开失败信息
+
+ios::binary          打开文件为二进制文件，否则为文本文件
+
+注：ate 是 at end 的缩写，trunc是truncate(截断)的缩写，app是append(追加)的缩写
 
 ### C++ split()
 

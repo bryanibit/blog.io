@@ -139,10 +139,32 @@ ord('a') -> 97 # 返回ascII
 
 chr(97) --> 'a' # return 字符
 
+## Jupyter Notebook
 
+* 安装
 
+```pip install --upgrade pip # upgrade pip to the newest version
+pip install jupyter
+```
 
+* 配置
 
+```
+jupyter notebook --generate-config #如/home/inin下没有.jupyter file
+jupyter notebook password ##设置密码
+```
+
+打开浏览器 输入*127.0.0.1:8888* 输入密码
+
+## list to array
+
+```
+a = np.array([[1,2],[4,5],[2,3]])
+此时才能用切片功能,a不能是list，执行下列操作：
+plt.plot(a[:,0],a[:,1])
+```
+
+numpy.ndarry.tolist #numpy to list
 
 
 
