@@ -33,3 +33,22 @@ gsettings set org.gnome.desktop.default-applications.terminal exec   /usr/bin/te
 gsettings set org.gnome.desktop.default-applications.terminal exec-arg "-x"
 ```
 
+## **Jupyter Notebook**
+
+* 安装
+
+```
+pip install --upgrade pip # upgrade pip to the newest version
+pip install jupyter
+```
+
+* 配置
+
+```
+jupyter notebook --generate-config #如/home/inin下没有.jupyter file
+jupyter notebook password ##设置密码
+```
+
+打开浏览器 输入*127.0.0.1:8888* 输入密码
+
+
