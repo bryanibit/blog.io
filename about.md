@@ -5,7 +5,7 @@ description: "只有在安静平和的心境下，才能寻得最接近真像的
 header-img: "img/green.jpg"
 ---
 
-![koalo](img/originbear.png)
+![](img/originbear.png)
 
 我是于华超，在读研究生。
 
