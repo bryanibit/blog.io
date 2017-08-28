@@ -10,7 +10,7 @@
 
     <title>2018-Alibaba-coding-online - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/alibaba_coding/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/alibaba_coding/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -179,17 +179,47 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 <h3 id="读取文件c">读取文件C++</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>  #include&lt;fstream&gt;
-  // read-mode
-  ifstream infile;
- 
-  infile.open("./1.txt");
-  string s;
-
-  // get a line
-  getline(infile, s);
+<div class="highlighter-rouge"><pre class="highlight"><code>     #include&lt;fstream&gt;
+     // read-mode
+     std::ifstream infile;
+     infile.open("./1.txt");
+     string s;
+     // get a line
+     getline(infile, s);
 </code></pre>
 </div>
+
+<h3 id="写入文件c">写入文件c++</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code> //write-mode
+ std::ofstream onfile;
+ double x = 80.90809;
+ onfile.open("absolute dir", std::ios::app);
+ onfile&lt;&lt;std::fixed&lt;&lt;std::setprecision(8)&lt;&lt;x&lt;&lt;endl;
+</code></pre>
+</div>
+
+<h3 id="文件打开方式">文件打开方式</h3>
+
+<p>用oftream或者ifstream对象的构造函数或者open()函数指定一种打开方式</p>
+
+<p>ios::in        打开文件进行读操作，即读取文件中的数据</p>
+
+<p>ios::out     打开文件进行写操作，即输出数据到文件中</p>
+
+<p>ios::ate    打开文件时文件指针指向文件末尾，但是你可以在文件中的任何地方写数据</p>
+
+<p>ios::app   打开文件不会清空数据，文件指针始终在文件末尾，因此只能在文件末尾写数据</p>
+
+<p>ios:trunc  默认，若打开文件已存在，测清空文件的内容</p>
+
+<p>ios::nocreate    若打开文件不存在则不建立，返回打开失败信息</p>
+
+<p>ios::noreplace  打开文件时不能覆盖，若文件存在测返回打开失败信息</p>
+
+<p>ios::binary          打开文件为二进制文件，否则为文本文件</p>
+
+<p>注：ate 是 at end 的缩写，trunc是truncate(截断)的缩写，app是append(追加)的缩写</p>
 
 <h3 id="c-split">C++ split()</h3>
 
@@ -318,13 +348,13 @@ for (auto ite = ch; ite-&gt;value != false; ++ite)
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/alibaba_coding" data-title="2018-Alibaba-coding-online"
-                    data-images="http://bryanibit/img/black.jpg"
+                    data-images="http://localhost:4000/img/black.jpg"
                     data-content="该题目的介绍以及初步程序代码已经上传GitHub
 
 在此整理一些编程问题
 
 7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/07/05/alibaba_coding/">
+                    data-url="http://localhost:4000/blog/2017/07/05/alibaba_coding/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -343,7 +373,7 @@ for (auto ite = ch; ite-&gt;value != false; ++ite)
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/alibaba_coding" data-title="2018-Alibaba-coding-online" data-url="http://bryanibit/blog/2017/07/05/alibaba_coding/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/alibaba_coding" data-title="2018-Alibaba-coding-online" data-url="http://localhost:4000/blog/2017/07/05/alibaba_coding/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>
