@@ -3,7 +3,7 @@ layout: post
 title: C++ textbook 下
 date: 2017-07-15
 categories: blog
-tags: [技术总结]
+tags: [理论梳理]
 description: 谭浩强的书粗略浏览一下
 ---
 

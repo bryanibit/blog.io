@@ -3,7 +3,7 @@ layout: post
 title: OpenSfM opensource textbook
 date: 2017-07-14
 categories: blog
-tags: [技术总结]
+tags: [理论梳理]
 description: 边看程序，边总结一下原理和代码书写风格
 ---
 # 一 控制整个工程的参数方法
