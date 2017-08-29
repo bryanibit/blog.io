@@ -7,7 +7,7 @@ header-img: "img/blue.jpg"
 
 
 <center>
-    <p><img src="http://7xlfkx.com1.z0.glb.clouddn.com/white2.jpg" align="center"></p>
+    <p><img src="https://vignette1.wikia.nocookie.net/gameofthrones/images/6/6c/Sam_S2.jpg/revision/latest?cb=20120324131039" align="center"></p>
 </center>
 
 
