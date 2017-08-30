@@ -10,7 +10,7 @@
 
     <title>Boost re-install - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/boost-install/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/boost-install/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,12 +124,15 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>Ubuntu中下载boost包安装boost</h2>
+                <h2 id="ubuntu中下载boost包安装boost">Ubuntu中下载boost包安装boost</h2>
 
 <p>移除原来的boost方法：</p>
-<div class="highlight"><pre><code class="language-" data-lang="">    sudo apt-get --purge remove libboost-dev 
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    sudo apt-get --purge remove libboost-dev 
     sudo apt-get --purge remove libboost-all-dev
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>安装boost 1.57依赖项
         sudo apt-get install mpi-default-dev ##（不知道有没有用）
         sudo apt-get install libbz2-dev
@@ -137,17 +140,20 @@
         sudo apt-get install python-dev</p>
 
 <p>查看boost版本：</p>
-<div class="highlight"><pre><code class="language-" data-lang="">    cat /usr/include/boost/version.hpp | grep "BOOST_LIB_VERSION”
-</code></pre></div>
-<p>The way you are reinstalling the package might install Boost on your (/home) as opposed to on system (/usr..). </p>
 
-<p>Use the --prefix option of b2 to set the installation location.</p>
+<div class="highlighter-rouge"><pre class="highlight"><code>    cat /usr/include/boost/version.hpp | grep "BOOST_LIB_VERSION”
+</code></pre>
+</div>
+
+<p>The way you are reinstalling the package might install Boost on your (/home) as opposed to on system (/usr..).</p>
+
+<p>Use the –prefix option of b2 to set the installation location.</p>
 
 <p>Depending on where it installs, at the completion of ./b2</p>
 
-<h2>Windows中下载boost安装包</h2>
+<h2 id="windows中下载boost安装包">Windows中下载boost安装包</h2>
 
-<h3>在visual studio中使用boost</h3>
+<h3 id="在visual-studio中使用boost">在visual studio中使用boost</h3>
 
 <p>可能失败的原因
 Boost has a few libraries that are not standalone and require installation of 3rd party libraries. These are:
@@ -157,6 +163,7 @@ Boost.MPI
 Boost.Python
 Boost.Regex ICU support
 If you do not install these dependencies, Boost.Build will skip them which explains your build message. If you want the optional components, then you have more work to do. This is explained in great detail in this <a href="https://stackoverflow.com/questions/2629421/how-to-use-boost-in-visual-studio-2010/2655683#2655683">answer</a>.</p>
+
 
 
                 <hr>
@@ -189,12 +196,13 @@ If you do not install these dependencies, Boost.Build will skip them which expla
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/boost-install" data-title="Boost re-install"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="Ubuntu中下载boost包安装boost
 
 移除原来的boost方法：
-    sudo apt-get --purge remove libboos... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/05/boost-install/">
+
+    sudo apt-get --purge remove libboo... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/05/boost-install/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -213,7 +221,7 @@ If you do not install these dependencies, Boost.Build will skip them which expla
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/boost-install" data-title="Boost re-install" data-url="http://localhost:4000/blog/2017/07/05/boost-install/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/boost-install" data-title="Boost re-install" data-url="http://bryanibit/blog/2017/07/05/boost-install/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

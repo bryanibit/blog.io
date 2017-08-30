@@ -10,7 +10,7 @@
 
     <title>OpenSfM opensource textbook - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/14/OpenSfM-understand/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/14/OpenSfM-understand/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,78 +124,96 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h1>一 控制整个工程的参数方法</h1>
+                <h1 id="一-控制整个工程的参数方法">一 控制整个工程的参数方法</h1>
 
-<p><strong>renew a file called config.py</strong>
-```
-import os
+<p><strong>renew a file called config.py</strong></p>
+<div class="highlighter-rouge"><pre class="highlight"><code>import os
 import yaml
-default<em>config</em>yaml = &#39;&#39;&#39;
-# Metadata
-use<em>exif</em>size: yes
-default<em>focal</em>prior: 0.85&#39;&#39;&#39;
-def default<em>config():
-    &#39;&#39;&#39;Return default configuration
-    &#39;&#39;&#39;
-    return yaml.load(default</em>config_yaml)</p>
+default_config_yaml = '''
+\# Metadata
+use_exif_size: yes
+default_focal_prior: 0.85'''
+def default_config():
+    '''Return default configuration
+    '''
+    return yaml.load(default_config_yaml)
+</code></pre>
+</div>
+<hr />
 
-<h2>```</h2>
+<p>The above function default_config() return a dict, {‘use_exif_size’: yes  }</p>
 
-<p>The above function default<em>config() return a dict, {&#39;use</em>exif_size&#39;: yes  }</p>
+<h1 id="二-incremental-reconstruction">二 Incremental reconstruction</h1>
 
-<h1>二 Incremental reconstruction</h1>
-
-<h2>2.1 Initialization from 2 images with most matches</h2>
+<h2 id="21-initialization-from-2-images-with-most-matches">2.1 Initialization from 2 images with most matches</h2>
 
 <p><strong>找到两张图共有的feature（feature-id, feature-x-y, feature-color, ）后，执行一下步骤</strong></p>
 
-<h3>2.1.1 two<em>view</em>reconstruction</h3>
+<h3 id="211-two_view_reconstruction">2.1.1 two_view_reconstruction</h3>
 
 <ul>
-<li>pixel_bearing</li>
+  <li>pixel_bearing</li>
 </ul>
 
 <blockquote>
-<p>首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))</p>
-
-<p>该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]</p>
-
-<p>如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape</p>
-
-<p>K为np.array([[a,b,c],[a,b,c],[a,b,c]])</p>
-
-<p>distortion为np.array([a,b,c,d])</p>
-
-<p>将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1</p>
-
-<p>homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]</p>
-
-<p>求范数可在在Python tips中找到为何加<a href="https://bryanibit.github.io/blog/2017/07/05/python-tips/">:, np.newaxis</a></p>
+  <p>首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))</p>
 </blockquote>
-
-<h3>2.1.2 R, t and inliers</h3>
 
 <blockquote>
-<p>通过OpenGV找到矫正feature points关系,得到矫正后的2D points: b1 and b2，<strong>算出两视图R和t(with OpenGV)</strong>，及使用到的inliers</p>
+  <p>该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]</p>
 </blockquote>
 
-<h3>插播一下R和t求法</h3>
-<div class="highlight"><pre><code class="language-" data-lang="">def run_relative_pose_ransac(b1, b2, method, threshold, iterations):
+<blockquote>
+  <p>如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape</p>
+</blockquote>
+
+<blockquote>
+  <p>K为np.array([[a,b,c],[a,b,c],[a,b,c]])</p>
+</blockquote>
+
+<blockquote>
+  <p>distortion为np.array([a,b,c,d])</p>
+</blockquote>
+
+<blockquote>
+  <p>将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1</p>
+</blockquote>
+
+<blockquote>
+  <p>homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]</p>
+</blockquote>
+
+<blockquote>
+  <p>求范数可在在Python tips中找到为何加<a href="https://bryanibit.github.io/blog/2017/07/05/python-tips/">:, np.newaxis</a></p>
+</blockquote>
+
+<h3 id="212-r-t-and-inliers">2.1.2 R, t and inliers</h3>
+
+<blockquote>
+  <p>通过OpenGV找到矫正feature points关系,得到矫正后的2D points: b1 and b2，<strong>算出两视图R和t(with OpenGV)</strong>，及使用到的inliers</p>
+</blockquote>
+
+<h3 id="插播一下r和t求法">插播一下R和t求法</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def run_relative_pose_ransac(b1, b2, method, threshold, iterations):
     return pyopengv.relative_pose_ransac(b1, b2, method, threshold, iterations)
 
 def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
     return pyopengv.relative_pose_optimize_nonlinear(b1, b2, t, R)
-</code></pre></div>
-<ul>
-<li>由于需要8对点才能计算基本矩阵（相机内参已知的情况下），所以会有Ransac方法和最小二乘法</li>
-</ul>
-
-<h3>插播一下inliers求法</h3>
+</code></pre>
+</div>
 
 <ul>
-<li>需要通过R，t和事先设定的阈值，删除不满足阈值的feature points: b1 and b2,具体函数为</li>
+  <li>由于需要8对点才能计算基本矩阵（相机内参已知的情况下），所以会有Ransac方法和最小二乘法</li>
 </ul>
-<div class="highlight"><pre><code class="language-" data-lang="">def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
+
+<h3 id="插播一下inliers求法">插播一下inliers求法</h3>
+
+<ul>
+  <li>需要通过R，t和事先设定的阈值，删除不满足阈值的feature points: b1 and b2,具体函数为</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
     p = pyopengv.triangulation_triangulate(b1, b2, t, R)
 
     br1 = p.copy()
@@ -207,31 +225,39 @@ def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
     ok1 = np.linalg.norm(br1 - b1, axis=1) &lt; threshold
     ok2 = np.linalg.norm(br2 - b2, axis=1) &lt; threshold
     return np.nonzero(ok1 * ok2)[0], p
-</code></pre></div>
+</code></pre>
+</div>
 <ul>
-<li>解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
+  <li>解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
 R, t 是<strong>第二视图变换到第一视图</strong>的坐标变换阵，hence， R×br2 + t = br1 ==&gt; (p-t).dot(R)</li>
 </ul>
 
 <blockquote>
-<p>以上是使用了两种方法计算inliers，RANSAC和非线性优化方法，同时优化R,t</p>
+  <p>以上是使用了两种方法计算inliers，RANSAC和非线性优化方法，同时优化R,t</p>
+</blockquote>
 
-<p>RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优</p>
+<blockquote>
+  <p>RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优</p>
 </blockquote>
 
 <ol>
-<li><p>if len(inliers) &gt; 5: Bundle Adjustment 优化</p></li>
-<li><p>triangulation and bundle adjustment</p></li>
+  <li>
+    <p>if len(inliers) &gt; 5: Bundle Adjustment 优化</p>
+  </li>
+  <li>
+    <p>triangulation and bundle adjustment</p>
+  </li>
 </ol>
 
-<h3>Triangulation</h3>
+<h3 id="triangulation">Triangulation</h3>
 
-<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png" alt="Trangulation"></p>
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/triangulation.png" alt="Trangulation" /></p>
 
 <p>The following is parts of <a href="https://github.com/laurentkneip/opengv/blob/master/src/triangulation/methods.cpp">OpenGV code</a> for triangulation.
 The code is corresponding to the theory.
 And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em></p>
-<div class="highlight"><pre><code class="language-" data-lang="">opengv::triangulation::triangulate(
+
+<div class="highlighter-rouge"><pre class="highlight"><code>opengv::triangulation::triangulate(
     const relative_pose::RelativeAdapterBase &amp; adapter,
     size_t index )
 {
@@ -260,35 +286,38 @@ And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em
 
   return worldPoint;
 };
-</code></pre></div>
-<h3>coordinate system R, t</h3>
+</code></pre>
+</div>
+
+<h3 id="coordinate-system-r-t">coordinate system R, t</h3>
 
 <p>There is R, t defined by the following words and figure:</p>
 
-<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/one_coordinate_define.png" alt="one coordinate define"></p>
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/one_coordinate_define.png" alt="one coordinate define" /></p>
 
 <ul>
-<li>I recall we can define the corner system any way we want it for Bob. </li>
-<li>And we would define the corner system in the first person perspective. That&#39;s the world is measured according to Bob&#39;s corner system.</li>
-<li>So Bob is the center of the universe. </li>
-<li>And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t. </li>
-<li>So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D. </li>
+  <li>I recall we can define the corner system any way we want it for Bob.</li>
+  <li>And we would define the corner system in the first person perspective. That’s the world is measured according to Bob’s corner system.</li>
+  <li>So Bob is the center of the universe.</li>
+  <li>And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t.</li>
+  <li>So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D.</li>
 </ul>
 
 <blockquote>
-<p>The R, t can transform 3D points in Bob&#39;s first coordinate system to Mike&#39;s first coordinate system.</p>
+  <p>The R, t can transform 3D points in Bob’s first coordinate system to Mike’s first coordinate system.</p>
 </blockquote>
 
-<h2>2.2 Grow reconstruction</h2>
+<h2 id="22-grow-reconstruction">2.2 Grow reconstruction</h2>
 
-<h3>2.2.1 3D-2D corresponding (PnP)</h3>
+<h3 id="221-3d-2d-corresponding-pnp">2.2.1 3D-2D corresponding (PnP)</h3>
 
 <p>pass</p>
 
-<h2>Bundle adjustment</h2>
+<h2 id="bundle-adjustment">Bundle adjustment</h2>
 
 <p>使用<a href="http://www.ceres-solver.org">Ceres Solver</a>
-<strong>CostFunction</strong> depends on the parameter blocks {xi1,...,xik}.</p>
+<strong>CostFunction</strong> depends on the parameter blocks {xi1,…,xik}.</p>
+
 
 
                 <hr>
@@ -321,15 +350,14 @@ And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/14/OpenSfM-understand" data-title="OpenSfM opensource textbook"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="一 控制整个工程的参数方法
 
 renew a file called config.py
-```
 import os
 import yaml
-defaul... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/14/OpenSfM-understand/">
+default_co... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/14/OpenSfM-understand/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -348,7 +376,7 @@ defaul... | Microdust:Azeril's blog"
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/14/OpenSfM-understand" data-title="OpenSfM opensource textbook" data-url="http://localhost:4000/blog/2017/07/14/OpenSfM-understand/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/14/OpenSfM-understand" data-title="OpenSfM opensource textbook" data-url="http://bryanibit/blog/2017/07/14/OpenSfM-understand/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

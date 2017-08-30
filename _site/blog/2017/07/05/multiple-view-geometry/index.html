@@ -10,7 +10,7 @@
 
     <title>Multiview Geometry - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/multiple-view-geometry/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,26 +124,26 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>奇异值分解(SVD)原理详解及推导</h2>
+                <h2 id="奇异值分解svd原理详解及推导">奇异值分解(SVD)原理详解及推导</h2>
 
 <p><a href="http://blog.sina.com.cn/s/blog_3f738ee00102val0.html">转</a></p>
 
-<h2>　将相机中心转换到世界坐标系下</h2>
+<p>##　将相机中心转换到世界坐标系下
+<a href="https://stackoverflow.com/questions/2403886/camera-translation-vector-relation-to-rotation-matrix">转stackexchage</a></p>
 
-<p><a href="https://stackoverflow.com/questions/2403886/camera-translation-vector-relation-to-rotation-matrix">转stackexchage</a></p>
+<p>I’m assuming that the R (rotation matrix) and t (the translation vector) you obtained were w.r.t a world coordinate system with (0,0,0) as the origin.</p>
 
-<p>I&#39;m assuming that the R (rotation matrix) and t (the translation vector) you obtained were w.r.t a world coordinate system with (0,0,0) as the origin.</p>
-
-<p>With R and t you can now move a point from the world coordinate system (WC) to the camera coordinate system (CC), i.e. Xc = RX + t where X is a 3D point in WC and Xc is X in CC (i.e. seen from the camera&#39;s point of view). This is applicable assuming we&#39;re dealing with rigid bodies so we just rotate the point and then translate it.</p>
+<p>With R and t you can now move a point from the world coordinate system (WC) to the camera coordinate system (CC), i.e. Xc = RX + t where X is a 3D point in WC and Xc is X in CC (i.e. seen from the camera’s point of view). This is applicable assuming we’re dealing with rigid bodies so we just rotate the point and then translate it.</p>
 
 <blockquote>
-<p>Now, you need to find the coordinates of the camera center which is the origin of CC, or when Xc = 0:
+  <p>Now, you need to find the coordinates of the camera center which is the origin of CC, or when Xc = 0:
 0 = RC + t where C is the 3D coordinates of the camera center in WC. By solving for C we get,
 C = -R-1t</p>
 </blockquote>
 
 <p>And by the way,A correction in your documentation
-Transposing and multiplying the rotation matrix does not change the rotation matrix --- a rotation matrix is orthogonal which means it&#39;s transpose is equal to its inverse and therefore, (RT)-1 = R.</p>
+Transposing and multiplying the rotation matrix does not change the rotation matrix — a rotation matrix is orthogonal which means it’s transpose is equal to its inverse and therefore, (RT)-1 = R.</p>
+
 
 
                 <hr>
@@ -176,17 +176,16 @@ Transposing and multiplying the rotation matrix does not change the rotation mat
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/multiple view-geometry" data-title="Multiview Geometry"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="奇异值分解(SVD)原理详解及推导
 
 转
 
-　将相机中心转换到世界坐标系下
-
+##　将相机中心转换到世界坐标系下
 转stackexchage
 
-I&#39;m assuming that t... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/">
+I’m assuming that the ... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/05/multiple-view-geometry/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -205,7 +204,7 @@ I&#39;m assuming that t... | Microdust:Azeril's blog"
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/multiple view-geometry" data-title="Multiview Geometry" data-url="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/multiple view-geometry" data-title="Multiview Geometry" data-url="http://bryanibit/blog/2017/07/05/multiple-view-geometry/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

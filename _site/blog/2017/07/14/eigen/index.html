@@ -10,7 +10,7 @@
 
     <title>Eigen in OpenSfM - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/14/eigen/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/14/eigen/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,8 +124,8 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>Eigen::map&lt;&gt;()</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">int array[9];
+                <h2 id="eigenmap">Eigen::map&lt;&gt;()</h2>
+<div class="highlighter-rouge"><pre class="highlight"><code>int array[9];
 for(int i = 0; i &lt; 9; ++i) array[i] = i;
 cout &lt;&lt; Map&lt;Matrix3i&gt;(array) &lt;&lt; endl;
 
@@ -135,11 +135,13 @@ Output:
 1 4 7
 2 5 8
 
-</code></pre></div>
+</code></pre>
+</div>
 <p>注意以上map得到的结果是先填充行再填充列的</p>
 
-<h2>Eigen block &lt;&gt; ()</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">/#include &lt;Eigen/Dense&gt;
+<h2 id="eigen-block--">Eigen block &lt;&gt; ()</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>/#include &lt;Eigen/Dense&gt;
 /#include &lt;iostream&gt;
 using namespace std;
 int main()
@@ -157,9 +159,11 @@ int main()
     cout &lt;&lt; m.block(0,0,i,i) &lt;&lt; endl &lt;&lt; endl;
   }
 }
-</code></pre></div>
+</code></pre>
+</div>
 <p>output:</p>
-<div class="highlight"><pre><code class="language-" data-lang="">Block in the middle
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Block in the middle
  6  7
 10 11
 
@@ -174,7 +178,9 @@ Block of size 3x3
  1  2  3
  5  6  7
  9 10 11
-</code></pre></div>
+</code></pre>
+</div>
+
 
                 <hr>
 
@@ -206,11 +212,11 @@ Block of size 3x3
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/14/eigen" data-title="Eigen in OpenSfM"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="Eigen::map&lt;&gt;()
 int array[9];
 for(int i = 0; i &lt; 9; ++i) array[i] = i... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/14/eigen/">
+                    data-url="http://bryanibit/blog/2017/07/14/eigen/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -229,7 +235,7 @@ for(int i = 0; i &lt; 9; ++i) array[i] = i... | Microdust:Azeril's blog"
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/14/eigen" data-title="Eigen in OpenSfM" data-url="http://localhost:4000/blog/2017/07/14/eigen/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/14/eigen" data-title="Eigen in OpenSfM" data-url="http://bryanibit/blog/2017/07/14/eigen/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

@@ -10,7 +10,7 @@
 
     <title>How to fly over GFW - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/19/fk-gfw/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/19/fk-gfw/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,80 +124,104 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>Download Goagent</h2>
+                <h2 id="download-goagent">Download Goagent</h2>
 
 <p>百度云已经配置好的GoAgent(sceret)</p>
 
-<h2>配置</h2>
+<h2 id="配置">配置</h2>
 
-<h3>windows chrome</h3>
-
-<ol>
-<li>下载<a href="https://github.com/bryanibit/XX-Net">xx-net</a></li>
-<li>因为要使用自己的账号，所以需要在chrome中上传</li>
-<li>use it</li>
-</ol>
-
-<h3>在Ubuntu中结合foxyproxy实现翻墙</h3>
+<h3 id="windows-chrome">windows chrome</h3>
 
 <ol>
-<li>下载foxproxy</li>
-<li>Proxies 中 添加 goagent</li>
-<li>proxy details中 manual中添加127.0.0.1:8087</li>
-<li>URL Patterns中</li>
-<li>Do not use this proxy for internal IP addresses</li>
-<li>Pattern Subscription</li>
-<li>Subscription URL: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</li>
-<li>Proxies: add proxies 用刚刚2中的GoAgent</li>
-<li>Format: Autoproxy   obfuscation: base64</li>
-<li>Quick add</li>
-<li>enabled</li>
+  <li>下载<a href="https://github.com/bryanibit/XX-Net">xx-net</a></li>
+  <li>因为要使用自己的账号，所以需要在chrome中上传</li>
+  <li>use it</li>
 </ol>
 
-<h2>Terminal use</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">    export https_proxy="127.0.0.1:8087"
+<h3 id="在ubuntu中结合foxyproxy实现翻墙">在Ubuntu中结合foxyproxy实现翻墙</h3>
+
+<ol>
+  <li>下载foxproxy</li>
+  <li>Proxies 中 添加 goagent
+    <ul>
+      <li>proxy details中 manual中添加127.0.0.1:8087</li>
+      <li>URL Patterns中</li>
+      <li>Do not use this proxy for internal IP addresses</li>
+    </ul>
+  </li>
+  <li>Pattern Subscription
+    <ul>
+      <li>Subscription URL: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt</li>
+      <li>Proxies: add proxies 用刚刚2中的GoAgent</li>
+      <li>Format: Autoproxy   obfuscation: base64</li>
+    </ul>
+  </li>
+  <li>Quick add
+    <ul>
+      <li>enabled</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="terminal-use">Terminal use</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    export https_proxy="127.0.0.1:8087"
     export http_proxy="127.0.0.1:8087"
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>[option]</p>
 
-<p>git config --global http.sslVerify false</p>
+<p>git config –global http.sslVerify false</p>
 
 <p>then git config uses proxy agent.</p>
 
-<p>When you use export, you could use </p>
-<div class="highlight"><pre><code class="language-" data-lang="">    curl ip.gs
-</code></pre></div>
+<p>When you use export, you could use</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    curl ip.gs
+</code></pre>
+</div>
+
 <p>check the ip address</p>
 
 <p>Of course, you should install curl</p>
-<div class="highlight"><pre><code class="language-" data-lang="">    sudo apt-get install curl
-</code></pre></div>
-<h3>解除GoAgent占用端口问题</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>    sudo apt-get install curl
+</code></pre>
+</div>
+
+<h3 id="解除goagent占用端口问题">解除GoAgent占用端口问题</h3>
 
 <p><strong>直接关闭GoAgent会占用8087端口问题</strong></p>
-<div class="highlight"><pre><code class="language-" data-lang="">inin@inin-pc:~$ sudo lsof -i:8087
+
+<div class="highlighter-rouge"><pre class="highlight"><code>inin@inin-pc:~$ sudo lsof -i:8087
 COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 python  2274 root    6u  IPv4  16595      0t0  TCP localhost:8087 (LISTEN)
 inin@inin-pc:~$ kill 2274
-</code></pre></div>
-<h2>xx-net使用</h2>
+</code></pre>
+</div>
+
+<h2 id="xx-net使用">xx-net使用</h2>
 
 <p>登录<a href="https://github.com/XX-net/XX-Net/wiki/How-to-use">xx-net</a>的使用方法一节，下载源码，无需下载百度云盘中的GoAgent源码</p>
 
 <ol>
-<li>安装下面软件
-<code>
-sudo apt-get install python-openssl
+  <li>安装下面软件
+    <div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install python-openssl
 sudo apt-get install libffi-dev
 sudo apt-get install python-gtk2
 sudo apt-get install python-appindicator
 sudo apt-get install libnss3-tools
-</code></li>
-<li><p>后台运行：在终端中运行：
-     xx_net.sh start/stop/restart
-此时会出现提示（在浏览器中键入127.0.0.1;8085)，<em>配置浏览器设置</em>，使用上面的在Ubuntu中结合foxyproxy实现翻墙内容配置即可</p></li>
-<li><p>开机自启：在/etc/rc.local中添加一行：（可选）
-sudo /home/username/xxnet/xx_net.sh start</p></li>
+</code></pre>
+    </div>
+  </li>
+  <li>
+    <p>后台运行：在终端中运行：
+      xx_net.sh start/stop/restart
+此时会出现提示（在浏览器中键入127.0.0.1;8085)，<em>配置浏览器设置</em>，使用上面的在Ubuntu中结合foxyproxy实现翻墙内容配置即可</p>
+  </li>
+  <li>开机自启：在/etc/rc.local中添加一行：（可选）
+sudo /home/username/xxnet/xx_net.sh start</li>
 </ol>
 
 
@@ -231,7 +255,7 @@ sudo /home/username/xxnet/xx_net.sh start</p></li>
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/19/fk-gfw" data-title="How to fly over GFW"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="Download Goagent
 
 百度云已经配置好的GoAgent(sceret)
@@ -241,9 +265,9 @@ sudo /home/username/xxnet/xx_net.sh start</p></li>
 windows chrome
 
 
-下载xx-net
-因为要... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/19/fk-gfw/">
+  下载xx-net
+ ... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/19/fk-gfw/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -262,7 +286,7 @@ windows chrome
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/19/fk-gfw" data-title="How to fly over GFW" data-url="http://localhost:4000/blog/2017/07/19/fk-gfw/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/19/fk-gfw" data-title="How to fly over GFW" data-url="http://bryanibit/blog/2017/07/19/fk-gfw/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

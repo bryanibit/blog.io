@@ -3,23 +3,30 @@
   <channel>
     <title>屋顶上的鱼</title>
     <description>于华超</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Wed, 30 Aug 2017 16:37:26 +0800</pubDate>
-    <lastBuildDate>Wed, 30 Aug 2017 16:37:26 +0800</lastBuildDate>
+    <link>http://bryanibit/</link>
+    <atom:link href="http://bryanibit/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Wed, 30 Aug 2017 19:04:27 +0800</pubDate>
+    <lastBuildDate>Wed, 30 Aug 2017 19:04:27 +0800</lastBuildDate>
     <generator>Jekyll v3.5.2</generator>
     
       <item>
         <title>KalmanFilter</title>
-        <description>&lt;h2&gt;Problem Statement&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h2&gt;
 
 &lt;p&gt;where&lt;/p&gt;
 
-&lt;p&gt;$$a^2 + b^2 = c^2$$&lt;/p&gt;
+&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
+&lt;/script&gt;
+
+&lt;script type=&quot;math/tex; mode=display&quot;&gt;a^2 + b^2 = c^2&lt;/script&gt;
+
+&lt;p&gt;it is ok!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-6c5677f554fb887fc18a235e8e1f21d7_b.jpg&quot; alt=&quot;GoT&quot; /&gt;&lt;/p&gt;
 </description>
         <pubDate>Tue, 29 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/08/29/kalman/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/08/29/kalman/</guid>
+        <link>http://bryanibit/blog/2017/08/29/kalman/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/08/29/kalman/</guid>
         
         <category>理论梳理</category>
         
@@ -30,8 +37,9 @@
     
       <item>
         <title>Git Push Suggestion</title>
-        <description>&lt;h2&gt;在github新建分支安全操作&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;git checkout -b &amp;lt;branch_name&amp;gt;  新建分支    这是两句 git branch &amp;lt;branch_name&amp;gt; 和git checkout &amp;lt;branch_name&amp;gt; 的和
+        <description>&lt;h2 id=&quot;在github新建分支安全操作&quot;&gt;在github新建分支安全操作&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -b &amp;lt;branch_name&amp;gt;  新建分支    这是两句 git branch &amp;lt;branch_name&amp;gt; 和git checkout &amp;lt;branch_name&amp;gt; 的和
 git add -A
 git commit -m &quot;×××××&quot;
 git push
@@ -40,10 +48,12 @@ git checkout master      check到master分支
 git merge &amp;lt;branch_name&amp;gt;   合并修改 &amp;lt;branch_name&amp;gt;和master指向同一个修改，merge后的修改，如果冲突需要手工修改
 git branch -d test     删除本地分支
 git push origin --delete &amp;lt;branch_name&amp;gt;   删除远程分支(github)上的分支
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+</description>
         <pubDate>Tue, 22 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/08/22/git/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/08/22/git/</guid>
+        <link>http://bryanibit/blog/2017/08/22/git/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/08/22/git/</guid>
         
         <category>技术总结</category>
         
@@ -54,42 +64,58 @@ git push origin --delete &amp;lt;branch_name&amp;gt;   删除远程分支(github
     
       <item>
         <title>Linux small tools</title>
-        <description>&lt;h2&gt;install vim&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+        <description>&lt;h2 id=&quot;install-vim&quot;&gt;install vim&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install vim
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;renew a file called .vimrc:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;set nu
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set nu
 set confirm
 set mouse=a
 set tabstop=4
 set cindent
 syntax on
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;install terminator&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;udo apt-get install terminator
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;install-terminator&quot;&gt;install terminator&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;udo apt-get install terminator
 sudo apt-get install dconf-tools
 gsettings set org.gnome.desktop.default-applications.terminal exec   /usr/bin/terminator
 gsettings set org.gnome.desktop.default-applications.terminal exec-arg &quot;-x&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;&lt;strong&gt;Jupyter Notebook&lt;/strong&gt;&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;jupyter-notebook&quot;&gt;&lt;strong&gt;Jupyter Notebook&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;安装&lt;/li&gt;
+  &lt;li&gt;安装&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;pip install --upgrade pip # upgrade pip to the newest version
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install --upgrade pip # upgrade pip to the newest version
 pip install jupyter
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
-&lt;li&gt;配置&lt;/li&gt;
+  &lt;li&gt;配置&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;jupyter notebook --generate-config #如/home/inin下没有.jupyter file
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jupyter notebook --generate-config #如/home/inin下没有.jupyter file
 jupyter notebook password ##设置密码
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;打开浏览器 输入&lt;em&gt;127.0.0.1:8888&lt;/em&gt; 输入密码&lt;/p&gt;
+
 </description>
         <pubDate>Tue, 22 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/08/22/smalltool/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/08/22/smalltool/</guid>
+        <link>http://bryanibit/blog/2017/08/22/smalltool/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/08/22/smalltool/</guid>
         
         <category>技术总结</category>
         
@@ -100,88 +126,105 @@ jupyter notebook password ##设置密码
     
       <item>
         <title>Xsens-710</title>
-        <description>&lt;h2&gt;Xsens wire&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;xsens-wire&quot;&gt;Xsens wire&lt;/h2&gt;
 
-&lt;p&gt;使用的线缆名称为CA-MP2-MTi，9pin--9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。&lt;/p&gt;
+&lt;p&gt;使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。&lt;/p&gt;
 
 &lt;p&gt;serial RS232 有问题，无论连接tx/rx/电源地或者tx/rx或者交换tx/rx都无法与Windows上官方suite软件中的MT Manager通信，所以放弃使用串口，使用自制的USB接口&lt;/p&gt;
 
-&lt;h2&gt;Xsens Prerequisites&lt;/h2&gt;
+&lt;h2 id=&quot;xsens-prerequisites&quot;&gt;Xsens Prerequisites&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;Install the MTi USB Serial Driver&lt;/li&gt;
+  &lt;li&gt;Install the MTi USB Serial Driver&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$ git clone https://github.com/xsens/xsens_mt.git
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/xsens/xsens_mt.git
 $ cd ~/xsens_mt
 $ make
 $ sudo modprobe usbserial
 $ sudo insmod ./xsens_mt.ko # install module to /lib/modules/$(uname -r)/driver/usb/serial
 $ sudo reboot
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ol&gt;
-&lt;li&gt;Run mtsdk&lt;em&gt;linux&lt;/em&gt;4.8.sh in the &amp;quot;MT&lt;em&gt;Software&lt;/em&gt;Suite&lt;em&gt;Linux&lt;/em&gt;4.8&amp;quot;&lt;/li&gt;
+  &lt;li&gt;Run mtsdk_linux_4.8.sh in the “MT_Software_Suite_Linux_4.8”&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;blockquote&gt;
-&lt;p&gt;Download official software &amp;quot;MT&lt;em&gt;Software&lt;/em&gt;Suite&lt;em&gt;Linux&lt;/em&gt;4.8&amp;quot;.
+  &lt;p&gt;Download official software “MT_Software_Suite_Linux_4.8”.
 Test hardware connection and communication. Enter the installation directory you like.
-To test hardware, go to installed directory &amp;quot;MT&lt;em&gt;software/examples/mtsdk&amp;quot;, type &amp;quot;make src&lt;/em&gt;cpp&amp;quot;; 
-run &amp;quot;./example&amp;quot;, enter COM port name:/dev/ttyUSB0, baud rate: 115200
+To test hardware, go to installed directory “MT_software/examples/mtsdk”, type “make src_cpp”; 
+run “./example”, enter COM port name:/dev/ttyUSB0, baud rate: 115200
 The result shows the following:&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;Install gps_common&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$ sudo apt-get install ros-distro-gps-common
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Install gps_common&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ sudo apt-get install ros-distro-gps-common
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;Xsens driver in Ros&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;sudo chmod 777 /dev/ttyUSB0
+&lt;h2 id=&quot;xsens-driver-in-ros&quot;&gt;Xsens driver in Ros&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chmod 777 /dev/ttyUSB0
 rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50,pl20 #publish sensor data,set as 50Hz
 roslaunch xsens_driver xsens_driver.launch
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;说明：iu UTMtime， oe Euler angle， aa acceleration， wr rate of turn， pl latitudeLongitude， vv velocity&lt;/p&gt;
 
-&lt;h2&gt;Xsens message 格式&lt;/h2&gt;
+&lt;h2 id=&quot;xsens-message-格式&quot;&gt;Xsens message 格式&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://xsens.com/download/usermanual/ISM/MT_LowLevelCommunicationProtocol_Documentation.pdf&quot;&gt;MT Low Level Communication Protocol documentation (LLCP)&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;以上文档中的page10注明了Xsens发出的信息格式详细情况&lt;/p&gt;
 
-&lt;h2&gt;Xsens driver程序大致流程&lt;/h2&gt;
+&lt;h2 id=&quot;xsens-driver程序大致流程&quot;&gt;Xsens driver程序大致流程&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的&lt;/li&gt;
-&lt;li&gt;通过函数locals()&lt;a href=&quot;o&quot;&gt;find&lt;em&gt;handler&lt;/em&gt;name(n)&lt;/a&gt;，找到对应的函数的句柄，解析刚刚得到的数据，结果放在msgs中，最后publish出去&lt;/li&gt;
+  &lt;li&gt;二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的&lt;/li&gt;
+  &lt;li&gt;通过函数locals()&lt;a href=&quot;o&quot;&gt;find_handler_name(n)&lt;/a&gt;，找到对应的函数的句柄，解析刚刚得到的数据，结果放在msgs中，最后publish出去&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;补充&lt;/h2&gt;
+&lt;h2 id=&quot;补充&quot;&gt;补充&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。&lt;/li&gt;
+  &lt;li&gt;文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;groups #查看所有group名称
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;groups #查看所有group名称
 users  #查看所有user名称
 groupadd &amp;lt;group_name&amp;gt; #add new group
 gpasswd -a &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户加到组中
 gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组中移除
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;使用groups命令查看用户所在组的名称： &lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;groups inin
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;make sure that your $USER is in dialout group, you can use following commands:&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;sudo usermod -G dialout -a $USER
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;Calibration (in windows)&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Mti-710 needs sufficient velocity to do good heading estimation-- search north&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;使用groups命令查看用户所在组的名称：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;groups inin
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;make sure that your $USER is in dialout group, you can use following commands:&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo usermod -G dialout -a $USER
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;calibration-in-windows&quot;&gt;Calibration (in windows)&lt;/h2&gt;
+
+&lt;p&gt;Mti-710 needs sufficient velocity to do good heading estimation– search north&lt;/p&gt;
 
 &lt;p&gt;Since the yaw of the MTi-G-700/710 is referenced by comparing GNSS acceleration with the on-board accelerometers, more movement (when GNSS is available) will result in a better yaw.&lt;/p&gt;
 
@@ -189,13 +232,13 @@ gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组
 
 &lt;p&gt;In general, the more accelerations and movement will result in a better yaw. At lower speeds the yaw might be less accurate and take longer. If the velocity is lower, a good option might be to select the GeneralMag filter profile which also uses the magnetometer to stabilize the yaw.&lt;/p&gt;
 
-&lt;h2&gt;Xsens与差分Novatel对比&lt;/h2&gt;
+&lt;h2 id=&quot;xsens与差分novatel对比&quot;&gt;Xsens与差分Novatel对比&lt;/h2&gt;
 
 &lt;p&gt;If you want to see result in detail, click &lt;a href=&quot;http://nbviewer.jupyter.org/github/bryanibit/bryanibit.github.io/blob/master/_posts/jupyter/visual.ipynb&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
 </description>
         <pubDate>Wed, 16 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/08/16/xsens/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/08/16/xsens/</guid>
+        <link>http://bryanibit/blog/2017/08/16/xsens/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/08/16/xsens/</guid>
         
         <category>技术总结</category>
         
@@ -206,83 +249,112 @@ gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组
     
       <item>
         <title>Harxon smart antenna</title>
-        <description>&lt;h2&gt;使用的GPS接收机简介&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;使用的gps接收机简介&quot;&gt;使用的GPS接收机简介&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;使用带3G功能的移动站TS102，移动站出厂设置为com1-115200 Baud，输出定位信息和航向(GGA,RMC,VTG,ZDA,HDT),现在硬件连接出来的串口线对应接收机的com1。&lt;/li&gt;
-&lt;li&gt;使用3G网络接入&lt;a href=&quot;https://qxwz.com/&quot;&gt;千寻位置&lt;/a&gt;提供的差分位置服务，所以无需配置基站，只需配置移动站。&lt;/li&gt;
+  &lt;li&gt;使用带3G功能的移动站TS102，移动站出厂设置为com1-115200 Baud，输出定位信息和航向(GGA,RMC,VTG,ZDA,HDT),现在硬件连接出来的串口线对应接收机的com1。&lt;/li&gt;
+  &lt;li&gt;使用3G网络接入&lt;a href=&quot;https://qxwz.com/&quot;&gt;千寻位置&lt;/a&gt;提供的差分位置服务，所以无需配置基站，只需配置移动站。&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;配置方法&lt;/h2&gt;
+&lt;h2 id=&quot;配置方法&quot;&gt;配置方法&lt;/h2&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;Output from Receiver:
+  &lt;li&gt;
+    &lt;p&gt;连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示：&lt;/p&gt;
 
-*****************MODULE SELFTEST*****************
-DTU MODULE: RX 451.12500 MHz
-            TX 451.12500 MHz
-            PRT TRIMTALK
-            BAUD 9600 
-            MODNM 1006D
-            E003.03.01  
-CAN MODULE: $GCAN=CANBUS_29B_250k
-            GC117033626
-            17031603
-GNSS MODULE: &quot;UB280&quot;, SW_VER &quot;R4.10Build15042&quot;
-************************end**************************
-3G MODULE: SIM  #QSS: 1
-            CLASS 2
-            CSQ 
-            IP   ××.×××.×××.×××
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$CFG 3G U   //进入user模式，此时接受机返回 *&amp;gt;ok*
-AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
-AT#PING=&quot;www.baidu.com&quot;  //ping外网，正常会有OK返回
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;使用&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=514&quot;&gt;千寻社区&lt;/a&gt;提供的工具，Ntrip client测试千寻差分账号是否正常，按照&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=453&quot;&gt;社区教程&lt;/a&gt;配置软件，需要登录账号发言后才能下载该软件&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机，以下命令无需进入3G用户模式，直接在连接上接收机后即可输入以下命令&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;$GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/li&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Output from Receiver:
+
+ *****************MODULE SELFTEST*****************
+ DTU MODULE: RX 451.12500 MHz
+             TX 451.12500 MHz
+             PRT TRIMTALK
+             BAUD 9600 
+             MODNM 1006D
+             E003.03.01  
+ CAN MODULE: $GCAN=CANBUS_29B_250k
+             GC117033626
+             17031603
+ GNSS MODULE: &quot;UB280&quot;, SW_VER &quot;R4.10Build15042&quot;
+ ************************end**************************
+ 3G MODULE: SIM  #QSS: 1
+             CLASS 2
+             CSQ 
+             IP   ××.×××.×××.×××
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $CFG 3G U   //进入user模式，此时接受机返回 *&amp;gt;ok*
+ AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
+ AT#PING=&quot;www.baidu.com&quot;  //ping外网，正常会有OK返回
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;使用&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=514&quot;&gt;千寻社区&lt;/a&gt;提供的工具，Ntrip client测试千寻差分账号是否正常，按照&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=453&quot;&gt;社区教程&lt;/a&gt;配置软件，需要登录账号发言后才能下载该软件&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机，以下命令无需进入3G用户模式，直接在连接上接收机后即可输入以下命令&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据&lt;/p&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;备注&lt;/h2&gt;
+&lt;h2 id=&quot;备注&quot;&gt;备注&lt;/h2&gt;
 
-&lt;h4&gt;配置命令都已回车(windows中/r/n)结束&lt;/h4&gt;
+&lt;h4 id=&quot;配置命令都已回车windows中rn结束&quot;&gt;配置命令都已回车(windows中/r/n)结束&lt;/h4&gt;
+&lt;h4 id=&quot;一个差分账号只能同时一个设备用否则会出现互踢现象&quot;&gt;一个差分账号只能同时一个设备用，否则会出现互踢现象&lt;/h4&gt;
+&lt;h4 id=&quot;接收机电源线连接时对准红点插入即可拔出时把前面的铁头往外拉固定后方的线此时可以拔出插头&quot;&gt;接收机电源线连接时，对准红点插入即可，拔出时，把前面的铁头往外拉，固定后方的线，此时可以拔出插头&lt;/h4&gt;
 
-&lt;h4&gt;一个差分账号只能同时一个设备用，否则会出现互踢现象&lt;/h4&gt;
+&lt;h4 id=&quot;gps数据解析&quot;&gt;GPS数据解析&lt;/h4&gt;
 
-&lt;h4&gt;接收机电源线连接时，对准红点插入即可，拔出时，把前面的铁头往外拉，固定后方的线，此时可以拔出插头&lt;/h4&gt;
+&lt;p&gt;$GPGSA:(模式、位置)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;模式, 定位形式, PRN数字, PDOP位置, HDOP水平精度因子, VDOP垂直精度因子, 检验位&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h4&gt;GPS数据解析&lt;/h4&gt;
+&lt;p&gt;$GPGSV:(卫星、角度)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;总的GSV语句电文数, 当前GSV语句号, 可视卫星总数, 卫星号, 仰角, 方位角,信噪比, 总和校验数, 回车, 换行&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;$GPGSA:(模式、位置)
-- 模式, 定位形式, PRN数字, PDOP位置, HDOP水平精度因子, VDOP垂直精度因子, 检验位&lt;/p&gt;
+&lt;p&gt;$BDGSV:GPGSV(卫星相关的信息)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;收到讯号的卫星总数,定位的卫星总数,卫星总数,卫星仰角,方位角,讯号信噪比,校验位&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;$GPGSV:(卫星、角度)
-- 总的GSV语句电文数, 当前GSV语句号, 可视卫星总数, 卫星号, 仰角, 方位角,信噪比, 总和校验数, 回车, 换行&lt;/p&gt;
+&lt;p&gt;$GNRMC:GPRMC(时间日期、地面速度方向)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UTC时间, 定位状态,纬度,纬半球,经度,经半球,地面速率,方向,UTC日期,磁偏角,磁偏角方向,模式指示,地面速度信息&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;$BDGSV:GPGSV(卫星相关的信息)
-- 收到讯号的卫星总数,定位的卫星总数,卫星总数,卫星仰角,方位角,讯号信噪比,校验位&lt;/p&gt;
+&lt;p&gt;$GNGGA:GPGGA(时间、定位质量)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;UTC时间,纬度,纬半球,经度,经半球,定位质量标,卫星数量,水平精确度,天、地水准高度，差分GPS数据等, *, 校验和, 回车、换行&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;$GNRMC:GPRMC(时间日期、地面速度方向)
-- UTC时间, 定位状态,纬度,纬半球,经度,经半球,地面速率,方向,UTC日期,磁偏角,磁偏角方向,模式指示,地面速度信息&lt;/p&gt;
-
-&lt;p&gt;$GNGGA:GPGGA(时间、定位质量)
-- UTC时间,纬度,纬半球,经度,经半球,定位质量标,卫星数量,水平精确度,天、地水准高度，差分GPS数据等, *, 校验和, 回车、换行&lt;/p&gt;
-
-&lt;h2&gt;测试ＧＰＳ精度（Ｃ＋＋）&lt;/h2&gt;
+&lt;h2 id=&quot;测试ＧＰＳ精度Ｃ&quot;&gt;测试ＧＰＳ精度（Ｃ＋＋）&lt;/h2&gt;
 
 &lt;p&gt;读取串口调试助手保存的串口数据输出LOG.txt,具体程序在&lt;a href=&quot;https://github.com/bryanibit/-_DGPS&quot;&gt;ｇｉｔｈｕｂ链接&lt;/a&gt;上&lt;/p&gt;
+
 </description>
         <pubDate>Wed, 09 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/08/09/harxon-GPS/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/08/09/harxon-GPS/</guid>
+        <link>http://bryanibit/blog/2017/08/09/harxon-GPS/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/08/09/harxon-GPS/</guid>
         
         <category>技术总结</category>
         
@@ -293,13 +365,14 @@ AT#PING=&quot;www.baidu.com&quot;  //ping外网，正常会有OK返回
     
       <item>
         <title>socket tcp python实现</title>
-        <description>&lt;h2&gt;连接canet 200T设备&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;连接canet-200t设备&quot;&gt;连接canet 200T设备&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;canet设备的IP端口为：192.168.0.98:40001&lt;/li&gt;
-&lt;li&gt;需要把电脑固定IP到同一个网段&lt;/li&gt;
+  &lt;li&gt;canet设备的IP端口为：192.168.0.98:40001&lt;/li&gt;
+  &lt;li&gt;需要把电脑固定IP到同一个网段&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;   1. sudo gedit /etc/network/interfaces
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   1. sudo gedit /etc/network/interfaces
    2. add the following lines and save:
    auto eth0  
    iface eth0 inet static  
@@ -307,39 +380,46 @@ AT#PING=&quot;www.baidu.com&quot;  //ping外网，正常会有OK返回
    netmask 255.255.255.0  
    gateway 192.168.0.1
    3. sudo /etc/init.d/networking restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;can to ros / ros to can&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;can-to-ros--ros-to-can&quot;&gt;can to ros / ros to can&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;ROS message经过struct.pack序列化后使用socket发送到某IP的端口上&lt;/li&gt;
-&lt;li&gt;Can报文使用socket接收后，经过struct.unpack反序列化后publish到ROS上&lt;/li&gt;
+  &lt;li&gt;ROS message经过struct.pack序列化后使用socket发送到某IP的端口上&lt;/li&gt;
+  &lt;li&gt;Can报文使用socket接收后，经过struct.unpack反序列化后publish到ROS上&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;push&lt;em&gt;frame(can&lt;/em&gt;id, data)&lt;/h2&gt;
+&lt;h2 id=&quot;push_framecan_id-data&quot;&gt;push_frame(can_id, data)&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;将每针can报文打包为不定长度的字节（13个字节，一个字节8位），append到buffer，&lt;/li&gt;
-&lt;li&gt;这个过程需要锁定buffer，（如何完成锁定的？buffer_mutex和buffer的关系是如何产生的）&lt;/li&gt;
+  &lt;li&gt;将每针can报文打包为不定长度的字节（13个字节，一个字节8位），append到buffer，&lt;/li&gt;
+  &lt;li&gt;这个过程需要锁定buffer，（如何完成锁定的？buffer_mutex和buffer的关系是如何产生的）&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;send_buffer&lt;/h2&gt;
+&lt;h2 id=&quot;send_buffer&quot;&gt;send_buffer&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;锁定buffer&lt;/li&gt;
-&lt;li&gt;将buffer掏空，一个字节一个字节的掏空（在此为何一次取50个can报文【13个字节】）&lt;/li&gt;
-&lt;li&gt;data是什么，一次循环加13个字节？&lt;/li&gt;
-&lt;li&gt;dump.txt有什么用？&lt;/li&gt;
+  &lt;li&gt;锁定buffer&lt;/li&gt;
+  &lt;li&gt;将buffer掏空，一个字节一个字节的掏空（在此为何一次取50个can报文【13个字节】）&lt;/li&gt;
+  &lt;li&gt;data是什么，一次循环加13个字节？&lt;/li&gt;
+  &lt;li&gt;dump.txt有什么用？&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;python struct&lt;/h2&gt;
+&lt;h2 id=&quot;python-struct&quot;&gt;python struct&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;struct.pack
-用于将Python的值根据格式符，转换为字符串（因为Python中没有字节(Byte)类型，可以把这里的字符串理解为字节流，或字节数组），函数原型为：struct.pack(format, var1,var2)&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;struct.unpack
-用于将字节流转换成python数据类型。它的函数原型为：struct.unpack(fmt, string)，该函数返回一个&lt;strong&gt;元组&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;struct.pack
+用于将Python的值根据格式符，转换为字符串（因为Python中没有字节(Byte)类型，可以把这里的字符串理解为字节流，或字节数组），函数原型为：struct.pack(format, var1,var2)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;struct.unpack
+用于将字节流转换成python数据类型。它的函数原型为：struct.unpack(fmt, string)，该函数返回一个&lt;strong&gt;元组&lt;/strong&gt;&lt;/p&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;a = 20  
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a = 20  
 b = 400   
 str = struct.pack(&quot;ii&quot;, a, b)  
 print 'length: ', len(str)          # length:  8  
@@ -350,20 +430,22 @@ str2 = struct.unpack(&quot;ii&quot;, str)
 print 'length: ', len(str2)          # length:  2  
 print str2                           # (20, 400)  流==&amp;gt;int
 print repr(str2)                     # (20, 400)  
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;打包之后的数据所占用的字节数与C语言中的struct十分相似:
-&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/201112171613441943.png&quot; alt=&quot;format对照表&quot;&gt;&lt;/p&gt;
+&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/201112171613441943.png&quot; alt=&quot;format对照表&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;打包的后的字节顺序默认上是由操作系统的决定的，当然struct模块也提供了自定义字节顺序的功能:
-&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/20111217161345373.png&quot; alt=&quot;library对照表&quot;&gt;&lt;/p&gt;
+&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/20111217161345373.png&quot; alt=&quot;library对照表&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;可以查看下列网站寻找 &lt;a href=&quot;http://blog.csdn.net/w83761456/article/details/21171085&quot;&gt;详细信息&lt;/a&gt;&lt;/p&gt;
 
-&lt;h3&gt;python str和repr的区别&lt;/h3&gt;
+&lt;h3 id=&quot;python-str和repr的区别&quot;&gt;python str和repr的区别&lt;/h3&gt;
 </description>
         <pubDate>Sat, 29 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/07/29/tcpSocket/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/07/29/tcpSocket/</guid>
+        <link>http://bryanibit/blog/2017/07/29/tcpSocket/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/07/29/tcpSocket/</guid>
         
         <category>技术总结</category>
         
@@ -374,49 +456,57 @@ print repr(str2)                     # (20, 400)
     
       <item>
         <title>Leetcode</title>
-        <description>&lt;h2&gt;将string类型变量转换为常用的数值类型&lt;/h2&gt;
-
+        <description>&lt;h2 id=&quot;将string类型变量转换为常用的数值类型&quot;&gt;将string类型变量转换为常用的数值类型&lt;/h2&gt;
 &lt;p&gt;//模板函数：（此方法具有普遍适用性）
-#include &lt;sstream&gt;&lt;br&gt;
-template &lt;class Type&gt;&lt;br&gt;
-Type stringToNum(const string&amp;amp; str)&lt;br&gt;
-{&lt;br&gt;
-    istringstream iss(str);&lt;br&gt;
-    Type num;&lt;br&gt;
-    iss &amp;gt;&amp;gt; num;&lt;br&gt;
-    return num;&lt;br&gt;
-}  &lt;/p&gt;
+#include &lt;sstream&gt;  
+template &lt;class Type=&quot;&quot;&gt;  
+Type stringToNum(const string&amp;amp; str)  
+{  
+    istringstream iss(str);  
+    Type num;  
+    iss &amp;gt;&amp;gt; num;  
+    return num;      
+}&lt;/class&gt;&lt;/sstream&gt;&lt;/p&gt;
 
-&lt;h2&gt;int to string&lt;/h2&gt;
-
+&lt;h2 id=&quot;int-to-string&quot;&gt;int to string&lt;/h2&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;int a = 10;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int a = 10;
 char *intStr = itoa(a);
 string str = string(intStr);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;2.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;int a = 10;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int a = 10;
 stringstream ss;
 ss &amp;lt;&amp;lt; a;
 string str = ss.str();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;3.&lt;/p&gt;
 
 &lt;p&gt;```#include &lt;string&gt; 
 std::string s = std::to_string(42);
-&amp;#39;&amp;#39;&amp;#39;&lt;/p&gt;
+'''&lt;/string&gt;&lt;/p&gt;
 
-&lt;h2&gt;long int to string&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;#include &amp;lt;sstream&amp;gt;
+&lt;h2 id=&quot;long-int-to-string&quot;&gt;long int to string&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;sstream&amp;gt;
 std::string number;
 std::stringstream strstream;
 strstream &amp;lt;&amp;lt; 1L;
 strstream &amp;gt;&amp;gt; number;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;string to int&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;1.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;string-to-int&quot;&gt;string to int&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.
 string str=&quot;123&quot;;
 atoi( str.c_str() );
 
@@ -426,36 +516,51 @@ std::stoi(str);
 3.
 std::stringstream ss(str);
 ss &amp;gt;&amp;gt; thevalue;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;string to double&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;&lt;code&gt;string str;
+&lt;h2 id=&quot;string-to-double&quot;&gt;string to double&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;string str;
 double value = atof(str.c_str());&lt;/code&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;string word;  
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string word;  
 openfile &amp;gt;&amp;gt; word;
 double lol = atof(word.c_str());
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;double to string&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;string s=&quot;235.19123&quot;;   **最后输出的number只能显示s中的六位（从高位数）**
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;double-to-string&quot;&gt;double to string&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string s=&quot;235.19123&quot;;   **最后输出的number只能显示s中的六位（从高位数）**
 std::stringstream ss(s);
 double number=0;
 ss&amp;gt;&amp;gt;number;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;二叉搜索树&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;二叉搜索树&quot;&gt;二叉搜索树&lt;/h2&gt;
 
 &lt;p&gt;同一层的情况下，右边的元素一定比左边的大&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;插入一个数&lt;/li&gt;
+  &lt;li&gt;插入一个数&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
-&lt;li&gt;删除一个数&lt;/li&gt;
+  &lt;li&gt;删除一个数&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+</description>
         <pubDate>Fri, 28 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/07/28/leetcode/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/07/28/leetcode/</guid>
+        <link>http://bryanibit/blog/2017/07/28/leetcode/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/07/28/leetcode/</guid>
         
         <category>理论梳理</category>
         
@@ -466,85 +571,109 @@ ss&amp;gt;&amp;gt;number;
     
       <item>
         <title>How to fly over GFW</title>
-        <description>&lt;h2&gt;Download Goagent&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;download-goagent&quot;&gt;Download Goagent&lt;/h2&gt;
 
 &lt;p&gt;百度云已经配置好的GoAgent(sceret)&lt;/p&gt;
 
-&lt;h2&gt;配置&lt;/h2&gt;
+&lt;h2 id=&quot;配置&quot;&gt;配置&lt;/h2&gt;
 
-&lt;h3&gt;windows chrome&lt;/h3&gt;
-
-&lt;ol&gt;
-&lt;li&gt;下载&lt;a href=&quot;https://github.com/bryanibit/XX-Net&quot;&gt;xx-net&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;因为要使用自己的账号，所以需要在chrome中上传&lt;/li&gt;
-&lt;li&gt;use it&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3&gt;在Ubuntu中结合foxyproxy实现翻墙&lt;/h3&gt;
+&lt;h3 id=&quot;windows-chrome&quot;&gt;windows chrome&lt;/h3&gt;
 
 &lt;ol&gt;
-&lt;li&gt;下载foxproxy&lt;/li&gt;
-&lt;li&gt;Proxies 中 添加 goagent&lt;/li&gt;
-&lt;li&gt;proxy details中 manual中添加127.0.0.1:8087&lt;/li&gt;
-&lt;li&gt;URL Patterns中&lt;/li&gt;
-&lt;li&gt;Do not use this proxy for internal IP addresses&lt;/li&gt;
-&lt;li&gt;Pattern Subscription&lt;/li&gt;
-&lt;li&gt;Subscription URL: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/li&gt;
-&lt;li&gt;Proxies: add proxies 用刚刚2中的GoAgent&lt;/li&gt;
-&lt;li&gt;Format: Autoproxy   obfuscation: base64&lt;/li&gt;
-&lt;li&gt;Quick add&lt;/li&gt;
-&lt;li&gt;enabled&lt;/li&gt;
+  &lt;li&gt;下载&lt;a href=&quot;https://github.com/bryanibit/XX-Net&quot;&gt;xx-net&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;因为要使用自己的账号，所以需要在chrome中上传&lt;/li&gt;
+  &lt;li&gt;use it&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2&gt;Terminal use&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    export https_proxy=&quot;127.0.0.1:8087&quot;
+&lt;h3 id=&quot;在ubuntu中结合foxyproxy实现翻墙&quot;&gt;在Ubuntu中结合foxyproxy实现翻墙&lt;/h3&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;下载foxproxy&lt;/li&gt;
+  &lt;li&gt;Proxies 中 添加 goagent
+    &lt;ul&gt;
+      &lt;li&gt;proxy details中 manual中添加127.0.0.1:8087&lt;/li&gt;
+      &lt;li&gt;URL Patterns中&lt;/li&gt;
+      &lt;li&gt;Do not use this proxy for internal IP addresses&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Pattern Subscription
+    &lt;ul&gt;
+      &lt;li&gt;Subscription URL: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/li&gt;
+      &lt;li&gt;Proxies: add proxies 用刚刚2中的GoAgent&lt;/li&gt;
+      &lt;li&gt;Format: Autoproxy   obfuscation: base64&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Quick add
+    &lt;ul&gt;
+      &lt;li&gt;enabled&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;terminal-use&quot;&gt;Terminal use&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    export https_proxy=&quot;127.0.0.1:8087&quot;
     export http_proxy=&quot;127.0.0.1:8087&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;[option]&lt;/p&gt;
 
-&lt;p&gt;git config --global http.sslVerify false&lt;/p&gt;
+&lt;p&gt;git config –global http.sslVerify false&lt;/p&gt;
 
 &lt;p&gt;then git config uses proxy agent.&lt;/p&gt;
 
-&lt;p&gt;When you use export, you could use &lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    curl ip.gs
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;When you use export, you could use&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    curl ip.gs
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;check the ip address&lt;/p&gt;
 
 &lt;p&gt;Of course, you should install curl&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    sudo apt-get install curl
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;解除GoAgent占用端口问题&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    sudo apt-get install curl
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;解除goagent占用端口问题&quot;&gt;解除GoAgent占用端口问题&lt;/h3&gt;
 
 &lt;p&gt;&lt;strong&gt;直接关闭GoAgent会占用8087端口问题&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;inin@inin-pc:~$ sudo lsof -i:8087
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;inin@inin-pc:~$ sudo lsof -i:8087
 COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
 python  2274 root    6u  IPv4  16595      0t0  TCP localhost:8087 (LISTEN)
 inin@inin-pc:~$ kill 2274
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;xx-net使用&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;xx-net使用&quot;&gt;xx-net使用&lt;/h2&gt;
 
 &lt;p&gt;登录&lt;a href=&quot;https://github.com/XX-net/XX-Net/wiki/How-to-use&quot;&gt;xx-net&lt;/a&gt;的使用方法一节，下载源码，无需下载百度云盘中的GoAgent源码&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;安装下面软件
-&lt;code&gt;
-sudo apt-get install python-openssl
+  &lt;li&gt;安装下面软件
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install python-openssl
 sudo apt-get install libffi-dev
 sudo apt-get install python-gtk2
 sudo apt-get install python-appindicator
 sudo apt-get install libnss3-tools
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;后台运行：在终端中运行：
-     xx_net.sh start/stop/restart
-此时会出现提示（在浏览器中键入127.0.0.1;8085)，&lt;em&gt;配置浏览器设置&lt;/em&gt;，使用上面的在Ubuntu中结合foxyproxy实现翻墙内容配置即可&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;开机自启：在/etc/rc.local中添加一行：（可选）
-sudo /home/username/xxnet/xx_net.sh start&lt;/p&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;后台运行：在终端中运行：
+      xx_net.sh start/stop/restart
+此时会出现提示（在浏览器中键入127.0.0.1;8085)，&lt;em&gt;配置浏览器设置&lt;/em&gt;，使用上面的在Ubuntu中结合foxyproxy实现翻墙内容配置即可&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;开机自启：在/etc/rc.local中添加一行：（可选）
+sudo /home/username/xxnet/xx_net.sh start&lt;/li&gt;
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 19 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/07/19/fk-gfw/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/07/19/fk-gfw/</guid>
+        <link>http://bryanibit/blog/2017/07/19/fk-gfw/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/07/19/fk-gfw/</guid>
         
         <category>技术总结</category>
         
@@ -555,116 +684,156 @@ sudo /home/username/xxnet/xx_net.sh start&lt;/p&gt;&lt;/li&gt;
     
       <item>
         <title>ROS tutorials</title>
-        <description>&lt;h2&gt;ros注意事项&lt;/h2&gt;
+        <description>&lt;h2 id=&quot;ros注意事项&quot;&gt;ros注意事项&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;在cmakelists中find_package()对应package.xml中的build或者run依赖&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h2&gt;ros文件结构&lt;/h2&gt;
-
+&lt;h2 id=&quot;ros文件结构&quot;&gt;ros文件结构&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;自己用catkin&lt;em&gt;create&lt;/em&gt;pkg创建的包需要使用&lt;/li&gt;
-&lt;li&gt;source ~/catkin&lt;em&gt;ws/devel/setup.bash将自己建的包放在ros&lt;/em&gt;package_path中&lt;/li&gt;
-&lt;li&gt;package.xml中含有&lt;/li&gt;
+  &lt;li&gt;自己用catkin_create_pkg创建的包需要使用&lt;/li&gt;
+  &lt;li&gt;source ~/catkin_ws/devel/setup.bash将自己建的包放在ros_package_path中&lt;/li&gt;
+  &lt;li&gt;package.xml中含有&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&amp;lt;buildtool_depend&amp;gt;catkin&amp;lt;/buildtool_depend&amp;gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;buildtool_depend&amp;gt;catkin&amp;lt;/buildtool_depend&amp;gt;
 &amp;lt;build_depend&amp;gt;roscpp&amp;lt;/build_depend&amp;gt;
 &amp;lt;build_depend&amp;gt;rospy&amp;lt;/build_depend&amp;gt;
 &amp;lt;build_depend&amp;gt;std_msgs&amp;lt;/build_depend&amp;gt;
 &amp;lt;run_depend&amp;gt;roscpp&amp;lt;/run_depend&amp;gt;
 &amp;lt;run_depend&amp;gt;rospy&amp;lt;/run_depend&amp;gt;
 &amp;lt;run_depend&amp;gt;std_msgs&amp;lt;/run_depend&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
-&lt;li&gt;这是由于catkin&lt;em&gt;create&lt;/em&gt;pkg beginner&lt;em&gt;tutorials roscpp rospy std&lt;/em&gt;msgs&lt;/li&gt;
-&lt;li&gt;使用rospack denpend1 beginner_tutorials查看&lt;/li&gt;
-&lt;li&gt;使用rosdep install [package],可以安装包依赖&lt;/li&gt;
+  &lt;li&gt;这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs&lt;/li&gt;
+  &lt;li&gt;使用rospack denpend1 beginner_tutorials查看&lt;/li&gt;
+  &lt;li&gt;使用rosdep install [package],可以安装包依赖&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;ros节点&lt;/h2&gt;
-
-&lt;p&gt;ROS client libraries allow nodes written in different programming languages to communicate:
-*    rospy = python client library
-*    roscpp = c++ client library
+&lt;h2 id=&quot;ros节点&quot;&gt;ros节点&lt;/h2&gt;
+&lt;p&gt;ROS client libraries allow nodes written in different programming languages to communicate:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;rospy = python client library&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;roscpp = c++ client library
 If roscore does not initialize and sends a message about lack of permissions,
 probably the ~/.ros folder is owned by root, change recursively
 the ownership of that folder with:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;        $ sudo chown -R &amp;lt;your_username&amp;gt; ~/.ros
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   $ sudo chown -R &amp;lt;your_username&amp;gt; ~/.ros
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;改变节点名称：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;         rosrun turtlesim turtlesim_node __name:=my_turtle
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;         rosrun turtlesim turtlesim_node __name:=my_turtle
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;新名称是my_turtle,原来名称是turtlesim&lt;/p&gt;
 
-&lt;h2&gt;ros topic&lt;/h2&gt;
+&lt;h2 id=&quot;ros-topic&quot;&gt;ros topic&lt;/h2&gt;
 
 &lt;p&gt;&lt;strong&gt;查看各个节点topic关系&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;         rosrun rqt_graph rqt_graph
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;         rosrun rqt_graph rqt_graph
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;查看topic的数据类型&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;         rostopic type /topic_name
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;         rostopic type /topic_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;&lt;strong&gt;可以继续查看topic type的具体参数（float，double等）&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;         rosmsg show /topic_type
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;rosdep&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;         rosmsg show /topic_type
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;rosdep&quot;&gt;rosdep&lt;/h2&gt;
 
 &lt;p&gt;rosdep是一个你可以用来安装ROS package系统依赖的工具&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;           rosdep install [package]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;           rosdep install [package]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;如果你是第一次使用rosdep，你会看到一个error&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;             sudo rosdep init
-           rosdep update
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;package.xml&lt;/h2&gt;
 
-&lt;h3&gt;build, Run, and Test Dependancies&lt;/h3&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;             sudo rosdep init
+   	           rosdep update
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;Build tool dependencies
-- 基本上只需要catkin&lt;/p&gt;
+&lt;h2 id=&quot;packagexml&quot;&gt;package.xml&lt;/h2&gt;
 
-&lt;p&gt;Build denpenencies
-- include header from these packages at compilation time,linking against libraries from these packages at build time
-- e.g. find_package()-ed in CMake&lt;/p&gt;
+&lt;h3 id=&quot;build-run-and-test-dependancies&quot;&gt;build, Run, and Test Dependancies&lt;/h3&gt;
 
-&lt;p&gt;Run dependencies
-- when depend on share libraries include headers
-- e.g. catkin_package() in CMake&lt;/p&gt;
+&lt;p&gt;Build tool dependencies&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;基本上只需要catkin&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Test dependencies
-- 可选的依赖，和build和run都不重复的依赖&lt;/p&gt;
+&lt;p&gt;Build denpenencies&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;include header from these packages at compilation time,linking against libraries from these packages at build time&lt;/li&gt;
+  &lt;li&gt;e.g. find_package()-ed in CMake&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;在package.xml中四部分写法
-&lt;code&gt;
-&amp;lt;buildtool_depend&amp;gt;依赖名&amp;lt;/buildtool_depend&amp;gt;
+&lt;p&gt;Run dependencies&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;when depend on share libraries include headers&lt;/li&gt;
+  &lt;li&gt;e.g. catkin_package() in CMake&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Test dependencies&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;可选的依赖，和build和run都不重复的依赖&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;在package.xml中四部分写法&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;buildtool_depend&amp;gt;依赖名&amp;lt;/buildtool_depend&amp;gt;
 &amp;lt;build_depend&amp;gt;依赖名&amp;lt;/build_depend&amp;gt;
 &amp;lt;run_depend&amp;gt;依赖名&amp;lt;/run_depend&amp;gt;
 &amp;lt;test_depend&amp;gt;依赖名&amp;lt;/test_depend&amp;gt;
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;h2&gt;通过命令行发送topic&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;rostopic pub [topic] [msg_type] [args]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;通过命令行发送topic&quot;&gt;通过命令行发送topic&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rostopic pub [topic] [msg_type] [args]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;e.g.控制乌龟运动&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt; rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
                   topic_name                    (topic type /topic_name)    (rosmsg show /topic_type)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;rqt_plot绘制topic的曲线图&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;rqt_plot绘制topic的曲线图&quot;&gt;rqt_plot绘制topic的曲线图&lt;/h2&gt;
 
 &lt;ul&gt;
-&lt;li&gt;add any topic to the plot.&lt;/li&gt;
+  &lt;li&gt;add any topic to the plot.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;ROS service&lt;/h2&gt;
-
+&lt;h2 id=&quot;ros-service&quot;&gt;ROS service&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;send a request and receive a response.&lt;/li&gt;
+  &lt;li&gt;send a request and receive a response.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;ROS launch&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;roslaunch [package] [filename.launch]
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;ros-launch&quot;&gt;ROS launch&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-`&quot;&gt;roslaunch [package] [filename.launch]
+&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;在beginner_tutorials中新建一个launch的方法&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;roscd beginner_tutorials
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;roscd beginner_tutorials
 mkdir launch
 touch launch
 
@@ -683,139 +852,180 @@ touch launch
   &amp;lt;/node&amp;gt;
 &amp;lt;/launch&amp;gt;
 --------------------------------------------------------------
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;自定义一个msg和srv&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h2 id=&quot;自定义一个msg和srv&quot;&gt;自定义一个msg和srv&lt;/h2&gt;
 
 &lt;p&gt;msgs are just simple text files with a field type and field name per line. The field types you can use are:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    int8, int16, int32, int64 (plus uint*, e.g. uint8 unsigned 8-bit int)
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    int8, int16, int32, int64 (plus uint*, e.g. uint8 unsigned 8-bit int)
     float32, float64
     string
     time, duration
     other msg files
     variable-length array[] and fixed-length array[C]
     Header
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;The header contains a &lt;strong&gt;timestamp&lt;/strong&gt; and &lt;strong&gt;coordinate frame&lt;/strong&gt; information that are commonly used in ROS.&lt;/li&gt;
-&lt;li&gt;srv files are just like msg files, except they contain two parts: a request and a response. The two parts are separated by a &amp;#39;---&amp;#39; line.&lt;/li&gt;
-&lt;li&gt;e.g. Here is an example of a srv file:&lt;/li&gt;
+  &lt;li&gt;The header contains a &lt;strong&gt;timestamp&lt;/strong&gt; and &lt;strong&gt;coordinate frame&lt;/strong&gt; information that are commonly used in ROS.&lt;/li&gt;
+  &lt;li&gt;srv files are just like msg files, except they contain two parts: a request and a response. The two parts are separated by a ‘—’ line.&lt;/li&gt;
+  &lt;li&gt;e.g. Here is an example of a srv file:&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;int64 A
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int64 A
 int64 B
 ---
 int64 Sum
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;新建msg&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;新建msg&quot;&gt;新建msg&lt;/h3&gt;
 
 &lt;p&gt;这时候我们可以在beginner_tutorials中新建一个文件msg/Num.msg,也可以在根目录中新建&lt;/p&gt;
 
 &lt;p&gt;同时在该包的package.xml中加上两句话，以便msg可以编译为c++，python可以识别的样子&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;&amp;lt;build_depend&amp;gt;message_generation&amp;lt;/build_depend&amp;gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;build_depend&amp;gt;message_generation&amp;lt;/build_depend&amp;gt;
 &amp;lt;run_depend&amp;gt;message_runtime&amp;lt;/run_depend&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;同时在CmakeLists.txt中添加以下内容，此是为了buildDependencies&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;find_package(catkin REQUIRED COMPONENTS
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;find_package(catkin REQUIRED COMPONENTS
    roscpp
    rospy
    std_msgs
    message_generation
 )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;Export the message runtime dependency&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;catkin_package(
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;catkin_package(
   ...
   CATKIN_DEPENDS message_runtime ...
   ...)
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;CMake knows when it has to reconfigure the project after adding other .msg files
-&lt;code&gt;
-add_message_files(
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;CMake knows when it has to reconfigure the project after adding other .msg files&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;add_message_files(
   FILES
   Num.msg
 )
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;p&gt;最后产生message可以读到的message，申明依赖的message
-&lt;code&gt;
-generate_messages(
+&lt;p&gt;最后产生message可以读到的message，申明依赖的message&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;generate_messages(
   DEPENDENCIES
   std_msgs
 )
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;p&gt;使用rosmsg show topic_type可以查看具体内容&lt;/p&gt;
 
-&lt;h3&gt;新建srv&lt;/h3&gt;
+&lt;h3 id=&quot;新建srv&quot;&gt;新建srv&lt;/h3&gt;
 
 &lt;p&gt;mkdir srv&lt;/p&gt;
 
 &lt;p&gt;touch ××.srv (roscp rospy_tutorials AddTwoInts.srv srv/AddTwoInts.srv)&lt;/p&gt;
 
-&lt;p&gt;package.xml添加和msg中相同内容，在cmakelists中添加相同内容，唯一不同的地方如下（msg是add&lt;em&gt;message&lt;/em&gt;files）：&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;add_service_files(
+&lt;p&gt;package.xml添加和msg中相同内容，在cmakelists中添加相同内容，唯一不同的地方如下（msg是add_message_files）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;add_service_files(
   FILES
   AddTwoInts.srv
 )
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;使用 rossrv show beginner_tutorials/AddTwoInts可以查看到以下具体内容&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;int64 a
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int64 a
 int64 b
 ---
 int64 sum
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
-&lt;li&gt;Any .msg file in the msg directory will generate code for use in all supported languages. The C++ message header file will be generated in ~/catkin&lt;em&gt;ws/devel/include/beginner&lt;/em&gt;tutorials/.&lt;/li&gt;
-&lt;li&gt;The Python script will be created in ~/catkin&lt;em&gt;ws/devel/lib/python2.7/dist-packages/beginner&lt;/em&gt;tutorials/msg.&lt;/li&gt;
-&lt;li&gt;The lisp file appears in ~/catkin&lt;em&gt;ws/devel/share/common-lisp/ros/beginner&lt;/em&gt;tutorials/msg/.&lt;/li&gt;
+  &lt;li&gt;Any .msg file in the msg directory will generate code for use in all supported languages. The C++ message header file will be generated in ~/catkin_ws/devel/include/beginner_tutorials/.&lt;/li&gt;
+  &lt;li&gt;The Python script will be created in ~/catkin_ws/devel/lib/python2.7/dist-packages/beginner_tutorials/msg.&lt;/li&gt;
+  &lt;li&gt;The lisp file appears in ~/catkin_ws/devel/share/common-lisp/ros/beginner_tutorials/msg/.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;Similarly, any .srv files in the srv directory will have generated code in supported languages.
-- For C++, this will generate header files in the same directory as the message header files.
-- For Python and Lisp, there will be an &amp;#39;srv&amp;#39; folder beside the &amp;#39;msg&amp;#39; folders.&lt;/p&gt;
+&lt;p&gt;Similarly, any .srv files in the srv directory will have generated code in supported languages.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;For C++, this will generate header files in the same directory as the message header files.&lt;/li&gt;
+  &lt;li&gt;For Python and Lisp, there will be an ‘srv’ folder beside the ‘msg’ folders.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2&gt;Write publisher node&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ros::init(argc, argv, &quot;talker&quot;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2 id=&quot;write-publisher-node&quot;&gt;Write publisher node&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros::init(argc, argv, &quot;talker&quot;);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;初始化Ros和赋node name（不能有/）&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ros::NodeHandle n;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros::NodeHandle n;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;初始化node，新建句柄&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ros::Publisher chatter_pub = n.advertise&amp;lt;std_msgs::String&amp;gt;(&quot;chatter&quot;, 1000);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros::Publisher chatter_pub = n.advertise&amp;lt;std_msgs::String&amp;gt;(&quot;chatter&quot;, 1000);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;告诉roscore，要publish一个topic，名叫chatter，类型叫std_msgs::String， 1000 是 the size of our publishing queue（buffer）.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt; ros::Rate loop_rate(10);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; ros::Rate loop_rate(10);
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;配合Rate::sleep()使用，10指的是10Hz&lt;/p&gt;
 
 &lt;p&gt;Ctrl-C will cause ros::ok() to return false&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;ros::spinOnce();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ros::spinOnce();
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;If you were to add a subscription into this application, and did not have ros::spinOnce() here, your callbacks would never get called.&lt;/p&gt;
 
-&lt;h2&gt;Write a subscribe node&lt;/h2&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    ros::NodeHandle n;
-    ros::Subscriber sub = n.subscribe(&quot;chatter&quot;, 1000, chatterCallback);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;订阅chatter，回调函数是chatterCallback, The 2nd argument is the queue size, in case we are not able to process messages fast enough. In this case, if the queue reaches 1000 messages.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;    ros::spin();
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;em&gt;ros::spin()&lt;/em&gt; enters a loop, calling message callbacks as fast as possible.&lt;/p&gt;
+&lt;h2 id=&quot;write-a-subscribe-node&quot;&gt;Write a subscribe node&lt;/h2&gt;
 
-&lt;h2&gt;ROS MSG&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    ros::NodeHandle n;
+    ros::Subscriber sub = n.subscribe(&quot;chatter&quot;, 1000, chatterCallback); 订阅chatter，回调函数是chatterCallback, The 2nd argument is the queue size, in case we are not able to process messages fast enough. In this case, if the queue reaches 1000 messages.
+
+    ros::spin(); *ros::spin()* enters a loop, calling message callbacks as fast as possible.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;ros-msg&quot;&gt;ROS MSG&lt;/h2&gt;
 
 &lt;p&gt;总结ros msg &lt;a href=&quot;wiki.ros.org/msg&quot;&gt;网页&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Message descriptions are stored in .msg files in the msg/ subdirectory of a ROS package.&lt;/p&gt;
 
-&lt;p&gt;msg名称：
-- the file geometry&lt;em&gt;msgs/msg/Twist.msg is commonly referred to as geometry&lt;/em&gt;msgs/Twist.&lt;/p&gt;
+&lt;p&gt;msg名称：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;the file geometry_msgs/msg/Twist.msg is commonly referred to as geometry_msgs/Twist.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;msg基本格式：
-- Fixed- or variable-length arrays (lists) of the above, such as &amp;quot;float32[] ranges&amp;quot; or &amp;quot;Point32[10] points&amp;quot;
-- the special Header type, which maps to std_msgs/Header&lt;/p&gt;
+&lt;p&gt;msg基本格式：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Fixed- or variable-length arrays (lists) of the above, such as “float32[] ranges” or “Point32[10] points”&lt;/li&gt;
+  &lt;li&gt;the special Header type, which maps to std_msgs/Header&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;Build-in type:&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;Primitive Type       Serialization(序列化)        C++             Python
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Primitive Type       Serialization(序列化)        C++             Python
 
   bool                unsigned 8-bit int        uint8_t           bool
   int8                  signed 8-bit int         int8_t            int
@@ -827,56 +1037,72 @@ int64 sum
   float32             32-bit IEEE float         float              float
   float64             64-bit IEEE float         double             float
   string               ascii  string            std::string        str
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;其中，uint8在Python中有特殊意义，uint8[]在Python中视为Python bytes,在ros msg中弃用的别名char(uint8弃用的别名)和byte(int8弃用的别名)&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Array handling&lt;/strong&gt;&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;Array Type            Serialization                        C++                             Python
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Array Type            Serialization                        C++                             Python
 
 fixed-length       no-extra serialization     0.11+:boost::array,otherwise:std::vector     tuple
 variable-length    uint32 length prefix              std::vector                           tuple
 uint8[]               see above                      std::vector                           bytes
 bool[]                see above                   std::vector&amp;lt;uint8_t&amp;gt;                    list of bool
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;rospy把uint8视为bytes，在Python2中，同str&lt;/li&gt;
-&lt;li&gt;rospy将arrays反序列化为元组，同struct.unpack return 一个元组&lt;/li&gt;
-&lt;li&gt;Header is not a built-in type (it&amp;#39;s defined in std_msgs/msg/Header.msg&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2&gt;分布式计算使用ROS&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;&lt;p&gt;You only need one master. Select one machine to run it on.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;All nodes must be configured to use the same master, via ROS&lt;em&gt;MASTER&lt;/em&gt;URI.&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). &lt;/p&gt;&lt;/li&gt;
+  &lt;li&gt;rospy把uint8视为bytes，在Python2中，同str&lt;/li&gt;
+  &lt;li&gt;rospy将arrays反序列化为元组，同struct.unpack return 一个元组&lt;/li&gt;
+  &lt;li&gt;Header is not a built-in type (it’s defined in std_msgs/msg/Header.msg&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;ROS文件结构 c++ &amp;amp; python&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;package_name
+&lt;h2 id=&quot;分布式计算使用ros&quot;&gt;分布式计算使用ROS&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;You only need one master. Select one machine to run it on.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;All nodes must be configured to use the same master, via ROS_MASTER_URI.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup).&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;ros文件结构-c--python&quot;&gt;ROS文件结构 c++ &amp;amp; python&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;package_name
              --include
                    --package_name
                             --××.h
              --src
-            --package_name
+		    --package_name
                             --××.py
                     --××.cpp
-          --CMakeLists.txt
-          --package.xml
-          --setup.py
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ 	      --CMakeLists.txt
+	      --package.xml
+	      --setup.py
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ol&gt;
-&lt;li&gt;××.h定义namespace space&lt;em&gt;name,××.cpp using namespace space&lt;/em&gt;name,完成C++类和函数/命名空间的定义&lt;/li&gt;
-&lt;li&gt;有两个包装类，一个是C++，一个是Python&lt;/li&gt;
+  &lt;li&gt;××.h定义namespace space_name,××.cpp using namespace space_name,完成C++类和函数/命名空间的定义&lt;/li&gt;
+  &lt;li&gt;有两个包装类，一个是C++，一个是Python&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;ul&gt;
-&lt;li&gt;C++包装类将输入的序列化内容==&amp;gt;C++ message&lt;/li&gt;
-&lt;li&gt;C++包装类将输出的C++ message==&amp;gt;序列化的内容&lt;/li&gt;
-&lt;li&gt;Python包装类将输入的Python message==&amp;gt;序列化的内容&lt;/li&gt;
-&lt;li&gt;Python包装类将输出的序列化内容==&amp;gt;Python message&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://wiki.ros.org/ROS/Tutorials/Using%20a%20C%2B%2B%20class%20in%20Python&quot;&gt;&lt;strong&gt;现在有些懵逼&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;C++包装类将输入的序列化内容==&amp;gt;C++ message&lt;/li&gt;
+  &lt;li&gt;C++包装类将输出的C++ message==&amp;gt;序列化的内容&lt;/li&gt;
+  &lt;li&gt;Python包装类将输入的Python message==&amp;gt;序列化的内容&lt;/li&gt;
+  &lt;li&gt;Python包装类将输出的序列化内容==&amp;gt;Python message&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://wiki.ros.org/ROS/Tutorials/Using%20a%20C%2B%2B%20class%20in%20Python&quot;&gt;&lt;strong&gt;现在有些懵逼&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;对于以上懵逼内容的见解：&lt;/p&gt;
@@ -884,35 +1110,41 @@ bool[]                see above                   std::vector&amp;lt;uint8_t&amp
 &lt;p&gt;摘自 &lt;a href=&quot;https://github.com/luator/boost_python_catkin_example&quot;&gt;github&lt;/a&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;When using ROS, there is one important thing to keep in mind: Assume you have a ROS node written in Python, that uses some C++ code via Boost::Python. If the C++ code needs a ros::NodeHandle, for example to fetch some parameters from the parameter server, it will crash, because the rospy.init_node() does not initialize roscpp!&lt;/li&gt;
+  &lt;li&gt;When using ROS, there is one important thing to keep in mind: Assume you have a ROS node written in Python, that uses some C++ code via Boost::Python. If the C++ code needs a ros::NodeHandle, for example to fetch some parameters from the parameter server, it will crash, because the rospy.init_node() does not initialize roscpp!&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;To get around this, you need the MoveIt ROS planning interface which is available in the ROS repos (sudo apt-get install ros-groovy-moveit-ros-planning-interface). Once installed, add the following code to your Python node:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;from moveit_ros_planning_interface._moveit_roscpp_initializer import roscpp_init
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;from moveit_ros_planning_interface._moveit_roscpp_initializer import roscpp_init
 roscpp_init('node_name', [])
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;p&gt;Now everything should work fine.&lt;/p&gt;
 
 &lt;p&gt;note that: ros::NodeHandle在与master交互时候使用&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;CMakeLists:&lt;/li&gt;
+  &lt;li&gt;CMakeLists:&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;uncomment catkin&lt;em&gt;python&lt;/em&gt;setup(). This will set up the destination path of the python module. You also need a basic setup.py in the packages root directory.&lt;/p&gt;
+&lt;p&gt;uncomment catkin_python_setup(). This will set up the destination path of the python module. You also need a basic setup.py in the packages root directory.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;CMakeLists: add&lt;em&gt;libraries 添加的生成的库文件使用set&lt;/em&gt;target_properties命令应该放在&lt;/li&gt;
+  &lt;li&gt;CMakeLists: add_libraries 添加的生成的库文件使用set_target_properties命令应该放在&lt;/li&gt;
 &lt;/ol&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;/catkin_ws/devel/lib/python2.7/dist-packages/
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/catkin_ws/devel/lib/python2.7/dist-packages/
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;so it can be found by python.&lt;/p&gt;
 
-&lt;h2&gt;Dynamic reconfigure&lt;/h2&gt;
+&lt;h2 id=&quot;dynamic-reconfigure&quot;&gt;Dynamic reconfigure&lt;/h2&gt;
+
 </description>
         <pubDate>Tue, 18 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/07/18/ROS-tutorial/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/07/18/ROS-tutorial/</guid>
+        <link>http://bryanibit/blog/2017/07/18/ROS-tutorial/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/07/18/ROS-tutorial/</guid>
         
         <category>技术总结</category>
         
@@ -924,32 +1156,28 @@ roscpp_init('node_name', [])
       <item>
         <title>C++ textbook 下</title>
         <description>&lt;p&gt;&lt;strong&gt;一下部分高能预警，请细心体会（本书第8~12章）今天看完前10章&lt;/strong&gt;&lt;/p&gt;
-
-&lt;h2&gt;8.类和队象&lt;/h2&gt;
-
+&lt;h2 id=&quot;8类和队象&quot;&gt;8.类和队象&lt;/h2&gt;
 &lt;ul&gt;
-&lt;li&gt;任何对象都应该有两个要素：属性（静态特征）/行为（动态特征）,由数据和函数两部分组成&lt;/li&gt;
-&lt;li&gt;对象在设计时，考虑封装特性，将外部行为和内部行为分隔开，同时将各个对象之间的相对独立&lt;/li&gt;
-&lt;li&gt;对象是具体存在的，类是对象的抽象，对象是类的特例&lt;/li&gt;
-&lt;li&gt;多态指：由继承而产生的相关不同的类，其对象对同一消息会作不同反应&lt;/li&gt;
+  &lt;li&gt;任何对象都应该有两个要素：属性（静态特征）/行为（动态特征）,由数据和函数两部分组成&lt;/li&gt;
+  &lt;li&gt;对象在设计时，考虑封装特性，将外部行为和内部行为分隔开，同时将各个对象之间的相对独立&lt;/li&gt;
+  &lt;li&gt;对象是具体存在的，类是对象的抽象，对象是类的特例&lt;/li&gt;
+  &lt;li&gt;多态指：由继承而产生的相关不同的类，其对象对同一消息会作不同反应&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;程序=对象s+消息&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h4&gt;类和结构体的区别&lt;/h4&gt;
-
+&lt;h4 id=&quot;类和结构体的区别&quot;&gt;类和结构体的区别&lt;/h4&gt;
 &lt;ul&gt;
-&lt;li&gt;首先你可以将类声明时使用的class关键字换成struct，这是完全成立的&lt;/li&gt;
-&lt;li&gt;struct未做声明时，默认成员为public这是和class不同的地方&lt;/li&gt;
-&lt;li&gt;当类的某成员函数大于3行时，可以将声明放在类内，定义移到类外，使整个类看起来更加清楚&lt;/li&gt;
-&lt;li&gt;类的对象的存储空间：共有函数存储空间，自身的存储空间存储成员变量
-&lt;code&gt;
-class Time
+  &lt;li&gt;首先你可以将类声明时使用的class关键字换成struct，这是完全成立的&lt;/li&gt;
+  &lt;li&gt;struct未做声明时，默认成员为public这是和class不同的地方&lt;/li&gt;
+  &lt;li&gt;当类的某成员函数大于3行时，可以将声明放在类内，定义移到类外，使整个类看起来更加清楚&lt;/li&gt;
+  &lt;li&gt;类的对象的存储空间：共有函数存储空间，自身的存储空间存储成员变量
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Time
 {public:
-int hour;
-int minute;
-private:
-int show_times();
+ int hour;
+ int minute;
+ private:
+ int show_times();
 };//这些放在time.h头文件中
 int Time::show_times()
 {}
@@ -959,120 +1187,132 @@ p=&amp;amp;t;
 cout&amp;lt;&amp;lt;p-&amp;gt;hour;
 cout&amp;lt;&amp;lt;t.minute;
 cout&amp;lt;&amp;lt;endl;//这些放在main中
-&lt;/code&gt;
-## 9.类和对象的进一步讨论&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;h2 id=&quot;9类和对象的进一步讨论&quot;&gt;9.类和对象的进一步讨论&lt;/h2&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;9.1 构造函数&lt;/h3&gt;
+&lt;h3 id=&quot;91-构造函数&quot;&gt;9.1 构造函数&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;用户根据&lt;strong&gt;初始化&lt;/strong&gt;的要求设计函数体和函数参数，这就是构造函数&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;构造函数与类同名，在声明对象时自动执行构造函数，构造函数没有返回类型，因而也没有类型
-     构造函数名（类型1形参1， 类型2形参2）&lt;/p&gt;
-
-&lt;h4&gt;9.1.1 用参数初始化表对数据成员初始化&lt;/h4&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class Box{Box(int,int, int);
+  &lt;li&gt;用户根据&lt;strong&gt;初始化&lt;/strong&gt;的要求设计函数体和函数参数，这就是构造函数&lt;/li&gt;
+  &lt;li&gt;构造函数与类同名，在声明对象时自动执行构造函数，构造函数没有返回类型，因而也没有类型
+       构造函数名（类型1形参1， 类型2形参2）
+    &lt;h4 id=&quot;911-用参数初始化表对数据成员初始化&quot;&gt;9.1.1 用参数初始化表对数据成员初始化&lt;/h4&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Box{Box(int,int, int);
 int height;
 int width;
 int length;}
 Box::Box(int h,int w, int len):height(h),width(w),length(len){}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h4&gt;构造函数重载&lt;/h4&gt;
-
-&lt;p&gt;以下声明两个Box()
-&lt;code&gt;
-class Box{Box(int,int, int);
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;h4 id=&quot;构造函数重载&quot;&gt;构造函数重载&lt;/h4&gt;
+    &lt;p&gt;以下声明两个Box()&lt;/p&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Box{Box(int,int, int);
 Box();
 int height;
 int width;
 int length;}
 Box::Box()
 {
-height = 10;
-width = 10;
-length = 10;
+ height = 10;
+ width = 10;
+ length = 10;
 }
 Box::Box(int h,int w, int len):height(h),width(w),length(len){}
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4&gt;构造函数的默认参数&lt;/h4&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Box(int h=10,int w=10, int len=10); 这是声明，在类内部，具体定义在类外边
-这相当于好多个重载函数的作用&lt;/p&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;h4 id=&quot;构造函数的默认参数&quot;&gt;构造函数的默认参数&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Box(int h=10,int w=10, int len=10); 这是声明，在类内部，具体定义在类外边
+这相当于好多个重载函数的作用&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4&gt;说明&lt;/h4&gt;
+&lt;h4 id=&quot;说明&quot;&gt;说明&lt;/h4&gt;
+&lt;ul&gt;
+  &lt;li&gt;调用构造函数时，不必给出实参的构造函数称为默认构造函数，或叫缺省构造函数&lt;/li&gt;
+  &lt;li&gt;构造对象的写法为Box box2; 不是 Box box2();这是声明函数的返回值为类Box&lt;/li&gt;
+  &lt;li&gt;构造函数的重载在函数声明的时候就要确定，具体定义的时候没有默认参数值，和普通的默认参数函数声明定义相同&lt;/li&gt;
+  &lt;li&gt;一个类只能同时有一个构造函数有效：Box();Box(int=10,int =10, int =10);同时存在二者是错误的&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&quot;92-析构函数&quot;&gt;9.2 析构函数&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;调用构造函数时，不必给出实参的构造函数称为默认构造函数，或叫缺省构造函数&lt;/li&gt;
-&lt;li&gt;构造对象的写法为Box box2; 不是 Box box2();这是声明函数的返回值为类Box&lt;/li&gt;
-&lt;li&gt;构造函数的重载在函数声明的时候就要确定，具体定义的时候没有默认参数值，和普通的默认参数函数声明定义相同&lt;/li&gt;
-&lt;li&gt;一个类只能同时有一个构造函数有效：Box();Box(int=10,int =10, int =10);同时存在二者是错误的&lt;/li&gt;
+  &lt;li&gt;static局部对象在main结束后才被析构；用new运算符动态建立的对象，当用delete运算符释放该对象是，先调用该对象的析构函数&lt;/li&gt;
+  &lt;li&gt;析构函数的&lt;strong&gt;作用&lt;/strong&gt;不是删除对象，而是撤销对象占用的内存之前完成一些清理工作，使这部分内存可以分配给新对象使用&lt;/li&gt;
+  &lt;li&gt;析构函数不能重载，你想重载啥！&lt;/li&gt;
+  &lt;li&gt;析构函数也可写一些最后想说的话，在对象即将销毁之前
+    &lt;h3 id=&quot;93-对象指针&quot;&gt;9.3 对象指针&lt;/h3&gt;
+  &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;9.2 析构函数&lt;/h3&gt;
-
-&lt;ul&gt;
-&lt;li&gt;static局部对象在main结束后才被析构；用new运算符动态建立的对象，当用delete运算符释放该对象是，先调用该对象的析构函数&lt;/li&gt;
-&lt;li&gt;析构函数的&lt;strong&gt;作用&lt;/strong&gt;不是删除对象，而是撤销对象占用的内存之前完成一些清理工作，使这部分内存可以分配给新对象使用&lt;/li&gt;
-&lt;li&gt;析构函数不能重载，你想重载啥！&lt;/li&gt;
-&lt;li&gt;析构函数也可写一些最后想说的话，在对象即将销毁之前
-### 9.3 对象指针&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;类的成员变量
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;类的成员变量
 int *p1;
 p1 = &amp;amp;t1.hour;
 cout&amp;lt;&amp;lt; *p1&amp;lt;&amp;lt;endl;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;普通函数
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;普通函数
 void (*p)(int, int);//指向void型函数的指针变量
 p = fun;
 (*p)(int a,int b)//调用fun函数
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;类的成员函数
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;类的成员函数
 void (Time::*p2)();
 p2=Time::get_time;
 (t1.*p2)();//调用t1中的p2所指函数
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;ul&gt;
-&lt;li&gt;一个类多个对象，成员函数对应相同的代码段，以上赋值指针变量p2的应该是公用的函数代码段的入口地址
+  &lt;li&gt;一个类多个对象，成员函数对应相同的代码段，以上赋值指针变量p2的应该是公用的函数代码段的入口地址
 以上两句定义和指定指针指向合并为
-&lt;code&gt;
-void (Time::*p2)()=Time::get_time;
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;函数的指针变量的类型必须与赋值号右侧函数类型在以下3个方面匹配：&lt;/li&gt;
-&lt;li&gt;1.函数参数的类型和参数个数 2.函数返回值的类型 3.所属的类&lt;/li&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void (Time::*p2)()=Time::get_time;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;函数的指针变量的类型必须与赋值号右侧函数类型在以下3个方面匹配：&lt;/li&gt;
+  &lt;li&gt;1.函数参数的类型和参数个数 2.函数返回值的类型 3.所属的类&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h3&gt;9.4 this指针&lt;/h3&gt;
+&lt;h3 id=&quot;94-this指针&quot;&gt;9.4 this指针&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;如果一个类对应多个对象，存放多个对象的数据成员，但是不同的对象都调用同一个函数代码段&lt;/li&gt;
-&lt;li&gt;不同对象的成员函数引用数据成员时，保证引用的是所指定的对象的数据成员&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;每个&lt;em&gt;成员函数&lt;/em&gt;都包含一个特殊的指针，成为this，它指向&lt;em&gt;本类对象&lt;/em&gt;的指针，它的值是&lt;em&gt;当前被调用的成员函数所在的对象的起始地址&lt;/em&gt;
-&lt;code&gt;
-对象指针
+  &lt;li&gt;如果一个类对应多个对象，存放多个对象的数据成员，但是不同的对象都调用同一个函数代码段&lt;/li&gt;
+  &lt;li&gt;不同对象的成员函数引用数据成员时，保证引用的是所指定的对象的数据成员&lt;/li&gt;
+  &lt;li&gt;每个&lt;em&gt;成员函数&lt;/em&gt;都包含一个特殊的指针，成为this，它指向&lt;em&gt;本类对象&lt;/em&gt;的指针，它的值是&lt;em&gt;当前被调用的成员函数所在的对象的起始地址&lt;/em&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;对象指针
 Time *p;
 Time t1;
 p=&amp;amp;t1;
-&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;用new运算符动态分配内存后返回一个指向&lt;em&gt;新对象的指针的值&lt;/em&gt;,就是所&lt;em&gt;分配的内存空间的起始地址&lt;/em&gt;
-&lt;code&gt;
-Box *pt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;用new运算符动态分配内存后返回一个指向&lt;em&gt;新对象的指针的值&lt;/em&gt;,就是所&lt;em&gt;分配的内存空间的起始地址&lt;/em&gt;
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Box *pt;
 pt=new Box;
-&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;以上方法新建了一个对象可以使用以下方法来访问
-&lt;code&gt;
-pt-&amp;gt;height;
-&lt;/code&gt;
-合成一句话并初始化&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;Box *pt = new Box(12,15,18); //构造函数&lt;/p&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;以上方法新建了一个对象可以使用以下方法来访问
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pt-&amp;gt;height;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;p&gt;合成一句话并初始化&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Box *pt = new Box(12,15,18); //构造函数&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h4&gt;对象的赋值&lt;/h4&gt;
+&lt;h4 id=&quot;对象的赋值&quot;&gt;对象的赋值&lt;/h4&gt;
 
 &lt;p&gt;对象名1 = 对象名2&lt;/p&gt;
 
 &lt;p&gt;box1 = box2;&lt;/p&gt;
 
-&lt;h4&gt;对象的复制&lt;/h4&gt;
+&lt;h4 id=&quot;对象的复制&quot;&gt;对象的复制&lt;/h4&gt;
 
 &lt;p&gt;类型 对象2（对象1）&lt;/p&gt;
 
@@ -1080,155 +1320,166 @@ pt-&amp;gt;height;
 
 &lt;p&gt;Box box2 = box1;&lt;/p&gt;
 
-&lt;h3&gt;9.5 类的静态成员&lt;/h3&gt;
+&lt;h3 id=&quot;95-类的静态成员&quot;&gt;9.5 类的静态成员&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;静态成员变量不隶属于任何一个对象，它是类的成员，即使不定义对象，静态数据成员也被分配空间，也可被引用&lt;/li&gt;
-&lt;li&gt;静态成员变量不随对象的撤销而释放，它是类的成员。&lt;/li&gt;
-&lt;li&gt;静态成员变量只能在类外进行初始化
-&lt;code&gt;
-int Box::height = 10;//height is static variable of class Box
-&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;初始化（构造函数）中不能操作静态变量
-&lt;code&gt;
-Box b = new Box();
+  &lt;li&gt;静态成员变量不隶属于任何一个对象，它是类的成员，即使不定义对象，静态数据成员也被分配空间，也可被引用&lt;/li&gt;
+  &lt;li&gt;静态成员变量不随对象的撤销而释放，它是类的成员。&lt;/li&gt;
+  &lt;li&gt;静态成员变量只能在类外进行初始化
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int Box::height = 10;//height is static variable of class Box
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;初始化（构造函数）中不能操作静态变量
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Box b = new Box();
 b.height;//可以使用对象名访问静态成员
-&lt;/code&gt;&lt;/p&gt;
-
-&lt;h4&gt;类的静态函数&lt;/h4&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;静态函数存在的价值主要是操作静态变量&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;静态函数是类的而不是对象的成员，所以它没有this指针，所以无法访问本类中的非静态成员&lt;/p&gt;&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;因为&lt;/p&gt;&lt;/li&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;h4 id=&quot;类的静态函数&quot;&gt;类的静态函数&lt;/h4&gt;
+  &lt;/li&gt;
+  &lt;li&gt;静态函数存在的价值主要是操作静态变量&lt;/li&gt;
+  &lt;li&gt;静态函数是类的而不是对象的成员，所以它没有this指针，所以无法访问本类中的非静态成员&lt;/li&gt;
+  &lt;li&gt;因为&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
 int Box::volume()
 {
-    return (height\*width\*length);
+	return (height\*width\*length);
 }
 
 change to the following
 
 int Box::volume(Box *this)
 {
-    return (this-&amp;gt;height\*this-&amp;gt;width\*this-&amp;gt;length);
+	return (this-&amp;gt;height\*this-&amp;gt;width\*this-&amp;gt;length);
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;ul&gt;
-&lt;li&gt;由于静态变量没有this指针，找不到内存中当前需要操作的成员变量&lt;/li&gt;
-&lt;li&gt;Therefore, 保证静态函数只操作静态变量，当然也可以操作非静态，只有在对静态变量时，才显得最简介易懂&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3&gt;9.6 友元&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
 &lt;ul&gt;
-&lt;li&gt;不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～&lt;/li&gt;
-&lt;li&gt;友元存在的价值在于虽可以不属于本类，但作为其友元，可以访问其的私有成员变量；友元函数实现多个类的数据共享；&lt;/li&gt;
-&lt;li&gt;下面的程序展示了Date中的友元函数由Time中的成员函数担任，使之能访问两个类的成员，注意访问的方式&lt;/li&gt;
+  &lt;li&gt;由于静态变量没有this指针，找不到内存中当前需要操作的成员变量&lt;/li&gt;
+  &lt;li&gt;Therefore, 保证静态函数只操作静态变量，当然也可以操作非静态，只有在对静态变量时，才显得最简介易懂&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class Date;//对Date类的提前引用声明
+
+&lt;h3 id=&quot;96-友元&quot;&gt;9.6 友元&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;不属于类，但是放在在类的声明，不就像是一个不是家人的friend正在家里开party吗～&lt;/li&gt;
+  &lt;li&gt;友元存在的价值在于虽可以不属于本类，但作为其友元，可以访问其的私有成员变量；友元函数实现多个类的数据共享；&lt;/li&gt;
+  &lt;li&gt;下面的程序展示了Date中的友元函数由Time中的成员函数担任，使之能访问两个类的成员，注意访问的方式&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Date;//对Date类的提前引用声明
 class Time
 {
 public: Time(int, int, int);
-        void display(Date &amp;amp;);
+		void display(Date &amp;amp;);
 private:int hour;
-        int minute;
-        int sec;
+		int minute;
+		int sec;
 };
 Time::Time(int a, int b, int c)
 {
-    hour = a;
-    minute = b;
-    sec = c;
+	hour = a;
+	minute = b;
+	sec = c;
 }
 
 class Date
 {
 public:Date(int, int, int);
-      friend void Time::display(Date &amp;amp;);
+	  friend void Time::display(Date &amp;amp;);
 private:int month;
-        int day;
-        int year;
+		int day;
+		int year;
 };
 Date::Date(int a, int b, int c)
 {
-    month = a;
-    day = b;
-    year = c;
+	month = a;
+	day = b;
+	year = c;
 }
 
 void Time::display(Date &amp;amp;d)//对Date对象的引用
 {
-    cout &amp;lt;&amp;lt; d.day &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; d.month &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; d.year &amp;lt;&amp;lt; endl;//访问私有成员
-    cout &amp;lt;&amp;lt; hour &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; minute &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; sec &amp;lt;&amp;lt; endl;
+	cout &amp;lt;&amp;lt; d.day &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; d.month &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; d.year &amp;lt;&amp;lt; endl;//访问私有成员
+	cout &amp;lt;&amp;lt; hour &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; minute &amp;lt;&amp;lt; &quot;:&quot; &amp;lt;&amp;lt; sec &amp;lt;&amp;lt; endl;
 }
 
 int main()
 {
-    Time t1(10, 13, 56);
-    Date d1(12, 25, 2004);
-    t1.display(d1);
-    return 0;
+	Time t1(10, 13, 56);
+	Date d1(12, 25, 2004);
+	t1.display(d1);
+	return 0;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
 &lt;ul&gt;
-&lt;li&gt;下面的程序，友元函数不是类的成员函数，通过重载访问两个类的私有数据&lt;/li&gt;
+  &lt;li&gt;下面的程序，友元函数不是类的成员函数，通过重载访问两个类的私有数据&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class Time
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Time
 {
 public: Time(int, int, int);
-        friend void display(Time &amp;amp;);
+		friend void display(Time &amp;amp;);
 private:int hour;
-        int minute;
-        int sec;
+		int minute;
+		int sec;
 };
 Time::Time(int a, int b, int c)
 {
-    hour = a;
-    minute = b;
-    sec = c;
+	hour = a;
+	minute = b;
+	sec = c;
 }
 class Date
 {
 public:Date(int, int, int);
-      friend void display(Date &amp;amp;);
+	  friend void display(Date &amp;amp;);
 private:int month;
-        int day;
-        int year;
+		int day;
+		int year;
 };
 Date::Date(int a, int b, int c)
 {
-    month = a;
-    day = b;
-    year = c;
+	month = a;
+	day = b;
+	year = c;
 }
 void display(Date &amp;amp; d)
 {
-    cout &amp;lt;&amp;lt; d.day &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; d.month &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; d.year &amp;lt;&amp;lt; endl;
+	cout &amp;lt;&amp;lt; d.day &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; d.month &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; d.year &amp;lt;&amp;lt; endl;
 }
 void display(Time &amp;amp; t)
 {
-    cout &amp;lt;&amp;lt; t.hour &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; t.minute &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; t.sec &amp;lt;&amp;lt; endl;
+	cout &amp;lt;&amp;lt; t.hour &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; t.minute &amp;lt;&amp;lt; &quot;/&quot; &amp;lt;&amp;lt; t.sec &amp;lt;&amp;lt; endl;
 }
 int main()
 {
-    Time t1(10, 13, 56);
-    Date d1(12, 25, 2004);
-    display(d1);
-    display(t1);
-    return 0;
+	Time t1(10, 13, 56);
+	Date d1(12, 25, 2004);
+	display(d1);
+	display(t1);
+	return 0;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;10.运算符重载&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;h3&gt;10.1 重载的方法&lt;/h3&gt;
+&lt;p&gt;##10.运算符重载&lt;/p&gt;
+
+&lt;h3 id=&quot;101-重载的方法&quot;&gt;10.1 重载的方法&lt;/h3&gt;
 
 &lt;ul&gt;
-&lt;li&gt;函数类型 operator 运算符名称 （形参表列）&lt;/li&gt;
-&lt;li&gt;{对运算符的重载处理}
+  &lt;li&gt;函数类型 operator 运算符名称 （形参表列）&lt;/li&gt;
+  &lt;li&gt;{对运算符的重载处理}
 e.g.
 int operator + (int a, int b)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class Complex
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 Complex operator + (Complex &amp;amp;);
@@ -1243,22 +1494,37 @@ int main()
 Complex c2(13.5,3.4);
 Complex c = c1+c2;//c = c1.operator+(c2)
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;不能重载的运算符有5个:
-- . | .* | :: | sizeof | ?:&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;不能重载的运算符有5个:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;table&gt;
+      &lt;tbody&gt;
+        &lt;tr&gt;
+          &lt;td&gt;.&lt;/td&gt;
+          &lt;td&gt;.*&lt;/td&gt;
+          &lt;td&gt;::&lt;/td&gt;
+          &lt;td&gt;sizeof&lt;/td&gt;
+          &lt;td&gt;?:&lt;/td&gt;
+        &lt;/tr&gt;
+      &lt;/tbody&gt;
+    &lt;/table&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;重载不改变运算符优先级，重载运算符参数必须至少包含一个用户自定义的类或struct，否则就失去了重载运算符的意义，而且发生错误。
 &lt;strong&gt;一般情况：双目运算符重载为类的友元函数，单目运算符重载为类的成员函数&lt;/strong&gt;
-以上代码段修改为friend表示为
-```
-class Complex
+以上代码段修改为friend表示为&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 friend Complex operator + (Complex &amp;amp;, Complex &amp;amp;);
 private:double real;
-double img;};&lt;/p&gt;
+double img;};
 
-&lt;p&gt;Complex Complex::operator + (Complex c1,Complex &amp;amp;c2)
+Complex Complex::operator + (Complex c1,Complex &amp;amp;c2)
 {return Complex(c2.real+c1.real,c2.img+c1.img);// 直接返回一个无名对象
 }
 int main()
@@ -1266,14 +1532,17 @@ int main()
 Complex c2(13.5,3.4);
 Complex c = c1+c2;//c = c1.operator+(c2)
 }
-```&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;h3 id=&quot;重载流运算符&quot;&gt;重载流运算符&lt;/h3&gt;
 
-&lt;h3&gt;重载流运算符&lt;/h3&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;istream &amp;amp; operator &amp;gt;&amp;gt; (istream &amp;amp;, 自定义类 &amp;amp;);
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;istream &amp;amp; operator &amp;gt;&amp;gt; (istream &amp;amp;, 自定义类 &amp;amp;);
 ostream &amp;amp; operator &amp;lt;&amp;lt; (ostream &amp;amp;, 自定义类 &amp;amp;);
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 &lt;p&gt;重载流运算符函数必须作为友元函数不能作为类的成员函数，原因显而易见，位置已经被stream &amp;amp;占据&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;class Complex
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 friend ostream operator &amp;lt;&amp;lt; (ostream &amp;amp;, Complex &amp;amp;);
@@ -1293,34 +1562,42 @@ Complex c2;
 cin&amp;gt;&amp;gt;c2&amp;gt;&amp;gt;c1;//手动输入4个数字
 cout&amp;lt;&amp;lt;c1&amp;lt;&amp;lt;c2;//(cout&amp;lt;&amp;lt;c1)return ostream所以可以继续&amp;lt;&amp;lt;c2
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;构造函数as强制类型转换&lt;/h3&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h3 id=&quot;构造函数as强制类型转换&quot;&gt;构造函数as强制类型转换&lt;/h3&gt;
 
 &lt;p&gt;构造函数复习（revise）
-默认构造函数
-- Complex()
-- Complex(double, double);
-- Complex(Comlex &amp;amp;);//e.g.在类成员函数的声明体中声明一个表示自身的对象 Complex temp(*this),最后return temp，将本身返回&lt;/p&gt;
+默认构造函数&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Complex()&lt;/li&gt;
+  &lt;li&gt;Complex(double, double);&lt;/li&gt;
+  &lt;li&gt;Complex(Comlex &amp;amp;);//e.g.在类成员函数的声明体中声明一个表示自身的对象 Complex temp(*this),最后return temp，将本身返回&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;Complex(double r){real=r;img=0;}&lt;/p&gt;
 
-&lt;p&gt;Complex(2.5) 比较 int(2.5)
-- 可以认为二者都是进行了强制类型转换
-- c=c1+int(2.5) false; c=c1+Complex(2.5) true&lt;/p&gt;
+&lt;p&gt;Complex(2.5) 比较 int(2.5)&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;可以认为二者都是进行了强制类型转换&lt;/li&gt;
+  &lt;li&gt;c=c1+int(2.5) false; c=c1+Complex(2.5) true&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h3&gt;类型转换函数进行类型转换&lt;/h3&gt;
+&lt;h3 id=&quot;类型转换函数进行类型转换&quot;&gt;类型转换函数进行类型转换&lt;/h3&gt;
 
-&lt;p&gt;类型转换函数作用是将一个类对象转换成另一个类型的数据，在Complex类中定义类型转换函数：
-&lt;code&gt;
-operator double()
+&lt;p&gt;类型转换函数作用是将一个类对象转换成另一个类型的数据，在Complex类中定义类型转换函数：&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;operator double()
  {return real;}
-&lt;/code&gt;
-- 抽象一般形式为
-&lt;code&gt;operator 类型名()
-   {实现转换的语句}&lt;/code&gt;
-&lt;em&gt;在函数名前面不能指定函数类型，而且函数没有参数&lt;/em&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;ul&gt;
+  &lt;li&gt;抽象一般形式为
+&lt;code class=&quot;highlighter-rouge&quot;&gt;operator 类型名()
+ {实现转换的语句}&lt;/code&gt;
+&lt;em&gt;在函数名前面不能指定函数类型，而且函数没有参数&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;h2&gt;11.继承与派生&lt;/h2&gt;
+&lt;h2 id=&quot;11继承与派生&quot;&gt;11.继承与派生&lt;/h2&gt;
 
 &lt;p&gt;C++继承可以增加代码可重用性，继承主要学会使用protected&lt;/p&gt;
 
@@ -1329,12 +1606,14 @@ operator double()
 &lt;p&gt;&lt;strong&gt;class 派生类名：继承方式 基类名&lt;/strong&gt;
 &lt;strong&gt;{派生类新增加的成员}；&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;构建一个派生类包括以下3部分工作：
-1. 从基类接收其全部成员
-2. 调整从基类接收的成员：声明一个参数和函数名和函数返回值类型都相同的函数覆盖原来基类的函数
-3. 声明派生类时增加成员&lt;/p&gt;
+&lt;p&gt;构建一个派生类包括以下3部分工作：&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;从基类接收其全部成员&lt;/li&gt;
+  &lt;li&gt;调整从基类接收的成员：声明一个参数和函数名和函数返回值类型都相同的函数覆盖原来基类的函数&lt;/li&gt;
+  &lt;li&gt;声明派生类时增加成员&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;h3&gt;11.1成员的访问属性&lt;/h3&gt;
+&lt;h3 id=&quot;111成员的访问属性&quot;&gt;11.1成员的访问属性&lt;/h3&gt;
 
 &lt;p&gt;基类和派生类的访问属性&lt;/p&gt;
 
@@ -1345,31 +1624,34 @@ operator double()
 &lt;p&gt;继承是对基类公有和保护成员的继承，基类的私有成员只能被基类的成员函数调用。&lt;/p&gt;
 
 &lt;ul&gt;
-&lt;li&gt;保护成员相当于保险箱，任何外人均不得窥视，只有子女（派生类）才能打开&lt;/li&gt;
+  &lt;li&gt;保护成员相当于保险箱，任何外人均不得窥视，只有子女（派生类）才能打开&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;在派生类中有4中不同的访问属性：
-- 公用的：派生类内外都可以访问
-- 受保护的：对于本类同私有的，其下一层的派生类可以访问
-- 私有的：派生类内可以访问，外不可
-- 不可访问的：派生类内和外都无法访问
-&lt;strong&gt;总结&lt;/strong&gt; 保护（protected)是专门为派生设计的访问权限，基类的保护成员对于本类是私有的，对于保护继承的派生类可以类内访问，不可类外调用（派生类对象访问），这是因为它仍然是‘保护’访问权限，对于本类（派生类）是私有的。&lt;/p&gt;
+&lt;p&gt;在派生类中有4中不同的访问属性：&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;公用的：派生类内外都可以访问&lt;/li&gt;
+  &lt;li&gt;受保护的：对于本类同私有的，其下一层的派生类可以访问&lt;/li&gt;
+  &lt;li&gt;私有的：派生类内可以访问，外不可&lt;/li&gt;
+  &lt;li&gt;不可访问的：派生类内和外都无法访问
+&lt;strong&gt;总结&lt;/strong&gt; 保护（protected)是专门为派生设计的访问权限，基类的保护成员对于本类是私有的，对于保护继承的派生类可以类内访问，不可类外调用（派生类对象访问），这是因为它仍然是‘保护’访问权限，对于本类（派生类）是私有的。&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;strong&gt;在实际使用中，常用的是公有继承&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h3&gt;11.2 派生类的构造函数和析构函数&lt;/h3&gt;
+&lt;h3 id=&quot;112-派生类的构造函数和析构函数&quot;&gt;11.2 派生类的构造函数和析构函数&lt;/h3&gt;
 
-&lt;p&gt;基类的构造函数是不能继承的，所以要初始化派生类对象应该同时考虑基类的对象，方法是执行派生类构造函数时，调用基类的构造函数。e.g.
-&lt;code&gt;
-Student(int n,string nam,char s){}//基类构造函数，放在基类中
+&lt;p&gt;基类的构造函数是不能继承的，所以要初始化派生类对象应该同时考虑基类的对象，方法是执行派生类构造函数时，调用基类的构造函数。e.g.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Student(int n,string nam,char s){}//基类构造函数，放在基类中
 Student_derivedclass(int n,string name, char s, int a, string ad):Student(n,nam,s){}
 //本句放在派生类中作为派生类的构造函数
-&lt;/code&gt;&lt;/p&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;h3&gt;11.3 有子对象的派生类的构造函数&lt;/h3&gt;
+&lt;h3 id=&quot;113-有子对象的派生类的构造函数&quot;&gt;11.3 有子对象的派生类的构造函数&lt;/h3&gt;
 
-&lt;p&gt;类定义中含有类的对象，就像结构体中含有结构体
-- 子对象的初始化是在建立派生类时通过调用派生类构造函数实现的
+&lt;p&gt;类定义中含有类的对象，就像结构体中含有结构体&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;子对象的初始化是在建立派生类时通过调用派生类构造函数实现的
 定义派生类构造函数的一般形式为
 &lt;strong&gt;派生类构造函数名（总参数列表）：基类构造函数名（参数表列），子对象名（参数表列）&lt;/strong&gt;
 &lt;strong&gt;{派生类中新增数据成员初始化语句}&lt;/strong&gt;
@@ -1379,10 +1661,11 @@ class Student
 {public:
  Student(int n, string nam)
  {num = n;
-  name=nam;}
+name=nam;}
  protected:
  int num; string name;
-};&lt;/p&gt;
+};&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;class Student1: public Student
 {public:
@@ -1394,12 +1677,12 @@ private:
  int age;
  string addr;
 ```&lt;/p&gt;
+&lt;h3 id=&quot;114-虚基类&quot;&gt;11.4 虚基类&lt;/h3&gt;
 
-&lt;h3&gt;11.4 虚基类&lt;/h3&gt;
 </description>
         <pubDate>Sat, 15 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2017/07/15/CPP-tips-xia/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2017/07/15/CPP-tips-xia/</guid>
+        <link>http://bryanibit/blog/2017/07/15/CPP-tips-xia/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2017/07/15/CPP-tips-xia/</guid>
         
         <category>理论梳理</category>
         

@@ -10,7 +10,7 @@
 
     <title>Python Tips - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/python-tips/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/python-tips/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -124,14 +124,15 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>两个维数相同的bool类型数组做与运算</h2>
+                <h2 id="两个维数相同的bool类型数组做与运算">两个维数相同的bool类型数组做与运算</h2>
 
 <p>np.nonzero(ok1 * ok2)[0]</p>
 
 <p>其中ok1和ok2都是一个一维数组bool型的</p>
 
 <p>如果加[0]会使得到的结果仍为一维数组</p>
-<div class="highlight"><pre><code class="language-" data-lang="">     &gt; ok1*ok2
+
+<div class="highlighter-rouge"><pre class="highlight"><code>     &gt; ok1*ok2
      array([False,  True, False, False], dtype=bool)
      &gt; np.nonzero(ok1*ok2)[0]
      array([1])
@@ -145,40 +146,48 @@
      (array([1, 2]),)
      &gt; np.nonzero(b1*b2)[0]
      array([1, 2])
-</code></pre></div>
-<h2>文本读取打开</h2>
+</code></pre>
+</div>
+
+<h2 id="文本读取打开">文本读取打开</h2>
 
 <p>使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换</p>
-<div class="highlight"><pre><code class="language-" data-lang="">with open(filename,'a') as filepoint:
+
+<div class="highlighter-rouge"><pre class="highlight"><code>with open(filename,'a') as filepoint:
     filepoint.write(string)
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>文件打开方式 a append,  w empty then write,  r read</p>
 
-<h2>两个数组合并/某个添加一列</h2>
+<h2 id="两个数组合并某个添加一列">两个数组合并/某个添加一列</h2>
 
 <p>在shape=（432,2）的数组上加上一列使用 np.hstack()</p>
 
-<p>e.g. 
-- pixel = np.zeros((439,2), dtype=)
-- s = pixel.shape[:-1]+(1,)
-- result = np.hstack((pixel,np.ones(s)))</p>
+<p>e.g.</p>
+<ul>
+  <li>pixel = np.zeros((439,2), dtype=)</li>
+  <li>s = pixel.shape[:-1]+(1,)</li>
+  <li>result = np.hstack((pixel,np.ones(s)))</li>
+</ul>
 
 <p>在shape=（432,2）的数组上加上一列使用 np.colomn_stack(())</p>
 
 <ul>
-<li>pixel = np.zeros((439,2), dtype=int)</li>
-<li>s = np.ones(439, dtype=int)</li>
-<li>result = np.column_stack((pixel,s))</li>
+  <li>pixel = np.zeros((439,2), dtype=int)</li>
+  <li>s = np.ones(439, dtype=int)</li>
+  <li>result = np.column_stack((pixel,s))</li>
 </ul>
 
-<h2>矢量求范数</h2>
+<h2 id="矢量求范数">矢量求范数</h2>
 
 <p>bearing_b3 是一个n×3的矩阵</p>
 
-<p>&#39;normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]&#39;</p>
+<p>‘normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]’</p>
 
 <p>e.g.</p>
-<div class="highlight"><pre><code class="language-" data-lang="">     &gt; bearing_b3
+
+<div class="highlighter-rouge"><pre class="highlight"><code>     &gt; bearing_b3
      array([[1, 2, 3],
             [4, 5, 6],
             [7, 8, 9],
@@ -192,25 +201,30 @@
 
      &gt; np.linalg.norm(bearing_b3, axis=1)
      array([  3.74165739,   8.77496439,  13.92838828,   9.64365076])
-</code></pre></div>
-<h2>cv2.Rodrigues</h2>
+</code></pre>
+</div>
+
+<h2 id="cv2rodrigues">cv2.Rodrigues</h2>
 
 <p>Python: cv2.Rodrigues(src[, dst[, jacobian]]) → dst, jacobian¶</p>
 
-<p>R&#39; = cv2.Rodrigues(R)[0]</p>
+<p>R’ = cv2.Rodrigues(R)[0]</p>
 
 <p>Note that: [0]</p>
 
-<h2>两个大小一致的数组，满足条件的配对</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">results = np.array([7,8,9,10])
+<h2 id="两个大小一致的数组满足条件的配对">两个大小一致的数组，满足条件的配对</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>results = np.array([7,8,9,10])
 dists = np.array([1,2,3,4])
 good = dists &amp;lt 2
 *array([ True, False, False, False], dtype=bool)*
 matches = zip(results[good],good.nonzero()[0])
 *[(7, array([0]))]* \# matches is a list
-</code></pre></div>
-<h2>np.array中两个维度相同的数组互相相乘注意</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">ok1 = np.array([ True, False, False, False], dtype=bool)
+</code></pre>
+</div>
+<h2 id="nparray中两个维度相同的数组互相相乘注意">np.array中两个维度相同的数组互相相乘注意</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>ok1 = np.array([ True, False, False, False], dtype=bool)
 ok2 = np.array([ True, False, True, False], dtype=bool)
 ok1*ok2
 *array([ True, False, False, False], dtype=bool)*
@@ -218,15 +232,18 @@ np.nonzero(ok1*ok2)
 *(array([0]),)*
 np.nonzero(ok1*ok2)[0]
 *array([0])*
-</code></pre></div>
-<h2>python运算符优先级</h2>
+</code></pre>
+</div>
+
+<h2 id="python运算符优先级">python运算符优先级</h2>
 
 <p>从上到下优先级依次递减</p>
 
-<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png" alt="python运算符优先级"></p>
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png" alt="python运算符优先级" /></p>
 
-<h2>argparse</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">parser = argparse.ArgumentParser()
+<h2 id="argparse">argparse</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>parser = argparse.ArgumentParser()
 parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
 ××.py -v 1
 
@@ -235,21 +252,27 @@ parser.add_argument("-v", "--verbosity", action="count", help="increase output v
 
 parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
 ××.py -v
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=</p>
 
-<h2>ord() chr()</h2>
+<h2 id="ord-chr">ord() chr()</h2>
 
-<p>ord(&#39;a&#39;) -&gt; 97 # 返回ascII</p>
+<p>ord(‘a’) -&gt; 97 # 返回ascII</p>
 
-<p>chr(97) --&gt; &#39;a&#39; # return 字符</p>
+<p>chr(97) –&gt; ‘a’ # return 字符</p>
 
-<h2>list to array</h2>
-<div class="highlight"><pre><code class="language-" data-lang="">a = np.array([[1,2],[4,5],[2,3]])
+<h2 id="list-to-array">list to array</h2>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>a = np.array([[1,2],[4,5],[2,3]])
 此时才能用切片功能,a不能是list，执行下列操作：
 plt.plot(a[:,0],a[:,1])
-</code></pre></div>
+</code></pre>
+</div>
+
 <p>numpy.ndarry.tolist #numpy to list</p>
+
 
 
                 <hr>
@@ -282,7 +305,7 @@ plt.plot(a[:,0],a[:,1])
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/python-tips" data-title="Python Tips"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="两个维数相同的bool类型数组做与运算
 
 np.nonzero(ok1 * ok2)[0]
@@ -290,7 +313,7 @@ np.nonzero(ok1 * ok2)[0]
 其中ok1和ok2都是一个一维数组bool型的
 
 如果加[0... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/05/python-tips/">
+                    data-url="http://bryanibit/blog/2017/07/05/python-tips/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -309,7 +332,7 @@ np.nonzero(ok1 * ok2)[0]
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/python-tips" data-title="Python Tips" data-url="http://localhost:4000/blog/2017/07/05/python-tips/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/python-tips" data-title="Python Tips" data-url="http://bryanibit/blog/2017/07/05/python-tips/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>
