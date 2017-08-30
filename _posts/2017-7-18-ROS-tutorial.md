@@ -6,6 +6,11 @@ categories: blog
 tags: [技术总结]
 description: ROS 相关问题
 ---
+
+## ros注意事项
+
+**在cmakelists中find_package()对应package.xml中的build或者run依赖**
+
 ## ros文件结构
 - 自己用catkin_create_pkg创建的包需要使用
 - source ~/catkin_ws/devel/setup.bash将自己建的包放在ros_package_path中

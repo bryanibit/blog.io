@@ -10,6 +10,7 @@ header-img: "img/blue.jpg"
     <p><img src="https://vignette1.wikia.nocookie.net/gameofthrones/images/6/6c/Sam_S2.jpg/revision/latest?cb=20120324131039" align="center"></p>
 </center>
 
+**Even in the unlikely place, hope can still be found.**
 
 ###最近看的闲书：
 
