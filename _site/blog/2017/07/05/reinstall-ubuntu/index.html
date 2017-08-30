@@ -124,21 +124,18 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <p>##我们开始吧</p>
+                <h2>我们开始吧</h2>
 
 <p>Now I think I should do it, write them down and log everything. I am exciting now.</p>
 
-<h2 id="first-part-for-reinstall-ubuntu">First part for reinstall Ubuntu</h2>
+<h2>First part for reinstall Ubuntu</h2>
 
-<h3 id="ubuntu-partition">Ubuntu partition</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>     \boot (primary)  200M
+<h3>Ubuntu partition</h3>
+<div class="highlight"><pre><code class="language-" data-lang="">     \boot (primary)  200M
      \
      \swap  memory * 2
      \home
-</code></pre>
-</div>
-
+</code></pre></div>
 <p>如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。</p>
 
 <p>分区完成后，选择/home 作为Ubuntu安装位置</p>
@@ -146,216 +143,145 @@
 <p>device for boot loader installation:</p>
 
 <p>选择 Ubuntu安装的/boot位置</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>     Note that: reinstall partition should have something different from before!!
-</code></pre>
-</div>
-
-<h3 id="install-sougou-pinyin">Install Sougou pinyin</h3>
+<div class="highlight"><pre><code class="language-" data-lang="">     Note that: reinstall partition should have something different from before!!
+</code></pre></div>
+<h3>Install Sougou pinyin</h3>
 
 <p>Ubuntu 14.04 install sougoupinyin</p>
 
 <blockquote>
-  <p>first, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.</p>
+<p>first, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.</p>
+
+<p>go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.</p>
+
+<p>reboot!</p>
 </blockquote>
 
-<blockquote>
-  <p>go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.</p>
-</blockquote>
-
-<blockquote>
-  <p>reboot!</p>
-</blockquote>
-
-<h3 id="setting-github-ssh">Setting github ssh</h3>
+<h3>Setting github ssh</h3>
 
 <ol>
-  <li>
-    <p>install git  sign up an account for github</p>
-  </li>
-  <li>
-    <p>配置Name和Email</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> 命令格式：    git config --global user.name "your name"
-               git config --global user.email "your email address" 
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>成Public/Private RSA Key</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> 命令格式：    ssh-keygen -C "your email address" -t rsa
-</code></pre>
-    </div>
-  </li>
+<li><p>install git  sign up an account for github</p></li>
+<li><p>配置Name和Email</p>
+<div class="highlight"><pre><code class="language-" data-lang="">命令格式：    git config --global user.name "your name"
+              git config --global user.email "your email address" 
+</code></pre></div></li>
+<li><p>成Public/Private RSA Key</p>
+<div class="highlight"><pre><code class="language-" data-lang="">命令格式：    ssh-keygen -C "your email address" -t rsa
+</code></pre></div></li>
 </ol>
 
 <p>注意图中红色数字标注：</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>    1、设置Public RSA Key的保存位置，直接回车采用默认地址；
+<div class="highlight"><pre><code class="language-" data-lang="">    1、设置Public RSA Key的保存位置，直接回车采用默认地址；
     2、设置一个密码，并再次输入确认(这里不建议设置，方便本地使用)
     3、Public RSA Key的保存路径：c:\users\username\.ssh\id_rsa.pub(windows) /home/inin/.ssh/id_rsa.pub(linux)
-</code></pre>
-</div>
-
+</code></pre></div>
 <ol>
-  <li>
-    <p>将Public Key告知Github</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> 请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
- 点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
-</code></pre>
-    </div>
-  </li>
-  <li>
-    <p>Now you can try push a project now:</p>
-  </li>
+<li><p>将Public Key告知Github</p>
+<div class="highlight"><pre><code class="language-" data-lang="">请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
+点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
+</code></pre></div></li>
+<li><p>Now you can try push a project now:</p></li>
 </ol>
 
 <p>在 github.com 上</p>
 
 <blockquote>
-  <p>new repository (选add readme）</p>
+<p>new repository (选add readme）</p>
 </blockquote>
 
 <p>在本地文件夹下</p>
 
 <blockquote>
-  <p>git clone git@github.com:bryanibit/pySfM.git</p>
+<p>git clone git@github.com:bryanibit/pySfM.git</p>
+
+<p>git init</p>
+
+<p>touch README.md (由于选择了readme)</p>
+
+<p>git add README.md</p>
+
+<p>git commit -m &#39;first_commit&#39;</p>
+
+<p>git remote add origin https://github.com/findingsea/myRepoForBlog.git</p>
+
+<p>git push -u origin master (-u is the first time to upload)</p>
 </blockquote>
 
+<h3>Install Cmake 3.0 +</h3>
+
 <blockquote>
-  <p>git init</p>
+<p>sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x</p>
+
+<p>sudo -E apt-get update</p>
+
+<p>sudo apt-get install cmake</p>
 </blockquote>
 
-<blockquote>
-  <p>touch README.md (由于选择了readme)</p>
-</blockquote>
+<h3>Install meshlab</h3>
 
 <blockquote>
-  <p>git add README.md</p>
-</blockquote>
+<p>$ sudo add-apt-repository ppa:zarquon42/meshlab</p>
 
-<blockquote>
-  <p>git commit -m ‘first_commit’</p>
-</blockquote>
+<p>$ sudo apt-get update</p>
 
-<blockquote>
-  <p>git remote add origin https://github.com/findingsea/myRepoForBlog.git</p>
-</blockquote>
-
-<blockquote>
-  <p>git push -u origin master (-u is the first time to upload)</p>
-</blockquote>
-
-<h3 id="install-cmake-30-">Install Cmake 3.0 +</h3>
-
-<blockquote>
-  <p>sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo -E apt-get update</p>
-</blockquote>
-
-<blockquote>
-  <p>sudo apt-get install cmake</p>
-</blockquote>
-
-<h3 id="install-meshlab">Install meshlab</h3>
-
-<blockquote>
-  <p>$ sudo add-apt-repository ppa:zarquon42/meshlab</p>
-</blockquote>
-
-<blockquote>
-  <p>$ sudo apt-get update</p>
-</blockquote>
-
-<blockquote>
-  <p>$ sudo apt-get install meshlab</p>
+<p>$ sudo apt-get install meshlab</p>
 </blockquote>
 
 <p>Optional, to remove meshlab, do:</p>
 
 <blockquote>
-  <p>$ sudo apt-get remove meshlab</p>
+<p>$ sudo apt-get remove meshlab</p>
 </blockquote>
 
 <p>Or, if you want to uninstall meshlab, disable the recently added PPA and downgrade all the packages that got updated via the PPA, do:</p>
 
 <blockquote>
-  <p>$ sudo apt-get install ppa-purge</p>
+<p>$ sudo apt-get install ppa-purge</p>
+
+<p>$ sudo ppa-purge ppa:zarquon42/meshlab</p>
 </blockquote>
 
-<blockquote>
-  <p>$ sudo ppa-purge ppa:zarquon42/meshlab</p>
-</blockquote>
-
-<h3 id="install-pycharm-and-crack-it">Install pycharm and crack it</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Download official version professional
+<h3>Install pycharm and crack it</h3>
+<div class="highlight"><pre><code class="language-" data-lang="">Download official version professional
 go to  
 - [crack](idea.qinxi1992.cn)
 add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
-</code></pre>
-</div>
-
-<h4 id="配置pycharm使用ros">配置pycharm使用ros</h4>
+</code></pre></div>
+<h4>配置pycharm使用ros</h4>
 
 <ul>
-  <li>设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量</li>
+<li>设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量</li>
 </ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
-</code></pre>
-</div>
-
+<div class="highlight"><pre><code class="language-" data-lang="">gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
+</code></pre></div>
 <p>或者</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
-</code></pre>
-</div>
-
+<div class="highlight"><pre><code class="language-" data-lang="">gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
+</code></pre></div>
 <p>修改Exec变量一行，在=后添加 bash -i -c 即改为（若为zsh，则改为zsh)</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
-</code></pre>
-</div>
-
-<h4 id="使用pycharm时import第三方库">使用pycharm时import第三方库</h4>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
-</code></pre>
-</div>
-
-<h3 id="install-zsh">install zsh</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install zsh
+<div class="highlight"><pre><code class="language-" data-lang="">Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
+</code></pre></div>
+<h4>使用pycharm时import第三方库</h4>
+<div class="highlight"><pre><code class="language-" data-lang="">settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
+</code></pre></div>
+<h3>install zsh</h3>
+<div class="highlight"><pre><code class="language-" data-lang="">sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 sudo reboot
-</code></pre>
-</div>
+</code></pre></div>
 <p>copy ros content in .bashrc to .zshrc</p>
 
-<h3 id="install-vim">install vim</h3>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install vim
-</code></pre>
-</div>
-
+<h3>install vim</h3>
+<div class="highlight"><pre><code class="language-" data-lang="">sudo apt-get install vim
+</code></pre></div>
 <p>renew a file called .vimrc:</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>set nu
+<div class="highlight"><pre><code class="language-" data-lang="">set nu
 set confirm
 set mouse=a
 set tabstop=4
 set cindent
 syntax on
-</code></pre>
-</div>
-
+</code></pre></div>
 
                 <hr>
 
@@ -388,9 +314,9 @@ syntax on
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/reinstall-ubuntu" data-title="Linux Install Tips"
                     data-images="http://localhost:4000/img/black.jpg"
-                    data-content="##我们开始吧
+                    data-content="我们开始吧
 
-Now I think I should do it, write them down and log everything. I am... | Microdust:Azeril's blog"
+Now I think I should do it, write them down and log everything. I am e... | Microdust:Azeril's blog"
                     data-url="http://localhost:4000/blog/2017/07/05/reinstall-ubuntu/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -419,6 +345,10 @@ Now I think I should do it, write them down and log everything. I am... | Microd
 </article>
 
 
+<!-- mathjax script -->
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

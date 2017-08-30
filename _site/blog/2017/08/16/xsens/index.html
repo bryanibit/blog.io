@@ -103,7 +103,7 @@
                 <div class="post-heading">
                     <div class="Tags">
                         
-                        <a class="tag" href="/Tags/#理论梳理" title="理论梳理">理论梳理</a>
+                        <a class="tag" href="/Tags/#技术总结" title="技术总结">技术总结</a>
                         
                     </div>
                     <h1>Xsens-710</h1>
@@ -124,105 +124,88 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2 id="xsens-wire">Xsens wire</h2>
+                <h2>Xsens wire</h2>
 
-<p>使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。</p>
+<p>使用的线缆名称为CA-MP2-MTi，9pin--9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。</p>
 
 <p>serial RS232 有问题，无论连接tx/rx/电源地或者tx/rx或者交换tx/rx都无法与Windows上官方suite软件中的MT Manager通信，所以放弃使用串口，使用自制的USB接口</p>
 
-<h2 id="xsens-prerequisites">Xsens Prerequisites</h2>
+<h2>Xsens Prerequisites</h2>
 
 <ol>
-  <li>Install the MTi USB Serial Driver</li>
+<li>Install the MTi USB Serial Driver</li>
 </ol>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>$ git clone https://github.com/xsens/xsens_mt.git
+<div class="highlight"><pre><code class="language-" data-lang="">$ git clone https://github.com/xsens/xsens_mt.git
 $ cd ~/xsens_mt
 $ make
 $ sudo modprobe usbserial
 $ sudo insmod ./xsens_mt.ko # install module to /lib/modules/$(uname -r)/driver/usb/serial
 $ sudo reboot
-</code></pre>
-</div>
-
+</code></pre></div>
 <ol>
-  <li>Run mtsdk_linux_4.8.sh in the “MT_Software_Suite_Linux_4.8”</li>
+<li>Run mtsdk<em>linux</em>4.8.sh in the &quot;MT<em>Software</em>Suite<em>Linux</em>4.8&quot;</li>
 </ol>
 
 <blockquote>
-  <p>Download official software “MT_Software_Suite_Linux_4.8”.
+<p>Download official software &quot;MT<em>Software</em>Suite<em>Linux</em>4.8&quot;.
 Test hardware connection and communication. Enter the installation directory you like.
-To test hardware, go to installed directory “MT_software/examples/mtsdk”, type “make src_cpp”; 
-run “./example”, enter COM port name:/dev/ttyUSB0, baud rate: 115200
+To test hardware, go to installed directory &quot;MT<em>software/examples/mtsdk&quot;, type &quot;make src</em>cpp&quot;; 
+run &quot;./example&quot;, enter COM port name:/dev/ttyUSB0, baud rate: 115200
 The result shows the following:</p>
 </blockquote>
 
-<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png" alt="" /></p>
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png" alt=""></p>
 
 <ol>
-  <li>
-    <p>Install gps_common</p>
-
-    <div class="highlighter-rouge"><pre class="highlight"><code> $ sudo apt-get install ros-distro-gps-common
-</code></pre>
-    </div>
-  </li>
+<li><p>Install gps_common</p>
+<div class="highlight"><pre><code class="language-" data-lang="">$ sudo apt-get install ros-distro-gps-common
+</code></pre></div></li>
 </ol>
 
-<h2 id="xsens-driver-in-ros">Xsens driver in Ros</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo chmod 777 /dev/ttyUSB0
+<h2>Xsens driver in Ros</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">sudo chmod 777 /dev/ttyUSB0
 rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50,pl20 #publish sensor data,set as 50Hz
 roslaunch xsens_driver xsens_driver.launch
-</code></pre>
-</div>
+</code></pre></div>
 <p>说明：iu UTMtime， oe Euler angle， aa acceleration， wr rate of turn， pl latitudeLongitude， vv velocity</p>
 
-<h2 id="xsens-message-格式">Xsens message 格式</h2>
+<h2>Xsens message 格式</h2>
 
 <p><a href="https://xsens.com/download/usermanual/ISM/MT_LowLevelCommunicationProtocol_Documentation.pdf">MT Low Level Communication Protocol documentation (LLCP)</a></p>
 
 <p>以上文档中的page10注明了Xsens发出的信息格式详细情况</p>
 
-<h2 id="xsens-driver程序大致流程">Xsens driver程序大致流程</h2>
+<h2>Xsens driver程序大致流程</h2>
 
 <ul>
-  <li>二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的</li>
-  <li>通过函数locals()<a href="o">find_handler_name(n)</a>，找到对应的函数的句柄，解析刚刚得到的数据，结果放在msgs中，最后publish出去</li>
+<li>二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的</li>
+<li>通过函数locals()<a href="o">find<em>handler</em>name(n)</a>，找到对应的函数的句柄，解析刚刚得到的数据，结果放在msgs中，最后publish出去</li>
 </ul>
 
-<h2 id="补充">补充</h2>
+<h2>补充</h2>
 
 <ul>
-  <li>文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。</li>
+<li>文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。</li>
 </ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>groups #查看所有group名称
+<div class="highlight"><pre><code class="language-" data-lang="">groups #查看所有group名称
 users  #查看所有user名称
 groupadd &lt;group_name&gt; #add new group
 gpasswd -a &lt;user_name&gt; &lt;group_name&gt; #将用户加到组中
 gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
-</code></pre>
-</div>
-
+</code></pre></div>
 <ul>
-  <li>使用groups命令查看用户所在组的名称：</li>
+<li>使用groups命令查看用户所在组的名称： </li>
 </ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>groups inin
-</code></pre>
-</div>
+<div class="highlight"><pre><code class="language-" data-lang="">groups inin
+</code></pre></div>
 <ul>
-  <li>make sure that your $USER is in dialout group, you can use following commands:</li>
+<li>make sure that your $USER is in dialout group, you can use following commands:</li>
 </ul>
+<div class="highlight"><pre><code class="language-" data-lang="">sudo usermod -G dialout -a $USER
+</code></pre></div>
+<h2>Calibration (in windows)</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo usermod -G dialout -a $USER
-</code></pre>
-</div>
-
-<h2 id="calibration-in-windows">Calibration (in windows)</h2>
-
-<p>Mti-710 needs sufficient velocity to do good heading estimation– search north</p>
+<p>Mti-710 needs sufficient velocity to do good heading estimation-- search north</p>
 
 <p>Since the yaw of the MTi-G-700/710 is referenced by comparing GNSS acceleration with the on-board accelerometers, more movement (when GNSS is available) will result in a better yaw.</p>
 
@@ -230,7 +213,7 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 
 <p>In general, the more accelerations and movement will result in a better yaw. At lower speeds the yaw might be less accurate and take longer. If the velocity is lower, a good option might be to select the GeneralMag filter profile which also uses the magnetometer to stabilize the yaw.</p>
 
-<h2 id="xsens与差分novatel对比">Xsens与差分Novatel对比</h2>
+<h2>Xsens与差分Novatel对比</h2>
 
 <p>If you want to see result in detail, click <a href="http://nbviewer.jupyter.org/github/bryanibit/bryanibit.github.io/blob/master/_posts/jupyter/visual.ipynb">here</a></p>
 
@@ -268,8 +251,7 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
                     data-images="http://localhost:4000/img/black.jpg"
                     data-content="Xsens wire
 
-使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。
-
+使用的线缆名称为CA-MP2-MTi，9pin--9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。
 ... | Microdust:Azeril's blog"
                     data-url="http://localhost:4000/blog/2017/08/16/xsens/">
                     <div class="ds-share-inline">
@@ -299,6 +281,10 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 </article>
 
 
+<!-- mathjax script -->
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

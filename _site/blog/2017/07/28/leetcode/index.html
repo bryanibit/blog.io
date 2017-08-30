@@ -124,57 +124,49 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2 id="将string类型变量转换为常用的数值类型">将string类型变量转换为常用的数值类型</h2>
+                <h2>将string类型变量转换为常用的数值类型</h2>
+
 <p>//模板函数：（此方法具有普遍适用性）
-#include <sstream>  
-template <class Type="">  
-Type stringToNum(const string&amp; str)  
-{  
-    istringstream iss(str);  
-    Type num;  
-    iss &gt;&gt; num;  
-    return num;      
-}</class></sstream></p>
+#include <sstream><br>
+template <class Type><br>
+Type stringToNum(const string&amp; str)<br>
+{<br>
+    istringstream iss(str);<br>
+    Type num;<br>
+    iss &gt;&gt; num;<br>
+    return num;<br>
+}  </p>
 
-<h2 id="int-to-string">int to string</h2>
+<h2>int to string</h2>
+
 <ol>
-  <li></li>
+<li></li>
 </ol>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>int a = 10;
+<div class="highlight"><pre><code class="language-" data-lang="">int a = 10;
 char *intStr = itoa(a);
 string str = string(intStr);
-</code></pre>
-</div>
-
+</code></pre></div>
 <p>2.</p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>int a = 10;
+<div class="highlight"><pre><code class="language-" data-lang="">int a = 10;
 stringstream ss;
 ss &lt;&lt; a;
 string str = ss.str();
-</code></pre>
-</div>
-
+</code></pre></div>
 <p>3.</p>
 
 <p>```#include <string> 
 std::string s = std::to_string(42);
-'''</string></p>
+&#39;&#39;&#39;</p>
 
-<h2 id="long-int-to-string">long int to string</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;sstream&gt;
+<h2>long int to string</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">#include &lt;sstream&gt;
 std::string number;
 std::stringstream strstream;
 strstream &lt;&lt; 1L;
 strstream &gt;&gt; number;
-</code></pre>
-</div>
-
-<h2 id="string-to-int">string to int</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>1.
+</code></pre></div>
+<h2>string to int</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">1.
 string str="123";
 atoi( str.c_str() );
 
@@ -184,48 +176,33 @@ std::stoi(str);
 3.
 std::stringstream ss(str);
 ss &gt;&gt; thevalue;
-</code></pre>
-</div>
+</code></pre></div>
+<h2>string to double</h2>
 
-<h2 id="string-to-double">string to double</h2>
-
-<p><code class="highlighter-rouge">string str;
+<p><code>string str;
 double value = atof(str.c_str());</code></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>string word;  
+<div class="highlight"><pre><code class="language-" data-lang="">string word;  
 openfile &gt;&gt; word;
 double lol = atof(word.c_str());
-</code></pre>
-</div>
-
-<h2 id="double-to-string">double to string</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
+</code></pre></div>
+<h2>double to string</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
 std::stringstream ss(s);
 double number=0;
 ss&gt;&gt;number;
-</code></pre>
-</div>
-
-<h2 id="二叉搜索树">二叉搜索树</h2>
+</code></pre></div>
+<h2>二叉搜索树</h2>
 
 <p>同一层的情况下，右边的元素一定比左边的大</p>
 
 <ul>
-  <li>插入一个数</li>
+<li>插入一个数</li>
 </ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code></code></pre>
-</div>
-
+<div class="highlight"><pre><code class="language-" data-lang=""></code></pre></div>
 <ul>
-  <li>删除一个数</li>
+<li>删除一个数</li>
 </ul>
-
-<div class="highlighter-rouge"><pre class="highlight"><code></code></pre>
-</div>
-
-
+<div class="highlight"><pre><code class="language-" data-lang=""></code></pre></div>
 
                 <hr>
 
@@ -259,10 +236,11 @@ ss&gt;&gt;number;
                     data-thread-key="/blog/2017/07/28/leetcode" data-title="Leetcode"
                     data-images="http://localhost:4000/img/black.jpg"
                     data-content="将string类型变量转换为常用的数值类型
+
 //模板函数：（此方法具有普遍适用性）
-#include   
-template   
-Type string... | Microdust:Azeril's blog"
+#include 
+template 
+Type stringToN... | Microdust:Azeril's blog"
                     data-url="http://localhost:4000/blog/2017/07/28/leetcode/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -291,6 +269,10 @@ Type string... | Microdust:Azeril's blog"
 </article>
 
 
+<!-- mathjax script -->
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

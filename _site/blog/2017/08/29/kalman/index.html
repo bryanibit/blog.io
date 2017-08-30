@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="于华超">
 
-    <title>Harxon smart antenna - 屋顶上的鱼</title>
+    <title>KalmanFilter - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/08/09/harxon-GPS/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/08/29/kalman/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -103,12 +103,12 @@
                 <div class="post-heading">
                     <div class="Tags">
                         
-                        <a class="tag" href="/Tags/#技术总结" title="技术总结">技术总结</a>
+                        <a class="tag" href="/Tags/#理论梳理" title="理论梳理">理论梳理</a>
                         
                     </div>
-                    <h1>Harxon smart antenna</h1>
+                    <h1>KalmanFilter</h1>
                     
-                    <span class="meta">Posted by Bryan on August 9, 2017</span>
+                    <span class="meta">Posted by Bryan on August 29, 2017</span>
                 </div>
             </div>
         </div>
@@ -124,79 +124,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2>使用的GPS接收机简介</h2>
+                <h2>Problem Statement</h2>
 
-<ul>
-<li>使用带3G功能的移动站TS102，移动站出厂设置为com1-115200 Baud，输出定位信息和航向(GGA,RMC,VTG,ZDA,HDT),现在硬件连接出来的串口线对应接收机的com1。</li>
-<li>使用3G网络接入<a href="https://qxwz.com/">千寻位置</a>提供的差分位置服务，所以无需配置基站，只需配置移动站。</li>
-</ul>
+<p>ok</p>
 
-<h2>配置方法</h2>
-
-<ol>
-<li><p>连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×</p></li>
-<li><p>在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示：</p>
-<div class="highlight"><pre><code class="language-" data-lang="">Output from Receiver:
-
-*****************MODULE SELFTEST*****************
-DTU MODULE: RX 451.12500 MHz
-            TX 451.12500 MHz
-            PRT TRIMTALK
-            BAUD 9600 
-            MODNM 1006D
-            E003.03.01  
-CAN MODULE: $GCAN=CANBUS_29B_250k
-            GC117033626
-            17031603
-GNSS MODULE: "UB280", SW_VER "R4.10Build15042"
-************************end**************************
-3G MODULE: SIM  #QSS: 1
-            CLASS 2
-            CSQ 
-            IP   ××.×××.×××.×××
-</code></pre></div></li>
-<li><p>正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$CFG 3G U   //进入user模式，此时接受机返回 *&gt;ok*
-AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
-AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
-</code></pre></div></li>
-<li><p>使用<a href="https://bbs.qxwz.com/read.php?tid=514">千寻社区</a>提供的工具，Ntrip client测试千寻差分账号是否正常，按照<a href="https://bbs.qxwz.com/read.php?tid=453">社区教程</a>配置软件，需要登录账号发言后才能下载该软件</p></li>
-<li><p>接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机，以下命令无需进入3G用户模式，直接在连接上接收机后即可输入以下命令</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
-</code></pre></div></li>
-<li><p>在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据</p>
-<div class="highlight"><pre><code class="language-" data-lang="">$GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
-</code></pre></div></li>
-</ol>
-
-<h2>备注</h2>
-
-<h4>配置命令都已回车(windows中/r/n)结束</h4>
-
-<h4>一个差分账号只能同时一个设备用，否则会出现互踢现象</h4>
-
-<h4>接收机电源线连接时，对准红点插入即可，拔出时，把前面的铁头往外拉，固定后方的线，此时可以拔出插头</h4>
-
-<h4>GPS数据解析</h4>
-
-<p>$GPGSA:(模式、位置)
-- 模式, 定位形式, PRN数字, PDOP位置, HDOP水平精度因子, VDOP垂直精度因子, 检验位</p>
-
-<p>$GPGSV:(卫星、角度)
-- 总的GSV语句电文数, 当前GSV语句号, 可视卫星总数, 卫星号, 仰角, 方位角,信噪比, 总和校验数, 回车, 换行</p>
-
-<p>$BDGSV:GPGSV(卫星相关的信息)
-- 收到讯号的卫星总数,定位的卫星总数,卫星总数,卫星仰角,方位角,讯号信噪比,校验位</p>
-
-<p>$GNRMC:GPRMC(时间日期、地面速度方向)
-- UTC时间, 定位状态,纬度,纬半球,经度,经半球,地面速率,方向,UTC日期,磁偏角,磁偏角方向,模式指示,地面速度信息</p>
-
-<p>$GNGGA:GPGGA(时间、定位质量)
-- UTC时间,纬度,纬半球,经度,经半球,定位质量标,卫星数量,水平精确度,天、地水准高度，差分GPS数据等, *, 校验和, 回车、换行</p>
-
-<h2>测试ＧＰＳ精度（Ｃ＋＋）</h2>
-
-<p>读取串口调试助手保存的串口数据输出LOG.txt,具体程序在<a href="https://github.com/bryanibit/-_DGPS">ｇｉｔｈｕｂ链接</a>上</p>
+<p>$$a^2 + b^2 = c^2$$</p>
 
 
                 <hr>
@@ -204,13 +136,9 @@ AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/29/tcpSocket/" data-toggle="tooltip" data-placement="top" title="socket tcp python实现">&larr; Previous Post</a>
+                        <a href="/blog/2017/08/22/git/" data-toggle="tooltip" data-placement="top" title="Git Push Suggestion">&larr; Previous Post</a>
                     </li>
                     
-                    
-                    <li class="next">
-                        <a href="/blog/2017/08/16/xsens/" data-toggle="tooltip" data-placement="top" title="Xsens-710">Next Post &rarr;</a>
-                    </li>
                     
                 </ul>
 
@@ -228,13 +156,15 @@ AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
                 </style>
 
                 <div class="ds-share"
-                    data-thread-key="/blog/2017/08/09/harxon-GPS" data-title="Harxon smart antenna"
+                    data-thread-key="/blog/2017/08/29/kalman" data-title="KalmanFilter"
                     data-images="http://localhost:4000/img/black.jpg"
-                    data-content="使用的GPS接收机简介
+                    data-content="Problem Statement
 
+ok
 
-使用带3G功能的移动站TS102，移动站出厂设置为com1-115200 Baud，输出定位信息和航向(GGA,RMC,VTG... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/08/09/harxon-GPS/">
+$$a^2 + b^2 = c^2$$
+ | Microdust:Azeril's blog"
+                    data-url="http://localhost:4000/blog/2017/08/29/kalman/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -253,7 +183,7 @@ AT#PING="www.baidu.com"  //ping外网，正常会有OK返回
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/08/09/harxon-GPS" data-title="Harxon smart antenna" data-url="http://localhost:4000/blog/2017/08/09/harxon-GPS/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/08/29/kalman" data-title="KalmanFilter" data-url="http://localhost:4000/blog/2017/08/29/kalman/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

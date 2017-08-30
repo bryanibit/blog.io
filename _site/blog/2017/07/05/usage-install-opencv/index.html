@@ -125,30 +125,27 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
                 <p>以下方法是编译opencv3.2+contrib部分 使用同样版本的opencv and
-opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CMake’s BUILD_opencv_* options.</p>
+opencv<em>contrib，其中（）中的内容一般没有用,可以去掉, () use CMake&#39;s BUILD</em>opencv_* options.</p>
+<div class="highlight"><pre><code class="language-" data-lang="">    cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_NEW_PYTHON_SUPPORT=ON -DBUILD_EXAMPLES=ON -DWITH_CUDA=OFF -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=&lt;opencv_contrib&gt;/modules (-DBUILD_opencv_legacy=OFF) &lt;opencv_source_directory&gt;
+</code></pre></div>
+<h2>Python OpenCV</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_NEW_PYTHON_SUPPORT=ON -DBUILD_EXAMPLES=ON -DWITH_CUDA=OFF -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=&lt;opencv_contrib&gt;/modules (-DBUILD_opencv_legacy=OFF) &lt;opencv_source_directory&gt;
-</code></pre>
-</div>
+<h3>Feature detect and match</h3>
 
-<h2 id="python-opencv">Python OpenCV</h2>
-
-<h3 id="feature-detect-and-match">Feature detect and match</h3>
-<p><strong>resize</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>img = cv2.resize(img,(0,0), fx = 0.3, fy = 0.3)
-</code></pre>
-</div>
-<p><strong>color to gray</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
-</code></pre>
-</div>
-<p><strong>new zero space</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>image_matche = cv2.cvtColor(np.zeros((image1.shape[0], image1.shape[1] * 2), dtype=np.uint8), cv2.COLOR_GRAY2BGR)
-</code></pre>
-</div>
-<p><strong>SIFT descriptor</strong></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>    if cv2.__version__.split('.')[0] == '2':
+<p><strong>resize</strong>
+<code>
+img = cv2.resize(img,(0,0), fx = 0.3, fy = 0.3)
+</code>
+<strong>color to gray</strong>
+<code>
+gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+</code>
+<strong>new zero space</strong>
+<code>
+image_matche = cv2.cvtColor(np.zeros((image1.shape[0], image1.shape[1] * 2), dtype=np.uint8), cv2.COLOR_GRAY2BGR)
+</code>
+<strong>SIFT descriptor</strong></p>
+<div class="highlight"><pre><code class="language-" data-lang="">    if cv2.__version__.split('.')[0] == '2':
         detector = cv2.FeatureDetector_create('SIFT')
         descriptor = cv2.DescriptorExtractor_create('SIFT')
         detector.setDouble("contrastThreshold", 0.1)
@@ -158,11 +155,10 @@ opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CM
     else:
         sift = cv2.xfeatures2d.SIFT_create()
         points, desc = sift.detectAndCompute(gray, None)
-</code></pre>
-</div>
-
-<p><strong>two feature descriptor above match</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>def match_low(feature1,feature2):
+</code></pre></div>
+<p><strong>two feature descriptor above match</strong>
+<code>
+def match_low(feature1,feature2):
     FLANN_INDEX_KDTREE = 1
     flann_params = dict(algorithm=FLANN_INDEX_KDTREE, tree=4)
     flann = cv2.flann_Index(feature1, flann_params)
@@ -178,24 +174,23 @@ opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CM
     matches2 = [(b, a) for a, b in np.array(matches_good2, dtype=int)]
     matches = set(matches1).intersection(matches2)
     return np.array(list(matches), dtype=int)
-</code></pre>
-</div>
+</code></p>
+
 <blockquote>
-  <p>note that:
+<p>note that:
 <strong>cv2.flann_Index()</strong></p>
 </blockquote>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>    Summary:
+<div class="highlight"><pre><code class="language-" data-lang="">    Summary:
     This method does a fast local approximate nearest neighbors (FLANN) calculation between two sets of feature vectors. The result are two numpy arrays the first one is a list of indexes of the matches and the second one is the match distance value. For the match indices or idx, the index values correspond to the values of td, and the value in the array is the index in td. I.
     I.e. j = idx[i] is where td[i] matches sd[j].
     The second numpy array (dist), at the index i is the match distance between td[i] and sd[j].
     Lower distances mean better matches.
-  
+
     Parameters:
     sd - A numpy array of feature vectors of any size.         (t is template)
     td - A numpy array of feature vectors of any size, this vector is used for indexing
          and the result arrays will have a length matching this vector. (s is source)
-  
+
     Returns:
     Two numpy arrays, the first one, idx, is the idx of the matches of the vector td with sd.
     The second one, dist, is the distance value for the closest match.
@@ -211,10 +206,8 @@ opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CM
     idx, dist = flann.knnSearch(td, 1, params = {}) # bug: need to provide empty dict
     del flann
     return idx,dist
-</code></pre>
-</div>
-
-<h2 id="cpp-opencv">CPP OpenCV</h2>
+</code></pre></div>
+<h2>CPP OpenCV</h2>
 
 
                 <hr>
@@ -249,7 +242,7 @@ opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CM
                     data-thread-key="/blog/2017/07/05/usage-install-opencv" data-title="OpenCV 3.0 + Install and Usage"
                     data-images="http://localhost:4000/img/black.jpg"
                     data-content="以下方法是编译opencv3.2+contrib部分 使用同样版本的opencv and
-opencv_contrib，其中（）中的内容一般没有用,可以去... | Microdust:Azeril's blog"
+opencvcontrib，其中（）中的内容一般没有用,可以去掉... | Microdust:Azeril's blog"
                     data-url="http://localhost:4000/blog/2017/07/05/usage-install-opencv/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -278,6 +271,10 @@ opencv_contrib，其中（）中的内容一般没有用,可以去... | Microdus
 </article>
 
 
+<!-- mathjax script -->
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">

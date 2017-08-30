@@ -124,54 +124,47 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2 id="build-essential">build-essential</h2>
+                <h2>build-essential</h2>
 
-<h3 id="problem">problem</h3>
-
-<ul>
-  <li>sudo apt-get install build-essential</li>
-  <li>Reading package lists… Done</li>
-  <li>Building dependency tree</li>
-  <li>Reading state information… Done</li>
-  <li>Some packages could not be installed. This may mean that you have</li>
-  <li>requested an impossible situation or if you are using the unstable</li>
-  <li>distribution that some required packages have not yet been created</li>
-  <li>or been moved out of Incoming.</li>
-  <li>
-    <p>The following information may help to resolve the situation:</p>
-  </li>
-  <li>The following packages have unmet dependencies:</li>
-  <li>build-essential : Depends: dpkg-dev (&gt;= 1.13.5) but it is not going to be installed</li>
-  <li>E: Unable to correct problems, you have held broken packages.</li>
-</ul>
-
-<h3 id="solution">Solution</h3>
+<h3>problem</h3>
 
 <ul>
-  <li>Run sudo apt-get install libdpkg-perl=1.17.5ubuntu5 to downgrade libdpkg-perl.</li>
-  <li>You somehow installed a newer version of the package than what is in the repositories, which is causing problems with other packages.</li>
+<li>sudo apt-get install build-essential</li>
+<li>Reading package lists... Done</li>
+<li>Building dependency tree<br></li>
+<li>Reading state information... Done</li>
+<li>Some packages could not be installed. This may mean that you have</li>
+<li>requested an impossible situation or if you are using the unstable</li>
+<li>distribution that some required packages have not yet been created</li>
+<li>or been moved out of Incoming.</li>
+<li><p>The following information may help to resolve the situation:</p></li>
+<li><p>The following packages have unmet dependencies:</p></li>
+<li><p>build-essential : Depends: dpkg-dev (&gt;= 1.13.5) but it is not going to be installed</p></li>
+<li><p>E: Unable to correct problems, you have held broken packages.</p></li>
 </ul>
 
-<h2 id="clean-apt-get-cache">clean apt-get cache</h2>
+<h3>Solution</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    sudo apt-get clean
+<ul>
+<li>Run sudo apt-get install libdpkg-perl=1.17.5ubuntu5 to downgrade libdpkg-perl.</li>
+<li>You somehow installed a newer version of the package than what is in the repositories, which is causing problems with other packages.</li>
+</ul>
+
+<h2>clean apt-get cache</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">    sudo apt-get clean
     cd /var/lib/apt
     sudo mv lists lists.old
     sudo mkdir -p lists/partial
     sudo apt-get clean 
     sudo apt-get update
-</code></pre>
-</div>
-
-<h2 id="uninstall-sublime-from-terminal">uninstall sublime from terminal</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo rm -r /opt/Sublime\ Text\ 2
+</code></pre></div>
+<h2>uninstall sublime from terminal</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">sudo rm -r /opt/Sublime\ Text\ 2
 sudo rm /usr/bin/sublime
 sudo rm /usr/share/applications/sublime.desktop
 sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/defaults.list
-</code></pre>
-</div>
-
-<h2 id="firefox-reminder-running-and-not-responding">Firefox reminder: running and not responding</h2>
+</code></pre></div>
+<h2>Firefox reminder: running and not responding</h2>
 
 <p>Firefox is already running, but is not responding. To open a new window, you must first close the existing Firefox process, or restart your system.</p>
 
@@ -179,32 +172,34 @@ sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/default
            pkill firefox
            cd /home/inin/.mozilla/firefox/×××××.default
            rm .parentlock</p>
-<h2 id="upgrade-to-ubuntu-1604-boot空间不足问题">Upgrade to Ubuntu 16.04 /boot空间不足问题</h2>
+
+<h2>Upgrade to Ubuntu 16.04 /boot空间不足问题</h2>
 
 <ol>
-  <li>df -h （查看Ubuntu的文件系统 使用情况）</li>
-  <li>uname -a (查看当前使用的内核版本)</li>
-  <li>sudo apt-get remove linux-image- （按两次tab键）</li>
-  <li>sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核)</li>
-  <li>再查看下内核和磁盘容量，发现释放了很多空间。</li>
+<li>df -h （查看Ubuntu的文件系统 使用情况） </li>
+<li>uname -a (查看当前使用的内核版本) </li>
+<li>sudo apt-get remove linux-image- （按两次tab键） </li>
+<li>sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核) </li>
+<li>再查看下内核和磁盘容量，发现释放了很多空间。 </li>
 </ol>
 
 <ul>
-  <li>最后如果出现了这个警告：</li>
-  <li>The link /vmlinuz.old is a damaged link</li>
-  <li>Removing symbolic link vmlinuz.old</li>
-  <li>you may need to re-run your boot loader[grub]</li>
-  <li>The link /initrd.img.old is a damaged link</li>
-  <li>Removing symbolic link initrd.img.old 
+<li>最后如果出现了这个警告：</li>
+<li>The link /vmlinuz.old is a damaged link</li>
+<li>Removing symbolic link vmlinuz.old</li>
+<li>you may need to re-run your boot loader[grub]</li>
+<li>The link /initrd.img.old is a damaged link</li>
+<li>Removing symbolic link initrd.img.old 
 <strong>solution:</strong>
-       sudo /usr/sbin/update-grub</li>
+     sudo /usr/sbin/update-grub</li>
 </ul>
 
-<h2 id="install-ros-an-error-code">install ros an error code</h2>
-<p>dpkg: error processing package ros-kinetic-desktop-full (–configure):
+<h2>install ros an error code</h2>
+
+<p>dpkg: error processing package ros-kinetic-desktop-full (--configure):
  dependency problems - leaving unconfigured
 No apport report written because MaxReports is reached already
-                                                              Processing triggers for libc-bin (2.23-0ubuntu9) …
+                                                              Processing triggers for libc-bin (2.23-0ubuntu9) ...
 Errors were encountered while processing:
  libopenni0
  libopenni-dev
@@ -222,18 +217,14 @@ Errors were encountered while processing:
 E: Sub-process /usr/bin/dpkg returned an error code (1)</p>
 
 <p><strong>solution:</strong></p>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>      cd /var/lib/dpkg
+<div class="highlight"><pre><code class="language-" data-lang="">      cd /var/lib/dpkg
   sudo mv info info.bak
   sudo mkdir info
-</code></pre>
-</div>
-
+</code></pre></div>
 <p>重新sudo apt-get install ××××××</p>
 
-<h2 id="apport错误提示要求发送错误报告">Apport错误提示，要求发送错误报告</h2>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>ls /var/crash
+<h2>Apport错误提示，要求发送错误报告</h2>
+<div class="highlight"><pre><code class="language-" data-lang="">ls /var/crash
 sudo rm -rf /var/crash/*
 sudo reboot
 
@@ -241,29 +232,26 @@ sudo reboot
 
 sudo /etc/default/apport
 找到 enabled=1 这一行，并改变到0(zero)
-</code></pre>
-</div>
-<h2 id="bashrc文件失效">.bashrc文件失效</h2>
+</code></pre></div>
+<h2>.bashrc文件失效</h2>
 
 <p><strong>Problem:</strong> .bashrc文件无论写入什么东西似乎都没有用</p>
 
 <p><strong>Solution:</strong></p>
 
-<p><em>原理：</em>在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－&gt; ~/.bash_profile －－&gt; ~/.bashrc －－&gt; /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile。</p>
+<p><em>原理：</em>在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－&gt; ~/.bash<em>profile －－&gt; ~/.bashrc －－&gt; /etc/bash.bashrc。注意在~/.bash</em>profile这一步，如果没有~/.bash<em>profile ，则默认读取~/.bash</em>login，如果没有~/.bash_login 才读取~/.profile。</p>
 
-<p>所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了rm -rf *)</p>
+<p>所以以上问题的解决办法是由于没有.bash<em>profile, .bash</em>login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了rm -rf *)</p>
 
 <ol>
-  <li>恢复.bashrc
-    <div class="highlighter-rouge"><pre class="highlight"><code>/bin/cp /etc/skel/.bashrc ~/
-</code></pre>
-    </div>
-  </li>
-  <li>touch .bash_profile
+<li>恢复.bashrc
+<code>
+/bin/cp /etc/skel/.bashrc ~/
+</code></li>
+<li>touch .bash_profile
 复制以下内容到其中</li>
 </ol>
-
-<div class="highlighter-rouge"><pre class="highlight"><code>\# .bash_profile
+<div class="highlight"><pre><code class="language-" data-lang="">\# .bash_profile
 
 \# If .bash_profile exists, bash doesn't read .profile
 if [[ -f ~/.profile ]]; then
@@ -274,11 +262,8 @@ fi
 if [[ $- == *i* &amp;&amp; -f ~/.bashrc ]]; then
     . ~/.bashrc
 fi
-</code></pre>
-</div>
-
+</code></pre></div>
 <p>重新登录对应的账号</p>
-
 
 
                 <hr>
@@ -317,8 +302,8 @@ fi
 problem
 
 
-  sudo apt-get install build-essential
-  Reading p... | Microdust:Azeril's blog"
+sudo apt-get install build-essential
+Reading packa... | Microdust:Azeril's blog"
                     data-url="http://localhost:4000/blog/2017/07/05/modify-problems-ubuntu/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -347,6 +332,10 @@ problem
 </article>
 
 
+<!-- mathjax script -->
+<script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 
 <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 <script type="text/javascript">
