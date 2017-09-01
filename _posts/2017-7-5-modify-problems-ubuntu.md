@@ -161,3 +161,13 @@ options nouveau modeset=0
 ```
 sudo update-initramfs –u
 ```
+
+## 安装NVIDIA驱动方法
+
+安装上面的教程将nouveau关闭,然后按照following:
+
+```
+$ sudo add-apt-repository ppa:graphics-drivers/ppa 
+$ sudo apt update (re-run if any warning/error messages) 
+$ sudo apt-get install nvidia- (press tab to see latest). 375 (do not use 378, may cause login loops) ## 查找对应的驱动型号
+```
