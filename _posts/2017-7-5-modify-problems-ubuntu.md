@@ -147,3 +147,17 @@ fi
 
 重新登录对应的账号
 
+## ubuntu can not shutdown: nouveau problem
+
+将nouveau加入到/etc/modprobe.d/nouveau.config的blacklist中
+
+```
+blacklist nouveau
+options nouveau modeset=0
+```
+
+然后更新内核
+
+```
+sudo update-initramfs –u
+```
