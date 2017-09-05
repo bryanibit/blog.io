@@ -7,12 +7,6 @@ tags: [技术总结]
 description: Using python in Linux
 ---
 
-## 使用pycharm时import第三方库
-
-...
-settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
-...
-
 ## 两个维数相同的bool类型数组做与运算
 
 np.nonzero(ok1 * ok2)[0]
@@ -37,9 +31,16 @@ np.nonzero(ok1 * ok2)[0]
          array([1, 2])
 
 
-## 文本读取
+## 文本读取打开
 
 使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
+
+```
+with open(filename,'a') as filepoint:
+    filepoint.write(string)
+```
+
+文件打开方式 a append,  w empty then write,  r read
 
 ## 两个数组合并/某个添加一列
 
@@ -113,7 +114,65 @@ np.nonzero(ok1*ok2)[0]
 ## python运算符优先级
 
 从上到下优先级依次递减
+
 ![python运算符优先级](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png)
+
+## argparse
+
+```
+parser = argparse.ArgumentParser()
+parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
+××.py -v 1
+
+parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")
+××.py -vv --verbosity --verbosity
+
+parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
+××.py -v
+```
+
+如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
+
+## ord() chr()
+
+ord('a') -> 97 # 返回ascII
+
+chr(97) --> 'a' # return 字符
+
+## list to array
+
+```
+a = np.array([[1,2],[4,5],[2,3]])
+此时才能用切片功能,a不能是list，执行下列操作：
+plt.plot(a[:,0],a[:,1])
+```
+
+numpy.ndarry.tolist #numpy to list
+
+## list.pop()使用
+
+```
+l=['a','b','c','d','e','f','g','h','i']
+for i in xrange(len(l))
+  for j in xrange(i+1, len(l))
+    L = l[:]
+    L = [v for i, v in enumerate(l) if i not in frozenset((i,j))]
+```
+
+删除了元素i，j在list L中
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -149,6 +149,18 @@ plt.plot(a[:,0],a[:,1])
 
 numpy.ndarry.tolist #numpy to list
 
+## list.pop()使用
+
+```
+l=['a','b','c','d','e','f','g','h','i']
+for i in xrange(len(l))
+  for j in xrange(i+1, len(l))
+    L = l[:]
+    L = [v for i, v in enumerate(l) if i not in frozenset((i,j))]
+```
+
+删除了元素i，j在list L中
+
 
 
 
