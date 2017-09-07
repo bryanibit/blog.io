@@ -7,11 +7,33 @@ tags: [技术总结]
 description: Install OpenCV in ubuntu
 ---
 
+## OpenCV3.×编译
 以下方法是编译opencv3.2+contrib部分 使用同样版本的opencv and
 opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CMake's BUILD_opencv_* options.
- 
-        cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DBUILD_NEW_PYTHON_SUPPORT=ON -DBUILD_EXAMPLES=ON -DWITH_CUDA=OFF -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules (-DBUILD_opencv_legacy=OFF) <opencv_source_directory>
 
+``` 
+cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_TBB=ON -DBUILD_NEW_PYTHON_SUPPORT=ON -DWITH_V4L=ON -DBUILD_EXAMPLES=ON -DWITH_CUDA=OFF -DWITH_QT=ON -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules (-DBUILD_opencv_legacy=OFF) <opencv_source_directory>
+```
+
+## OpenCV install
+
+```
+cd opencv×.×
+mkdir release
+cd release
+cmake ..
+sudo make -j4
+sudo make install
+sudo /bin/bash -c 'echo "/usr/local/lib">/etc/ld.so.conf.d/opencv.conf'
+sudo ldconfig
+```
+
+验证OpenCV安装成功：
+
+```
+pkg-config opencv --cflags --libs #查看opencv安装情况 参考pkg-config --help
+pkg-confg --modversion opencv
+```
 
 ## Python OpenCV
 
