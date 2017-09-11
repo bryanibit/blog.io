@@ -124,6 +124,11 @@ go to
 add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 ```
 
+```
+select 'for all users'
+PATH=$PATH:/home/inin/{installation path}/bin
+```
+
 #### 配置pycharm使用ros
 
 * 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
