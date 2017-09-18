@@ -10,6 +10,20 @@ description: 边看程序，边总结一下原理和代码书写风格
 
 visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
 
+# Local Feature and Global Feature
+
+DoG: Difference of Gaussian
+HoG: Histogram of oriented gradient
+
+- Global descriptors generally used in image retrieval, object detection and classification,
+- while the local descriptors used for object recognition/identification.
+- contour representations, shape descriptors, and texture features and local features represent the texture in an image patch.
+- Shape Matrices, Invariant Moments (Hu, Zerinke), Histogram Oriented Gradients (HOG) and Co-HOG are some examples of global descriptors. 
+- SIFT, SURF and FREAK are some examples of local descriptors.
+
+# Feature Point Detection of an Image using Hessian Affine Detector
+
+
 # 一 控制整个工程的参数方法
 
 **renew a file called config.py**
@@ -168,7 +182,12 @@ pass
 使用[Ceres Solver](http://www.ceres-solver.org)
 **CostFunction** depends on the parameter blocks {xi1,...,xik}.
 
+# Name 
 
+后验概率 先验概率
+Gaussian Mixture Model
+Fisher
+似然函数
 
 
 
