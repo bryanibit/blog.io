@@ -7,6 +7,13 @@ tags: [个人总结]
 description: 每日计划总结
 ---
 
+# 2017-9-10
+
+1. finish graduate docs in the morning
+2. check the work chances and drop some resumes in the morning
+3. In the afternoon, you should finish 40 questions for work
+4. In the evening, you should exercise then you should go to lab and check your thesis for one or 2 hours
+
 # 2017-9-6
 
 ## Need to finish
