@@ -6,6 +6,10 @@ categories: blog
 tags: [理论梳理]
 description: 边看程序，边总结一下原理和代码书写风格
 ---
+# Other Software
+
+visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
+
 # 一 控制整个工程的参数方法
 
 **renew a file called config.py**
