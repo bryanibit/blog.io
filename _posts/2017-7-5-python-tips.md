@@ -161,9 +161,22 @@ for i in xrange(len(l))
 
 删除了元素i，j在list L中
 
+## 小数的舍入
 
+round() 四舍五入
+floor() 11.9=>11
+ceil()  11.1=>11
+int() 直接截去小数部分
 
+## 二维数组按照size排序方法
 
+已知一个二维数组，现在使用每行的第三列数据大小作为依据，将二维数组排序
+
+```
+size = p_unsorted[:, 2]
+order = np.argsort(size)
+p_sorted = p_unsorted[order, :]
+```
 
 
 

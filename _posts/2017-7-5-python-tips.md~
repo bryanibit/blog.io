@@ -161,7 +161,12 @@ for i in xrange(len(l))
 
 删除了元素i，j在list L中
 
+## 小数的舍入
 
+round() 四舍五入
+floor() 11.9=>11
+ceil()  11.1=>11
+int() 直接截去小数部分
 
 
 

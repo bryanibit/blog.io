@@ -6,6 +6,12 @@ categories: blog
 tags: [理论梳理]
 description: 边看程序，边总结一下原理和代码书写风格
 ---
+
+# Need to solved:
+
+- feature.py 238 extract_feature_hahog(image,config)
+- hahog's feature descriptor is different from SIFT or SURF, its feature descriptor should sqrt to real desc.
+
 # Other Software
 
 visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
@@ -42,6 +48,12 @@ def default_config():
 ---
 
 The above function default_config() return a dict, {'use_exif_size': yes  }
+
+# 三 Feature Detection
+
+- Feature detection returns 3 values: **p_unsorted**, **f_unsorted**, **c_unsorted**
+- Corresponding to point positions and other things like size, respond, octave, etc, feature descriptor(n×128), color
+- p_unsorted is a matrix of NumFeatures * 6 for SIFT and SURF *4 for HAHOG
 
 # 二 Incremental reconstruction
 

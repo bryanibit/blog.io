@@ -42,6 +42,11 @@ pkg-confg --modversion opencv
 ```
 img = cv2.resize(img,(0,0), fx = 0.3, fy = 0.3)
 ```
+
+```
+img = cv2.resize(img,dsize=(0,0), fx = 0.3, fy = 0.3)
+```
+
 **color to gray**
 ```
 gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
