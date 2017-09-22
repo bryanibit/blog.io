@@ -178,12 +178,39 @@ order = np.argsort(size)
 p_sorted = p_unsorted[order, :]
 ```
 
+## Python内置函数 
 
+1. map(func, seq1[, seq2,…]) 
+第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。
+map相当于
 
+```
+def map(f, iterable)
+    return [f(x) for x in iterable]
+```
 
+```
+print map(lambda x , y : x ** y, [2,4,6],[3,2,1])
+[8, 16, 6]
+print map(None, [2,4,6],[3,2,1])
+[(2, 3), (4, 2), (6, 1)]
+map(int, (1,2,3))
+[1, 2, 3]
+map(int, '1234')
+[1, 2, 3, 4]
+```
 
+2. reduce(func, seq1[,seu2,...])
 
+reduce相当于 
 
+```
+def reduce(f, list)
+product = 1
+for num in list:
+    product = f(product,num)
+return product
+``` 
 
 
 
