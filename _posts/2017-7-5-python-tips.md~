@@ -212,6 +212,44 @@ for num in list:
 return product
 ``` 
 
+## multiprocessing Module
+
+Python中一种多进程方法（another way: Threading.Thread())
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
