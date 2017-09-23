@@ -1,0 +1,13 @@
+---
+layout: post
+title: Pip install on windows
+date: 2017-9-23
+categories: blog
+tags: [技术总结]
+description: Install pip and python on wins
+---
+
+## install python
+
+- Download python.exe and install, at the same time, add C:\python27 (python install dir) to system env
+- python
