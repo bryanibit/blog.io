@@ -215,9 +215,11 @@ return product
 ## multiprocessing Module
 
 Python中一种多进程方法（another way: Threading.Thread())
+apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步
 
+## divmod(a,b)
 
-
+相当于（math.floor(a/b), a%b) if a or b is float 和 （a//b, a % b)  if a or b is int
 
 
 
