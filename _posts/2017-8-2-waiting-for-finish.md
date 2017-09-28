@@ -44,18 +44,4 @@ ok
 1. DGPS输出为固定解
 2. 测试了接受到的GPS位置精度-github
 
-## blog native compile
-
-[部署自己的博客：Github+Jekyll](http://harttle.com/2013/10/18/github-homepage-tutorial.html)
-
-1. install jekyll
-
-- solve the problem that gem install jekyll error:
-[stack exchange](https://stackoverflow.com/questions/22460117/error-error-installing-jekyll-error-failed-to-build-gem-native-extension)
-
-```
-sudo apt-get install ruby ruby-dev make
-sudo gem install jekyll --no-rdoc --no-ri
-sudo apt-get install nodejs    
-```
 
