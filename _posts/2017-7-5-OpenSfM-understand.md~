@@ -92,8 +92,8 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 #### 极线 epipolar line
 
-![epipolar line 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line1.png)
-![epipolar line 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line2.png)
+![epipolar line 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line1.PNG)
+![epipolar line 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line2.PNG)
 
 <script type="text/javascript" async
   src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -103,8 +103,8 @@ $$X_2^T E X_1 = 0$$
 
 We know $$E X_1 = 0$$ points epipolar line(一副图中的一点乘以E等于另一个视角中的极线)
 
-![epipolar point 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point1.png)
-![epipolar point 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point2.png)
+![epipolar point 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point1.PNG)
+![epipolar point 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point2.PNG)
 
 一个视角中的点乘以E得到的极线在另一个视图中汇聚成一个点，这个点就是极点，由于极点是2自由度，所以rank(E)=2
 
