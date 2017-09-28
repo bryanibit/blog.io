@@ -53,6 +53,7 @@ pip install jupyter
 ```
 jupyter notebook --generate-config #如/home/inin下没有.jupyter file
 jupyter notebook password ##设置密码
+jupyter notebook ##启动notebook
 ```
 
 打开浏览器 输入*127.0.0.1:8888* 输入密码
@@ -79,7 +80,16 @@ sudo apt-get install nodejs
 sudo apt-get install openssh-server
 
 进行登录的计算机
-ssh -l <master-remote> <passwd>
+ssh <user_name>@<host_ip>
 ```
+
+## find命令
+
+find <指定目录> <指定条件> <指定动作>
+
+$ find . -name 'my*'
+
+搜索当前目录（含子目录，以下同）中，所有文件名以my开头的文件。
+
 
 
