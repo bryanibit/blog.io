@@ -10,7 +10,7 @@
 
     <title>Linux Install Tips - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/reinstall-ubuntu/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/install-ubuntu/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -132,12 +132,11 @@
 
 <h3 id="ubuntu-partition">Ubuntu partition</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>     \boot (primary)  200M
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     \boot (primary)  200M
      \
      \swap  memory * 2
      \home
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。</p>
 
@@ -147,9 +146,8 @@
 
 <p>选择 Ubuntu安装的/boot位置</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>     Note that: reinstall partition should have something different from before!!
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     Note that: reinstall partition should have something different from before!!
+</code></pre></div></div>
 
 <h3 id="install-sougou-pinyin">Install Sougou pinyin</h3>
 
@@ -176,36 +174,32 @@
   <li>
     <p>配置Name和Email</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> 命令格式：    git config --global user.name "your name"
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 命令格式：    git config --global user.name "your name"
                git config --global user.email "your email address" 
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>成Public/Private RSA Key</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> 命令格式：    ssh-keygen -C "your email address" -t rsa
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 命令格式：    ssh-keygen -C "your email address" -t rsa
+</code></pre></div>    </div>
   </li>
 </ol>
 
 <p>注意图中红色数字标注：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    1、设置Public RSA Key的保存位置，直接回车采用默认地址；
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    1、设置Public RSA Key的保存位置，直接回车采用默认地址；
     2、设置一个密码，并再次输入确认(这里不建议设置，方便本地使用)
     3、Public RSA Key的保存路径：c:\users\username\.ssh\id_rsa.pub(windows) /home/inin/.ssh/id_rsa.pub(linux)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ol>
   <li>
     <p>将Public Key告知Github</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> 请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> 请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
  点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>Now you can try push a project now:</p>
@@ -294,12 +288,22 @@
 
 <h3 id="install-pycharm-and-crack-it">Install pycharm and crack it</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Download official version professional
+<p>Install from PPA</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo add-apt-repository ppa:mystic-mirage/pycharm
+sudo apt-get update
+sudo apt-get install pycharm  ## professional version
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Download official version professional
 go to  
 - [crack](idea.qinxi1992.cn)
 add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
-</code></pre>
-</div>
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>select 'for all users'
+PATH=$PATH:/home/inin/{installation path}/bin
+</code></pre></div></div>
 
 <h4 id="配置pycharm使用ros">配置pycharm使用ros</h4>
 
@@ -307,54 +311,47 @@ add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
   <li>设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
+</code></pre></div></div>
 
 <p>或者</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
+</code></pre></div></div>
 
 <p>修改Exec变量一行，在=后添加 bash -i -c 即改为（若为zsh，则改为zsh)</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
+</code></pre></div></div>
 
 <h4 id="使用pycharm时import第三方库">使用pycharm时import第三方库</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
+</code></pre></div></div>
 
 <h3 id="install-zsh">install zsh</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install zsh
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install zsh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 chsh -s /bin/zsh
 sudo reboot
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>copy ros content in .bashrc to .zshrc</p>
 
 <h3 id="install-vim">install vim</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install vim
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install vim
+</code></pre></div></div>
 
 <p>renew a file called .vimrc:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>set nu
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set nu
 set confirm
 set mouse=a
 set tabstop=4
 set cindent
 syntax on
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                 <hr>
@@ -362,12 +359,12 @@ syntax on
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/05/python-tips/" data-toggle="tooltip" data-placement="top" title="Python Tips">&larr; Previous Post</a>
+                        <a href="/blog/2017/07/05/boost-install/" data-toggle="tooltip" data-placement="top" title="Boost re-install">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/blog/2017/07/05/usage-install-opencv/" data-toggle="tooltip" data-placement="top" title="OpenCV 3.0 + Install and Usage">Next Post &rarr;</a>
+                        <a href="/blog/2017/07/05/modify-problems-ubuntu/" data-toggle="tooltip" data-placement="top" title="Ubuntu unmet problems">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -386,12 +383,12 @@ syntax on
                 </style>
 
                 <div class="ds-share"
-                    data-thread-key="/blog/2017/07/05/reinstall-ubuntu" data-title="Linux Install Tips"
+                    data-thread-key="/blog/2017/07/05/install-ubuntu" data-title="Linux Install Tips"
                     data-images="http://bryanibit/img/black.jpg"
                     data-content="##我们开始吧
 
 Now I think I should do it, write them down and log everything. I am... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/07/05/reinstall-ubuntu/">
+                    data-url="http://bryanibit/blog/2017/07/05/install-ubuntu/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -410,7 +407,7 @@ Now I think I should do it, write them down and log everything. I am... | Microd
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/reinstall-ubuntu" data-title="Linux Install Tips" data-url="http://bryanibit/blog/2017/07/05/reinstall-ubuntu/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/install-ubuntu" data-title="Linux Install Tips" data-url="http://bryanibit/blog/2017/07/05/install-ubuntu/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

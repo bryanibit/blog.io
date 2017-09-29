@@ -141,20 +141,18 @@ Type stringToNum(const string&amp; str)
   <li></li>
 </ol>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int a = 10;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a = 10;
 char *intStr = itoa(a);
 string str = string(intStr);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>2.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int a = 10;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a = 10;
 stringstream ss;
 ss &lt;&lt; a;
 string str = ss.str();
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>3.</p>
 
@@ -164,17 +162,16 @@ std::string s = std::to_string(42);
 
 <h2 id="long-int-to-string">long int to string</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>#include &lt;sstream&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;sstream&gt;
 std::string number;
 std::stringstream strstream;
 strstream &lt;&lt; 1L;
 strstream &gt;&gt; number;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="string-to-int">string to int</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>1.
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1.
 string str="123";
 atoi( str.c_str() );
 
@@ -184,28 +181,25 @@ std::stoi(str);
 3.
 std::stringstream ss(str);
 ss &gt;&gt; thevalue;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="string-to-double">string to double</h2>
 
 <p><code class="highlighter-rouge">string str;
 double value = atof(str.c_str());</code></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>string word;  
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string word;  
 openfile &gt;&gt; word;
 double lol = atof(word.c_str());
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="double-to-string">double to string</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
 std::stringstream ss(s);
 double number=0;
 ss&gt;&gt;number;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="二叉搜索树">二叉搜索树</h2>
 
@@ -215,15 +209,25 @@ ss&gt;&gt;number;
   <li>插入一个数</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code></code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
 
 <ul>
   <li>删除一个数</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code></code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code></code></pre></div></div>
+
+<h2 id="最小生成树">最小生成树</h2>
+
+<p>生成树是建立在无向图中的，对于有向图，则没有生成树的概念，最小生成树不一定唯一，当所有边权值不同时唯一。但是权值之和时一定的</p>
+
+<h2 id="邻接矩阵逆邻接矩阵">邻接矩阵/逆邻接矩阵</h2>
+
+<p>无向图的邻接矩阵时对称的，主队角元素为0，有向图不一定</p>
+
+<h2 id="连通图">连通图</h2>
+
+<p>每个顶点之间都有一个边的为连通图</p>
 
 
 

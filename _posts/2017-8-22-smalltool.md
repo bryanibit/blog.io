@@ -69,8 +69,13 @@ jupyter notebook ##启动notebook
 
 ```
 sudo apt-get install ruby ruby-dev make
-sudo gem install jekyll --no-rdoc --no-ri
+gem install jekyll --no-rdoc --no-ri
 sudo apt-get install nodejs    
+```
+
+```
+jekyll build -w
+jekyll serve
 ```
 
 ## ssh登录

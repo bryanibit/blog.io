@@ -141,7 +141,7 @@
   <li>struct未做声明时，默认成员为public这是和class不同的地方</li>
   <li>当类的某成员函数大于3行时，可以将声明放在类内，定义移到类外，使整个类看起来更加清楚</li>
   <li>类的对象的存储空间：共有函数存储空间，自身的存储空间存储成员变量
-    <div class="highlighter-rouge"><pre class="highlight"><code>class Time
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Time
 {public:
  int hour;
  int minute;
@@ -156,8 +156,7 @@ p=&amp;t;
 cout&lt;&lt;p-&gt;hour;
 cout&lt;&lt;t.minute;
 cout&lt;&lt;endl;//这些放在main中
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h2 id="9类和对象的进一步讨论">9.类和对象的进一步讨论</h2>
   </li>
 </ul>
@@ -169,16 +168,15 @@ cout&lt;&lt;endl;//这些放在main中
   <li>构造函数与类同名，在声明对象时自动执行构造函数，构造函数没有返回类型，因而也没有类型
        构造函数名（类型1形参1， 类型2形参2）
     <h4 id="911-用参数初始化表对数据成员初始化">9.1.1 用参数初始化表对数据成员初始化</h4>
-    <div class="highlighter-rouge"><pre class="highlight"><code>class Box{Box(int,int, int);
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Box{Box(int,int, int);
 int height;
 int width;
 int length;}
 Box::Box(int h,int w, int len):height(h),width(w),length(len){}
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h4 id="构造函数重载">构造函数重载</h4>
     <p>以下声明两个Box()</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>class Box{Box(int,int, int);
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Box{Box(int,int, int);
 Box();
 int height;
 int width;
@@ -190,8 +188,7 @@ Box::Box()
  length = 10;
 }
 Box::Box(int h,int w, int len):height(h),width(w),length(len){}
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h4 id="构造函数的默认参数">构造函数的默认参数</h4>
   </li>
   <li>Box(int h=10,int w=10, int len=10); 这是声明，在类内部，具体定义在类外边
@@ -217,31 +214,27 @@ Box::Box(int h,int w, int len):height(h),width(w),length(len){}
   </li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>类的成员变量
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>类的成员变量
 int *p1;
 p1 = &amp;t1.hour;
 cout&lt;&lt; *p1&lt;&lt;endl;
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>普通函数
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>普通函数
 void (*p)(int, int);//指向void型函数的指针变量
 p = fun;
 (*p)(int a,int b)//调用fun函数
-</code></pre>
-</div>
-<div class="highlighter-rouge"><pre class="highlight"><code>类的成员函数
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>类的成员函数
 void (Time::*p2)();
 p2=Time::get_time;
 (t1.*p2)();//调用t1中的p2所指函数
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>一个类多个对象，成员函数对应相同的代码段，以上赋值指针变量p2的应该是公用的函数代码段的入口地址
 以上两句定义和指定指针指向合并为
-    <div class="highlighter-rouge"><pre class="highlight"><code>void (Time::*p2)()=Time::get_time;
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void (Time::*p2)()=Time::get_time;
+</code></pre></div>    </div>
   </li>
   <li>函数的指针变量的类型必须与赋值号右侧函数类型在以下3个方面匹配：</li>
   <li>1.函数参数的类型和参数个数 2.函数返回值的类型 3.所属的类</li>
@@ -253,23 +246,20 @@ p2=Time::get_time;
   <li>如果一个类对应多个对象，存放多个对象的数据成员，但是不同的对象都调用同一个函数代码段</li>
   <li>不同对象的成员函数引用数据成员时，保证引用的是所指定的对象的数据成员</li>
   <li>每个<em>成员函数</em>都包含一个特殊的指针，成为this，它指向<em>本类对象</em>的指针，它的值是<em>当前被调用的成员函数所在的对象的起始地址</em>
-    <div class="highlighter-rouge"><pre class="highlight"><code>对象指针
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>对象指针
 Time *p;
 Time t1;
 p=&amp;t1;
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>用new运算符动态分配内存后返回一个指向<em>新对象的指针的值</em>,就是所<em>分配的内存空间的起始地址</em>
-    <div class="highlighter-rouge"><pre class="highlight"><code>Box *pt;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Box *pt;
 pt=new Box;
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>以上方法新建了一个对象可以使用以下方法来访问
-    <div class="highlighter-rouge"><pre class="highlight"><code>pt-&gt;height;
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pt-&gt;height;
+</code></pre></div>    </div>
     <p>合成一句话并初始化</p>
   </li>
   <li>Box *pt = new Box(12,15,18); //构造函数</li>
@@ -295,15 +285,13 @@ pt=new Box;
   <li>静态成员变量不隶属于任何一个对象，它是类的成员，即使不定义对象，静态数据成员也被分配空间，也可被引用</li>
   <li>静态成员变量不随对象的撤销而释放，它是类的成员。</li>
   <li>静态成员变量只能在类外进行初始化
-    <div class="highlighter-rouge"><pre class="highlight"><code>int Box::height = 10;//height is static variable of class Box
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int Box::height = 10;//height is static variable of class Box
+</code></pre></div>    </div>
   </li>
   <li>初始化（构造函数）中不能操作静态变量
-    <div class="highlighter-rouge"><pre class="highlight"><code>Box b = new Box();
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Box b = new Box();
 b.height;//可以使用对象名访问静态成员
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h4 id="类的静态函数">类的静态函数</h4>
   </li>
   <li>静态函数存在的价值主要是操作静态变量</li>
@@ -311,7 +299,7 @@ b.height;//可以使用对象名访问静态成员
   <li>因为</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 int Box::volume()
 {
 	return (height\*width\*length);
@@ -323,8 +311,7 @@ int Box::volume(Box *this)
 {
 	return (this-&gt;height\*this-&gt;width\*this-&gt;length);
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>由于静态变量没有this指针，找不到内存中当前需要操作的成员变量</li>
@@ -339,7 +326,7 @@ int Box::volume(Box *this)
   <li>下面的程序展示了Date中的友元函数由Time中的成员函数担任，使之能访问两个类的成员，注意访问的方式</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Date;//对Date类的提前引用声明
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Date;//对Date类的提前引用声明
 class Time
 {
 public: Time(int, int, int);
@@ -383,14 +370,13 @@ int main()
 	t1.display(d1);
 	return 0;
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>下面的程序，友元函数不是类的成员函数，通过重载访问两个类的私有数据</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Time
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Time
 {
 public: Time(int, int, int);
 		friend void display(Time &amp;);
@@ -434,8 +420,7 @@ int main()
 	display(t1);
 	return 0;
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>##10.运算符重载</p>
 
@@ -448,7 +433,7 @@ e.g.
 int operator + (int a, int b)</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Complex
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 Complex operator + (Complex &amp;);
@@ -463,8 +448,7 @@ int main()
 Complex c2(13.5,3.4);
 Complex c = c1+c2;//c = c1.operator+(c2)
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>不能重载的运算符有5个:</p>
 <ul>
@@ -486,7 +470,7 @@ Complex c = c1+c2;//c = c1.operator+(c2)
 <p>重载不改变运算符优先级，重载运算符参数必须至少包含一个用户自定义的类或struct，否则就失去了重载运算符的意义，而且发生错误。
 <strong>一般情况：双目运算符重载为类的友元函数，单目运算符重载为类的成员函数</strong>
 以上代码段修改为friend表示为</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>class Complex
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 friend Complex operator + (Complex &amp;, Complex &amp;);
@@ -501,17 +485,15 @@ int main()
 Complex c2(13.5,3.4);
 Complex c = c1+c2;//c = c1.operator+(c2)
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 <h3 id="重载流运算符">重载流运算符</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>istream &amp; operator &gt;&gt; (istream &amp;, 自定义类 &amp;);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>istream &amp; operator &gt;&gt; (istream &amp;, 自定义类 &amp;);
 ostream &amp; operator &lt;&lt; (ostream &amp;, 自定义类 &amp;);
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>重载流运算符函数必须作为友元函数不能作为类的成员函数，原因显而易见，位置已经被stream &amp;占据</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>class Complex
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>class Complex
 {public:Complex(){real=0;img=0;}
 Comlex(double a, double b){real=a;img=b}
 friend ostream operator &lt;&lt; (ostream &amp;, Complex &amp;);
@@ -531,8 +513,7 @@ Complex c2;
 cin&gt;&gt;c2&gt;&gt;c1;//手动输入4个数字
 cout&lt;&lt;c1&lt;&lt;c2;//(cout&lt;&lt;c1)return ostream所以可以继续&lt;&lt;c2
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="构造函数as强制类型转换">构造函数as强制类型转换</h3>
 
@@ -555,10 +536,9 @@ cout&lt;&lt;c1&lt;&lt;c2;//(cout&lt;&lt;c1)return ostream所以可以继续&lt;&
 <h3 id="类型转换函数进行类型转换">类型转换函数进行类型转换</h3>
 
 <p>类型转换函数作用是将一个类对象转换成另一个类型的数据，在Complex类中定义类型转换函数：</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>operator double()
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>operator double()
  {return real;}
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>抽象一般形式为
 <code class="highlighter-rouge">operator 类型名()
@@ -610,11 +590,10 @@ cout&lt;&lt;c1&lt;&lt;c2;//(cout&lt;&lt;c1)return ostream所以可以继续&lt;&
 <h3 id="112-派生类的构造函数和析构函数">11.2 派生类的构造函数和析构函数</h3>
 
 <p>基类的构造函数是不能继承的，所以要初始化派生类对象应该同时考虑基类的对象，方法是执行派生类构造函数时，调用基类的构造函数。e.g.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>Student(int n,string nam,char s){}//基类构造函数，放在基类中
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Student(int n,string nam,char s){}//基类构造函数，放在基类中
 Student_derivedclass(int n,string name, char s, int a, string ad):Student(n,nam,s){}
 //本句放在派生类中作为派生类的构造函数
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="113-有子对象的派生类的构造函数">11.3 有子对象的派生类的构造函数</h3>
 

@@ -125,7 +125,7 @@
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
                 <h2 id="eigenmap">Eigen::map&lt;&gt;()</h2>
-<div class="highlighter-rouge"><pre class="highlight"><code>int array[9];
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int array[9];
 for(int i = 0; i &lt; 9; ++i) array[i] = i;
 cout &lt;&lt; Map&lt;Matrix3i&gt;(array) &lt;&lt; endl;
 
@@ -135,13 +135,12 @@ Output:
 1 4 7
 2 5 8
 
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>注意以上map得到的结果是先填充行再填充列的</p>
 
 <h2 id="eigen-block--">Eigen block &lt;&gt; ()</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>/#include &lt;Eigen/Dense&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/#include &lt;Eigen/Dense&gt;
 /#include &lt;iostream&gt;
 using namespace std;
 int main()
@@ -159,11 +158,10 @@ int main()
     cout &lt;&lt; m.block(0,0,i,i) &lt;&lt; endl &lt;&lt; endl;
   }
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>output:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Block in the middle
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Block in the middle
  6  7
 10 11
 
@@ -178,8 +176,7 @@ Block of size 3x3
  1  2  3
  5  6  7
  9 10 11
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                 <hr>

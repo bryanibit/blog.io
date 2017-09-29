@@ -10,7 +10,7 @@
 
     <title>Linux small tools - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/08/22/smalltool/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/08/22/smalltool/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -126,51 +126,92 @@
 
                 <h2 id="install-vim">install vim</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo apt-get install vim
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install vim
+</code></pre></div></div>
 
 <p>renew a file called .vimrc:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>set nu
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set nu
 set confirm
 set mouse=a
 set tabstop=4
 set cindent
 syntax on
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="install-terminator">install terminator</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>udo apt-get install terminator
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install terminator
 sudo apt-get install dconf-tools
 gsettings set org.gnome.desktop.default-applications.terminal exec   /usr/bin/terminator
 gsettings set org.gnome.desktop.default-applications.terminal exec-arg "-x"
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<h2 id="jupyter-notebook"><strong>Jupyter Notebook</strong></h2>
+<p>快捷键使用
+Ctrl+Shift+O
+    Split terminals Horizontally.（上下开新窗口）
+Ctrl+Shift+E
+    Split terminals Vertically.（垂直开新窗口）</p>
+
+<h2 id="jupyter-notebook">Jupyter Notebook</h2>
 
 <ul>
   <li>安装</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>pip install --upgrade pip # upgrade pip to the newest version
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip install --upgrade pip # upgrade pip to the newest version
 pip install jupyter
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>配置</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>jupyter notebook --generate-config #如/home/inin下没有.jupyter file
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jupyter notebook --generate-config #如/home/inin下没有.jupyter file
 jupyter notebook password ##设置密码
-</code></pre>
-</div>
+jupyter notebook ##启动notebook
+</code></pre></div></div>
 
 <p>打开浏览器 输入<em>127.0.0.1:8888</em> 输入密码</p>
+
+<h2 id="blog-native-compile">blog native compile</h2>
+
+<p><a href="http://harttle.com/2013/10/18/github-homepage-tutorial.html">部署自己的博客：Github+Jekyll</a></p>
+
+<ol>
+  <li>install jekyll</li>
+</ol>
+
+<ul>
+  <li>solve the problem that gem install jekyll error:
+<a href="https://stackoverflow.com/questions/22460117/error-error-installing-jekyll-error-failed-to-build-gem-native-extension">stack exchange</a></li>
+</ul>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get install ruby ruby-dev make
+gem install jekyll --no-rdoc --no-ri
+sudo apt-get install nodejs    
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>jekyll build -w
+jekyll serve
+</code></pre></div></div>
+
+<h2 id="ssh登录">ssh登录</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>被登录计算机安装
+sudo apt-get install openssh-server
+
+进行登录的计算机
+ssh &lt;user_name&gt;@&lt;host_ip&gt;
+</code></pre></div></div>
+
+<h2 id="find命令">find命令</h2>
+
+<p>find <指定目录> <指定条件> <指定动作></指定动作></指定条件></指定目录></p>
+
+<p>$ find . -name ‘my*’</p>
+
+<p>搜索当前目录（含子目录，以下同）中，所有文件名以my开头的文件。</p>
 
 
 
@@ -204,18 +245,17 @@ jupyter notebook password ##设置密码
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/08/22/smalltool" data-title="Linux small tools"
-                    data-images="http://bryanibit/img/black.jpg"
+                    data-images="http://localhost:4000/img/black.jpg"
                     data-content="install vim
 
 sudo apt-get install vim
 
 
-
 renew a file called .vimrc:
 
 set nu
-... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/08/22/smalltool/">
+s... | Microdust:Azeril's blog"
+                    data-url="http://localhost:4000/blog/2017/08/22/smalltool/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -234,7 +274,7 @@ set nu
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/08/22/smalltool" data-title="Linux small tools" data-url="http://bryanibit/blog/2017/08/22/smalltool/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/08/22/smalltool" data-title="Linux small tools" data-url="http://localhost:4000/blog/2017/08/22/smalltool/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

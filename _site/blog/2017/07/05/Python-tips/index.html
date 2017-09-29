@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="于华超">
 
-    <title>Boost re-install - 屋顶上的鱼</title>
+    <title>Python Tips - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/boost-install/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/Python-tips/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -106,7 +106,7 @@
                         <a class="tag" href="/Tags/#技术总结" title="技术总结">技术总结</a>
                         
                     </div>
-                    <h1>Boost re-install</h1>
+                    <h1>Python Tips</h1>
                     
                     <span class="meta">Posted by Bryan on July 5, 2017</span>
                 </div>
@@ -124,43 +124,218 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2 id="ubuntu中下载boost包安装boost">Ubuntu中下载boost包安装boost</h2>
+                <h2 id="两个维数相同的bool类型数组做与运算">两个维数相同的bool类型数组做与运算</h2>
 
-<p>移除原来的boost方法：</p>
+<p>np.nonzero(ok1 * ok2)[0]</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    sudo apt-get --purge remove libboost-dev 
-    sudo apt-get --purge remove libboost-all-dev
+<p>其中ok1和ok2都是一个一维数组bool型的</p>
+
+<p>如果加[0]会使得到的结果仍为一维数组</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     &gt; ok1*ok2
+     array([False,  True, False, False], dtype=bool)
+     &gt; np.nonzero(ok1*ok2)[0]
+     array([1])
+     &gt; np.nonzero(ok1*ok2)
+     (array([1]),)
+
+
+     &gt; b1*b2
+     array([False,  True,  True, False], dtype=bool)
+     &gt; np.nonzero(b1*b2)
+     (array([1, 2]),)
+     &gt; np.nonzero(b1*b2)[0]
+     array([1, 2])
 </code></pre></div></div>
 
-<p>安装boost 1.57依赖项
-        sudo apt-get install mpi-default-dev ##（不知道有没有用）
-        sudo apt-get install libbz2-dev
-        sudo apt-get install libicu-dev
-        sudo apt-get install python-dev</p>
+<h2 id="文本读取打开">文本读取打开</h2>
 
-<p>查看boost版本：</p>
+<p>使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    cat /usr/include/boost/version.hpp | grep "BOOST_LIB_VERSION”
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>with open(filename,'a') as filepoint:
+    filepoint.write(string)
 </code></pre></div></div>
 
-<p>The way you are reinstalling the package might install Boost on your (/home) as opposed to on system (/usr..).</p>
+<p>文件打开方式 a append,  w empty then write,  r read</p>
 
-<p>Use the –prefix option of b2 to set the installation location.</p>
+<h2 id="两个数组合并某个添加一列">两个数组合并/某个添加一列</h2>
 
-<p>Depending on where it installs, at the completion of ./b2</p>
+<p>在shape=（432,2）的数组上加上一列使用 np.hstack()</p>
 
-<h2 id="windows中下载boost安装包">Windows中下载boost安装包</h2>
+<p>e.g.</p>
+<ul>
+  <li>pixel = np.zeros((439,2), dtype=)</li>
+  <li>s = pixel.shape[:-1]+(1,)</li>
+  <li>result = np.hstack((pixel,np.ones(s)))</li>
+</ul>
 
-<h3 id="在visual-studio中使用boost">在visual studio中使用boost</h3>
+<p>在shape=（432,2）的数组上加上一列使用 np.colomn_stack(())</p>
 
-<p>可能失败的原因
-Boost has a few libraries that are not standalone and require installation of 3rd party libraries. These are:
-Boost.IOStreams Bzip2 filters
-Boost.IOStreams Zlib filters
-Boost.MPI
-Boost.Python
-Boost.Regex ICU support
-If you do not install these dependencies, Boost.Build will skip them which explains your build message. If you want the optional components, then you have more work to do. This is explained in great detail in this <a href="https://stackoverflow.com/questions/2629421/how-to-use-boost-in-visual-studio-2010/2655683#2655683">answer</a>.</p>
+<ul>
+  <li>pixel = np.zeros((439,2), dtype=int)</li>
+  <li>s = np.ones(439, dtype=int)</li>
+  <li>result = np.column_stack((pixel,s))</li>
+</ul>
+
+<h2 id="矢量求范数">矢量求范数</h2>
+
+<p>bearing_b3 是一个n×3的矩阵</p>
+
+<p>‘normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]’</p>
+
+<p>e.g.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     &gt; bearing_b3
+     array([[1, 2, 3],
+            [4, 5, 6],
+            [7, 8, 9],
+            [2, 5, 8]])
+
+     &gt; np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]
+     array([[  3.74165739],
+            [  8.77496439],
+            [ 13.92838828],
+            [  9.64365076]])
+
+     &gt; np.linalg.norm(bearing_b3, axis=1)
+     array([  3.74165739,   8.77496439,  13.92838828,   9.64365076])
+</code></pre></div></div>
+
+<h2 id="cv2rodrigues">cv2.Rodrigues</h2>
+
+<p>Python: cv2.Rodrigues(src[, dst[, jacobian]]) → dst, jacobian¶</p>
+
+<p>R’ = cv2.Rodrigues(R)[0]</p>
+
+<p>Note that: [0]</p>
+
+<h2 id="两个大小一致的数组满足条件的配对">两个大小一致的数组，满足条件的配对</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>results = np.array([7,8,9,10])
+dists = np.array([1,2,3,4])
+good = dists &amp;lt 2
+*array([ True, False, False, False], dtype=bool)*
+matches = zip(results[good],good.nonzero()[0])
+*[(7, array([0]))]* \# matches is a list
+</code></pre></div></div>
+<h2 id="nparray中两个维度相同的数组互相相乘注意">np.array中两个维度相同的数组互相相乘注意</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ok1 = np.array([ True, False, False, False], dtype=bool)
+ok2 = np.array([ True, False, True, False], dtype=bool)
+ok1*ok2
+*array([ True, False, False, False], dtype=bool)*
+np.nonzero(ok1*ok2)
+*(array([0]),)*
+np.nonzero(ok1*ok2)[0]
+*array([0])*
+</code></pre></div></div>
+
+<h2 id="python运算符优先级">python运算符优先级</h2>
+
+<p>从上到下优先级依次递减</p>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png" alt="python运算符优先级" /></p>
+
+<h2 id="argparse">argparse</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>parser = argparse.ArgumentParser()
+parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
+××.py -v 1
+
+parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")
+××.py -vv --verbosity --verbosity
+
+parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
+××.py -v
+</code></pre></div></div>
+
+<p>如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=</p>
+
+<h2 id="ord-chr">ord() chr()</h2>
+
+<p>ord(‘a’) -&gt; 97 # 返回ascII</p>
+
+<p>chr(97) –&gt; ‘a’ # return 字符</p>
+
+<h2 id="list-to-array">list to array</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>a = np.array([[1,2],[4,5],[2,3]])
+此时才能用切片功能,a不能是list，执行下列操作：
+plt.plot(a[:,0],a[:,1])
+</code></pre></div></div>
+
+<p>numpy.ndarry.tolist #numpy to list</p>
+
+<h2 id="listpop使用">list.pop()使用</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>l=['a','b','c','d','e','f','g','h','i']
+for i in xrange(len(l))
+  for j in xrange(i+1, len(l))
+    L = l[:]
+    L = [v for i, v in enumerate(l) if i not in frozenset((i,j))]
+</code></pre></div></div>
+
+<p>删除了元素i，j在list L中</p>
+
+<h2 id="小数的舍入">小数的舍入</h2>
+
+<p>round() 四舍五入
+floor() 11.9=&gt;11
+ceil()  11.1=&gt;11
+int() 直接截去小数部分</p>
+
+<h2 id="二维数组按照size排序方法">二维数组按照size排序方法</h2>
+
+<p>已知一个二维数组，现在使用每行的第三列数据大小作为依据，将二维数组排序</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>size = p_unsorted[:, 2]
+order = np.argsort(size)
+p_sorted = p_unsorted[order, :]
+</code></pre></div></div>
+
+<h2 id="python内置函数">Python内置函数</h2>
+
+<ol>
+  <li>map(func, seq1[, seq2,…]) 
+第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。
+map相当于</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def map(f, iterable)
+    return [f(x) for x in iterable]
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>print map(lambda x , y : x ** y, [2,4,6],[3,2,1])
+[8, 16, 6]
+print map(None, [2,4,6],[3,2,1])
+[(2, 3), (4, 2), (6, 1)]
+map(int, (1,2,3))
+[1, 2, 3]
+map(int, '1234')
+[1, 2, 3, 4]
+</code></pre></div></div>
+
+<ol>
+  <li>reduce(func, seq1[,seu2,…])</li>
+</ol>
+
+<p>reduce相当于</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def reduce(f, list)
+product = 1
+for num in list:
+    product = f(product,num)
+return product
+</code></pre></div></div>
+
+<h2 id="multiprocessing-module">multiprocessing Module</h2>
+
+<p>Python中一种多进程方法（another way: Threading.Thread())
+apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步</p>
+
+<h2 id="divmodab">divmod(a,b)</h2>
+
+<p>相当于（math.floor(a/b), a%b) if a or b is float 和 （a//b, a % b)  if a or b is int</p>
 
 
 
@@ -169,12 +344,12 @@ If you do not install these dependencies, Boost.Build will skip them which expla
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/05/Python-tips/" data-toggle="tooltip" data-placement="top" title="Python Tips">&larr; Previous Post</a>
+                        <a href="/blog/2017/07/05/OpenCV-usage-install/" data-toggle="tooltip" data-placement="top" title="OpenCV 3.0 + Install and Usage">&larr; Previous Post</a>
                     </li>
                     
                     
                     <li class="next">
-                        <a href="/blog/2017/07/05/install-ubuntu/" data-toggle="tooltip" data-placement="top" title="Linux Install Tips">Next Post &rarr;</a>
+                        <a href="/blog/2017/07/05/boost-install/" data-toggle="tooltip" data-placement="top" title="Boost re-install">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -193,14 +368,16 @@ If you do not install these dependencies, Boost.Build will skip them which expla
                 </style>
 
                 <div class="ds-share"
-                    data-thread-key="/blog/2017/07/05/boost-install" data-title="Boost re-install"
+                    data-thread-key="/blog/2017/07/05/Python-tips" data-title="Python Tips"
                     data-images="http://bryanibit/img/black.jpg"
-                    data-content="Ubuntu中下载boost包安装boost
+                    data-content="两个维数相同的bool类型数组做与运算
 
-移除原来的boost方法：
+np.nonzero(ok1 * ok2)[0]
 
-    sudo apt-get --purge remove libboo... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/07/05/boost-install/">
+其中ok1和ok2都是一个一维数组bool型的
+
+如果加[0... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/07/05/Python-tips/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -219,7 +396,7 @@ If you do not install these dependencies, Boost.Build will skip them which expla
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/boost-install" data-title="Boost re-install" data-url="http://bryanibit/blog/2017/07/05/boost-install/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/Python-tips" data-title="Python Tips" data-url="http://bryanibit/blog/2017/07/05/Python-tips/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

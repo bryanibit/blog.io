@@ -138,7 +138,7 @@
 
 <h2 id="cmakeliststxt">CMakeLists.txt</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>project(point_group)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project(point_group)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
 ＞　# OpenCV is not install in default location, if not delete that.
@@ -152,8 +152,7 @@ aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 target_link_libraries(point_group ${OpenCV_LIBS})
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置</p>
 
@@ -179,25 +178,23 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 <h3 id="读取文件c">读取文件C++</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>     #include&lt;fstream&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     #include&lt;fstream&gt;
      // read-mode
      std::ifstream infile;
      infile.open("./1.txt");
      string s;
      // get a line
      getline(infile, s);
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="写入文件c">写入文件c++</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> //write-mode
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> //write-mode
  std::ofstream onfile;
  double x = 80.90809;
  onfile.open("absolute dir", std::ios::app);
  onfile&lt;&lt;std::fixed&lt;&lt;std::setprecision(8)&lt;&lt;x&lt;&lt;endl;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="文件打开方式">文件打开方式</h3>
 
@@ -223,7 +220,7 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 <h3 id="c-split">C++ split()</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>std::vector&lt;std::string&gt; split(const std::string&amp; s, char seperator)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>std::vector&lt;std::string&gt; split(const std::string&amp; s, char seperator)
 {
 	std::vector&lt;std::string&gt; output;
 
@@ -242,20 +239,18 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 	return output;
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 <h3 id="遍历一个vector-v">遍历一个vector<double> v</double></h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
 {
 		double a = *iterator
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="遍历一个vector-vector--v">遍历一个vector&lt; vector<double> &gt; v</double></h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
 {
 	double b = (*iterator)[3]//取每个vector中的第四个元素
 	for(auto iter = (*iterator).begin(); iter != (*iterator).end(); ++iter)
@@ -263,15 +258,14 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 		double a = *iter//取每个vector中的每个vector的每个元素
     }
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="平面点集表示-vectorpairdouble-double">平面点集表示 vector&lt;pair&lt;double, double»</h3>
 
 <p>使用std::vector<string> point(每个string的
 形式为 "3.5,12.3" 形式)填满point_num</string></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>for (vector&lt;string&gt;::iterator ite = point.begin(); ite != point.end(); ++ite)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>for (vector&lt;string&gt;::iterator ite = point.begin(); ite != point.end(); ++ite)
 	{
 		// xy=split(*ite, ',');
 		a = *ite;
@@ -281,22 +275,20 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 		point_num.push_back(std::make_pair(x, y));
 
 	}
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>遍历读取point_num的数字
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>遍历读取point_num的数字
 
 for (auto iter1 = point_num.begin(); iter1 != point_num.end(); ++iter1)
 	{
 		double first_number = iter1-&gt;first
 		double second_number = iter2-&gt;first
 	}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="struct的遍历和表示">struct的遍历和表示</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>struct POINT
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct POINT
 {
 	double x;
 	double y;
@@ -314,8 +306,7 @@ for (auto ite = ch; ite-&gt;value != false; ++ite)
 		point_hull.push_back(std::make_pair(ite-&gt;x, ite-&gt;y));
 		//make_pair 会将后面接的数字强制转化为double型
 	}
-</code></pre>
-</div>
+</code></pre></div></div>
 
 
                 <hr>
@@ -323,7 +314,7 @@ for (auto ite = ch; ite-&gt;value != false; ++ite)
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/05/usage-install-opencv/" data-toggle="tooltip" data-placement="top" title="OpenCV 3.0 + Install and Usage">&larr; Previous Post</a>
+                        <a href="/blog/2017/07/05/multiple-view-geometry/" data-toggle="tooltip" data-placement="top" title="Multiview Geometry">&larr; Previous Post</a>
                     </li>
                     
                     

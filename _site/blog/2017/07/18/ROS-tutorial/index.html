@@ -135,15 +135,14 @@
   <li>package.xml中含有</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;buildtool_depend&gt;catkin&lt;/buildtool_depend&gt;
 &lt;build_depend&gt;roscpp&lt;/build_depend&gt;
 &lt;build_depend&gt;rospy&lt;/build_depend&gt;
 &lt;build_depend&gt;std_msgs&lt;/build_depend&gt;
 &lt;run_depend&gt;roscpp&lt;/run_depend&gt;
 &lt;run_depend&gt;rospy&lt;/run_depend&gt;
 &lt;run_depend&gt;std_msgs&lt;/run_depend&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs</li>
@@ -161,17 +160,15 @@ If roscore does not initialize and sends a message about lack of permissions,
 probably the ~/.ros folder is owned by root, change recursively
 the ownership of that folder with:</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>   $ sudo chown -R &lt;your_username&gt; ~/.ros
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>   $ sudo chown -R &lt;your_username&gt; ~/.ros
+</code></pre></div>    </div>
   </li>
 </ul>
 
 <p>改变节点名称：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>         rosrun turtlesim turtlesim_node __name:=my_turtle
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         rosrun turtlesim turtlesim_node __name:=my_turtle
+</code></pre></div></div>
 
 <p>新名称是my_turtle,原来名称是turtlesim</p>
 
@@ -179,36 +176,31 @@ the ownership of that folder with:</p>
 
 <p><strong>查看各个节点topic关系</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>         rosrun rqt_graph rqt_graph
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         rosrun rqt_graph rqt_graph
+</code></pre></div></div>
 
 <p><strong>查看topic的数据类型</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>         rostopic type /topic_name
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         rostopic type /topic_name
+</code></pre></div></div>
 
 <p><strong>可以继续查看topic type的具体参数（float，double等）</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>         rosmsg show /topic_type
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>         rosmsg show /topic_type
+</code></pre></div></div>
 
 <h2 id="rosdep">rosdep</h2>
 
 <p>rosdep是一个你可以用来安装ROS package系统依赖的工具</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>           rosdep install [package]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>           rosdep install [package]
+</code></pre></div></div>
 
 <p>如果你是第一次使用rosdep，你会看到一个error</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>             sudo rosdep init
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>             sudo rosdep init
    	           rosdep update
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="packagexml">package.xml</h2>
 
@@ -237,24 +229,21 @@ the ownership of that folder with:</p>
 </ul>
 
 <p>在package.xml中四部分写法</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;buildtool_depend&gt;依赖名&lt;/buildtool_depend&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;buildtool_depend&gt;依赖名&lt;/buildtool_depend&gt;
 &lt;build_depend&gt;依赖名&lt;/build_depend&gt;
 &lt;run_depend&gt;依赖名&lt;/run_depend&gt;
 &lt;test_depend&gt;依赖名&lt;/test_depend&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="通过命令行发送topic">通过命令行发送topic</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>rostopic pub [topic] [msg_type] [args]
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>rostopic pub [topic] [msg_type] [args]
+</code></pre></div></div>
 <p>e.g.控制乌龟运动</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
                   topic_name                    (topic type /topic_name)    (rosmsg show /topic_type)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="rqt_plot绘制topic的曲线图">rqt_plot绘制topic的曲线图</h2>
 
@@ -273,7 +262,7 @@ the ownership of that folder with:</p>
 </code></pre>
 <p>在beginner_tutorials中新建一个launch的方法</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>roscd beginner_tutorials
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>roscd beginner_tutorials
 mkdir launch
 touch launch
 
@@ -292,33 +281,30 @@ touch launch
   &lt;/node&gt;
 &lt;/launch&gt;
 --------------------------------------------------------------
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="自定义一个msg和srv">自定义一个msg和srv</h2>
 
 <p>msgs are just simple text files with a field type and field name per line. The field types you can use are:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    int8, int16, int32, int64 (plus uint*, e.g. uint8 unsigned 8-bit int)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    int8, int16, int32, int64 (plus uint*, e.g. uint8 unsigned 8-bit int)
     float32, float64
     string
     time, duration
     other msg files
     variable-length array[] and fixed-length array[C]
     Header
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>The header contains a <strong>timestamp</strong> and <strong>coordinate frame</strong> information that are commonly used in ROS.</li>
   <li>srv files are just like msg files, except they contain two parts: a request and a response. The two parts are separated by a ‘—’ line.</li>
   <li>e.g. Here is an example of a srv file:</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int64 A
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int64 A
 int64 B
 ---
 int64 Sum
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="新建msg">新建msg</h3>
 
@@ -326,45 +312,40 @@ int64 Sum
 
 <p>同时在该包的package.xml中加上两句话，以便msg可以编译为c++，python可以识别的样子</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;build_depend&gt;message_generation&lt;/build_depend&gt;
 &lt;run_depend&gt;message_runtime&lt;/run_depend&gt;
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>同时在CmakeLists.txt中添加以下内容，此是为了buildDependencies</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>find_package(catkin REQUIRED COMPONENTS
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find_package(catkin REQUIRED COMPONENTS
    roscpp
    rospy
    std_msgs
    message_generation
 )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Export the message runtime dependency</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>catkin_package(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>catkin_package(
   ...
   CATKIN_DEPENDS message_runtime ...
   ...)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>CMake knows when it has to reconfigure the project after adding other .msg files</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>add_message_files(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add_message_files(
   FILES
   Num.msg
 )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>最后产生message可以读到的message，申明依赖的message</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>generate_messages(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>generate_messages(
   DEPENDENCIES
   std_msgs
 )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>使用rosmsg show topic_type可以查看具体内容</p>
 
@@ -376,21 +357,19 @@ int64 Sum
 
 <p>package.xml添加和msg中相同内容，在cmakelists中添加相同内容，唯一不同的地方如下（msg是add_message_files）：</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>add_service_files(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>add_service_files(
   FILES
   AddTwoInts.srv
 )
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>使用 rossrv show beginner_tutorials/AddTwoInts可以查看到以下具体内容</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int64 a
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int64 a
 int64 b
 ---
 int64 sum
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>Any .msg file in the msg directory will generate code for use in all supported languages. The C++ message header file will be generated in ~/catkin_ws/devel/include/beginner_tutorials/.</li>
@@ -406,45 +385,39 @@ int64 sum
 
 <h2 id="write-publisher-node">Write publisher node</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ros::init(argc, argv, "talker");
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros::init(argc, argv, "talker");
+</code></pre></div></div>
 <p>初始化Ros和赋node name（不能有/）</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ros::NodeHandle n;
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros::NodeHandle n;
+</code></pre></div></div>
 
 <p>初始化node，新建句柄</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ros::Publisher chatter_pub = n.advertise&lt;std_msgs::String&gt;("chatter", 1000);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros::Publisher chatter_pub = n.advertise&lt;std_msgs::String&gt;("chatter", 1000);
+</code></pre></div></div>
 
 <p>告诉roscore，要publish一个topic，名叫chatter，类型叫std_msgs::String， 1000 是 the size of our publishing queue（buffer）.</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code> ros::Rate loop_rate(10);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> ros::Rate loop_rate(10);
+</code></pre></div></div>
 
 <p>配合Rate::sleep()使用，10指的是10Hz</p>
 
 <p>Ctrl-C will cause ros::ok() to return false</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>ros::spinOnce();
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ros::spinOnce();
+</code></pre></div></div>
 
 <p>If you were to add a subscription into this application, and did not have ros::spinOnce() here, your callbacks would never get called.</p>
 
 <h2 id="write-a-subscribe-node">Write a subscribe node</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>    ros::NodeHandle n;
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    ros::NodeHandle n;
     ros::Subscriber sub = n.subscribe("chatter", 1000, chatterCallback); 订阅chatter，回调函数是chatterCallback, The 2nd argument is the queue size, in case we are not able to process messages fast enough. In this case, if the queue reaches 1000 messages.
 
     ros::spin(); *ros::spin()* enters a loop, calling message callbacks as fast as possible.
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="ros-msg">ROS MSG</h2>
 
@@ -465,7 +438,7 @@ int64 sum
 
 <p><strong>Build-in type:</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Primitive Type       Serialization(序列化)        C++             Python
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Primitive Type       Serialization(序列化)        C++             Python
 
   bool                unsigned 8-bit int        uint8_t           bool
   int8                  signed 8-bit int         int8_t            int
@@ -477,21 +450,19 @@ int64 sum
   float32             32-bit IEEE float         float              float
   float64             64-bit IEEE float         double             float
   string               ascii  string            std::string        str
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>其中，uint8在Python中有特殊意义，uint8[]在Python中视为Python bytes,在ros msg中弃用的别名char(uint8弃用的别名)和byte(int8弃用的别名)</p>
 
 <p><strong>Array handling</strong></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>Array Type            Serialization                        C++                             Python
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Array Type            Serialization                        C++                             Python
 
 fixed-length       no-extra serialization     0.11+:boost::array,otherwise:std::vector     tuple
 variable-length    uint32 length prefix              std::vector                           tuple
 uint8[]               see above                      std::vector                           bytes
 bool[]                see above                   std::vector&lt;uint8_t&gt;                    list of bool
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>rospy把uint8视为bytes，在Python2中，同str</li>
@@ -518,7 +489,7 @@ bool[]                see above                   std::vector&lt;uint8_t&gt;    
 
 <h3 id="ros文件结构-c--python">ROS文件结构 c++ &amp; python</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>package_name
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>package_name
              --include
                    --package_name
                             --××.h
@@ -529,8 +500,7 @@ bool[]                see above                   std::vector&lt;uint8_t&gt;    
  	      --CMakeLists.txt
 	      --package.xml
 	      --setup.py
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ol>
   <li>××.h定义namespace space_name,××.cpp using namespace space_name,完成C++类和函数/命名空间的定义</li>
@@ -555,10 +525,9 @@ bool[]                see above                   std::vector&lt;uint8_t&gt;    
 
 <p>To get around this, you need the MoveIt ROS planning interface which is available in the ROS repos (sudo apt-get install ros-groovy-moveit-ros-planning-interface). Once installed, add the following code to your Python node:</p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>from moveit_ros_planning_interface._moveit_roscpp_initializer import roscpp_init
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>from moveit_ros_planning_interface._moveit_roscpp_initializer import roscpp_init
 roscpp_init('node_name', [])
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <p>Now everything should work fine.</p>
 
@@ -574,9 +543,8 @@ roscpp_init('node_name', [])
   <li>CMakeLists: add_libraries 添加的生成的库文件使用set_target_properties命令应该放在</li>
 </ol>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>/catkin_ws/devel/lib/python2.7/dist-packages/
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/catkin_ws/devel/lib/python2.7/dist-packages/
+</code></pre></div></div>
 <p>so it can be found by python.</p>
 
 <h2 id="dynamic-reconfigure">Dynamic reconfigure</h2>

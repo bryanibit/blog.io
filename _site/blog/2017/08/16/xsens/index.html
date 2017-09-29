@@ -10,7 +10,7 @@
 
     <title>Xsens-710 - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://bryanibit/blog/2017/08/16/xsens/">
+    <link rel="canonical" href="http://localhost:4000/blog/2017/08/16/xsens/">
 
     <!-- Icons -->
   <link rel="shortcut icon" href="img/favicon.ico">
@@ -136,14 +136,13 @@
   <li>Install the MTi USB Serial Driver</li>
 </ol>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>$ git clone https://github.com/xsens/xsens_mt.git
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>$ git clone https://github.com/xsens/xsens_mt.git
 $ cd ~/xsens_mt
 $ make
 $ sudo modprobe usbserial
 $ sudo insmod ./xsens_mt.ko # install module to /lib/modules/$(uname -r)/driver/usb/serial
 $ sudo reboot
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ol>
   <li>Run mtsdk_linux_4.8.sh in the “MT_Software_Suite_Linux_4.8”</li>
@@ -163,19 +162,17 @@ The result shows the following:</p>
   <li>
     <p>Install gps_common</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code> $ sudo apt-get install ros-distro-gps-common
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code> $ sudo apt-get install ros-distro-gps-common
+</code></pre></div>    </div>
   </li>
 </ol>
 
 <h2 id="xsens-driver-in-ros">Xsens driver in Ros</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo chmod 777 /dev/ttyUSB0
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo chmod 777 /dev/ttyUSB0
 rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50,pl20 #publish sensor data,set as 50Hz
 roslaunch xsens_driver xsens_driver.launch
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>说明：iu UTMtime， oe Euler angle， aa acceleration， wr rate of turn， pl latitudeLongitude， vv velocity</p>
 
 <h2 id="xsens-message-格式">Xsens message 格式</h2>
@@ -197,28 +194,25 @@ roslaunch xsens_driver xsens_driver.launch
   <li>文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>groups #查看所有group名称
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>groups #查看所有group名称
 users  #查看所有user名称
 groupadd &lt;group_name&gt; #add new group
 gpasswd -a &lt;user_name&gt; &lt;group_name&gt; #将用户加到组中
 gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>使用groups命令查看用户所在组的名称：</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>groups inin
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>groups inin
+</code></pre></div></div>
 <ul>
   <li>make sure that your $USER is in dialout group, you can use following commands:</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>sudo usermod -G dialout -a $USER
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo usermod -G dialout -a $USER
+</code></pre></div></div>
 
 <h2 id="calibration-in-windows">Calibration (in windows)</h2>
 
@@ -265,13 +259,13 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710"
-                    data-images="http://bryanibit/img/black.jpg"
+                    data-images="http://localhost:4000/img/black.jpg"
                     data-content="Xsens wire
 
 使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。
 
 ... | Microdust:Azeril's blog"
-                    data-url="http://bryanibit/blog/2017/08/16/xsens/">
+                    data-url="http://localhost:4000/blog/2017/08/16/xsens/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -290,7 +284,7 @@ gpasswd -d &lt;user_name&gt; &lt;group_name&gt; #将用户从组中移除
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710" data-url="http://bryanibit/blog/2017/08/16/xsens/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/08/16/xsens" data-title="Xsens-710" data-url="http://localhost:4000/blog/2017/08/16/xsens/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

@@ -7,6 +7,12 @@ tags: [理论梳理]
 description: 边看程序，边总结一下原理和代码书写风格
 ---
 
+
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+
 # Need to solved:
 
 - feature.py 238 extract_feature_hahog(image,config)
@@ -94,10 +100,6 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 ![epipolar line 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line1.PNG)
 ![epipolar line 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line2.PNG)
-
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
 
 $$X_2^T E X_1 = 0$$
 

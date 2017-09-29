@@ -138,19 +138,17 @@
 <h2 id="2-判断语句">2. 判断语句</h2>
 
 <p>if和else if，以及else语句</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>switch(表达式)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>switch(表达式)
   case 常量表达式：语句
   default：语句
-</code></pre>
-</div>
+</code></pre></div></div>
 <p>最后一个default可以不加break，因为整体上是顺序结构的</p>
 
 <h2 id="3循环语句">3.循环语句</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>while()
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>while()
 do{}while()
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>后者先执行一次，然后在判断条件</li>
   <li>continue结束本次循环，继续下一次循环</li>
@@ -167,12 +165,11 @@ do{}while()
   <li>定义函数是平行的/独立的，函数不能嵌套定义，更不能将函数定义写在main中（函数声明可以写在main中）。</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int main()
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int main()
 {
   int max(int a,int b);
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>形参的意思就是说在程序还没有执行到这里的时候，是不占用内存的</li>
@@ -204,14 +201,12 @@ do{}while()
 
 <ul>
   <li>函数类型和形参<strong>类型</strong>不具体指定，函数体/形参个数相同
-    <div class="highlighter-rouge"><pre class="highlight"><code>template \&lt;typename T1, class T2\&gt;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>template \&lt;typename T1, class T2\&gt;
 通用函数定义
-</code></pre>
-    </div>
-    <div class="highlighter-rouge"><pre class="highlight"><code>template \&lt;class T\&gt;
+</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>template \&lt;class T\&gt;
 通用函数定义
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
 </ul>
 
@@ -252,30 +247,28 @@ do{}while()
 <h4 id="471-static局部变量">4.7.1 static局部变量</h4>
 
 <p>加static的局部变量</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>int fun(int a)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int fun(int a)
 {
   int b =2;
   static int c=3;
   b = b +1;
   c=c+1;
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 <p><strong>每次调用fun（）时，c一直保留,所以多次调用fun后，c一直在增加，但是b一直固定为2</strong></p>
 
 <h4 id="472-register声明寄存器变量编译器会自动优化不需要自己设置">4.7.2 register声明寄存器变量（编译器会自动优化，不需要自己设置）</h4>
 
 <ul>
   <li>某个函数执行很多次，每次循环都要引用某个局部变量，此时可以将该局部变量的值存在CPU的寄存器中，而不是内存中。
-    <div class="highlighter-rouge"><pre class="highlight"><code>int fac(int n)
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int fac(int n)
 {
 register int i, fi=1;
 for(i =1;i&lt;n;i++)
 fi = fi * i;
 return fi;
 }
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>以上程序当n较大的时候可以省去很多时间</li>
 </ul>
@@ -313,27 +306,24 @@ return fi;
 
 <h3 id="49-条件编译">4.9 条件编译</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>\#ifdef 标识符
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\#ifdef 标识符
   程序段
 \#else
   程序段
 \#endif
-</code></pre>
-</div>
-<div class="highlighter-rouge"><pre class="highlight"><code>\#ifndef 标识符
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\#ifndef 标识符
   程序段
 \#else
   程序段
 \#endif
-</code></pre>
-</div>
-<div class="highlighter-rouge"><pre class="highlight"><code>\#if 表达式
+</code></pre></div></div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>\#if 表达式
   程序段
 \#else
   程序段
 \#endif
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h2 id="5-数组">5. 数组</h2>
 
@@ -352,9 +342,8 @@ int a [10]
 
 <h3 id="52-数组名作为函数参数">5.2 数组名作为函数参数</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>void select_sort(int array[], int n);
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void select_sort(int array[], int n);
+</code></pre></div></div>
 
 <h3 id="53-字符数组">5.3 字符数组</h3>
 
@@ -381,7 +370,7 @@ int a [10]
 
 <h4 id="541-遍历char">5.4.1 遍历char*</h4>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>void foreach(char* str)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void foreach(char* str)
 {
   int len = strlen(str);
   for(int i = 0; i &lt;\ len; ++i)
@@ -397,8 +386,7 @@ void foreach(char* str)
        ++str;
    }
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="55-字符串变量避免数组越界">5.5 字符串变量(避免数组越界)</h3>
 <ul>
@@ -424,23 +412,20 @@ word[2]=’a’; <em>correct</em></li>
 <ul>
   <li>指针定义方法： 基类型 *指针变量名；</li>
   <li>基类型决定了指针移动时，移动的字节数目
-    <div class="highlighter-rouge"><pre class="highlight"><code>int a[10];
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a[10];
 int *p;
 p= &amp;a;
-</code></pre>
-    </div>
-    <div class="highlighter-rouge"><pre class="highlight"><code>const char *str = "I love you";
+</code></pre></div>    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>const char *str = "I love you";
 string str = "I love you";
 char str[]="I love you";
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>char *背后的含义是：给我个字符串，我要修改它,传给函数的字面常量是没法被修改的,所以说，比较和理的办法是把参数类型修改为const char *</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>int two_dimen_array[3][4] = { {1,2,3,4},{5,6,7,8},{1,2,3,4} };
-</code></pre>
-</div>
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int two_dimen_array[3][4] = { {1,2,3,4},{5,6,7,8},{1,2,3,4} };
+</code></pre></div></div>
 <ul>
   <li>针对以上二维数组，two_dimen_array+1和two_dimen_array[0]+1在内存中移动的位数不同的</li>
   <li>前者移动了4*4=16个字节，后者只移动了4个字节，已知int型占4个字节</li>
@@ -449,20 +434,17 @@ char str[]="I love you";
   </li>
   <li>函数在编译时分配一个入口地址就是函数的指针</li>
   <li>函数名代表函数入口
-    <div class="highlighter-rouge"><pre class="highlight"><code>int max(int x,int y);
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int max(int x,int y);
 int (*p)(int,int);//定义指向函数的指针变量p
 p=max;//由于max才是函数入口，而不是max(int a,int b)
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>调用形式为</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>int a=0,b=0;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int a=0,b=0;
 m=p(a,b);
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <h4 id="62-指针数组">6.2 指针数组</h4>
-    <div class="highlighter-rouge"><pre class="highlight"><code>int *p[4];
-</code></pre>
-    </div>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int *p[4];
+</code></pre></div>    </div>
     <p>有点迷惑了吧</p>
   </li>
 </ul>
@@ -472,7 +454,7 @@ m=p(a,b);
   <li>
     <p>对一个数组{“basic”,”fortune”,”c++”,”pascal”}进行排序并显示输出</p>
 
-    <div class="highlighter-rouge"><pre class="highlight"><code>    #include &lt;iostream&gt;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    #include &lt;iostream&gt;
     #include &lt;cstring&gt;
     using namespace std;
     void sort_select(char **name,int n);
@@ -506,20 +488,18 @@ m=p(a,b);
             cout&lt;&lt;name[i]&lt;&lt;endl;
         }
     }
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>
     <p>std::string to char *</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>std::string str = "string";
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>std::string str = "string";
 char *cstr = new char[str.length() + 1];
 strcpy(cstr, str.c_str());
 // do stuff
 delete [] cstr;
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>data type in all</p>
-    <div class="highlighter-rouge"><pre class="highlight"><code>int i;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>int i;
 int *p;
 int a[n];
 int *p[n];
@@ -528,8 +508,7 @@ int f();
 int *p();
 int (*p)()
 int **p
-</code></pre>
-    </div>
+</code></pre></div>    </div>
     <p>指针的使用优势：1.提高程序效率 2.在调用函数的时候，如果改变被调用函数中某些变量的值，这些值能为主调函数使用 3.实现动态存储分配</p>
   </li>
 </ul>
@@ -547,50 +526,45 @@ int **p
 </ul>
 
 <p>e.g. 值传递的不同方式</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>void swap(int * p1, int * p2);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void swap(int * p1, int * p2);
 int main(int argc,char **argv)
 {
 	int a,b;
 	swap(&amp;a,&amp;b);
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>void swap(int &amp;p1, int &amp;p2);
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>void swap(int &amp;p1, int &amp;p2);
 int main(int argc,char **argv)
 {
 	int a,b;
 	swap(a,b);
 }
-</code></pre>
-</div>
+</code></pre></div></div>
 <h2 id="7自定义数据类型-struct">7.自定义数据类型 struct</h2>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>struct 结构体类型名
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct 结构体类型名
 {成员列表}；
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>先定义在声明，一般放在某个文件中，使用的时候#include该文件即可</li>
   <li>student.name 其中.是成员运算符，是所有运算符中优先级最高的</li>
   <li>结构体变量指针
-    <div class="highlighter-rouge"><pre class="highlight"><code>Student stu;
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Student stu;
 Student *p = &amp;stu;
-</code></pre>
-    </div>
+</code></pre></div>    </div>
   </li>
   <li>p-&gt;name, -&gt;是指向运算符</li>
 </ul>
 
 <h4 id="71-使用结构体设计链表">7.1 使用结构体设计链表</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>struct Student
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>struct Student
 {
 	int num;
 	float score;
 	Student * next;
 };
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>所有结点不是临时开辟的，不能用完后释放，这种链表称为静态链表。对其访问可以使用next指针也可以使用结构体变量a,b,c去访问</li>
   <li>各结点可以随时插入和删除，这些结点并没有变量名，只能先找到上一个结点，才能根据找到该结点
@@ -630,14 +604,13 @@ e.g.</li>
 </ul>
 
 <h4 id="74-共用体union类型">7.4 共用体（union）类型</h4>
-<div class="highlighter-rouge"><pre class="highlight"><code>union data
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>union data
 {
 	int i;
 	char ch;
 	double d;
 }a,b,c;
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>节省存储空间，每次只能存在一个成员变量，对新的成员变量赋值，其他成员变量就消失，其在内存中所占的存储空间是最长的字符所占的存储空间</li>
 </ul>

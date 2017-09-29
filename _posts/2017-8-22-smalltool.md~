@@ -53,6 +53,7 @@ pip install jupyter
 ```
 jupyter notebook --generate-config #如/home/inin下没有.jupyter file
 jupyter notebook password ##设置密码
+jupyter notebook ##启动notebook
 ```
 
 打开浏览器 输入*127.0.0.1:8888* 输入密码
@@ -68,8 +69,13 @@ jupyter notebook password ##设置密码
 
 ```
 sudo apt-get install ruby ruby-dev make
-sudo gem install jekyll --no-rdoc --no-ri
+gem install jekyll --no-rdoc --no-ri
 sudo apt-get install nodejs    
+```
+
+```
+jekyll build -w
+jekyll serve
 ```
 
 ## ssh登录

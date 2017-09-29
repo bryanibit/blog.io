@@ -124,10 +124,39 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h1 id="一-控制整个工程的参数方法">一 控制整个工程的参数方法</h1>
+                <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<h1 id="need-to-solved">Need to solved:</h1>
+
+<ul>
+  <li>feature.py 238 extract_feature_hahog(image,config)</li>
+  <li>hahog’s feature descriptor is different from SIFT or SURF, its feature descriptor should sqrt to real desc.</li>
+</ul>
+
+<h1 id="other-software">Other Software</h1>
+
+<p>visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.</p>
+
+<h1 id="local-feature-and-global-feature">Local Feature and Global Feature</h1>
+
+<p>DoG: Difference of Gaussian
+HoG: Histogram of oriented gradient</p>
+
+<ul>
+  <li>Global descriptors generally used in image retrieval, object detection and classification,</li>
+  <li>while the local descriptors used for object recognition/identification.</li>
+  <li>contour representations, shape descriptors, and texture features and local features represent the texture in an image patch.</li>
+  <li>Shape Matrices, Invariant Moments (Hu, Zerinke), Histogram Oriented Gradients (HOG) and Co-HOG are some examples of global descriptors.</li>
+  <li>SIFT, SURF and FREAK are some examples of local descriptors.</li>
+</ul>
+
+<h1 id="feature-point-detection-of-an-image-using-hessian-affine-detector">Feature Point Detection of an Image using Hessian Affine Detector</h1>
+
+<h1 id="一-控制整个工程的参数方法">一 控制整个工程的参数方法</h1>
 
 <p><strong>renew a file called config.py</strong></p>
-<div class="highlighter-rouge"><pre class="highlight"><code>import os
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>import os
 import yaml
 default_config_yaml = '''
 \# Metadata
@@ -137,11 +166,18 @@ def default_config():
     '''Return default configuration
     '''
     return yaml.load(default_config_yaml)
-</code></pre>
-</div>
+</code></pre></div></div>
 <hr />
 
 <p>The above function default_config() return a dict, {‘use_exif_size’: yes  }</p>
+
+<h1 id="三-feature-detection">三 Feature Detection</h1>
+
+<ul>
+  <li>Feature detection returns 3 values: <strong>p_unsorted</strong>, <strong>f_unsorted</strong>, <strong>c_unsorted</strong></li>
+  <li>Corresponding to point positions and other things like size, respond, octave, etc, feature descriptor(n×128), color</li>
+  <li>p_unsorted is a matrix of NumFeatures * 6 for SIFT and SURF *4 for HAHOG</li>
+</ul>
 
 <h1 id="二-incremental-reconstruction">二 Incremental reconstruction</h1>
 
@@ -195,13 +231,28 @@ def default_config():
 
 <h3 id="插播一下r和t求法">插播一下R和t求法</h3>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>def run_relative_pose_ransac(b1, b2, method, threshold, iterations):
+<p>求解R和t使用的是对极约束相关内容：</p>
+
+<h4 id="极线-epipolar-line">极线 epipolar line</h4>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line1.PNG" alt="epipolar line 1" />
+<img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_line2.PNG" alt="epipolar line 2" /></p>
+
+<script type="math/tex; mode=display">X_2^T E X_1 = 0</script>
+
+<p>We know <script type="math/tex">E X_1 = 0</script> points epipolar line(一副图中的一点乘以E等于另一个视角中的极线)</p>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point1.PNG" alt="epipolar point 1" />
+<img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point2.PNG" alt="epipolar point 2" /></p>
+
+<p>一个视角中的点乘以E得到的极线在另一个视图中汇聚成一个点，这个点就是极点，由于极点是2自由度，所以rank(E)=2</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def run_relative_pose_ransac(b1, b2, method, threshold, iterations):
     return pyopengv.relative_pose_ransac(b1, b2, method, threshold, iterations)
 
 def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
     return pyopengv.relative_pose_optimize_nonlinear(b1, b2, t, R)
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <ul>
   <li>由于需要8对点才能计算基本矩阵（相机内参已知的情况下），所以会有Ransac方法和最小二乘法</li>
@@ -213,7 +264,7 @@ def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
   <li>需要通过R，t和事先设定的阈值，删除不满足阈值的feature points: b1 and b2,具体函数为</li>
 </ul>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
     p = pyopengv.triangulation_triangulate(b1, b2, t, R)
 
     br1 = p.copy()
@@ -225,8 +276,7 @@ def run_relative_pose_optimize_nonlinear(b1, b2, t, R):
     ok1 = np.linalg.norm(br1 - b1, axis=1) &lt; threshold
     ok2 = np.linalg.norm(br2 - b2, axis=1) &lt; threshold
     return np.nonzero(ok1 * ok2)[0], p
-</code></pre>
-</div>
+</code></pre></div></div>
 <ul>
   <li>解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
 R, t 是<strong>第二视图变换到第一视图</strong>的坐标变换阵，hence， R×br2 + t = br1 ==&gt; (p-t).dot(R)</li>
@@ -257,7 +307,7 @@ R, t 是<strong>第二视图变换到第一视图</strong>的坐标变换阵，h
 The code is corresponding to the theory.
 And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em></p>
 
-<div class="highlighter-rouge"><pre class="highlight"><code>opengv::triangulation::triangulate(
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>opengv::triangulation::triangulate(
     const relative_pose::RelativeAdapterBase &amp; adapter,
     size_t index )
 {
@@ -286,8 +336,7 @@ And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em
 
   return worldPoint;
 };
-</code></pre>
-</div>
+</code></pre></div></div>
 
 <h3 id="coordinate-system-r-t">coordinate system R, t</h3>
 
@@ -317,6 +366,13 @@ And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em
 
 <p>使用<a href="http://www.ceres-solver.org">Ceres Solver</a>
 <strong>CostFunction</strong> depends on the parameter blocks {xi1,…,xik}.</p>
+
+<h1 id="name">Name</h1>
+
+<p>后验概率 先验概率
+Gaussian Mixture Model
+Fisher
+似然函数</p>
 
 
 
@@ -351,12 +407,13 @@ And the matrixv maybe the most approximate solution for X satifying <em>AX=0</em
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/14/OpenSfM-understand" data-title="OpenSfM opensource textbook"
                     data-images="http://bryanibit/img/black.jpg"
-                    data-content="一 控制整个工程的参数方法
+                    data-content="
 
-renew a file called config.py
-import os
-import yaml
-default_co... | Microdust:Azeril's blog"
+Need to solved:
+
+
+  feature.py 238 extract_feature_hahog(image,config)
+  ha... | Microdust:Azeril's blog"
                     data-url="http://bryanibit/blog/2017/07/14/OpenSfM-understand/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
