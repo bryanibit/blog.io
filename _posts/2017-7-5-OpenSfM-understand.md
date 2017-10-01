@@ -264,6 +264,29 @@ output:已确定的三角形列表(triangles)
 end
 ```
 
+## Urban 3D Modelling from Video
+
+[网址](http://www.cs.unc.edu/Research/urbanscape/)
+
+ Given structure and motion estimates, dense pixel correspondences can be established and polygonal models of the scene can be generated using frames of the videos for texture-mapping.
+
+ In our current work, the speed of the system is a major consideration. Our algorithms are fast by nature and amenable to GPU implementations. We have achieved real-time performance leveraging both the CPU and the GPU.
+
+**Processing**
+
+The inputs to our processing pipeline are the trajectory of the vehicle and the video sequences. Since the cameras do not overlap, reconstruction is performed on the frames of a single camera as it moves through the scene. The main steps of the processing pipeline are the following:
+
+2D feature tracking: Our GPU implementation of the KLT tracker is used to track features in the image. The features are used in the Structure from Motion computation and in the sparse scene analysis step. The sources for the **KLT tracker** can be downloaded from [here](http://cs.unc.edu/~ssinha/Research/GPU_KLT/).
+Pose refinement: Information from the vehicle trajectory is fused with visual measurements via an Extended Kalman Filter to obtain the pose of each camera at each frame.
+Sparse scene analysis: The tracked features can be reconstructed in 3D, given the camera poses, to provide valuable information about the scene surfaces and their orientation.
+Multi-way plane-sweeping stereo: We use the **plane-sweeping algorithm** for stereo reconstruction. Planes are swept in multiple directions to account for slanted surfaces and a prior probability estimated from the sparse data is used to disambiguate textureless surfaces. Our stereo algorithm is also run on the GPU to take advantage of its efficiency in rendering operations, which are the most costly computations in plane-sweeping stereo.
+Depth map fusion: Stereo depth maps are computed for each frame in the previous step in real time. There are large overlaps between adjacent depth maps that should be removed to produce a more economical representation of the scene. The depth map fusion stage combines multiple depth estimates for each pixel of a reference view, enforces visibility constraints and thus improves the accuracy of the reconstruction. The result is one fused depth map that replaces several raw depth maps that cover the same part of the scene.
+Model generation: A multi-resolution mesh is generated for each fused depth map and video frames are used for texture-mapping. The camera gain is adjusted within and across video streams so that transitions in appearance are smoother. In addition, partial reconstructions are merged and holes in the model are filled in, if possible.
+
+ ### KLT algorithm
+
+ 最初，KLT算法是为了解决图像配准问题（Registration Problem）而提出的，可以表述如下：对于给定的图像F(x)和G(x)，需要找到一个视差向量（Disparity Vector）h使得F(x+h)与G(x)的差异最小
+
 # Name 
 
 后验概率 先验概率
