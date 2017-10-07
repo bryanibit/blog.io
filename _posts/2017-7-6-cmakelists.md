@@ -148,9 +148,24 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
     **ADD_SURDIRECTORY(src_dir)**指明本项目包含一个子目录 src_dir，这样 src_dir 目录下的 CMakeLists.txt 文件和源代码也会被处理 (比如src_dir中cmakelists将自身目录编译为一个静态库\[使用add-library\]，在上一级目录中target_link_libraries，这个过程需要使用ADD_SURDIRECTORY(src_dir)，告知编译器需要编译该链接库目录)
 
 
+## cmake中打印变量信息
 
+- message([STATUS] "message content")
+- e.g.
+- message([WARRNING] ${EIGEN_INCLUDE_DIR})  e.g. PROJECT_SOURCE_DIR  CMAKE_INCLUDE_PATH
+- cmake gets a result: [WARNING]/usr/include/eigen3
 
+## cmake常见问题解析
 
+1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}
+
+- Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
+
+设置include为库安装目录，解决问题
+
+2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake
+
+- Tell .cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
 
 
 
