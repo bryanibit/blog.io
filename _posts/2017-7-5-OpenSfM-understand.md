@@ -74,21 +74,21 @@ The above function default_config() return a dict, {'use_exif_size': yes  }
 
 - pixel_bearing
 
-> 首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))
+首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))
 
-> 该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]
+该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]
 
-> 如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape
+如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape
 
-> K为np.array([[a,b,c],[a,b,c],[a,b,c]])
+K为np.array([[a,b,c],[a,b,c],[a,b,c]])
 
-> distortion为np.array([a,b,c,d])
+distortion为np.array([a,b,c,d])
 
-> 将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1
+将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1
 
-> homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]
+homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]
 
-> 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
+求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
 
 ### 2.1.2 R, t and inliers
 
