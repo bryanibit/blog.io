@@ -219,6 +219,19 @@ pass
 使用[Ceres Solver](http://www.ceres-solver.org)
 **CostFunction** depends on the parameter blocks {xi1,...,xik}.
 
+*bundle.cc*:用parameters数组存储各个变量，查看程序很容易看出数组每个量的意义
+
+```enum {
+  BA_SHOT_RX,
+  BA_SHOT_RY,
+  BA_SHOT_RZ,
+  BA_SHOT_TX,
+  BA_SHOT_TY,
+  BA_SHOT_TZ,
+  BA_SHOT_NUM_PARAMS
+};
+double parameters[BA_SHOT_NUM_PARAMS];
+```
 
 ## delaunay三角剖分算法
 
