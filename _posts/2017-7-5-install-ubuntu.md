@@ -14,17 +14,17 @@ Now I think I should do it, write them down and log everything. I am exciting no
 ## First part for reinstall Ubuntu
 
 
-### Ubuntu partition 
-  
+### Ubuntu partition
+
          \boot (primary)  200M
          \
          \swap  memory * 2
          \home
 
 如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。
- 
+
 分区完成后，选择/home 作为Ubuntu安装位置
- 
+
 device for boot loader installation:
 
 选择 Ubuntu安装的/boot位置
@@ -50,7 +50,7 @@ Ubuntu 14.04 install sougoupinyin
 2. 配置Name和Email
 
         命令格式：    git config --global user.name "your name"
-                      git config --global user.email "your email address" 
+                      git config --global user.email "your email address"
 
 3. 成Public/Private RSA Key
 
@@ -72,7 +72,7 @@ Ubuntu 14.04 install sougoupinyin
 在 github.com 上
 
 >new repository (选add readme）
- 
+
 在本地文件夹下
 
 >git clone git@github.com:bryanibit/pySfM.git
