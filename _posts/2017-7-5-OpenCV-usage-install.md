@@ -11,11 +11,13 @@ description: Install OpenCV in ubuntu
 以下方法是编译opencv3.2+contrib部分 使用同样版本的opencv and
 opencv_contrib，其中（）中的内容一般没有用,可以去掉, () use CMake's BUILD_opencv_* options.
 
-``` 
+```
 cmake -DCMAKE_BUILD_TYPE=RELEASE -DCMAKE_INSTALL_PREFIX=/usr/local -DWITH_TBB=ON -DBUILD_NEW_PYTHON_SUPPORT=ON -DWITH_V4L=ON -DBUILD_EXAMPLES=ON -DWITH_CUDA=OFF -DWITH_QT=ON -DWITH_GTK=ON -DOPENCV_EXTRA_MODULES_PATH=<opencv_contrib>/modules (-DBUILD_opencv_legacy=OFF) <opencv_source_directory>
 ```
 
 ## OpenCV install
+
+### OpenCV install on Linux
 
 ```
 cd opencv×.×
@@ -33,6 +35,56 @@ sudo ldconfig
 ```
 pkg-config opencv --cflags --libs #查看opencv安装情况 参考pkg-config --help
 pkg-confg --modversion opencv
+```
+
+### OpenCV install on windows VS2013
+
+1. Modify system env variable 我的电脑-属性-高级系统设置-环境变量(需要注销账户)
+2. VS 属性管理器-add new 选项卡: 包含的目录：include\opencv2  include\opencv  include
+3. 库目录： x86(win32)\lib
+4. 连接器-输入
+
+```opencv_calib3d2413d.lib
+opencv_contrib2413d.lib
+opencv_core2413d.lib
+opencv_features2d2413d.lib
+opencv_flann2413d.lib
+opencv_gpu2413d.lib
+opencv_highgui2413d.lib
+opencv_imgproc2413d.lib
+opencv_legacy2413d.lib
+opencv_ml2413d.lib
+opencv_nonfree2413d.lib
+opencv_objdetect2413d.lib
+opencv_ocl2413d.lib
+opencv_photo2413d.lib
+opencv_stitching2413d.lib
+opencv_superres2413d.lib
+opencv_ts2413d.lib
+opencv_video2413d.lib
+opencv_videostab2413d.lib
+```
+
+以下是release的
+```opencv_calib3d2413.lib
+opencv_contrib2413.lib
+opencv_core2413.lib
+opencv_features2d2413.lib
+opencv_flann2413.lib
+opencv_gpu2413.lib
+opencv_highgui2413.lib
+opencv_imgproc2413.lib
+opencv_legacy2413.lib
+opencv_ml2413.lib
+opencv_nonfree2413.lib
+opencv_objdetect2413.lib
+opencv_ocl2413.lib
+opencv_photo2413.lib
+opencv_stitching2413.lib
+opencv_superres2413.lib
+opencv_ts2413.lib
+opencv_video2413.lib
+opencv_videostab2413.lib
 ```
 
 ## Python OpenCV
@@ -97,12 +149,12 @@ def match_low(feature1,feature2):
         I.e. j = idx[i] is where td[i] matches sd[j].
         The second numpy array (dist), at the index i is the match distance between td[i] and sd[j].
         Lower distances mean better matches.
-  
+
         Parameters:
         sd - A numpy array of feature vectors of any size.         (t is template)
         td - A numpy array of feature vectors of any size, this vector is used for indexing
              and the result arrays will have a length matching this vector. (s is source)
-  
+
         Returns:
         Two numpy arrays, the first one, idx, is the idx of the matches of the vector td with sd.
         The second one, dist, is the distance value for the closest match.
