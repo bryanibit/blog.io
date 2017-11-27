@@ -223,7 +223,8 @@ pass
 
 *bundle.cc*:用parameters数组存储各个变量，查看程序很容易看出数组每个量的意义
 
-```enum {
+```
+enum {
   BA_SHOT_RX,
   BA_SHOT_RY,
   BA_SHOT_RZ,
@@ -234,6 +235,7 @@ pass
 };
 double parameters[BA_SHOT_NUM_PARAMS];
 ```
+
 To get an auto differentiated cost function, you must define a class with a templated *operator()* (a functor)
 
 that computes the cost function in terms of the template parameter *T*.
