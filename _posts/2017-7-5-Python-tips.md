@@ -35,9 +35,18 @@ np.nonzero(ok1 * ok2)[0]
 
 使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
 
+追加文件内容
 ```
 with open(filename,'a') as filepoint:
     filepoint.write(string)
+```
+
+读文件
+```
+with open(filename, 'r') as fout:
+    lines = fout.readlines()
+for line in lines:
+    print line
 ```
 
 文件打开方式 a append,  w empty then write,  r read
@@ -138,6 +147,23 @@ parser.add_argument("-v", "--verbosity", action="store_true", help="increase out
 ord('a') -> 97 # 返回ascII
 
 chr(97) --> 'a' # return 字符
+
+## list <==> str
+
+string to list
+```
+str1='123456789'
+str2='1.2.3.65'
+str3 = 'user1 user2 user3'
+list(str1) # ['1', '2', '3', '4', '5', '6', '7', '8', '9']
+str2.split('.') # ['1', '2', '3', '65']
+str3.split() # 移除string空格 ['user1', 'user2', 'user3']
+str1.strip() # 移除空格和回车
+```
+
+list to str
+''.join(list) #将list中元素组成一个string
+
 
 ## list to array
 
