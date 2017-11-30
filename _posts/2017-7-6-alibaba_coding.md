@@ -25,7 +25,7 @@ description: c++问题
 project(point_group)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
-＞　# OpenCV is not install in default location, if not delete that.
+# OpenCV is not install in default location, if not delete that.
 set(OpenCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
 # Find OpenCV at the default location
 find_package(OpenCV REQUIRED)

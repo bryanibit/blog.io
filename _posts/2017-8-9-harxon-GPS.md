@@ -24,7 +24,7 @@ description: Harxon smart antenna TS102 Differential GPS
         DTU MODULE: RX 451.12500 MHz
                     TX 451.12500 MHz
                     PRT TRIMTALK
-                    BAUD 9600 
+                    BAUD 9600
                     MODNM 1006D
                     E003.03.01  
         CAN MODULE: $GCAN=CANBUS_29B_250k
@@ -34,7 +34,7 @@ description: Harxon smart antenna TS102 Differential GPS
         ************************end**************************
         3G MODULE: SIM  #QSS: 1
                     CLASS 2
-                    CSQ 
+                    CSQ
                     IP   ××.×××.×××.×××
 
 3. 正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题
@@ -79,5 +79,4 @@ $GNGGA:GPGGA(时间、定位质量)
 ## 测试ＧＰＳ精度（Ｃ＋＋）
 
 读取串口调试助手保存的串口数据输出LOG.txt,具体程序在[ｇｉｔｈｕｂ链接](https://github.com/bryanibit/-_DGPS)上
-
-
+转换坐标--转换KML文件等等，请查看该网站[Earth Point](https://www.earthpoint.us)

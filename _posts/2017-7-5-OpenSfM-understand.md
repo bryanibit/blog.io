@@ -22,6 +22,8 @@ description: 边看程序，边总结一下原理和代码书写风格
 
 visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
 
+![Feature of Different SOFT](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/2017-3-sfm-situation.PNG)
+
 # Local Feature and Global Feature
 
 DoG: Difference of Gaussian
@@ -30,7 +32,7 @@ HoG: Histogram of oriented gradient
 - Global descriptors generally used in image retrieval, object detection and classification,
 - while the local descriptors used for object recognition/identification.
 - contour representations, shape descriptors, and texture features and local features represent the texture in an image patch.
-- Shape Matrices, Invariant Moments (Hu, Zerinke), Histogram Oriented Gradients (HOG) and Co-HOG are some examples of global descriptors. 
+- Shape Matrices, Invariant Moments (Hu, Zerinke), Histogram Oriented Gradients (HOG) and Co-HOG are some examples of global descriptors.
 - SIFT, SURF and FREAK are some examples of local descriptors.
 
 **SIFT**: 图像在不同scale上，（不同的scale就是不同的octave，每个octave中图像的长宽是相同的，但是所用的高斯核大小不同）与不同大小的高斯核函数卷积，这样得到高斯模糊图像，相邻的高斯模糊图像做差，得到DoG空间下的结果，查找极值即可。
@@ -199,11 +201,11 @@ There is R, t defined by the following words and figure:
 
 ![one coordinate define](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/one_coordinate_define.png)
 
-- I recall we can define the corner system any way we want it for Bob. 
+- I recall we can define the corner system any way we want it for Bob.
 - And we would define the corner system in the first person perspective. That's the world is measured according to Bob's corner system.
-- So Bob is the center of the universe. 
-- And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t. 
-- So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D. 
+- So Bob is the center of the universe.
+- And his X is universe X. His Y pointing down is the universe of Y, and Z pointing into the scene is the Z direction. And, as such, Bob has a simple camera projection matrix, consists of a camera calibration matrix K times identity, followed by a zero column. Mike, camera projection matrix. Consists of calibration matrix K, rotation matrix, and t.
+- So Mike need to take a point in the world coordinate system and transform it through the rotation and translation, into his first person perspective, and then project through the k matrix, into 2D.
 
 > The R, t can transform 3D points in Bob's first coordinate system to Mike's first coordinate system.
 
@@ -221,7 +223,8 @@ pass
 
 *bundle.cc*:用parameters数组存储各个变量，查看程序很容易看出数组每个量的意义
 
-```enum {
+```
+enum {
   BA_SHOT_RX,
   BA_SHOT_RY,
   BA_SHOT_RZ,
@@ -232,6 +235,10 @@ pass
 };
 double parameters[BA_SHOT_NUM_PARAMS];
 ```
+
+To get an auto differentiated cost function, you must define a class with a templated *operator()* (a functor)
+
+that computes the cost function in terms of the template parameter *T*.
 
 ## delaunay三角剖分算法
 
@@ -302,12 +309,9 @@ Model generation: A multi-resolution mesh is generated for each fused depth map 
 
  最初，KLT算法是为了解决图像配准问题（Registration Problem）而提出的，可以表述如下：对于给定的图像F(x)和G(x)，需要找到一个视差向量（Disparity Vector）h使得F(x+h)与G(x)的差异最小
 
-# Name 
+# Name
 
 后验概率 先验概率
 Gaussian Mixture Model
 Fisher
 似然函数
-
-
-
