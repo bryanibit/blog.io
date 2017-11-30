@@ -89,7 +89,7 @@ opencv_videostab2413.lib
 
 ## Python OpenCV
 
-这个[博客](http://blog.csdn.net/wc781708249/article/details/78528920)的相关代码与opencv3.0 python 多视图知识，相关性较好，可以参考
+这个[博客](http://blog.csdn.net/wc781708249/article/details/78528920)的相关代码与opencv3.0 python 多视图知识，相关性较好，可以参考，但不是作者原创代码
 
 ### Feature detect and match
 **resize**
