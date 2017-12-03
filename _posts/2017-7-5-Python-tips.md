@@ -7,6 +7,10 @@ tags: [技术总结]
 description: Using python in Linux
 ---
 
+## Python packaging ecosystem
+
+参考一下链接[sholmes](http://shanmo.github.io/2016/08/Python-Packaging-Ecosystem)，系统是Ubuntu 14.04 Python2.7/3.0
+
 ## 两个维数相同的bool类型数组做与运算
 
 np.nonzero(ok1 * ok2)[0]

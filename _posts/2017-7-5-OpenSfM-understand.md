@@ -4,7 +4,7 @@ title: OpenSfM opensource textbook
 date: 2017-07-14
 categories: blog
 tags: [理论梳理]
-description: 边看程序，边总结一下原理和代码书写风格
+description: 边看程序，边总结代码书写风格，与程序有关的东东
 ---
 
 
@@ -23,21 +23,6 @@ description: 边看程序，边总结一下原理和代码书写风格
 visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
 
 ![Feature of Different SOFT](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/2017-3-sfm-situation.PNG)
-
-# Local Feature and Global Feature
-
-DoG: Difference of Gaussian
-HoG: Histogram of oriented gradient
-
-- Global descriptors generally used in image retrieval, object detection and classification,
-- while the local descriptors used for object recognition/identification.
-- contour representations, shape descriptors, and texture features and local features represent the texture in an image patch.
-- Shape Matrices, Invariant Moments (Hu, Zerinke), Histogram Oriented Gradients (HOG) and Co-HOG are some examples of global descriptors.
-- SIFT, SURF and FREAK are some examples of local descriptors.
-
-**SIFT**: 图像在不同scale上，（不同的scale就是不同的octave，每个octave中图像的长宽是相同的，但是所用的高斯核大小不同）与不同大小的高斯核函数卷积，这样得到高斯模糊图像，相邻的高斯模糊图像做差，得到DoG空间下的结果，查找极值即可。
-
-# Feature Point Detection of an Image using Hessian Affine Detector
 
 
 # 一 控制整个工程的参数方法
