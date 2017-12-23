@@ -204,6 +204,7 @@ pass
 ## Bundle adjustment
 
 使用[Ceres Solver](http://www.ceres-solver.org)
+
 **CostFunction** depends on the parameter blocks {xi1,...,xik}.
 
 *bundle.cc*:用parameters数组存储各个变量，查看程序很容易看出数组每个量的意义
@@ -224,6 +225,30 @@ double parameters[BA_SHOT_NUM_PARAMS];
 To get an auto differentiated cost function, you must define a class with a templated *operator()* (a functor)
 
 that computes the cost function in terms of the template parameter *T*.
+
+其中，使用最多的如下所示形式（AutoDiffCostFunction，当然还有Numeric/Analytic）
+
+            new ceres::AutoDiffCostFunction<SnavelyReprojectionError, 2, 9, 3>(
+                 new SnavelyReprojectionError(observed_x, observed_y)));
+
+以上公式会计算SnavelyReprojectionError的雅克比矩阵，Where, 2 is the number of residual of output, 
+
+9 and 3 are the number of input like the following camera(9,rotation, translation, focal, distortion) and 
+
+point(3,z,y,z). SnavelyReprojectionError is displayed the following:
+
+```
+struct SnavelyReprojectionError {
+  SnavelyReprojectionError(double observed_x, double observed_y)
+      : observed_x(observed_x), observed_y(observed_y) {}
+
+  template <typename T>
+  bool operator()(const T* const camera, const T* const point, T* residuals) const {
+         ...
+         How to express residuals
+         ...
+  return True;}
+```
 
 ## delaunay三角剖分算法
 
