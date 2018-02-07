@@ -131,3 +131,47 @@ grep [^bg]zip file.txt #file.txt中包含zip不包含bzip、gzip的段落
 ```
 grep -h '[A-Za-z0-9]' word*.txt # -h hide filename
 ```
+
+## Docker CE install and use on Ubuntu
+
+```
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    linux-image-extra-$(uname -r) \
+    linux-image-extra-virtual
+
+$ sudo apt-get update
+
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
+
+$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+
+$ sudo apt-key fingerprint 0EBFCD88
+
+
+
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+$ sudo apt-get update
+
+$ sudo apt-get install docker-ce
+
+$ sudo docker run hello-world
+```
+
+可以简单使用docker
+
+```
+docker run -d -P seqvence/static-site
+docker ps
+```
+
+打开网页localhost:docker ip映射到80的端口
