@@ -251,6 +251,59 @@ apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步
 
 相当于（math.floor(a/b), a%b) if a or b is float 和 （a//b, a % b)  if a or b is int
 
+## Numpy使用(import numpy as np)
+
+[Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)
+
+```
+Create array from 0 to 9
+np.arange(10)
+>>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+
+Create a 3×3 numpy array of all True’s
+np.full((3, 3), True, dtype=bool)
+np.ones((3,3), dtype=bool)
+>> array([[ True,  True,  True],
+>>        [ True,  True,  True],
+>>        [ True,  True,  True]], dtype=bool)
+
+Extract all odd numbers from arr
+arr = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+arr % 2 == 1
+>>array([False,  True, False,  True, False,  True, False,  True, False,True])
+arr[arr % 2 == 1]
+>>array([1, 3, 5, 7, 9])
+
+Replace all odd numbers in arr with -1
+arr[arr % 2 == 1] = -1
+>>array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
+
+Stack arrays a and b vertically
+a = np.arange(10).reshape(2,-1)
+b = np.repeat(1, 10).reshape(2,-1)
+np.vstack([a, b])
+np.r_[a, b]
+np.concatenate([a, b], axis=0)
+>> array([[0, 1, 2, 3, 4],
+>>        [5, 6, 7, 8, 9],
+>>        [1, 1, 1, 1, 1],
+>>        [1, 1, 1, 1, 1]])
+
+Stack the arrays a and b horizontally.
+a = np.arange(10).reshape(2,-1)
+b = np.repeat(1, 10).reshape(2,-1)
+np.hstack([a, b])
+np.c_[a, b]
+np.concatenate([a, b], axis=1)
+>> array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
+>>        [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
+
+Create the following pattern without hardcoding.
+a = np.array([1,2,3])
+np.r_[np.repeat(a, 3), np.tile(a, 3)]
+>> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+```
+
 
 
 
