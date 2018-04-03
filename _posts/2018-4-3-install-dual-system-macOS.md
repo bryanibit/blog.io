@@ -57,3 +57,18 @@ description: 在Mac 2011（带光驱）旧版mac上安装Windows
 至于Windows的驱动程序。您可以使用BootCamp助理下载它们，也可以从BootCamp下载：Microsoft Windows操作系统的系统要求。在完成安装Windows后安装驱动程序。
 
 最后一个注意事项：不要使用Microsoft的任何内容更改分区。只能使用OS X软件成功更改分区。唯一的例外是Windows可以格式化BOOTCAMP分区。
+
+## windows需要安装在gpt分区表中，而分区表是mbr格式
+
+解决办法：
+
+1、在MAC OS中用bootcamp把win10安装分区调整好。
+
+2、用磁盘工具抹掉新分的区，把分区格式选为mac日志式（切记！我在这走了多次弯路）！
+
+3、重启电脑按住option键选择U盘或光盘（事先创建好WIN10安装U盘或光盘）启动 。
+
+4、进入安装，到选择磁盘时删除这个磁盘后再新建此磁盘！ 
+
+5、然后按提示进行安装就可以了。
+
