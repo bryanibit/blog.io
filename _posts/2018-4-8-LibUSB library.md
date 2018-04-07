@@ -10,6 +10,8 @@ description: 今天下午临时定下要出差。已抵浙江，刚刚安顿。�
 
 ## 什么是LibUSB Library
 
+[PDF下载](https://github.com/bryanibit/bryanibit.github.io/blob/master/img/doc/LibUSB_-_Create_a_Solution_Without_the_Class_Struggle.pdf)
+
 ## 如何使用LibUSB
 
 在这个[网站](http://www.dreamincode.net/forums/topic/148707-introduction-to-using-libusb-10/)上可以查看使用该库的方法
