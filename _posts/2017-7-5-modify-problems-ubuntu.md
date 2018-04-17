@@ -196,3 +196,22 @@ echo "gem: --no-ri --no-rdoc" > ~/.gemrc ##(optional) tell Rubygems to not insta
 
 sudo apt-get remove ruby1.9.1 ## watch out
 ```
+
+## 移除一个ppa
+
+```
+sudo add-apt-repository --remove ppa:...
+sudo apt-get udpate
+```
+
+## 在Ubuntu16.04上 ORB-SLAM编译ros版本出错：fatal error: Eigen/Core: No such file or directory
+
+```
+sudo ln -s /usr/include/eigen3/Eigen /usr/local/include/Eigen
+```
+
+这是由于eigen在安装后在子目录中，所以可以参考这个[链接的说明](https://askubuntu.com/questions/491067/eigen-installation-seemed-to-work-but-i-still-cant-make-eigen-work)
+
+如果不更改可能需要将头文件的目录更改。
+
+## 在16.10编译orb-slam ros时，出现错误：
