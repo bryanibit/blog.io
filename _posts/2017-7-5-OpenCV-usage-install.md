@@ -176,3 +176,23 @@ def match_low(feature1,feature2):
 
 ## CPP OpenCV
 [Draw epipolar line C++ template cpp](http://www.hasper.info/opencv-draw-epipolar-lines/)
+
+## CMakeLists关于OpenCV写法
+
+1. shell command: locate opencv 发现机器上安装了很多opencv
+2. 在CMakeLists的find_package后加上
+
+```
+message(STATUS "opencv libraty status")
+message(STATUS "opencv version: ${OPENCV_VERSION}")
+message(STATUS "opencv INSTALL PATH: ${OPENCV_DIR}")
+message(STATUS "opencv INCLUDE PATH: ${OPENCV_INCLUDE_DIRS}")
+```
+而后cmake查看结果
+
+如果不是想要的opencv版本，使用
+
+```
+set (OPNECV_DIR ".../share/OpenCV")  NOTE: The OPENCV_DIR should have file called OpenCV-config.cmake
+```
+更改OpenCV版本。
