@@ -9,6 +9,26 @@ description: Linux重装系统&软件
 
 ##我们开始吧
 
+## 如果需要安装系统的电脑是dell-Inspiron-7559
+
+当安装完Windows后，确认安全启动和快速启动关闭，进入Ubuntu安装盘，如果长时间没有进入，卡在Ubuntu这几个字的紫色背景页面，请跳转到以下链接
+
+[connorkuehl](https://connorkuehl.github.io/dell-inspiron-7559-linux-guide/index.html)
+
+> Highlight the Install Ubuntu entry and press e on your keyboard.
+> Modify the line that contains quiet splash at the end and change it to:
+
+```
+nomodeset i915_bpo.nomodeset=1 quiet splash
+```
+这是为了关闭显卡，使用BIOS安装功能，这是由于电脑本身的缺陷
+
+> Press F10 to boot.
+> Proceed with the installation as normal.
+> Reboot.
+
+开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接
+
 Now I think I should do it, write them down and log everything. I am exciting now.
 
 ## First part for reinstall Ubuntu
