@@ -36,7 +36,7 @@ Now I think I should do it, write them down and log everything. I am exciting no
 
 ### Ubuntu partition
 
-         \boot (primary)  200M
+         \boot (primary)  300M
          \
          \swap  memory * 2
          \home
