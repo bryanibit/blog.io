@@ -88,4 +88,9 @@ Unix> gcc main.c /usr/lib/libc.o
 
 ### 动态链接共享库
 
+使用命令
+```ldd liborb.so```
+
+可以查看动态库链接了的其他库目录
+
 ## 从应用程序中

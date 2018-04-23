@@ -342,6 +342,14 @@ strcpy(cstr, str.c_str());
 // do stuff
 delete [] cstr;
 ```
+
+- char * to std::string
+```
+char* a;
+string (a);
+```
+
+
 data type in all
 ```
 int i;

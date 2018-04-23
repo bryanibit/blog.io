@@ -61,6 +61,24 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 在自己的.cpp(main(int argc,char** argv)在此)加上include ".h"
 
+### 获取文件夹下的文件名称
+
+```
+argb[1] is the input path, char* type
+\#include <string>
+\#include <iostream>
+\#include "boost/filesystem.hpp"
+using namespace boost::filesystem;
+for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i++)
+    {
+        if (!is_directory(i->path())) 
+        {
+		string p_a = i->path().filename().string();
+            cout << string(argv[1]) + "/" + p_a << endl;
+	}
+        else
+           continue;
+```
 
 ### 读取文件C++
 
