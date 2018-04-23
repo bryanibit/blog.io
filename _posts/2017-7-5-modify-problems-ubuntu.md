@@ -37,7 +37,7 @@ description: Linux中的一些问题，总结一下
         cd /var/lib/apt
         sudo mv lists lists.old
         sudo mkdir -p lists/partial
-        sudo apt-get clean 
+        sudo apt-get clean
         sudo apt-get update
 
 ## uninstall sublime from terminal
@@ -52,24 +52,24 @@ sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/default
 
 Firefox is already running, but is not responding. To open a new window, you must first close the existing Firefox process, or restart your system.
 
-**solution:** 
+**solution:**
            pkill firefox
            cd /home/inin/.mozilla/firefox/×××××.default
            rm .parentlock
 ## Upgrade to Ubuntu 16.04 /boot空间不足问题
 
-1. df -h （查看Ubuntu的文件系统 使用情况） 
-2. uname -a (查看当前使用的内核版本) 
-3. sudo apt-get remove linux-image- （按两次tab键） 
-4. sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核) 
-5. 再查看下内核和磁盘容量，发现释放了很多空间。 
+1. df -h （查看Ubuntu的文件系统 使用情况）
+2. uname -a (查看当前使用的内核版本)
+3. sudo apt-get remove linux-image- （按两次tab键）
+4. sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核)
+5. 再查看下内核和磁盘容量，发现释放了很多空间。
 
 - 最后如果出现了这个警告：
 - The link /vmlinuz.old is a damaged link
 - Removing symbolic link vmlinuz.old
 - you may need to re-run your boot loader[grub]
 - The link /initrd.img.old is a damaged link
-- Removing symbolic link initrd.img.old 
+- Removing symbolic link initrd.img.old
 **solution:**
          sudo /usr/sbin/update-grub
 
@@ -167,8 +167,8 @@ sudo update-initramfs –u
 安装上面的教程将nouveau关闭,然后按照following:
 
 ```
-$ sudo add-apt-repository ppa:graphics-drivers/ppa 
-$ sudo apt update (re-run if any warning/error messages) 
+$ sudo add-apt-repository ppa:graphics-drivers/ppa
+$ sudo apt update (re-run if any warning/error messages)
 $ sudo apt-get install nvidia- (press tab to see latest). 375 (do not use 378, may cause login loops) ## 查找对应的驱动型号
 ```
 
@@ -214,4 +214,18 @@ sudo ln -s /usr/include/eigen3/Eigen /usr/local/include/Eigen
 
 如果不更改可能需要将头文件的目录更改。
 
-## 在16.10编译orb-slam ros时，出现错误：
+## 在nvidia tx2 16.10编译orb-slam ros时，出现错误3：
+
+```
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmGetDevices2'
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmCloseOnce'
+  ... ...
+```
+
+Problem Solving:
+
+```
+sudo ln -fs /usr/lib/aarch64-linux-gnu/tegra/libGL.so /usr/lib/aarch64-linux-gnu/libGL.so
+```
+
+Default situation is to use libGL.so instead of tegra's libGL. So link the tegra's libGL to default libGL.
