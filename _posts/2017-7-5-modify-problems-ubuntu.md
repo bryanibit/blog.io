@@ -278,3 +278,19 @@ ${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so
 =======
 >>>>>>> 647cee55020c12352495a8e1e4c317ef5f33846d
 
+## 在nvidia tx2 16.10编译orb-slam ros时，出现错误3：
+
+```
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmGetDevices2'
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmCloseOnce'
+```
+
+Problem Solving:
+```
+sudo ln -fs /usr/lib/aarch64-linux-gnu/tegra/libGL.so /usr/lib/aarch64-linux-gnu/libGL.so
+```
+
+Default situation is to use libGL.so instead of tegra’s libGL. So link the tegra’s libGL to default libGL.
+
+
+
