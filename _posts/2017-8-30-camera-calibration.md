@@ -56,6 +56,12 @@ description: 相机标定
 # TO DO by qingyu.sui  完善代码
 
 
+# 一个简单易用的矫正图像及获得内参矩阵的开源代码
 
+[OpenDroneMap](https://github.com/bryanibit/CameraCalibration)
+
+这个项目包含两部分，无需安装exiftool，运行opencv_calibrate.py，得到两个文件，一个是内参矩阵，一个是相机畸变矩阵参数
+
+运行distortion可以将图像去畸变
 ------------------
 

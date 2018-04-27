@@ -12,7 +12,7 @@ description: Linux中cmakelists问题
 
 ## Use OpenCV install not in default location
 ```
-  set(OpenCV "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
+  set(OpenCV_DIR "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
   ""中的内容应该包含OpenCVConfig.cmake
 ```
 
