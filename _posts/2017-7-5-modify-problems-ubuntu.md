@@ -37,7 +37,7 @@ description: Linux中的一些问题，总结一下
         cd /var/lib/apt
         sudo mv lists lists.old
         sudo mkdir -p lists/partial
-        sudo apt-get clean 
+        sudo apt-get clean
         sudo apt-get update
 
 ## uninstall sublime from terminal
@@ -52,24 +52,24 @@ sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/default
 
 Firefox is already running, but is not responding. To open a new window, you must first close the existing Firefox process, or restart your system.
 
-**solution:** 
+**solution:**
            pkill firefox
            cd /home/inin/.mozilla/firefox/×××××.default
            rm .parentlock
 ## Upgrade to Ubuntu 16.04 /boot空间不足问题
 
-1. df -h （查看Ubuntu的文件系统 使用情况） 
-2. uname -a (查看当前使用的内核版本) 
-3. sudo apt-get remove linux-image- （按两次tab键） 
-4. sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核) 
-5. 再查看下内核和磁盘容量，发现释放了很多空间。 
+1. df -h （查看Ubuntu的文件系统 使用情况）
+2. uname -a (查看当前使用的内核版本)
+3. sudo apt-get remove linux-image- （按两次tab键）
+4. sudo apt-get remove linux-image-4.4.0-31-generic（再重复两次删除36,38）(删除多余内核)
+5. 再查看下内核和磁盘容量，发现释放了很多空间。
 
 - 最后如果出现了这个警告：
 - The link /vmlinuz.old is a damaged link
 - Removing symbolic link vmlinuz.old
 - you may need to re-run your boot loader[grub]
 - The link /initrd.img.old is a damaged link
-- Removing symbolic link initrd.img.old 
+- Removing symbolic link initrd.img.old
 **solution:**
          sudo /usr/sbin/update-grub
 
@@ -167,8 +167,8 @@ sudo update-initramfs –u
 安装上面的教程将nouveau关闭,然后按照following:
 
 ```
-$ sudo add-apt-repository ppa:graphics-drivers/ppa 
-$ sudo apt update (re-run if any warning/error messages) 
+$ sudo add-apt-repository ppa:graphics-drivers/ppa
+$ sudo apt update (re-run if any warning/error messages)
 $ sudo apt-get install nvidia- (press tab to see latest). 375 (do not use 378, may cause login loops) ## 查找对应的驱动型号
 ```
 
@@ -204,14 +204,93 @@ sudo add-apt-repository --remove ppa:...
 sudo apt-get udpate
 ```
 
-## 在Ubuntu16.04上 ORB-SLAM编译ros版本出错：fatal error: Eigen/Core: No such file or directory
+## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
 ```
 sudo ln -s /usr/include/eigen3/Eigen /usr/local/include/Eigen
 ```
 
+```
+unlink /usr/local/include/Eigen
+update-alternatives --config <file-name>
+```
+
+if Eigen file is existed, then use -fs
+
+unlink can remove the old file, so caution is needed.
+
 这是由于eigen在安装后在子目录中，所以可以参考这个[链接的说明](https://askubuntu.com/questions/491067/eigen-installation-seemed-to-work-but-i-still-cant-make-eigen-work)
 
 如果不更改可能需要将头文件的目录更改。
 
-## 在16.10编译orb-slam ros时，出现错误：
+<<<<<<< HEAD
+## 在nvidia tx2 16.10编译orb-slam ros时，出现错误2：
+
+```
+/usr/bin/ld: CMakeFiles/RGBD.dir/src/ros_rgbd.cc.o: undefined reference to symbol '_ZN5boost6system15system_categoryEv'
+/usr/lib/aarch64-linux-gnu/libboost_system.so: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+CMakeFiles/RGBD.dir/build.make:207: recipe for target '../RGBD' failed
+make[2]: *** [../RGBD] Error 1
+CMakeFiles/Makefile2:67: recipe for target 'CMakeFiles/RGBD.dir/all' failed
+make[1]: *** [CMakeFiles/RGBD.dir/all] Error 2
+/usr/bin/ld: CMakeFiles/Stereo.dir/src/ros_stereo.cc.o: undefined reference to symbol '_ZN5boost6system15system_categoryEv'
+/usr/lib/aarch64-linux-gnu/libboost_system.so: error adding symbols: DSO missing from command line
+collect2: error: ld returned 1 exit status
+CMakeFiles/Stereo.dir/build.make:207: recipe for target '../Stereo' failed
+make[2]: *** [../Stereo] Error 1
+CMakeFiles/Makefile2:104: recipe for target 'CMakeFiles/Stereo.dir/all' failed
+make[1]: *** [CMakeFiles/Stereo.dir/all] Error 2
+Makefile:127: recipe for target 'all' failed
+make: *** [all] Error 2
+```
+
+The problem is described as libboost_system.so找不到链接目录 
+
+解决方案为:
+
+locate  boost_system
+//查找到目录
+
+/usr/lib/x86_64-linux-gnu/libboost_system.a
+/usr/lib/x86_64-linux-gnu/libboost_system.so
+/usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
+/usr/local/MATLAB/R2017a/bin/glnxa64/libboost_system.so.1.56.0
+
+
+将libboost_system.so复制到ORB_SLAM2/lib下，并且将ORBSLAM2/Examples/ROS/ORBSLAM2下的Cmakelists.txt中加入库目录，具体为在
+
+```
+set(LIBS 
+${OpenCV_LIBS} 
+${EIGEN3_LIBS} 
+${Pangolin_LIBRARIES} 
+${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so 
+${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so 
+${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
+```
+之后加入
+
+${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so 
+
+问题得以解决
+
+=======
+>>>>>>> 647cee55020c12352495a8e1e4c317ef5f33846d
+
+## 在nvidia tx2 16.10编译orb-slam ros时，出现错误3：
+
+```
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmGetDevices2'
+/usr/lib/gcc/aarch64-linux-gnu/5/../../../aarch64-linux-gnu/libGL.so: undefined reference to `drmCloseOnce'
+```
+
+Problem Solving:
+```
+sudo ln -fs /usr/lib/aarch64-linux-gnu/tegra/libGL.so /usr/lib/aarch64-linux-gnu/libGL.so
+```
+
+Default situation is to use libGL.so instead of tegra’s libGL. So link the tegra’s libGL to default libGL.
+
+
+
