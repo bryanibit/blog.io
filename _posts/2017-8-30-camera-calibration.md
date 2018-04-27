@@ -60,8 +60,11 @@ description: 相机标定
 
 [OpenDroneMap](https://github.com/bryanibit/CameraCalibration)
 
-这个项目包含两部分，无需安装exiftool，运行opencv_calibrate.py，得到两个文件，一个是内参矩阵，一个是相机畸变矩阵参数
+这个项目包含两部分，无需安装exiftool，运行opencv_calibrate.py，得到两个文件，一个是内参矩阵，一个是相机畸变矩阵参数（顺序为 k1, k2, p1, p2, k3, ...）
 
 运行distortion可以将图像去畸变
 ------------------
 
+## 图像resize对于参数的影响
+
+图像resize为0.5后，不影响畸变参数，但会导致内参矩阵的四个参数（fx，fy, cx, cy）同倍数变化。
