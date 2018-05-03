@@ -175,3 +175,121 @@ docker ps
 ```
 
 打开网页localhost:docker ip映射到80的端口
+
+# Linux shell脚本入门
+
+## 列出目录项
+
+以时间顺序列表式列出目录项
+```
+ls -lr
+```
+
+## 文件查找
+
+find是实时查找，如果需要更快的查询，可试试locate；与find不同，locate并不是实时查找。
+
+locate会为文件系统建立索引数据库，如果有文件更新，需要定期执行更新命令来更新索引库:
+
+```
+locate string
+```
+
+## 查看文件内容
+
+显示文件第一行:
+
+```
+$head -1 filename
+```
+
+显示文件倒数第五行:
+
+```
+$tail -5 filename
+```
+
+查看两个文件间的差别:
+
+```
+$diff file1 file2
+```
+
+## 给文件增加别名
+
+创建符号链接/硬链接:
+
+```
+ln cc ccAgain :硬连接；删除一个，将仍能找到；
+ln -s cc ccTo :符号链接(软链接)；删除源，另一个无法使用；（后面一个ccTo 为新建的文件）
+```
+
+## 重定向与管道
+
+前面成功，则执行后面一条，否则，不执行:&&
+前面失败，则后一条执行: ||
+
+```
+ls /proc && echo  suss! || echo failed.
+```
+
+## find命令
+
+```
+find . ! -name "*.txt" //查找不是txt的文件
+find . -regex "*.txt" //不忽略大小写  -iregex 忽略大小写
+find . -type d //只列出所有目录  -type f 文件 / l 符号链接 / d 目录
+find . -atime 7 -type f //最近第7天被访问过的所有文件
+find . -atime -7 -type f //最近7天内被访问过的所有文件
+find . -atime +7 type f //最近7天前被访问过的所有文件
+find . -type f -size +2k //w字 k M G 寻找大于2k的文件
+
+```
+
+## -exec命令
+
+如果要执行多个命令，可以将多个命令写成一个脚本，然后-exec调用执行脚本即可
+
+```
+-exec ./commands.sh {}
+```
+
+## *grep*文本搜索
+
+```
+grep <match_patten> <file> // 默认访问匹配行
+
+```
+
+
+```
+    -o 只输出匹配的文本行 VS -v 只输出没有匹配的文本行
+
+    -c 统计文件中包含文本的次数
+        grep -c “text” filename
+
+    -n 打印匹配的行号
+    -i 搜索时忽略大小写
+    -l 只打印文件名
+```
+
+E.g:
+
+```
+grep "class" . -R -n  //在多级目录中对文本**递归**搜索(程序员搜代码的最爱）
+grep -e "class" -e "vitural" <file> //匹配**多个**模式
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
