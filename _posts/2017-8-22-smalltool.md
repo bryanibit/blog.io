@@ -176,7 +176,7 @@ docker ps
 
 打开网页localhost:docker ip映射到80的端口
 
-# Linux shell脚本入门
+# Linux shell脚本入门之文本处理
 
 ## 列出目录项
 
@@ -236,11 +236,12 @@ ls /proc && echo  suss! || echo failed.
 ## find命令
 
 ```
-find . ! -name "*.txt" //查找不是txt的文件
+find . ! -name "*.txt" -exec rm {} //查找不是txt的文件 并删除所有文件
 find . -regex "*.txt" //不忽略大小写  -iregex 忽略大小写
 find . -type d //只列出所有目录  -type f 文件 / l 符号链接 / d 目录
 find . -atime 7 -type f //最近第7天被访问过的所有文件
 find . -atime -7 -type f //最近7天内被访问过的所有文件
+find . -cmin -60 //最近60mins更改的文件
 find . -atime +7 type f //最近7天前被访问过的所有文件
 find . -type f -size +2k //w字 k M G 寻找大于2k的文件
 
@@ -257,11 +258,11 @@ find . -type f -size +2k //w字 k M G 寻找大于2k的文件
 ## *grep*文本搜索
 
 ```
-grep <match_patten> <file> // 默认访问匹配行
+grep [option] <match_patten> <file> // 默认访问匹配行
 
 ```
 
-
+option:
 ```
     -o 只输出匹配的文本行 VS -v 只输出没有匹配的文本行
 
@@ -276,20 +277,57 @@ grep <match_patten> <file> // 默认访问匹配行
 E.g:
 
 ```
-grep "class" . -R -n  //在多级目录中对文本**递归**搜索(程序员搜代码的最爱）
+grep -R -n "class" <file>/ //在多级目录中对文本**递归**搜索(程序员搜代码的最爱）
 grep -e "class" -e "vitural" <file> //匹配**多个**模式
 ```
 
+## xargs 命令行参数转换
 
+xargs 能够将输入数据转化为特定命令的命令行参数；这样，可以配合很多命令来组合使用。
 
+有点像给其他命令加上更多的-a 或者-n 意义或者通过管道加到其他命令上的这种感觉
 
+## wc统计行和字符的工具
 
+```
+$wc -l file // 统计行数
+$wc -w file // 统计单词数
+$wc -c file // 统计字符数
+```
 
+# Linux shell脚本入门之磁盘管理
 
+## 查看磁盘空间
 
+```
+ df -h
+```
 
+## 查询当前目录的大小
 
+```
+du -sh
+```
 
+1. 打包和压缩：
 
+```
+tar -cvf etc.tar /etc //将/etc文件夹打包归并到一个文件但不压缩
+    -c :打包选项
+    -v :显示打包进度
+    -f :使用档案文件
+gzip etc.tar //压缩文件
+```
+
+2. 解包:
+```
+gunzip demo.tar.gz //解压后缀为 .tar.gz的文件 1. 先解压缩，生成**.tar:
+tar -xvf demo.tar
+```
+
+```
+bzip2 -d  demo.tar.bz2
+tar -xvf  demo.tar
+```
 
 
