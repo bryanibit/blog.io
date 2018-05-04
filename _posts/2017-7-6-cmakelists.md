@@ -92,6 +92,32 @@ _All this_ takes places in the Find<NAME>.cmake file
 
 pkg-config is a build-helping tool, based on '.pc' files that record the location of _ library files _ and _ include files _
 
+凡是由二进制文件（deb、源等）安装的包，都会将<package-name>.pc文件放置在 {PKG-CONFIG-PATH}所包含的路径下。*.pc的内容一般是：指明某个包include和lib的目录。
+
+e.g.  
+
+```
+➜  echo $PKG_CONFIG_PATH 
+/home/bryan/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
+➜  ls /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
+opencv-3.3.1-dev.pc
+➜  head -14 /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig/opencv-3.3.1-dev.pc //显示前14行
+\# Package Information for pkg-config
+
+prefix=/opt/ros/kinetic
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib/x86_64-linux-gnu
+includedir_old=${prefix}/include/opencv-3.3.1-dev/opencv
+includedir_new=${prefix}/include/opencv-3.3.1-dev
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 3.3.1
+Libs: -L${exec_prefix}/lib/x86_64-linux-gnu -lopencv_stitching3 -lopencv_superres3 -lopencv_videostab3 -lopencv_aruco3 -lopencv_bgsegm3 -lopencv_bioinspired3 -lopencv_ccalib3 -lopencv_cvv3 -lopencv_dpm3 -lopencv_face3 -lopencv_photo3 -lopencv_fuzzy3 -lopencv_hdf3 -lopencv_img_hash3 -lopencv_line_descriptor3 -lopencv_optflow3 -lopencv_reg3 -lopencv_rgbd3 -lopencv_saliency3 -lopencv_stereo3 -lopencv_structured_light3 -lopencv_viz3 -lopencv_phase_unwrapping3 -lopencv_surface_matching3 -lopencv_tracking3 -lopencv_datasets3 -lopencv_text3 -lopencv_dnn3 -lopencv_plot3 -lopencv_xfeatures2d3 -lopencv_shape3 -lopencv_video3 -lopencv_ml3 -lopencv_ximgproc3 -lopencv_calib3d3 -lopencv_features2d3 -lopencv_highgui3 -lopencv_videoio3 -lopencv_flann3 -lopencv_xobjdetect3 -lopencv_imgcodecs3 -lopencv_objdetect3 -lopencv_xphoto3 -lopencv_imgproc3 -lopencv_core3
+Libs.private: -ldl -lm -lpthread -lrt
+Cflags: -I${includedir_old} -I${includedir_new}
+```
+
 ## INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES
 
 INCLUDE_DIRECTORIES 增加include路径
@@ -113,6 +139,7 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
     **EXECUTABLE_OUTPUT_PATH** 重新定义目标二进制可执行文件的存放位置
     **CMAKE_CURRENT_LIST_FILE** 输出调用这个变量的CMakeLists.txt的完整路径
     **CMAKE_CURRENT_LIST_LINE** 输出这个变量所在的行
+    **CMAKE_CURRENT_LIST_DIR** .cmake所在目录
     **LIBRARY_OUTPUT_PATH** 重新定义目标链接库文件的存放位置
     **PROJECT_NAME** 返回通过PROJECT指令定义的项目名称
     **CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS** 用来控制IF ELSE语句的书写方式
