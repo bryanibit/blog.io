@@ -293,4 +293,25 @@ sudo ln -fs /usr/lib/aarch64-linux-gnu/tegra/libGL.so /usr/lib/aarch64-linux-gnu
 Default situation is to use libGL.so instead of tegra’s libGL. So link the tegra’s libGL to default libGL.
 
 
+## Can not mount windows disk on ubuntu
 
+```
+➜  sudo mount /dev/sdb4 /media/bryan
+Windows is hibernated, refused to mount.
+Failed to mount '/dev/sdb4': Operation not permitted
+The NTFS partition is in an unsafe state. Please resume and shutdown
+Windows fully (no hibernation or fast restarting), or mount the volume
+read-only with the 'ro' mount option.
+```
+
+这是由于Windows没有正常关机而休眠，所以文件系统里会有*hiberfil.sys*的文件，其他操作系统看到这个文件中的flag，导致无法以**读写模式**挂载Windows硬盘。[问题链接](https://askubuntu.com/questions/145902/unable-to-mount-windows-ntfs-filesystem-due-to-hibernation)
+
+1. 方法之一是使用**只读模式**挂载硬盘：
+
+```
+mount -t ntfs-3g -o ro /dev/sdb4 /media/bryan
+```
+
+2. 方法二是进入Windows，彻底关闭后，重新进入Linux
+
+3. 如果一定要以读写模式挂载：删除hiberfil.sys文件，但是可能会因此丢失未保存的文件，不建议使用；对于Windows8/10，关闭快速启动（Control Panel-Power option-choose what the power buttons do-change setting that are currently unavailable-Turn on fast startup(recommended)），如果重新进入Linux仍然无法读写挂载，则以管理员身份打开Command Prompt,输入```Powercfg /h off```
