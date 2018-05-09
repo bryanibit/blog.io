@@ -57,5 +57,26 @@ control, it _must_ be started as root.
 /etc/init.d/ueyeethdrc start
 ```
 
-之后可以使用以上open source的例程读取图像
+之后可以使用以上open source的例程(如下也可)读取图像
+
+```
+#!/usr/bin/env python
+import ids
+import cv2
+import time
+cam = ids.Camera()
+cam.color_mode = ids.ids_core.COLOR_RGB8    # Get images in RGB format
+cam.exposure = 5                            # Set initial exposure to 5ms
+cam.auto_exposure = True
+cam.continuous_capture = True               # Start image capture
+
+while True:
+    t1 = time.time()
+    img, meta = cam.next()
+    t2 = time.time()
+    print 'Frequency is ' + str(1.0/(t2 - t1))
+    bgr_img = cv2.cvtColor(img, cv2.COLOR_RGB2BGR)
+    cv2.imshow("NIR-CV", bgr_img)
+    cv2.waitKey(1)
+```
 
