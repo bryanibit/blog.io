@@ -51,3 +51,11 @@ control, it _must_ be started as root.
 
 [Github open source](https://github.com/ncsuarc/ids)
 
+安装库函数后，先打开相机
+
+```
+/etc/init.d/ueyeethdrc start
+```
+
+之后可以使用以上open source的例程读取图像
+
