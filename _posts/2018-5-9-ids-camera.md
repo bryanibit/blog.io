@@ -80,3 +80,8 @@ while True:
     cv2.waitKey(1)
 ```
 
+用完相机需要拔下接线时候，关闭相机
+
+```
+/etc/init.d/ueyeethdrc stop
+```
