@@ -237,6 +237,17 @@ void vector<T>::clear()		// 函数的实现放在这里
 }
 ```
 
+可以将
+
+```
+template <typename T>
+class vector{class body};
+
+class student{class body};
+```
+
+看成 vector<>  ==  Student, 模板走到哪里都要带上泛型，带上泛型后就和普通类一样
+
 函数的实现部分看起来略微拗口。我第一次学到的时候，觉得
 
 ``` C++
