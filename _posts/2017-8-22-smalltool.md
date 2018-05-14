@@ -352,5 +352,38 @@ Advantage： 1. 支持断点续传 2. 支持**代理服务器** 3. 支持FTP和H
 ```
 
 
+## virtualenv
 
+virtualenv is a tool to create isolated Python environments.
 
+### installation 
+
+```
+$ [sudo] pip install virtualenv
+```
+
+### Usage
+
+1. Virtualenv has one basic command:
+
+```
+virtualenv ENV // mkdir a dir called ENV in inputting command dir
+```
+
+- ENV/lib/ and ENV/include/ are created, containing supporting library files for a new virtualenv python. 
+- Packages installed in this environment will live under ENV/lib/pythonX.X/site-packages/.
+
+2. There is a script used to activate virtualenv
+
+On Posix systems, this resides in /ENV/bin/, so you can run:
+
+```
+$ source bin/activate
+```
+
+This will change your $PATH so its first entry is the virtualenv’s bin/ directory. (You have to use source because it changes your shell environment in-place.) This is all it does.
+
+To undo these changes to your path (and prompt), just run:
+```
+deactivate
+```

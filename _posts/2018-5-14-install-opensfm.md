@@ -9,6 +9,7 @@ description: OpenSfM安装的坑
 
 ## 系统状态
 
+- OS: Ubuntu 16.04 X86-64(arch)
 - 安装了ros kinetic，所以opencv3.0已经存在在ros安装目录的include和lib目录中
 - 安装了Python2.7和Python3.5，注意区分pip3和pip，python3和python，opensfm中使用python2
 - 安装了eigen，使用apt-get
