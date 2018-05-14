@@ -139,7 +139,6 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
     **EXECUTABLE_OUTPUT_PATH** 重新定义目标二进制可执行文件的存放位置
     **CMAKE_CURRENT_LIST_FILE** 输出调用这个变量的CMakeLists.txt的完整路径
     **CMAKE_CURRENT_LIST_LINE** 输出这个变量所在的行
-    **CMAKE_CURRENT_LIST_DIR** .cmake所在目录
     **LIBRARY_OUTPUT_PATH** 重新定义目标链接库文件的存放位置
     **PROJECT_NAME** 返回通过PROJECT指令定义的项目名称
     **CMAKE_ALLOW_LOOSE_LOOP_CONSTRUCTS** 用来控制IF ELSE语句的书写方式
@@ -187,13 +186,15 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
 
 1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}
 
-- Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
+Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
 
 设置include为库安装目录，解决问题
 
 2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake
 
-- Tell .cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
+Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
+
+Tell *.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
 
 
 

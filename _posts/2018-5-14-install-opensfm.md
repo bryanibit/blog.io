@@ -1,13 +1,25 @@
 ---
 layout: post
-title: Eigen in OpenSfM
-date: 2017-07-14
+title: OpenSfM Installation
+date: 2018-05-14
 categories: blog
 tags: [技术总结]
-description: 边看程序，边总结eigen 注意事项
+description: OpenSfM安装的坑
 ---
 
-## Eigen::map<>()
+## 系统状态
+
+- 安装了ros kinetic，所以opencv3.0已经存在在ros安装目录的include和lib目录中
+- 安装了Python2.7和Python3.5，注意区分pip3和pip，python3和python，opensfm中使用python2
+- 安装了eigen，使用apt-get
+
+## 编译安装opengv
+
+## 编译安装ceres solver
+
+
+
+### Eigen::map<>()
 ```
 int array[9];
 for(int i = 0; i < 9; ++i) array[i] = i;
@@ -22,7 +34,7 @@ Output:
 ```
 注意以上map得到的结果是先填充行再填充列的
 
-## Eigen block <> ()
+### Eigen block <> ()
 
 ```
 /#include <Eigen/Dense>
