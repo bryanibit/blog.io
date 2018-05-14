@@ -16,9 +16,21 @@ description: OpenSfM安装的坑
 
 ## 编译安装opengv
 
+- Modify the CMakeLists.txt in the root dir: turn on BUILD_PYTHON
+- cmake and make, then install.
+
 ## 编译安装ceres solver
 
+- Add the build option: -fPIC to cmake_cxx_flags and cmake_c_flags to all the signal
 
+## Compile opensfm
+
+```
+relocation R_AARCH64_ADR_PREL_PG_HI21 against external symbol `__stack_chk_guard@@GLIBC_2.17' can not be used when making a shared object; recompile with -fPIC
+/usr/bin/ld: /usr/local/lib/libceres.a(loss_function.cc.o)(.text+0x11c): unresolvable R_AARCH64_ADR_PREL_PG_HI21 relocation against symbol `__stack_chk_guard@@GLIBC_2.17'
+/usr/bin/ld: final link failed: Bad value
+collect2: error: ld returned 1 exit status
+```
 
 ### Eigen::map<>()
 ```
