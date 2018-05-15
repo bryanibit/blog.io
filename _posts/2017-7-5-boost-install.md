@@ -23,7 +23,7 @@ description: boost安装总结
 
 查看boost版本：
 
-        cat /usr/include/boost/version.hpp | grep "BOOST_LIB_VERSION”
+        cat /usr/include/boost/version.hpp | grep "BOOST_LIB_VERSION"
 
 
 The way you are reinstalling the package might install Boost on your (/home) as opposed to on system (/usr..). 
