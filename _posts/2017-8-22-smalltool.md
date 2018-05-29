@@ -387,3 +387,48 @@ To undo these changes to your path (and prompt), just run:
 ```
 deactivate
 ```
+
+## Use Systemctl to manage Systemd Services and Units
+
+Systemctl is used on ubuntu 16.04 not ubuntu 14.04
+
+Introduction:
+
+Systemd is an init system and system manager that is becoming the new standard for Linux. 
+
+### 1. Starting and Stopping services
+
+```
+sudo systemctl start <application>.service
+sudo systemctl start application  //systemd knows to look for *.service* files
+sudo systemctl stop <application>.service
+```
+
+
+### 2. Enabling and Disabling Services
+
+*enable*命令这将使某服务在系统启动时候就被自动start
+
+```
+sudo systemctl enable <application>.service
+```
+
+以上会创建一个软连接from服务文件（/lib/systemd/system or /etc/systemd/system）into **systemd**寻找的地方（/etc/systemd/system/*some_target*.target.wants）
+
+```
+sudo systemctl disable <application>.service
+```
+
+以上将移除软连接，<application>服务将不会自动启动
+
+<Note> Enalbing a service does not start in the current session.
+
+### 3. Checking the status of Services
+
+```
+systemctl status <application>.service
+systemctl is-active <app>.service //输出是否
+systemctl is-enabled <app>.service //输出是否
+```
+
+

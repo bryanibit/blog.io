@@ -29,3 +29,35 @@ description: word技巧总结
 ### 将方块涂黑或者加对号
 
 插入-符号-字体（Wingdings 2）里面有方框对号，手势等符号
+
+# 2018-5-29
+
+## 设置QC35链接Ubuntu蓝牙Bluetooth
+
+**Deactivate Bluetooth LE**
+
+1. Edit Bluetooth configuration file:
+
+```
+sudo vim /etc/bluetooth/main.conf
+```
+
+2. Replace:
+
+```
+#ControllerMode = dual
+```
+
+to:
+
+```
+ControllerMode = bredr
+```
+
+3. Restart Bluetooth
+
+```
+sudo service bluetooth restart
+```
+
+4. Go to System Setting > Bluetooth > Sound Setting
