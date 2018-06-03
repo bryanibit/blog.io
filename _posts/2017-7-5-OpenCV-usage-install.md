@@ -199,6 +199,27 @@ set (OPNECV_DIR ".../share/OpenCV")  NOTE: The OPENCV_DIR should have file calle
 
 ## 查找cv::Mat的type
 
+*Way 1*:
+
+Mat数据结构中有一个type函数，对于一个定义为Mat结构的数据类型，例如Mat image;
+
+```
+#define CV_8U   0
+#define CV_8S   1
+#define CV_16U  2
+#define CV_16S  3
+#define CV_32S  4
+#define CV_32F  5
+#define CV_64F  6
+#define CV_USRTYPE1 7
+```
+
+只要记住这8个编号，即单通道时，这些编号对应数据类型的Mat中type函数输出的值。然后若是2个通道，则再上8；3个通道，则加上16；4个通道则加上24。
+
+depth：深度，即每一个像素的位数(bits)，在opencv的Mat.depth()中得到的是一个 0 – 6 的数字，分别代表不同的位数：enum { CV_8U=0, CV_8S=1, CV_16U=2, CV_16S=3, CV_32S=4, CV_32F=5, CV_64F=6 }; 可见 0和1都代表8位， 2和3都代表16位，4和5代表32位，6代表64位；
+
+*Way 2*:
+
 ```
 string type2str(int type) {
   string r;
