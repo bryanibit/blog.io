@@ -1,13 +1,13 @@
 ---
 layout: post
 title: C++ textbook 下
-date: 2017-07-15
+date: 2017-07-8
 categories: blog
 tags: [理论梳理]
 description: 谭浩强的书粗略浏览一下
 ---
 
-**一下部分高能预警，请细心体会（本书第8~12章）今天看完前10章**
+**以下部分高能预警，请细心体会（本书第8~12章）今天看完前10章**
 ## 8.类和队象
 - 任何对象都应该有两个要素：属性（静态特征）/行为（动态特征）,由数据和函数两部分组成
 - 对象在设计时，考虑封装特性，将外部行为和内部行为分隔开，同时将各个对象之间的相对独立
@@ -479,7 +479,88 @@ private:
 
 
 
+## C++ 11//14/17关键字
 
+### using关键字
 
+1. 通常我们使用 typedef 定义别名的语法是：typedef 原名称 新名称;，但是对函数指针等别名的定义语法却不相同。
 
+```
+typedef int (*process)(void*);
+using process = int(*)(void *);
 
+using TrueDarkMagic = MagicType<std::vector<T>, std::string>;
+TrueDarkMagic<bool> you;
+```
+
+2. 在传统 C++ 中，构造函数如果需要继承是需要将参数一一传递的，这将导致效率低下。C++11 利用关键字 using 引入了继承构造函数的概念：
+
+```
+class BASE{
+		public:
+				int value1;
+				int value2;
+				BASE(){
+						value1 = 1;
+				}
+				BASE(int value): BASE(){ //委托BASE()构造函数
+						value2 = 2;
+				}
+};
+class subBASE: public BASE{
+		using BASE:BASE; //继承构造
+};
+
+int main(){
+		subBASE s(3);
+		std::cout << s.value1<<s.value2<<std::endl;
+}
+```
+
+## C++11/14/17标准库
+
+### std::array
+
+std::array 保存在栈内存中，std::vector保存在堆内存。
+
+std::array 会在编译时创建一个固定大小的数组，std::array 不能够被*隐式*的转换成指针。
+
+使用 std::array 很简单，只需指定其类型和大小即可
+
+```
+std::array<int, 4> arr= {1,2,3,4};
+int len = 4;
+std::array<int, len> arr = {1,2,3,4}; // *非法*, 数组大小参数必须是常量表达式
+```
+
+与C风格接口传参
+
+```
+void foo(int *p, int len) {
+    return;
+}
+
+std::array<int, 4> arr = {1,2,3,4}; //实例
+
+// C 风格接口传参
+// foo(arr, arr.size()); // *非法*, 无法隐式转换
+foo(&arr[0], arr.size());
+foo(arr.data(), arr.size()); //arr.data() return 指向arr的指针
+
+// 使用 `std::sort`
+std::sort(arr.begin(), arr.end());
+```
+
+### 智能指针
+
+> 智能指针实质是一个对象，行为表现的却像一个指针
+
+> 引用计数不是垃圾回收，引用技术能够尽快收回不再被使用的对象，同时在回收的过程中也不会造成长时间的等待，更能够清晰明确的表明资源的生命周期。
+
+> 这些智能指针包括 std::shared_ptr/std::unique_ptr/std::weak_ptr，使用它们需要包含头文件 <memory>。
+
+> std::shared_ptr 是一种智能指针，它能够记录多少个 shared_ptr 共同指向一个对象，从而无需显示得调用 delete，当引用计数变为零的时候就会将对象自动删除。
+
+1. shared_ptr and unique_ptr 
+
+单个unique_ptr离开作用域时，会立即释放底层内存;可以有多个shared_ptr实例指向同一块动态分配的内存，当最后一个shared_ptr离开作用域时，才会释放这块内存.
