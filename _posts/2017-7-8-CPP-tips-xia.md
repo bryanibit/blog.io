@@ -574,14 +574,39 @@ std::sort(arr.begin(), arr.end());
 3. 从某个串中取出符合条件的子串。
 
 | **特殊字符**  | **描述** |
-| :--- | ----: |
+| :--- | :----: |
 | $ | 匹配输入字符串的结尾位置 |
 | (,) | 标记一个子表达式的开始和结束位置 |
 |* | 匹配前面的子表达式零次或多次。
 |+  | 匹配前面的子表达式一次或多次。
 |. | 匹配除换行符 \n 之外的任何单字符。
 
+### 线程与并发
 
+1. 最简单的是使用std::thread创建一个线程实例，这是并发编程的基础，需要包含<thread>头文件，其提供很多基本的线程操作：
+
+*get_id()* required ID of the created thead.
+
+*join()*  add one thread to pool.
+
+```
+#include <iostream>
+#include <thread>
+void foo() {
+    std::cout << "hello world" << std::endl;
+	}
+int main() {
+    std::thread t(foo); //new one thread
+    t.join(); //start the thread
+    return 0;
+}
+```
+
+2. std::mutex is the basic class in C++11, mutex variables can be created via instancing std::mutex. <mutex> needs to be included.
+
+member funtion:
+
+lock() unlock() 
 
 
 
