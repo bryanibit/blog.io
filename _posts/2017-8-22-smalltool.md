@@ -24,6 +24,12 @@ set cindent
 syntax on
 ```
 
+In insert mode, other clipboard content could add to vim with CTRL-V. At this time, the format or indent could be messed up.
+
+Inputting **=G** in normal mode can solve the problem. The first view of openning vim is mormal mode.
+
+Inputting **:** will enter command mode. The **V** can enter Visual mode, alse **i** is insert mode.
+
 ## install terminator
 
 ```
