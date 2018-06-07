@@ -307,8 +307,8 @@ read-only with the 'ro' mount option.
 这是由于Windows没有正常关机而休眠，所以文件系统里会有*hiberfil.sys*的文件，其他操作系统看到这个文件中的flag，导致无法以**读写模式**挂载Windows硬盘。[问题链接](https://askubuntu.com/questions/145902/unable-to-mount-windows-ntfs-filesystem-due-to-hibernation)
 
 1. 方法之一是使用**只读模式**挂载硬盘：
-
 ```
+sudo fdisk -l
 mount -t ntfs-3g -o ro /dev/sdb4 /media/bryan
 ```
 

@@ -573,6 +573,7 @@ std::sort(arr.begin(), arr.end());
 2. 将匹配的子串替换；
 3. 从某个串中取出符合条件的子串。
 
+--------------------------------------------------
 | **特殊字符**  | **描述** |
 | :--- | :----: |
 | $ | 匹配输入字符串的结尾位置 |
@@ -580,6 +581,8 @@ std::sort(arr.begin(), arr.end());
 |* | 匹配前面的子表达式零次或多次。
 |+  | 匹配前面的子表达式一次或多次。
 |. | 匹配除换行符 \n 之外的任何单字符。
+--------------------------------------------------
+
 
 ### 线程与并发
 
@@ -590,23 +593,48 @@ std::sort(arr.begin(), arr.end());
 *join()*  add one thread to pool.
 
 ```
-#include <iostream>
-#include <thread>
-void foo() {
+\#include <iostream>
+\#include <thread>
+void foo() 
+{
     std::cout << "hello world" << std::endl;
-	}
-int main() {
+}
+int main() 
+{
     std::thread t(foo); //new one thread
-    t.join(); //start the thread
+    t.join(); //start the thread, the main funtion waits until the thread ends
     return 0;
 }
 ```
 
 2. std::mutex is the basic class in C++11, mutex variables can be created via instancing std::mutex. <mutex> needs to be included.
 
-member funtion:
+member funtion: lock() unlock()
 
-lock() unlock() 
+object: std::unique_lock<std::mutex> std::look_guard<std::mutex>
+
+
+```
+\#include <iostream>
+\#include <thread>
+\#include <mutex>
+std::mutex mtx;
+
+void block_area() {
+std::unique_lock<std::mutex> lock(mtx);
+    //...临界区
+lock.unlock();
+    //...some other code 
+lock.lock(); //  can lock again
+}
+int main() {
+    std::thread thd1(block_area);
+    std::thread thd2(block_area);
+    thd1.join(); //syn
+    thd2.detach(); //asyn
+    return 0;
+}
+```
 
 
 
