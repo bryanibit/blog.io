@@ -27,13 +27,14 @@ description: ROS 相关问题
 ```
 
 - 这是由于catkin_create_pkg beginner_tutorials roscpp rospy std_msgs
-- 使用rospack denpend1 beginner_tutorials查看
+- 使用rospack depends1 beginner_tutorials查看
 - 使用rosdep install [package],可以安装包依赖
 
 ## ros节点
 ROS client libraries allow nodes written in different programming languages to communicate:
 *    rospy = python client library
 *    roscpp = c++ client library
+
 If roscore does not initialize and sends a message about lack of permissions,
 probably the ~/.ros folder is owned by root, change recursively
 the ownership of that folder with:
@@ -54,11 +55,11 @@ the ownership of that folder with:
 
 **查看topic的数据类型**
 
-             rostopic type /topic_name
+             rostopic type /topic_name  ==> rostopic type
 
 **可以继续查看topic type的具体参数（float，double等）**
 
-             rosmsg show /topic_type
+             rosmsg show /topic_type    ==> rostopic type format
 
 ## rosdep
 
@@ -80,11 +81,11 @@ Build tool dependencies
 
 Build denpenencies
 - include header from these packages at compilation time,linking against libraries from these packages at build time
-- e.g. find_package()-ed in CMake
+- e.g. find_package()-ed in CMakeLists.txt
 
 Run dependencies
 - when depend on share libraries include headers
-- e.g. catkin_package() in CMake
+- e.g. catkin_package() in CMakeLists.txt
 
 Test dependencies
 - 可选的依赖，和build和run都不重复的依赖
