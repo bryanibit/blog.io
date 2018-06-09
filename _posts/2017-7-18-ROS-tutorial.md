@@ -339,6 +339,25 @@ bool[]                see above                   std::vector<uint8_t>          
 - rospy将arrays反序列化为元组，同struct.unpack return 一个元组
 - Header is not a built-in type (it's defined in std_msgs/msg/Header.msg
 
+## ROS launch 文件
+
+[ROS官方解释](http://wiki.ros.org/roslaunch/XML)了每个参数的含义：
+
+launch文件采用深度优先搜索的方法，如果一个变量被多次定义，则采用最后一次定义的参数。
+
+```
+<launch>
+<node name="add_two_ints_client" pkg="beginner_tutorials" type="add_two_ints_client" args="$(arg a) $(arg b)" />
+</launch>
+```
+
+这将打开节点add_two_ints_client，同时穿进去value a和b，使用的方法为
+
+```
+roslaunch <package_name> abovelaunch.launch a:=1 b:=5
+```
+The <param> tag can be put inside of a <node> </node> tag, in which case the parameter is treated like a private parameter. 
+
 ## 分布式计算使用ROS
 
 - You only need one master. Select one machine to run it on.
