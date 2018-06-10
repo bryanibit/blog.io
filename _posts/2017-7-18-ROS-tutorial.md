@@ -358,6 +358,22 @@ roslaunch <package_name> abovelaunch.launch a:=1 b:=5
 ```
 The <param> tag can be put inside of a <node> </node> tag, in which case the parameter is treated like a private parameter. 
 
+
+## Package tf
+
+**tf** is a package that lets the user keep track of multiple coordinate frames over time. **tf** maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time. 
+
+The tf package provides an implementation of a **TransformBroadcaster** to help make the task of **publishing** transforms easier. 
+
+The tf package provides an implementation of a **TransformListener** to help make the task of **receiving** transforms easier.
+
+The TransformListener object should be scoped to persist otherwise it's cache will be unable to fill and almost every query will fail. A common method is to make the TransformListener object a member variable of a class. 
+
+```
+rosrun tf view_frames
+rosrun rqt_tf_tree rqt_tf_tree # 查看frame ID之间的关系
+```
+
 ## 分布式计算使用ROS
 
 - You only need one master. Select one machine to run it on.
