@@ -539,14 +539,12 @@ std::array<int, len> arr = {1,2,3,4}; // *非法*, 数组大小参数必须是�
 void foo(int *p, int len) {
     return;
 }
-
 std::array<int, 4> arr = {1,2,3,4}; //实例
 
 // C 风格接口传参
 // foo(arr, arr.size()); // *非法*, 无法隐式转换
 foo(&arr[0], arr.size());
 foo(arr.data(), arr.size()); //arr.data() return 指向arr的指针
-
 // 使用 `std::sort`
 std::sort(arr.begin(), arr.end());
 ```
