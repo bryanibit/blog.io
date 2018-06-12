@@ -453,6 +453,7 @@ Student_derivedclass(int n,string name, char s, int a, string ad):Student(n,nam,
 **派生类构造函数名（总参数列表）：基类构造函数名（参数表列），子对象名（参数表列）**
 **{派生类中新增数据成员初始化语句}**
 下面是一个例子，monitor是子对象，是基类的对象
+
 ```
 class Student
 {public:
@@ -473,9 +474,8 @@ private:
  int age;
  string addr;
 ```
+
 ### 11.4 虚基类
-
-
 
 
 
