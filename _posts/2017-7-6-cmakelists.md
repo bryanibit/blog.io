@@ -190,16 +190,33 @@ Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/O
 
 设置include为库安装目录，解决问题
 
-2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake
+2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html)
 
 Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
 
-Tell *.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
+Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
 
 
+## cmakelists中关键字（函数）
 
+```
+cmakelists              makefile
 
+target_link_libraries  ==> -l
 
+include_directories  ==> -I/path
+
+link_directories  ==> -L/path
+```
+
+CMake provides direct support for two forms of packages, Config-file Packages and Find-module Packages. Indirect support for pkg-config packages is also provided via the FindPkgConfig module. In all cases, the basic form of find_package() calls is the same: *find_package(Qt5Core 5.1.0 REQUIRED)*
+
+```
+find_package(Qt5Core 5.1.0 CONFIG REQUIRED) //显示说明使用Config-file (more modern approach)
+find_package(Qt4 4.7.0 MODULE REQUIRED) //显示说明使用find-module
+```
+
+findXXX.cmake中需要手动设置一些变量，包括<package>_FOUND等，而config.cmake中，一旦找到包，将自动设置该变量，config.cmake是一种更高级的方法。
 
 
 
