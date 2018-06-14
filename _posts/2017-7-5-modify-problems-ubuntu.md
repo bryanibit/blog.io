@@ -223,7 +223,6 @@ unlink can remove the old file, so caution is needed.
 
 如果不更改可能需要将头文件的目录更改。
 
-<<<<<<< HEAD
 ## 在nvidia tx2 16.10编译orb-slam ros时，出现错误2：
 
 ```
@@ -274,9 +273,6 @@ ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
 ${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so 
 
 问题得以解决
-
-=======
->>>>>>> 647cee55020c12352495a8e1e4c317ef5f33846d
 
 ## 在nvidia tx2 16.10编译orb-slam ros时，出现错误3：
 

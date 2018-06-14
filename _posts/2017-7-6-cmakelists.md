@@ -196,6 +196,7 @@ Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/i
 
 Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
 
+The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.
 
 ## cmakelists中关键字（函数）
 
@@ -217,6 +218,17 @@ find_package(Qt4 4.7.0 MODULE REQUIRED) //显示说明使用find-module
 ```
 
 findXXX.cmake中需要手动设置一些变量，包括<package>_FOUND等，而config.cmake中，一旦找到包，将自动设置该变量，config.cmake是一种更高级的方法。
+
+find_package() 命令会在模块路径中寻找 Find<name>.cmake ，这是查找库的一个典型方式。首先CMake查看${CMAKE_MODULE_PATH} 中的所有目录，然后再查看它自己的模块目录 <CMAKE_ROOT>/Modules/ ，这种称为模块模式。如果没找到这样的文件，会寻找 <Name>Config.cmake 或者 <lower-case-name>-config.cmake ，它们是假定库会安装的文件（但是目前还没有多少库会安装它们），这种叫做配置模式。在配置模式下，如果没有找到config.cmake，CMake expects the user to specify the location of this file by filling a cache entry called <name>_DIR (this entry is created by CMake automatically).无论哪种模式，只要找到包，就会定义下面的这些变量，只是这些变量在findXXX.cmake中需要显示声明，在config.cmake中不需要显示声明：
+
+```
+<NAME>_FOUND
+<NAME>_INCLUDE_DIRS or <NAME>_INCLUDES
+<NAME>_LIBRARIES or <NAME>_LIBRARIES or <NAME>_LIBS
+<NAME>_DEFINITIONS
+```
+
+Find_package自动搜索<name>_DIR，查找config.cmake，并执行，config.cmake创建<name>_LIBRARIES, <name>_INCLUDE_DIRS and <name>_DEFINES
 
 
 
