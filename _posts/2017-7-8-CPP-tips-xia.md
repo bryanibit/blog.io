@@ -478,6 +478,96 @@ private:
 ### 11.4 虚基类
 
 
+## coursera C++ 笔记知识点梳理
+
+### 类的内联成员函数
+
+1. 定义放在类体内部
+2. 声明为inline，定义放在类外面
+
+### 声明一个类也就是声明了一种类型/一个作用域
+
+1. vector<ClassA> obj-a; ClassA obj-a-array[10]
+2. A::member_func(){定义}
+
+### 构造函数
+
+类在实例化对象时，必然调用了构造函数（普通构造函数，复制构造函数，类型转换构造函数\[只接受一个参数，调用形如 ClassA obj-a; a=9\]）
+
+```
+class Test{
+  public:
+    Test(int n){}        //(1)
+    Test(int n, int m){} //(2)
+    Test(){}             //(3)
+};
+Test array1[3]={1, Test(1,2)}; //（1）（2）（3）初始化
+Test array2[3]={Test(2,3), Test(1,2), 1};     //（2）（2）（3）初始化
+Test *parray[3]={new Test(4), new Test(1,2)}; //Note: （1）（2）初始化
+```
+
+### copy constructor(复制构造函数)
+
+类默认有无参构造函数和复制构造函数
+
+```
+class Complex{double *real, *image};
+Complex c1;
+Complex c2(c1);//调用复制构造函数，声明形式为[classname][objname](const & objname)
+```
+
+复制构造函数在对象声明的时候被调用
+
+第一种情况
+
+```
+void Func(A a1){}
+int main(){
+  A a2;
+  Func(a2); // 调用复制构造函数，a2为将变成复制构造函数的传进去的参数
+  return 0;}
+```
+
+第二种情况
+
+```
+A Func(){
+  A b(4);
+  return b;//这将b作为return值的复制构造函数的参数，所以返回值取决与类A的复制构造函数的写法
+}
+int main(){
+  cout<<Func().v<<endl;
+  return 0;
+```
+
+### 析构函数
+
+类成员变量含有指针时，要在类的析构函数中加入delete []p/p 的语句
+
+new出来的动态指针，必须显示delete，调用析构函数。
+
+### 封闭类
+
+封闭类是包含成员对象的类，它的初始化函数可能比较重要，如果其中一个成员对象对应的类的构造函数不是默认的构造函数，则需要在封闭类中显示说明如何初始化该成员对象。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## C++ 11//14/17关键字
 
