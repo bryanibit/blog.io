@@ -311,3 +311,16 @@ mount -t ntfs-3g -o ro /dev/sdb4 /media/bryan
 2. 方法二是进入Windows，彻底关闭后，重新进入Linux
 
 3. 如果一定要以读写模式挂载：删除hiberfil.sys文件，但是可能会因此丢失未保存的文件，不建议使用；对于Windows8/10，关闭快速启动（Control Panel-Power option-choose what the power buttons do-change setting that are currently unavailable-Turn on fast startup(recommended)），如果重新进入Linux仍然无法读写挂载，则以管理员身份打开Command Prompt,输入```Powercfg /h off```
+
+
+## ROS Error: can't not locate node
+
+```
+cannot launch node of type [voxblox_ros/tsdf_server]: can't locate node [tsdf_server] in package [voxblox_ros]
+```
+
+When you start a launch file, you may meet the above error.
+
+```
+source ./devel/setup.zsh
+```
