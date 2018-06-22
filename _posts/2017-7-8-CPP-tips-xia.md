@@ -510,6 +510,8 @@ Test *parray[3]={new Test(4), new Test(1,2)}; //Note: （1）（2）初始化
 
 类默认有无参构造函数和复制构造函数
 
+第一种情况
+
 ```
 class Complex{double *real, *image};
 Complex c1;
@@ -518,17 +520,17 @@ Complex c2(c1);//调用复制构造函数，声明形式为[classname][objname](
 
 复制构造函数在对象声明的时候被调用
 
-第一种情况
+第二种情况
 
 ```
-void Func(A a1){}
+void Func(A a1){} //为了减少构造函数复制带来的影响，可以将该代码改为：void Func(const A& a1){}
 int main(){
   A a2;
-  Func(a2); // 调用复制构造函数，a2为将变成复制构造函数的传进去的参数
+  Func(a2); // 调用复制构造函数，a2为将变成复制构造函数的传进去的参数。为了减少复制的影响，可以改为：Func(std::move(a2))
   return 0;}
 ```
 
-第二种情况
+第三种情况
 
 ```
 A Func(){
@@ -703,11 +705,10 @@ object: std::unique_lock<std::mutex> std::look_guard<std::mutex>
 
 
 ```
-\#include <iostream>
-\#include <thread>
-\#include <mutex>
+#include <iostream>
+#include <thread>
+#include <mutex>
 std::mutex mtx;
-
 void block_area() {
 std::unique_lock<std::mutex> lock(mtx);
     //...临界区
@@ -724,8 +725,33 @@ int main() {
 }
 ```
 
+3. std::future, std::packaged_task
 
+std::future提供了一个访问异步操作结果的途径，是一种简单的线程同步手段。
 
+std::packaged_task用来封装任何可以调用的目标，从而实现异步调用。
+
+```
+#include <iostream>
+#include <future>
+#include <thread>
+int main()
+{
+    // 将一个返回值为7的 lambda 表达式封装到 task 中
+    // std::packaged_task 的模板参数为要封装函数的类型
+    std::packaged_task<int()> task([](){return 7;});
+    // 获得 task 的 future
+    std::future<int> result = task.get_future(); // 在一个线程中执行 task
+    std::thread(std::move(task)).detach(); std::cout << "Waiting...";
+    result.wait();
+    // 输出执行结果
+    std::cout << "Done!" << std:: endl << "Result is " << result.get() << '\n';
+}
+```
+
+4. std::condition_variable
+
+线程可能需要等待某个条件为真才能继续执行，而一个忙等待循环中可能会导致所有其他线程都无法进入临界区使得条件为真时，就会发生死锁。condition_variable 实例被创建出现主要就是用于唤醒等待线程从而避免死锁。
 
 
 

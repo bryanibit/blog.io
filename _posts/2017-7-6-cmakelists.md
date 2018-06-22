@@ -186,17 +186,17 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
 
 1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}
 
-Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
+> Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
 
-设置include为库安装目录，解决问题
+> 设置include为库安装目录，解决问题
 
 2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html)
 
-Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
+> Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
 
-Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
+> Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
 
-The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.
+> The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.
 
 ## cmakelists中关键字（函数）
 

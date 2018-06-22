@@ -40,7 +40,7 @@ target_link_libraries(point_group ${OpenCV_LIBS})
 
 这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置
 
-有篇CMakeLists的博文（好像是7月5号更新的）里面写了指定${CMAKE_MODULE_PATH},
+有篇[CMakeLists的博文](https://bryanibit.github.io/blog/2017/07/05/cmakelists/),里面写了指定${CMAKE_MODULE_PATH},
 
 然后把.cmake copy 到工程根目录下
 

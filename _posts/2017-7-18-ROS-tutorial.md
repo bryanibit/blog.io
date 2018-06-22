@@ -292,6 +292,18 @@ If you were to add a subscription into this application, and did not have ros::s
         ros::spin();
 *ros::spin()* enters a loop, calling message callbacks as fast as possible.
 
+## ROS Graph Resource Names
+
+There are four types of Graph Resource Names in ROS: base, relative, global, and private, which have the following syntax:
+
+    - base
+
+    - relative/name
+
+    - /global/name
+
+    - ~private/name
+
 ## ROS MSG
 
 总结ros msg [网页](wiki.ros.org/msg)
@@ -450,6 +462,8 @@ uncomment catkin_python_setup(). This will set up the destination path of the py
 so it can be found by python.
 
 ## Dynamic reconfigure
+
+**TODO**
 
 
 
