@@ -564,6 +564,7 @@ new出来的动态指针，必须显示delete，调用析构函数。
 
 若该引用引用一个基类的对象，那么被调用的是基类的虚函数；若引用的是一个派生类的对象，那么调用的是派生类的虚函数。
 
+Note：用基类指针数组存储派生类对象的指针，然后便利该数组，就可以对各个派生类对象做操作，是很常用的方法。也就是基类成员虚函数传入的参数或者操作的是基类自身的指针，在调用时换成派生类对象的指针就可以换成调用派生类对象的同名函数。
 
 
 
@@ -660,7 +661,7 @@ std::sort(arr.begin(), arr.end());
 
 > std::shared_ptr 是一种智能指针，它能够记录多少个 shared_ptr 共同指向一个对象，从而无需显示得调用 delete，当引用计数变为零的时候就会将对象自动删除。
 
-1. shared_ptr and unique_ptr 
+1. shared_ptr and unique_ptr
 
 单个unique_ptr离开作用域时，会立即释放底层内存，既然是独占，换句话说就是不可复制;可以有多个shared_ptr实例指向同一块动态分配的内存，当最后一个shared_ptr离开作用域时，才会释放这块内存.
 
@@ -694,11 +695,11 @@ std::sort(arr.begin(), arr.end());
 ```
 \#include <iostream>
 \#include <thread>
-void foo() 
+void foo()
 {
     std::cout << "hello world" << std::endl;
 }
-int main() 
+int main()
 {
     std::thread t(foo); //new one thread
     t.join(); //start the thread, the main funtion waits until the thread ends
@@ -722,7 +723,7 @@ void block_area() {
 std::unique_lock<std::mutex> lock(mtx);
     //...临界区
 lock.unlock();
-    //...some other code 
+    //...some other code
 lock.lock(); //  can lock again
 }
 int main() {
@@ -761,30 +762,3 @@ int main()
 4. std::condition_variable
 
 线程可能需要等待某个条件为真才能继续执行，而一个忙等待循环中可能会导致所有其他线程都无法进入临界区使得条件为真时，就会发生死锁。condition_variable 实例被创建出现主要就是用于唤醒等待线程从而避免死锁。
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
