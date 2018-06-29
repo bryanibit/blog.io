@@ -78,7 +78,7 @@ $ sudo docker run hello-world
 
 ### 镜像加速
 
-1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑**/etc/default/docker**文件,在其中的**DOCKER_OPTS**中添加获得的加速器配置**--registry-mirror=<加速器地址>**, 如:
+..1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑**/etc/default/docker**文件,在其中的**DOCKER_OPTS**中添加获得的加速器配置**--registry-mirror=<加速器地址>**, 如:
 
 ```
 DOCKER_OPTS="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"
@@ -90,7 +90,7 @@ DOCKER_OPTS="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"
 $ sudo service docker restart
 ```
 
-2. 对于使用systemd的系统 (ubuntu 16.04),用
+..2. 对于使用systemd的系统 (ubuntu 16.04),用
 
 ```
 systemctl enable docker
@@ -135,9 +135,8 @@ sudo docker run --detach \
 
 ### 一直出现restarting
 
-使用*sudo docker logs <container_name>*查看容器状态
-
-如果出现
+...使用*sudo docker logs <container_name>*查看容器状态
+...如果出现
 
 ```
 exec user process caused "exec format error" 
