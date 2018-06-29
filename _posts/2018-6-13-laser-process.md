@@ -3,7 +3,7 @@ layout: post
 title: Leetcode
 date: 2018-6-13
 categories: blog
-tags: [理论梳理]
+tags: [技术总结]
 description: Laser data Process
 ---
 

@@ -53,6 +53,16 @@ $ sudo add-apt-repository \
    stable"
 ```
 
+如果是在arm的电脑上，将上面几行改为
+
+```
+$ sudo add-apt-repository \
+   "deb [arch=armhf] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable"
+
+```
+
 ###  Install Docker CE (Community Edition)
 
 ```
@@ -123,6 +133,16 @@ sudo docker run --detach \
     gitlab/gitlab-ce:latest
 ```
 
+### 一直出现restarting
 
+使用*sudo docker logs <container_name>*查看容器状态
+
+如果出现
+
+```
+exec user process caused "exec format error" 
+```
+
+说明下载的镜像不正确，不是适合x86或者arm的
 
 
