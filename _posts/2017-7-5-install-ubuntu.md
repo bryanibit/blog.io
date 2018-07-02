@@ -7,9 +7,28 @@ tags: [技术总结]
 description: Linux重装系统&软件
 ---
 
-##我们开始吧
+## First part for reinstall Ubuntu
 
-## 如果需要安装系统的电脑是dell-Inspiron-7559
+
+### Ubuntu partition
+
+         \boot (primary)  300M
+         \
+         \swap  memory * 2
+         \home
+
+如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。
+
+分区完成后，选择/home 作为Ubuntu安装位置
+
+device for boot loader installation:
+
+选择 Ubuntu安装的/boot位置
+
+         Note that: reinstall partition should have something different from before!!
+
+
+### 如果需要安装系统的电脑是dell-Inspiron-7559
 
 当安装完Windows后，确认安全启动和快速启动关闭，进入Ubuntu安装盘，如果长时间没有进入，卡在Ubuntu这几个字的紫色背景页面，请跳转到以下链接
 
@@ -30,26 +49,6 @@ nomodeset i915_bpo.nomodeset=1 quiet splash
 开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接
 
 Now I think I should do it, write them down and log everything. I am exciting now.
-
-## First part for reinstall Ubuntu
-
-
-### Ubuntu partition
-
-         \boot (primary)  300M
-         \
-         \swap  memory * 2
-         \home
-
-如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。
-
-分区完成后，选择/home 作为Ubuntu安装位置
-
-device for boot loader installation:
-
-选择 Ubuntu安装的/boot位置
-
-         Note that: reinstall partition should have something different from before!!
 
 ### Install Sougou pinyin
 

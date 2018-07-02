@@ -595,7 +595,27 @@ void scan( int* a, int length, std::function<void(int)> process)
 
 含有纯虚函数的类为抽象类，抽象类不能实例化。派生抽象类必须实现所有的纯虚函数才能定义派生对象。
 
+### 输入输出
 
+1. 输出重定向
+
+freopen是被包含于C标准库头文件stdio.h中的一个函数，用于重定向输入输出流。
+- *freopen("test.txt","w",stdout);*将std::cout的输出结果放入文件test.txt中。
+* *freopen("test.txt"."r",stdin);*将std::cin的输入结果放入文件test.txt中。例如
+
+```
+test.txt:
+3.14 259
+--------
+double f; int i;
+cin>>f>>i;
+```
+
+2. istream member function
+
+istream & getline(char * buf, int size) // 读取size-1个长度的字符或者遇到\n停止，将除了\n（如果有）的其余部分复制到buf（内存缓冲区）中，同时将\n（如果有）从输入流中取走。由于会自动地在buf后面自动加上\0，所以是读取了size-1个字符。
+
+istream & getline(char * buf, int size， char delim) //  读取size-1个长度的字符或者遇到\n或者delim停止，将除了\n或者delim（如果有）的其余部分复制到buf中。
 
 
 
