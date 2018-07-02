@@ -617,6 +617,104 @@ istream & getline(char * buf, int size) // 读取size-1个长度的字符或者�
 
 istream & getline(char * buf, int size， char delim) //  读取size-1个长度的字符或者遇到\n或者delim停止，将除了\n或者delim（如果有）的其余部分复制到buf中。
 
+## STL简介
+
+数据结构（链表/数组/二叉树）和算法都写成模板，使程序可以处理各种对象。标准模板库就是常用数据结构和算法的模板集合。
+
+* 容器：是类模板，可容纳各种数据类型的通用数据结构
+
+* 迭代器：类似指针，用于依次存取容器中元素
+
+* 算法：用来操作容器中元素的函数模板
+
+一个数组可以看成容器： 
+
+int array[100] //sort(array,array+90); 其中int* 看成是迭代器
+
+
+#### 容器概述
+
+- 顺序容器：vector/deque(双向队列)/list(双向列表)：插入的位置同元素的值无关，你放在哪里，它就在哪里
+- 关联容器：set/multiset/map/multimap
+- 容器适配器：stack(栈)/queue(队列)/priority_queue
+
+<Note> 对象插入容器是，被插入的是对象的一个复制品，许多算法要求对容器中的对象就行排序/查找，有的容器本身就是排序的，所以放入容器对象所属的类，往往还应该重载*==*和*<*运算符号。
+
+##### 顺序容器
+1. vector 头文件<vector>
+
+动态数组，在内存中是连续存放的，在**尾部**增删操作具有较好性能，因为vector预先分配内存。
+
+2. deque 头文件<deque>
+
+双向队列，元素在内存连续存放。在头尾部增删元素具有较好性能，因为deque预先在两头分配内存。
+
+3. list 头文件<list>
+
+双向链表，元素在内存不连续存放，在任何位置增删元素都在常数时间内完成（默认已经找到了要增删的位置）。不支持随机存取，必须从头往后找。
+
+##### 关联容器
+
+元素是排序的，插入元素要按照相应的排序规则确定其位置，在**查找**时候具有很好的性能。
+
+1. set/multiset 头文件<set>
+
+集合，set中不允许有重复元素，multiset允许有重复元素
+
+2. map/multimap 头文件<map>
+
+map中仅有两个成员变量，一个叫first，一个叫second，map根据first的值按照某种规律（可以自定义）排序，可以快速检索元素。有点类似python中的字典，first就是key，map中不运行有相同的key，multimap允许。
+
+
+<Note> 顺序容器和关联容器中都有的成员函数
+
+```
+begin return第一个元素的迭代器
+end   return最后一个元素后面位置的迭代器
+rbegin return最后一个元素的迭代器
+rend   return指向容器第一个元素前面的迭代器
+erase  从容器中删除几个元素
+clear   从容器中删除所有元素
+```
+
+<Note> 顺序容器中常用的成员函数
+
+```
+front 返回容器中第一个元素的引用
+back 返回容器中最后一个元素的引用
+push_back 在容器末尾增加新元素
+pop_back 删除容器末尾的元素
+erase 删除容器中指定元素，返回被删除元素后面的那个元素的迭代器。
+```
+
+##### 容器适配器
+
+1. stack 头文件<stack> 后进先出
+
+2. queue 头文件<queue> 先进先出，只能访问对头元素
+
+3. priority_queue 头文件<queue> 优先级对列
+
+
+##### 迭代器
+
+分为两种，const和非const。用法
+
+容器类名::iterator // vector<int>::iterator ite;
+
+容器类名::const_iterator //vector<int>::const_iterator ite; 通过ite只能访问，不能修改元素
+
+```
+vector<int> v;
+for(auto r = v.begin(); r != v.end(); r++)//正向迭代器
+for(auto r = v.rbegin(); r != v.rend(); r++)//反向迭代器
+r[10]  // 值为r后面第10个元素的引用
+r<r1 //如果为真则r在r1前面
+```
+
+
+
+
 
 
 
