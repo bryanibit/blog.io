@@ -7,6 +7,7 @@ tags: [个人总结]
 description: Life must have a goal
 ---
 
+<NOTE> Add **github star repo** to plan!
 
 # 2018-7 第一个周
 

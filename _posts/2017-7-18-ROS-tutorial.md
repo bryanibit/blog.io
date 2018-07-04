@@ -398,7 +398,32 @@ For convenience, to get the latest data available, a request at time zero will r
 
 The transform from map to base_link is computed by a localization component. However, the localization component does not broadcast the transform from map to base_link. Instead, it first **receives** the transform from odom to base_link, and uses this information to **broadcast** the transform from map to odom.
 
-aaaaa式计算使用ROS
+
+### tf and rosbag
+
+在其他节点打开之前，使用下面的语句，ros将设置*use_sim_time*为true，也就是运行一个Clock Serve。
+ros::Time(0) means "the latest available" transform in the buffer.
+
+```
+rosbag paly --clock ...
+```
+
+对于一个回放的ros包，使用下面的tf代码
+
+```
+listener.waitForTransform("/map", "/base_link",ros::Time::now(), ros::Duration(3.0));// 可以使用ros::Time(0)
+listener.lookupTransform("/map", "/base_link", ros::Time::now(), transform);
+```
+
+或者
+
+```
+listener.lookupTransform("/map", "/base_link", ros::Time(0), transform);
+```
+
+
+
+## ROS在多台机器上的配置
 
 - You only need one master. Select one machine to run it on.
 
