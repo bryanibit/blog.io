@@ -9,6 +9,8 @@ description: Life must have a goal
 
 <NOTE> Add **github star repo** to plan!
 
+模仿gridmap_octomap-->interactivepc将octomap投影到nav_msgs/occupancy
+
 # 2018-7 第一个周
 
 * 搞懂ETHZ的gird map和运行Autoware效果,读几篇Hibert maps相关文章
@@ -24,3 +26,15 @@ description: Life must have a goal
 - 上午：读完grid_map的论文，共22页
 - 下午：看公开课，看到第九周的内容
 - 晚上：读一篇英文小说，傲慢与偏见20分钟，对下午没有看完的第九周课程，继续看一下
+
+## 2018-7-4
+
+- 上午：查看gridmap的readme，使用gridmap运行包中的pointcloud数据
+- 下午：查看elevation_map的代码
+- 晚上：读一篇英文小说，傲慢与偏见20分钟
+
+## 2018-7-5
+
+- 上午：抛弃elevation_map，查看volumetric_map和grid_map直接绘制地图的可能性
+- 下午：同上
+- 晚上：公开课完成第9周前两节课

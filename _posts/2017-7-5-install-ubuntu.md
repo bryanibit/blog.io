@@ -43,7 +43,9 @@ nomodeset i915_bpo.nomodeset=1 quiet splash
 这是为了关闭显卡，使用BIOS安装功能，这是由于电脑本身的缺陷
 
 > Press F10 to boot.
+
 > Proceed with the installation as normal.
+
 > Reboot.
 
 开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接
@@ -56,15 +58,15 @@ Now I think I should do it, write them down and log everything. I am exciting no
 Ubuntu 14.04 install sougoupinyin
 
 
->first, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
+>First, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
 
->go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
+>Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
 
->reboot!
+>Reboot!
 
 ### Setting github ssh
 
-1. install git  sign up an account for github
+1. Install git | Sign up an account for github
 
 2. 配置Name和Email
 
@@ -94,45 +96,44 @@ Ubuntu 14.04 install sougoupinyin
 
 在本地文件夹下
 
->git clone git@github.com:bryanibit/pySfM.git
-
->git init
-
->touch README.md (由于选择了readme)
-
->git add README.md
-
->git commit -m 'first_commit'
-
->git remote add origin https://github.com/findingsea/myRepoForBlog.git
-
->git push -u origin master (-u is the first time to upload)
+```
+git clone git@github.com:bryanibit/pySfM.git
+git init
+touch README.md (由于选择了readme)
+git add README.md
+git commit -m 'first_commit'
+git remote add origin https://github.com/findingsea/myRepoForBlog.git
+git push -u origin master (-u is the first time to upload)
+```
 
 ### Install Cmake 3.0 +
 
->sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
-
->sudo -E apt-get update
-
->sudo apt-get install cmake
+```
+sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
+sudo -E apt-get update
+sudo apt-get install cmake
+```
 
 ### Install meshlab
 
->$ sudo add-apt-repository ppa:zarquon42/meshlab
-
->$ sudo apt-get update
-
->$ sudo apt-get install meshlab
+```
+$ sudo add-apt-repository ppa:zarquon42/meshlab
+$ sudo apt-get update
+$ sudo apt-get install meshlab
+```
 
   Optional, to remove meshlab, do:
 
->$ sudo apt-get remove meshlab
+```
+$ sudo apt-get remove meshlab
+```
 
-  Or, if you want to uninstall meshlab, disable the recently added PPA and downgrade all the packages that got updated via the PPA, do:
+Or, if you want to uninstall meshlab, disable the recently added PPA and downgrade all the packages that got updated via the PPA, do:
 
->$ sudo apt-get install ppa-purge
-
->$ sudo ppa-purge ppa:zarquon42/meshlab
+```
+$ sudo apt-get install ppa-purge
+$ sudo ppa-purge ppa:zarquon42/meshlab
+```
 
 ### Install pycharm and crack it
 
@@ -144,12 +145,9 @@ sudo apt-get update
 sudo apt-get install pycharm  ## professional version
 ```
 
-```
-Download official version professional
-go to  
-- [crack](idea.qinxi1992.cn)
-add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
-```
+* Download official version professional
+* go to [crack](idea.qinxi1992.cn)
+* add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 
 ```
 select 'for all users'
@@ -158,7 +156,7 @@ PATH=$PATH:/home/inin/{installation path}/bin
 
 #### 配置pycharm使用ros
 
-* 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
+设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
 
 ```
 gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
@@ -195,7 +193,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 chsh -s /bin/zsh
 sudo reboot
 ```
-copy ros content in .bashrc to .zshrc
+Copy ros content in .bashrc to .zshrc
 
 ### install vim
 
@@ -203,7 +201,7 @@ copy ros content in .bashrc to .zshrc
 sudo apt-get install vim
 ```
 
-renew a file called .vimrc:
+Renew a file called .vimrc:
 
 ```
 set nu
