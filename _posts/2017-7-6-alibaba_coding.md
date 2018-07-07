@@ -27,6 +27,9 @@ cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
 # OpenCV is not install in default location, if not delete that.
 set(OpenCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
+# optional conditions like the following line
+set(OPENCV_INCLUDE_DIRS "/home/opencv/install/include")
+set(OPENCV_LIBRARIES "/home/opencv/install/lib")
 # Find OpenCV at the default location
 find_package(OpenCV REQUIRED)
 set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)

@@ -14,6 +14,7 @@ description: Life must have a goal
 # 2018-7 第一个周
 
 * 搞懂ETHZ的gird map和运行Autoware效果,读几篇Hibert maps相关文章
+boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱动的关闭问题
 
 ## 2018-7-2
 
@@ -38,3 +39,9 @@ description: Life must have a goal
 - 上午：抛弃elevation_map，查看volumetric_map和grid_map直接绘制地图的可能性
 - 下午：同上
 - 晚上：公开课完成第9周前两节课
+
+## 2018-7-6
+
+- 上午：不使用octomap，直接使用gridmap，尝试pointcloud
+- 下午：同上
+- 晚上：空
