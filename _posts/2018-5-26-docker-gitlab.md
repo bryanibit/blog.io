@@ -123,7 +123,7 @@ sudo docker pull gitlab/gitlab-ce:latest
 
 ```
 sudo docker run --detach \
-    --hostname gitlab.example.com \
+    --hostname 127.0.0.1 \
     --publish 443:443 --publish 80:80 --publish 22:22 \
     --name gitlab \
     --restart always \
@@ -135,8 +135,8 @@ sudo docker run --detach \
 
 ### 一直出现restarting
 
-...使用*sudo docker logs <container_name>*查看容器状态
-...如果出现
+* 使用```sudo docker logs <container_name>```查看容器状态
+* 如果出现
 
 ```
 exec user process caused "exec format error" 
@@ -144,4 +144,22 @@ exec user process caused "exec format error"
 
 说明下载的镜像不正确，不是适合x86或者arm的
 
+## gitlab迁移到another PC
 
+在原来PC上使用一下命令，并copy到新PC上
+
+```
+docker save -o gitlab.docker
+```
+
+在新PC上使用
+
+```
+docker load -i gitlab.docker
+```
+
+此时完成image拷贝到新电脑的过程，然后按照**启动Gitlab**中的步骤，启动container for gitlab.
+
+最后一步就是复制数据到新电脑上
+
+将gitlab整个文件夹打包/压缩后复制到新PC。

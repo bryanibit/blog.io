@@ -874,8 +874,8 @@ lock.lock(); //  can lock again
 int main() {
     std::thread thd1(block_area);
     std::thread thd2(block_area);
-    thd1.join(); //syn
-    thd2.detach(); //asyn
+    thd1.join(); //阻塞式，main等待线程接受后一并返回
+    thd2.detach(); //放在后台执行，与main无关了
     return 0;
 }
 ```
