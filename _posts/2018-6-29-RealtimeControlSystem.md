@@ -62,6 +62,11 @@ NML * ×××_CHANNEL;//
 
 TODO
 
+## 两个文件夹在一台电脑上共用一个辅助通道
+
+nml配置：buffer number/MP/TCP port保持一致，否则diag_NB.jar会报错。
+
+
 
 
 

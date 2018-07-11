@@ -133,6 +133,30 @@ sudo docker run --detach \
     gitlab/gitlab-ce:latest
 ```
 
+* docker端口映射
+
+```
+ip:hostport:containerport   #指定ip、指定主机port、指定容器port
+ip::containerport           #指定ip、未指定主机port、指定容器port
+hostport:container          #未指定ip port、指定主机port、指定容器port
+```
+
+可以采用以下的端口映射：
+
+```
+```
+sudo docker run --detach \
+    --hostname 127.0.0.1 \
+    --publish 4430:443 --publish 8000:80 --publish 2200:22 \
+    --name gitlab \
+    --restart always \
+    --volume /srv/gitlab/config:/etc/gitlab \
+    --volume /srv/gitlab/logs:/var/log/gitlab \
+    --volume /srv/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest
+```
+```
+
 ### 一直出现restarting
 
 * 使用```sudo docker logs <container_name>```查看容器状态
