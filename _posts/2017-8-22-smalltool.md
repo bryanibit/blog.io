@@ -358,11 +358,11 @@ Advantage： 1. 支持断点续传 2. 支持**代理服务器** 3. 支持FTP和H
 ```
 
 
-## virtualenv
+## virtualenv虚拟环境
 
 virtualenv is a tool to create isolated Python environments.
 
-### installation 
+### installation
 
 ```
 $ [sudo] pip install virtualenv
@@ -370,16 +370,16 @@ $ [sudo] pip install virtualenv
 
 ### Usage
 
-1. Virtualenv has one basic command:
+- [x] Virtualenv has one basic command:
 
 ```
 virtualenv ENV // mkdir a dir called ENV in inputting command dir
 ```
 
-- ENV/lib/ and ENV/include/ are created, containing supporting library files for a new virtualenv python. 
+- ENV/lib/ and ENV/include/ are created, containing supporting library files for a new virtualenv python.
 - Packages installed in this environment will live under ENV/lib/pythonX.X/site-packages/.
 
-2. There is a script used to activate virtualenv
+- [x] There is a script used to activate virtualenv
 
 On Posix systems, this resides in /ENV/bin/, so you can run:
 
@@ -398,9 +398,7 @@ deactivate
 
 Systemctl is used on ubuntu 16.04 not ubuntu 14.04
 
-Introduction:
-
-Systemd is an init system and system manager that is becoming the new standard for Linux. 
+**Introduction**: Systemd is an init system and system manager that is becoming the new standard for Linux.
 
 ### 1. Starting and Stopping services
 
@@ -427,7 +425,7 @@ sudo systemctl disable <application>.service
 
 以上将移除软连接，<application>服务将不会自动启动
 
-<Note> Enalbing a service does not start in the current session.
+\{Note\} Enalbing a service does not start in the current session.
 
 ### 3. Checking the status of Services
 
@@ -436,5 +434,3 @@ systemctl status <application>.service
 systemctl is-active <app>.service //输出是否
 systemctl is-enabled <app>.service //输出是否
 ```
-
-

@@ -11,7 +11,9 @@ description: Life must have a goal
 
 模仿gridmap_octomap-->interactivepc将octomap投影到nav_msgs/occupancy
 
-# 2018-7 第一个周
+# 2018-7 第一个周 :+1:
+
+:tada: :rocket: :metal: :octocat: :camel:
 
 * 搞懂ETHZ的gird map和运行Autoware效果,读几篇Hibert maps相关文章
 boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱动的关闭问题
@@ -46,7 +48,7 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 - 下午：同上
 - 晚上：空
 
-# 2018-7 第二个周
+# 2018-7 第二个周 :sparkles:
 
 ## 2018-7-9
 

@@ -157,26 +157,21 @@ sudo docker run --detach \
 
 进人运行的容器（docker exec -it gitlab /bin/bash）
 
-1. Set external_url:
+- [ ] Set external_url:
 
-**For HTTP**
+**For HTTP**  external_url "http://gitlab.example.com:8000"
 
-external_url "http://gitlab.example.com:8000"
+**For HTTPS (notice the https)**  external_url "https://gitlab.example.com:8000"
 
-**For HTTPS (notice the https)**
-
-external_url "https://gitlab.example.com:8000"
-
-
-2. Set gitlab_shell_ssh_port:
+- [ ] Set gitlab_shell_ssh_port:
 
 *gitlab_rails['gitlab_shell_ssh_port'] = 2200*
 
 Following the above example you will be able to reach GitLab from your web browser under *hostIP*:8000 and push using SSH under the port 2200.
 
-3. sudo gitlab-ctl reconfigure
+- [ ] sudo gitlab-ctl reconfigure
 
-不知道有没有必要：Just allow git to login by ssh. Edit /etc/ssh/sshd_config, and add: *AllowUsers git*.
+不知道有没有必要：Just allow git to login by ssh. Edit */etc/ssh/sshd_config*, and add this content: *AllowUsers git*.
 可以使用一下方法验证git服务器的ssh功能
 
 ### 增加内容：git服务器ssh验证
@@ -198,7 +193,7 @@ Connection to 192.168.1.254 closed.
 * 如果出现
 
 ```
-exec user process caused "exec format error" 
+exec user process caused "exec format error"
 ```
 
 说明下载的镜像不正确，不是适合x86或者arm的
