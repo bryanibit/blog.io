@@ -157,22 +157,22 @@ sudo docker run --detach \
 
 进人运行的容器（docker exec -it gitlab /bin/bash）
 
-- [ ] Set external_url:
+**Set external_url** :
 
-**For HTTP**  external_url "http://gitlab.example.com:8000"
+[ ] For HTTP  external_url "http://gitlab.example.com:8000"
 
-**For HTTPS (notice the https)**  external_url "https://gitlab.example.com:8000"
+[ ] For HTTPS (notice the https)  external_url "https://gitlab.example.com:8000"
 
-- [ ] Set gitlab_shell_ssh_port:
+**Set gitlab_shell_ssh_port** :
 
 *gitlab_rails['gitlab_shell_ssh_port'] = 2200*
 
 Following the above example you will be able to reach GitLab from your web browser under *hostIP*:8000 and push using SSH under the port 2200.
 
-- [ ] sudo gitlab-ctl reconfigure
+使用```sudo gitlab-ctl reconfigure```更新docker配置。
 
 不知道有没有必要：Just allow git to login by ssh. Edit */etc/ssh/sshd_config*, and add this content: *AllowUsers git*.
-可以使用一下方法验证git服务器的ssh功能
+可以使用以下方法验证git服务器的ssh功能
 
 ### 增加内容：git服务器ssh验证
 

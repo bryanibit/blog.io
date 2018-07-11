@@ -9,11 +9,11 @@ description: word技巧总结
 
 # 2017-10-25
 
-(MarkDown模板)[https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf]
+[MarkDown模板](https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf)
 
 测试一下一下链接的有效性：
 
-[笔记本触摸板不好用？？](https://www.youtube.com/watch?v=f2rfwR-IV-c)
+[笔记本触摸板不好用？](https://www.youtube.com/watch?v=f2rfwR-IV-c)
 
 这儿有个小技巧让你的触控板更好用！ 只需手动更换触控板驱动便可以让触控板更加精确，滚动更加顺滑，更可以启用Windows手势操作。 流程说明：
 
@@ -22,8 +22,7 @@ description: word技巧总结
 3. 把下载的文件解压到C:/Drivers
 4. 在硬件管理器中右键点击触控板
 5. 选择“更新驱动程序”
-6. Elan触控板选择ETD.inf
-6. Synaptic触控板选择SynPD.inf
+6. Elan触控板选择ETD.inf；Synaptic触控板选择SynPD.inf
 7. 重新启动计算机
 8. 感受Windows驱动的流畅和强大功能 已经验证生效的笔记本电脑： Razer Blade Stealth 雷蛇潜行者 Razer Blade 14 雷蛇14寸笔记本 Some Hp Envy devices 一部分HP Envy笔记本 Some HP x360 devices 一部分HP X360笔记本 Most Hp Pavillion devices 大部分HP Pavillion笔记本 Most new Asus Gaming Laptops running Elan drivers 华硕大部分使用Elan触控板的游戏本 Most Dell Inspiron devices 大部分Dell Inspiron笔记本
 

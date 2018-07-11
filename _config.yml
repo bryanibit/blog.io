@@ -1,13 +1,13 @@
 # Site settings
 title: 屋顶上的鱼
 header-img: "img/twitter.jpg"
-tagline: "cn"  
-description: "于华超"  
+tagline: "cn"
+description: "于华超"
 baseurl: ""
-url: "http://bryanibit"  
+url: "http://bryanibit"
 
 # About/contact
-owner: 
+owner:
   name: " Bryan"
   email: bryanibit@gmail.com
   bio: "自娱自乐"
@@ -16,21 +16,25 @@ owner:
 gavatar: http://dreamofbook.qiniudn.com/Az..png
 favicon: img/favicon.png
 
-douban_username:  
-twitter_username: 
-github_username: 
-facebook_username: 
-weibo_username: 
-zhihu_username: 
+douban_username:
+twitter_username:
+github_username:
+facebook_username:
+weibo_username:
+zhihu_username:
 
-# Build settings  
-# use Github Flavored Markdown !important  
-# document: http://jekyllrb.com/docs/configuration/#kramdown  
+# Build settings
+# use Github Flavored Markdown !important
+# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
 paginate: 8
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+
+# add for emoji
+plugins:
+  - jemoji
 
 # http://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 timezone: Asia/Shanghai
@@ -38,7 +42,7 @@ timezone: Asia/Shanghai
 # Defaults for posts
 defaults:
   -
-    scope: 
+    scope:
       path: ""
       type: "posts"
     values:
@@ -46,16 +50,16 @@ defaults:
       author: "Bryan"
       header-img: "img/black.jpg" # We don't want posts without a header image, that whould mean white on white
 
-# Comments 
+# Comments
 comments :
   provider : duoshuo
   duoshuo :
-    short_name : 
+    short_name :
   disqus :
-      short_name : 
+      short_name :
 
 # Analytics and webmaster tools stuff goes here
-google_analytics: 
+google_analytics:
 google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
