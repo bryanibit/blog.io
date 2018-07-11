@@ -7,7 +7,7 @@ tags: [个人总结]
 description: Life must have a goal
 ---
 
-<NOTE> Add **github star repo** to plan!
+> Add **github star repo** to plan!
 
 模仿gridmap_octomap-->interactivepc将octomap投影到nav_msgs/occupancy
 
@@ -58,4 +58,16 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 - 上午：安装新电脑
 - 下午：集成浙大slam代码
+- 晚上：公开课
+
+## 2018-7-11
+
+- 上午：docker-gitlab端口映射的搭建
+- 下午：同上，验收激光雷达
+- 晚上：docker搭建验收
+
+## 2018-7-12
+
+- 上午：修改Yaowen的ANS模块
+- 下午：同上
 - 晚上：公开课

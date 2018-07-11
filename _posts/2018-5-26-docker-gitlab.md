@@ -144,7 +144,6 @@ hostport:container          #未指定ip port、指定主机port、指定容器p
 可以采用以下的端口映射：
 
 ```
-```
 sudo docker run --detach \
     --hostname 127.0.0.1 \
     --publish 4430:443 --publish 8000:80 --publish 2200:22 \
@@ -155,6 +154,42 @@ sudo docker run --detach \
     --volume /srv/gitlab/data:/var/opt/gitlab \
     gitlab/gitlab-ce:latest
 ```
+
+进人运行的容器（docker exec -it gitlab /bin/bash）
+
+1. Set external_url:
+
+**For HTTP**
+
+external_url "http://gitlab.example.com:8000"
+
+**For HTTPS (notice the https)**
+
+external_url "https://gitlab.example.com:8000"
+
+
+2. Set gitlab_shell_ssh_port:
+
+*gitlab_rails['gitlab_shell_ssh_port'] = 2200*
+
+Following the above example you will be able to reach GitLab from your web browser under *hostIP*:8000 and push using SSH under the port 2200.
+
+3. sudo gitlab-ctl reconfigure
+
+不知道有没有必要：Just allow git to login by ssh. Edit /etc/ssh/sshd_config, and add: *AllowUsers git*.
+可以使用一下方法验证git服务器的ssh功能
+
+### 增加内容：git服务器ssh验证
+
+```
+ssh -p <port_num> git@192.168.1.254
+```
+
+如果以上的结果显示
+
+```
+Welcome to GitLab, <UserName>!
+Connection to 192.168.1.254 closed.
 ```
 
 ### 一直出现restarting

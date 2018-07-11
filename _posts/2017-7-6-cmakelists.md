@@ -230,18 +230,33 @@ find_package() 命令会在模块路径中寻找 Find<name>.cmake ，这是查�
 
 Find_package自动搜索<name>_DIR，查找config.cmake，并执行，config.cmake创建<name>_LIBRARIES, <name>_INCLUDE_DIRS and <name>_DEFINES
 
+## 指定动态库动态加载时的目录
 
+使用GCC编译动态链接库的项目时，在其他目录下执行很可以出现找不到动态链接库的问题。
 
+这种情况多发生在动态链接库是自己开发的情况下，原因就是程序运行时找不到去何处加载动态链接库。
 
+可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。程序执行时动态链接库加载不到动态链接库。
 
+解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。如：
 
+```
+gcc -o foo foo.c -L. -lfoo -Wl,-rpath=./
+```
 
+上面就是指定了链接的位置在当前目录，这种情况只有在当前目录执行./foo时，才是可以正确使用的。一般情况我们使用如下格式：
 
+```
+gcc -o foo foo.c -L$(prefix)/lib -lfoo -Wl,-rpath=$(prefix)/lib
+```
 
+第二种方式就是，将链接库的目录添加到*/etc/ld.so.conf*文件中或者添加到*/etc/ld.so.conf.d/*.conf*中，然后使用ldconfig进行更新，进行动态链接库的运行时动态绑定。如：
 
+添加文件*/etc/ld.so.conf.d/foo.conf*，内容如下：
 
+```
+/usr/local/lib
+```
 
-
-
-
+然后执行如下命令：*ldconfig*
 
