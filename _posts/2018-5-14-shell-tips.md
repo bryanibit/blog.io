@@ -31,4 +31,13 @@ fi
 
 ## 查看两个文件夹不同点
 
-* diff -ruaq dir1 dir2(如果dir1和dir2中彼此都没有对方文件,那么将以only的形式human提示)
+```diff -ruaq dir1 dir2```(如果dir1和dir2中彼此都没有对方文件,那么将以only的形式human提示)
+
+```diff -rupP file1 file2```（以+ - 的形式显示行的增减，显示的是如何将file1变为file2）
+
+* -r: recursive
+* -u: shows line number
+* -p(small): shows differences in C functions
+* -P(capital): in case of multiple files the full path is shown
+
+
