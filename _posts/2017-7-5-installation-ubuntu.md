@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux Install Tips
+title: Ubuntu Install Tips
 date: 2017-7-5
 categories: blog
 tags: [技术总结]

@@ -77,4 +77,12 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 - 上午：修改ANS模块，现在将nml改完了，明天要改cfg，并用diag_NB工具调试
 - 下午：同上
-- 晚上：公开课
+- 晚上：聚餐
+
+## 2018-7-14
+
+:octocat: 确认新的模块是可以运行的
+
+bryan/ANS_test是push到git的模块; 桌面hee是由基于master修改的ans和原来的zt; bryan里面的hee-originalverson是没有修改的ans（没有加入sjdw-module的）和原来的zt
+
+- 上午：
