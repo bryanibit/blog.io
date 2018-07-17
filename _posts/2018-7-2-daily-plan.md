@@ -86,3 +86,12 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 bryan/ANS_test是push到git的模块; 桌面hee是由基于master修改的ans和原来的zt; bryan里面的hee-originalverson是没有修改的ans（没有加入sjdw-module的）和原来的zt
 
 - 上午：
+
+## 2018-7-18
+
+git中origin master（branch）和 working space 暂存区的区别，commit是到分支上而暂存区是每个分支共有吗？
+
+看代码rcslib
+
+- 上午：
+- 下午：

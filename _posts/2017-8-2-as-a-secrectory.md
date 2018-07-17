@@ -72,3 +72,26 @@ sudo service bluetooth restart
 ```
 
 4. Go to System Setting > Bluetooth > Sound Setting
+
+## Install and Configure Huawei E353 USB Modem on Ubuntu (used on Thinkpad)
+
+使用```lsusb```确认HUAWEI设备，可以对应[List of USB ID](http://www.linux-usb.org/usb.ids)，查看设备的厂商号和设备号。
+
+/etc/udev/rules.d/ 40-E303Switch.rules
+
+```
+# Huawei E303 Fallback-Mode Modeswitch
+ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1f01", RUN+="/bin/E303Modeswitch.sh"
+```
+
+/bin/E303Modeswitch.sh:
+
+```
+#! /bin/sh
+usb_modeswitch -v 0x12d1 -p 0x1f01 -V 0x12d1 -P 0x14dc -M "55534243000000000000000000000011060000000000000000000000000000"
+```
+
+
+
+
+

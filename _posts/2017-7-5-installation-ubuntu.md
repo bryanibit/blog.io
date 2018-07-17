@@ -58,11 +58,15 @@ Now I think I should do it, write them down and log everything. I am exciting no
 Ubuntu 14.04 install sougoupinyin
 
 
->First, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
+> First, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
 
->Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
+> Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
 
->Reboot!
+> Reboot!
+
+### SSH Installation
+
+```sudo apt-get install openssh-server```后，可以使用ssh连接其他电脑，即```ssh bryan@192.168.1.254```.
 
 ### Setting github ssh
 
