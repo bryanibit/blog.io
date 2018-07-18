@@ -91,7 +91,12 @@ bryan/ANS_test是push到git的模块; 桌面hee是由基于master修改的ans和
 
 git中origin master（branch）和 working space 暂存区的区别，commit是到分支上而暂存区是每个分支共有吗？
 
-看代码rcslib
+看代码rcslib源码，传递long型的效果
 
-- 上午：
-- 下午：
+办理电脑入网，打电话给王申
+
+询问张凯路径重规划的问题
+
+- 上午：抽一会儿看一下线程的概念
+- 下午：今天任务大约完成
+- 晚上：English

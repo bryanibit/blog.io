@@ -91,6 +91,26 @@ ATTRS{idVendor}=="12d1", ATTRS{idProduct}=="1f01", RUN+="/bin/E303Modeswitch.sh"
 usb_modeswitch -v 0x12d1 -p 0x1f01 -V 0x12d1 -P 0x14dc -M "55534243000000000000000000000011060000000000000000000000000000"
 ```
 
+## 激活visual studio 2015
+
+[Visual Studio 2015](https://www.cnblogs.com/bwlluck/p/5514424.html)
+
+Visual Studio Professional 2015简体中文版（专业版）下载地址：
+
+　　http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso
+
+　　SHA1: 629E7154E2695F08A3C692C0B3F6CE19DF6D3A72
+
+     ```激活密钥：HMGNV-WCYXV-X7G9W-YCX63-B98R2```
+
+　Visual Studio Enterprise 2015简体中文版（企业版）下载地址：
+
+　　http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso
+
+　　SHA1: 4FFA1EE3E2D3337D3EDAE550A3583ABE9C426BEF
+
+    ```激活密钥：HM6NR-QXX7C-DFW2Y-8B82K-WTYJV```
+
 
 
 
