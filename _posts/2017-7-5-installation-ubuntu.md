@@ -215,3 +215,59 @@ set tabstop=4
 set cindent
 syntax on
 ```
+
+## 安装NVIDIA驱动方法
+
+卸载可能存在的旧版本 nvidia 驱动（对没有安装过 nvidia 驱动的主机，这步可以省略，但推荐执行，无害）
+
+         sudo apt-get remove --purge nvidia*
+
+安装驱动可能需要的依赖(可选)
+
+         sudo apt-get update
+
+         sudo apt-get install dkms build-essential linux-headers-generic
+
+把 nouveau 驱动加入黑名单
+
+         sudo vim /etc/modprobe.d/blacklist-nouveau.conf
+
+  在文件 blacklist-nouveau.conf 中加入如下内容：
+  
+```
+  blacklist nouveau
+  options nouveau modeset=0
+  blacklist lbm-nouveau
+  alias nouveau off
+  alias lbm-nouveau off
+```
+
+重启后再次进入字符终端界面，并关闭图形界面
+
+          sudo service lightdm stop
+
+###(Thinkpad T480/T470P)
+
+安装上面的教程将nouveau关闭,然后按照following:
+
+```
+$ sudo add-apt-repository ppa:graphics-drivers/ppa
+$ sudo apt update (re-run if any warning/error messages)
+$ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, may cause login loops) ## 查找对应的驱动型号
+```
+
+###(Dell 7557)
+
+1. 去官网下载驱动后，给驱动run文件赋予执行权限：
+
+        sudo chmod +x NVIDIA-Linux-x86_64-384.59.run
+
+2. 后面的参数非常重要，不可省略：
+
+        sudo ./NVIDIA-Linux-x86_64-384.59.run –no-opengl-files 
+        //no-opengl-files表示只安装驱动文件，不安装OpenGL文件，避免login loop。
+
+3. 安装cuda
+
+        sudo ./cuda_8.0.61_375.26_linux.run --no-opengl-libs
+

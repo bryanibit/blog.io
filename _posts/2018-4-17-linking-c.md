@@ -3,7 +3,7 @@ layout: post
 title: 链接 Link
 date: 2018-4-17
 categories: blog
-tags: [技术总结]
+tags: [理论梳理]
 description: 计算机基本内容之链接
 ---
 

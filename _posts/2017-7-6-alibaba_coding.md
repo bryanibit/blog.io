@@ -38,7 +38,7 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-target_link_libraries(point_group ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 ```
 
 这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置

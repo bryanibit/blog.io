@@ -67,3 +67,23 @@ TODO
 ## 两个文件夹在一台电脑上共用一个辅助通道
 
 nml配置：对于这个通道的而言，其buffer number/MP/TCP port保持一致，否则diag_NB.jar会报错。
+
+## diag_NB.jar
+
+```
+java -jar /usr/local/diag_NB.jar
+在对话框里open **.cfg
+这个过程需要打开cfg文件中提到的channel的P_**n.hh，否则diag_NB无法确定channel的类型
+```
+
+## 修改nml文件注意事项
+
+1. 在nml文件中增加删除某个buffer，注意更改相应的××svr.cc中的该buffer对应的channel相关代码
+2. 由codegen.jar将{aux_channel}n.hh得到的{aux_channel}n_n.cc中会自动生成一个关于该通道最小是多少数值，供参考。
+
+
+## RCS struct类型的声明
+
+DECLARE_NML_DYNAMIC_LENGTH_ARRAY({类型名}, 数组变量名, 数组的最大长度);//声明一个数组
+
+在某个{aux_channel}n.hh中需要声明一个struct{结构体};，需要在该文件中同时声明```extern void nmlupdate(CMS *cms, {结构体名称} *x);```，这将通过codegen产生结构体的构造函数

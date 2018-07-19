@@ -93,6 +93,8 @@ git中origin master（branch）和 working space 暂存区的区别，commit是�
 
 看代码rcslib源码，传递long型的效果
 
+/etc/modprode   /dev/rule.d
+
 办理电脑入网，打电话给王申
 
 询问张凯路径重规划的问题
