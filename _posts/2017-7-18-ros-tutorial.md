@@ -370,59 +370,6 @@ roslaunch <package_name> abovelaunch.launch a:=1 b:=5
 ```
 The <param> tag can be put inside of a <node> </node> tag, in which case the parameter is treated like a private parameter. 
 
-
-## Package tf
-
-**tf** is a package that lets the user keep track of multiple coordinate frames over time. **tf** maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time. 
-
-The tf package provides an implementation of a **TransformBroadcaster** to help make the task of **publishing** transforms easier. 
-
-The tf package provides an implementation of a **TransformListener** to help make the task of **receiving** transforms easier.
-
-The TransformListener object should be scoped to persist otherwise it's cache will be unable to fill and almost every query will fail. A common method is to make the TransformListener object a member variable of a class. 
-
-```
-rosrun tf view_frames
-rosrun rqt_tf_tree rqt_tf_tree # 查看frame ID之间的关系
-```
-
-The Listener module walks up the edges of the tree until a common parent node is found forming a spanning set. If no common parent is found the **look up** fails and will return an error. If the look up succeeds the Listener will compute the net transform of the edges from the **source frame to the target frame** along the spanning set.
-
-The tf library enables sensor data, or any data with a Stamp, to be transmitted in its original frame across the network as well as to be stored in its original frame. When an algorithm wants to use data in the coordinate frame most relevant to the computation, it can query the tf library for the transform from the coordinate frame of the Stamped data to the desired coordinate frame.
-
-For convenience, to get the latest data available, a request at time zero will return the latest common time across the queried values. If such a time does not exist the Listener will raise an exception, in the same way as if an unavailable time was queried outside of the cached history. For example, use Ros::Time::Now() to replace Ros::Time(0), there may be an error. Because the Time::Now() responding to the frame, which is not added to the list.
-
-### Transform from map to base_link
-
-**earth** --> **map** --> **odom** --> **base_link**
-
-The transform from map to base_link is computed by a localization component. However, the localization component does not broadcast the transform from map to base_link. Instead, it first **receives** the transform from odom to base_link, and uses this information to **broadcast** the transform from map to odom.
-
-
-### tf and rosbag
-
-在其他节点打开之前，使用下面的语句，ros将设置*use_sim_time*为true，也就是运行一个Clock Serve。
-ros::Time(0) means "the latest available" transform in the buffer.
-
-```
-rosbag paly --clock ...
-```
-
-对于一个回放的ros包，使用下面的tf代码
-
-```
-listener.waitForTransform("/map", "/base_link",ros::Time::now(), ros::Duration(3.0));// 可以使用ros::Time(0)
-listener.lookupTransform("/map", "/base_link", ros::Time::now(), transform);
-```
-
-或者
-
-```
-listener.lookupTransform("/map", "/base_link", ros::Time(0), transform);
-```
-
-
-
 ## ROS在多台机器上的配置
 
 - You only need one master. Select one machine to run it on.
@@ -491,6 +438,59 @@ so it can be found by python.
 **TODO**
 
 
+
+
+## Package tf
+
+**tf** is a package that lets the user keep track of multiple coordinate frames over time. **tf** maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time. 
+
+The tf package provides an implementation of a **TransformBroadcaster** to help make the task of **publishing** transforms easier. 
+
+The tf package provides an implementation of a **TransformListener** to help make the task of **receiving** transforms easier.
+
+The TransformListener object should be scoped to persist otherwise it's cache will be unable to fill and almost every query will fail. A common method is to make the TransformListener object a member variable of a class. 
+
+```
+rosrun tf view_frames
+rosrun rqt_tf_tree rqt_tf_tree # 查看frame ID之间的关系
+```
+
+The Listener module walks up the edges of the tree until a common parent node is found forming a spanning set. If no common parent is found the **look up** fails and will return an error. If the look up succeeds the Listener will compute the net transform of the edges from the **source frame to the target frame** along the spanning set.
+
+The tf library enables sensor data, or any data with a Stamp, to be transmitted in its original frame across the network as well as to be stored in its original frame. When an algorithm wants to use data in the coordinate frame most relevant to the computation, it can query the tf library for the transform from the coordinate frame of the Stamped data to the desired coordinate frame.
+
+For convenience, to get the latest data available, a request at time zero will return the latest common time across the queried values. If such a time does not exist the Listener will raise an exception, in the same way as if an unavailable time was queried outside of the cached history. For example, use Ros::Time::Now() to replace Ros::Time(0), there may be an error. Because the Time::Now() responding to the frame, which is not added to the list.
+
+### Transform from map to base_link
+
+**earth** --> **map** --> **odom** --> **base_link**
+
+The transform from map to base_link is computed by a localization component. However, the localization component does not broadcast the transform from map to base_link. Instead, it first **receives** the transform from odom to base_link, and uses this information to **broadcast** the transform from map to odom.
+
+
+### tf and rosbag
+
+在其他节点打开之前，使用下面的语句，ros将设置*use_sim_time*为true，也就是运行一个Clock Serve。
+ros::Time(0) means "the latest available" transform in the buffer.
+
+```
+rosbag paly --clock ...
+```
+
+对于一个回放的ros包，使用下面的tf代码
+
+```
+listener.waitForTransform("/map", "/base_link",ros::Time::now(), ros::Duration(3.0));// 可以使用ros::Time(0)
+listener.lookupTransform("/map", "/base_link", ros::Time::now(), transform);
+```
+
+或者
+
+```
+listener.lookupTransform("/map", "/base_link", ros::Time(0), transform);
+```
+
+## Public param or private param
 
 
 

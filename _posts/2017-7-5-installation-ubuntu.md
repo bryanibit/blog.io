@@ -153,12 +153,16 @@ sudo apt-get install pycharm  ## professional version
 * go to [crack](idea.qinxi1992.cn)
 * add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 
+**1. Active server:** http://www.activejetbrains.gq (2017.3.4以上紧急车道 其他车辆请避让)
+
+**2.激活server：** http://idea.imsxm.com/
+
 ```
 select 'for all users'
 PATH=$PATH:/home/inin/{installation path}/bin
 ```
 
-#### 配置pycharm使用ros
+#### 配置pycharm/clion使用ros
 
 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
 
@@ -178,6 +182,20 @@ gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为�
 Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
 ```
 
+在clion中 Opening catkin packages (remember to source devel/setup.bash)
+
+File > Open Select the src/CMakeLists.txt (```catkin_init_workspace``` produces cmakelists.txt and cp it into your catkin_ws) 
+and open as Project (or open the folder containing CMakeLists.txt)
+
+在clion调试中include经常找不到生成的自定义message，在clion-file-settings-build-CMake中，在CMake options内填入
+
+```
+-DCATKIN_DEVEL_PREFIX=/home/bryan/catkin_ws/devel
+-DCMAKE_INSTALL_PREFIX=/home/bryan/catkin_ws/install
+```
+
+选择build目录为*../build*.
+
 #### 使用pycharm时import第三方库
 
 Pycharm 和 Clion 2018.1 版本下载地址 (链接: https://pan.baidu.com/s/1mniZLPgLqr9ViwfM7QfBGA 密码: bqwc)
@@ -185,9 +203,6 @@ Pycharm 和 Clion 2018.1 版本下载地址 (链接: https://pan.baidu.com/s/1mn
 ```
 settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
 ```
-**1. Active server:** http://www.activejetbrains.gq (2017.3.4以上紧急车道 其他车辆请避让)
-
-**2.激活server：** http://idea.imsxm.com/
 
 ### install zsh
 

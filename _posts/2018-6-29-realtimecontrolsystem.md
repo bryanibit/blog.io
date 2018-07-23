@@ -7,6 +7,8 @@ tags: [技术总结]
 description: RCS Module detail
 ---
 
+**千万不要以rcs-test等短划线的方式命名RCS工程**
+
 ## RCS Structure
 
 - \{project-name\}.nml //配置buffer文件，使用\#注释
