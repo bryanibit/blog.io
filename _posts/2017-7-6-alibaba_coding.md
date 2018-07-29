@@ -34,11 +34,14 @@ set(OPENCV_LIBRARIES "/home/opencv/install/lib")
 find_package(OpenCV REQUIRED)
 set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)
 include_directories(${OpenCV_INCLUDE_DIRS})
+# Find Boost
+find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
+include_directories(${Boost_INCLUDE_DIRS})
 # Add source directory
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES})
 ```
 
 这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置
@@ -48,7 +51,6 @@ target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS})
 然后把.cmake copy 到工程根目录下
 
 ## C++数据结构 (*). == ->
-
 
 ### c++ 文件结构
 
@@ -220,3 +222,26 @@ for (auto ite = ch; ite->value != false; ++ite)
 		//make_pair 会将后面接的数字强制转化为double型
 	}
 ```
+
+
+## 设置Timer using Boost
+
+```
+#include <boost/asio.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+int main()
+{
+    boost::asio::io_service io;
+    while(1)
+        {
+	  boost::asio::deadline_timer t(io, boost::posix_time::milliseconds(100));//boost::posix_time::seconds(5)
+          // process your IO here - not sure how long your IO takes, so you may need to adjust your timer
+	  t.wait();
+	}    
+    return 0;
+}
+```
+
+
+
+

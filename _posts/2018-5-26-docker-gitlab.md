@@ -217,3 +217,45 @@ docker load -i gitlab.docker
 最后一步就是复制数据到新电脑上
 
 将gitlab整个文件夹打包/压缩后复制到新PC。
+
+## Remove and Restore for DOCKER Gitlab installations
+
+### 在原来电脑上需要完成的工作：
+
+* You have run sudo gitlab-ctl reconfigure at least once. 保证配置文件生效，所有配置文件和gitlab配置相同，可以不使用。
+
+```
+docker exec -t <container name> gitlab-rake gitlab:backup:create //backup gitlab
+cp /etc/gitlab/gitlab-secrets.json ~/   //This file contains the database encryption key, CI/CD variables, and variables used for two-factor authentication.
+cp /etc/gitlab/gitlab.rb ~/
+cp -r /etc/ssh ~/    //backup ssh key
+```
+
+上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server. 
+代替地，可以选择将整个/etc/gitlab和/etc/ssh文件夹备份。
+
+
+
+
+
+### 在新迁移的电脑上需要完成的工作：
+
+* You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created.
+* GitLab is running. If not, start it using sudo gitlab-ctl start.
+
+```
+sudo gitlab-ctl stop unicorn  // Stop the processes that are connected to the database. Leave the rest of GitLab running.
+sudo gitlab-ctl stop sidekiq
+sudo gitlab-ctl status // verify the two processes are down
+sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!. 
+```
+
+Make sure your backup tarball (1493107454_2018_04_25_10.6.4-ce_gitlab_backup.tar) is in the backup directory described in the *gitlab.rb* configuration *gitlab_rails['backup_path']*. The default is */var/opt/gitlab/backups*.
+
+Restore /etc/gitlab/gitlab-secrets.json and /etc/ssh if necessary as mentioned above.
+
+```
+sudo gitlab-ctl restart  //Restart and check GitLab
+sudo gitlab-rake gitlab:check SANITIZE=true
+```
+

@@ -102,3 +102,12 @@ git中origin master（branch）和 working space 暂存区的区别，commit是�
 - 上午：抽一会儿看一下线程的概念
 - 下午：今天任务大约完成
 - 晚上：English
+
+we will stick to the strictest definition in the interest of clarity.
+
+go to the horse's mouth
+
+属性图-概率图  场景建模模块 加个通道，
+64线，读32线，三张图，同样的消息类型
+
+

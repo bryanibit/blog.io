@@ -1,10 +1,10 @@
 ---
 layout: post
-title: Ladybug linux64 driver
+title: Ladybug Driver on Ubuntu16.04
 date: 2018-05-14
 categories: blog
 tags: [技术总结]
-description: ladybug driver on linux64 ubuntu
+description: ladybug driver on linux64 ubuntu 16.04
 ---
 
 ## Install Official deb driver
@@ -14,6 +14,8 @@ description: ladybug driver on linux64 ubuntu
 sudo apt-get install xsdcxx
 sudo dpkg -i <ladybug5driver.deb> //download from official web
 ```
+
+**需要修改grub图像大小，否则可以检测到设备但无法采集到图像！**
 
 ## USB RELATED NOTES
 ===============================================================================
@@ -25,7 +27,13 @@ make the change can be found below, or at
 <https://www.ptgrey.com/tan/10685#ConfiguringUSBFS>
 
 
-1. Open the /etc/default/grub file in any text editor. Find and replace:
+* To *temporarily* set the maximum usbfs memory limit, run this command:
+
+        sudo modprobe usbcore usbfs_memory_mb=1000
+
+* To *permanently* set the maximum usbfs memory limit: Open the */etc/default/grub* file in any text editor. 
+
+Find and replace:
 
         GRUB_CMDLINE_LINUX_DEFAULT="quiet splash"
 
@@ -34,12 +42,12 @@ with this:
         GRUB_CMDLINE_LINUX_DEFAULT="quiet splash usbcore.usbfs_memory_mb=1000"
 
 
-2. Update grub with these settings:
+* Update grub with these settings:
 
          sudo update-grub
 
 
-3. You may need to reboot.
+* You may need to reboot.
 
 
 If this method fails to set the memory limit, run the following command:
@@ -78,3 +86,23 @@ user$: sudo apt-get install libraw1394-11 libgtkmm-2.4-1v5 libglademm-2.4-1v5 li
 ----------|-----|--------
 |`SCALE`|*float*|Defines the downscale ratio (between 0.1 and 1.0).|
 |`CalibrationFile`|*string*|Path to an Autoware-compatible calibration file to be published in the `camera_info` topic related to this camera.|
+
+
+## 由驱动所想到的
+
+LKMs(Loadable Kernal Modules) are not user space programs. They are part of the kernel and different from the base kernel module in the interest of booting. Base moudule is loaded by computer booting, otherwise, LKM is not.
+
+* LKMs are used for six main things: 
+* Device drivers. 
+* Filesystem drivers(interpret the contents of a filesystem as files and dir and such. For example, there's a filesystem driver for the ext2 filesystem type used almost universally on Linux disk drives.).
+* System call. 
+* Network drivers. 
+* TTY line disciplines(These are essentially augmentations of device drivers for terminal devices.).
+* Executable interpreters. 
+
+Loaded modules are shown in file called */proc/modules*. *lsmod* lists the currently loaded LKMs, but all it does is dump the contents of */proc/modules*.
+
+
+
+
+
