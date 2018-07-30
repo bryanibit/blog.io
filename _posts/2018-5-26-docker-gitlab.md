@@ -234,13 +234,9 @@ cp -r /etc/ssh ~/    //backup ssh key
 上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server. 
 代替地，可以选择将整个/etc/gitlab和/etc/ssh文件夹备份。
 
-
-
-
-
 ### 在新迁移的电脑上需要完成的工作：
 
-* You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created.
+* You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created. 在[dockerImage](https://hub.docker.com/r/gitlab/gitlab-ce/tags/)上查找一定版本tag，即gitlab/gitlab-ce:{tag_name}。
 * GitLab is running. If not, start it using sudo gitlab-ctl start.
 
 ```
@@ -259,3 +255,8 @@ sudo gitlab-ctl restart  //Restart and check GitLab
 sudo gitlab-rake gitlab:check SANITIZE=true
 ```
 
+## Issues on Gitlab install
+
+```docker logs -f gitlab``` shows *ERROR:  relation "plans" does not exist at character 183*.
+
+Use ```docker exec -it gitlab gitlab-ctl restart gitlab-monitor``` to restart gitlab-monitor for shutting down gitlab-monitor to quiet the warning noise. The following command returns *ok: run: gitlab-monitor: (pid 1942) 1s*, no need to reboot and your gitlab server should be OK!
