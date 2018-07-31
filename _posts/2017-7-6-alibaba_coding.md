@@ -34,6 +34,12 @@ set(OPENCV_LIBRARIES "/home/opencv/install/lib")
 find_package(OpenCV REQUIRED)
 set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)
 include_directories(${OpenCV_INCLUDE_DIRS})
+# Find PCL
+# lowcase common and io, correspond to libpcl_common,libpcl_io.so, both files are located in ${PCL_COMMON_LIBRARY}
+find_package(PCL 1.3 REQUIRED COMPONENTS common io)//
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
 # Find Boost
 find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
 include_directories(${Boost_INCLUDE_DIRS})
@@ -41,7 +47,7 @@ include_directories(${Boost_INCLUDE_DIRS})
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
 ```
 
 这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置

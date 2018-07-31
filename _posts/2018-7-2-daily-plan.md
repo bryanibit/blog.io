@@ -110,4 +110,8 @@ go to the horse's mouth
 属性图-概率图  场景建模模块 加个通道，
 64线，读32线，三张图，同样的消息类型
 
+## 2018-7-31
 
+1. Merge code to track_uvc from dev_zjd
+2. 采集数据
+3. 激光标定

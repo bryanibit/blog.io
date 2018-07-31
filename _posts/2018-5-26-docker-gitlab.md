@@ -255,8 +255,18 @@ sudo gitlab-ctl restart  //Restart and check GitLab
 sudo gitlab-rake gitlab:check SANITIZE=true
 ```
 
+Make sure the server is OK in chrome with username and passward.
+
 ## Issues on Gitlab install
 
 ```docker logs -f gitlab``` shows *ERROR:  relation "plans" does not exist at character 183*.
 
 Use ```docker exec -it gitlab gitlab-ctl restart gitlab-monitor``` to restart gitlab-monitor for shutting down gitlab-monitor to quiet the warning noise. The following command returns *ok: run: gitlab-monitor: (pid 1942) 1s*, no need to reboot and your gitlab server should be OK!
+
+## Disable docker autostart container
+
+```
+docker inspect {my-container} //Look for RestartPolicy in the output
+docker update --restart=no {my-container}
+```
+
