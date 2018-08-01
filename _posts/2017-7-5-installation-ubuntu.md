@@ -257,7 +257,7 @@ syntax on
   alias lbm-nouveau off
 ```
 
-重启后再次进入字符终端界面，并关闭图形界面
+```sudo update-initramfs -u```重启后再次进入字符终端界面，并关闭图形界面
 
           sudo service lightdm stop
 

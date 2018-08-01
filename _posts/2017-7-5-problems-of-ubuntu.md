@@ -316,3 +316,34 @@ When you start a launch file, you may meet the above error.
 ```
 source ./devel/setup.zsh
 ```
+
+## Huawei E353/E3131 massage storage
+
+Create file with ```sudo vi /etc/usb_modeswitch.d/12d1:1f01```.
+
+With following content
+
+root@fwhlin:~ # cat /etc/usb_modeswitch.d/12d1:1f01
+
+```
+# Huawei E3531s-2 - switch to modem mode instead of HiLink CDC-Ether mode
+TargetVendor=0x12d1
+TargetProduct=0x1f01
+# switch to 12d1:1001 (modem mode, 3 virtual serial ports)
+#MessageContent="55534243123456780000000000000011062000000100000000000000000000"
+# switch to 12d1:14dc (default HiLink CDC-Ether mode)
+MessageContent="55534243123456780000000000000a11062000000000000100000000000000"
+# switch to 12d1:1442 (debug mode with 2 virtual serial ports)
+# MessageContent="55534243000000000000000000000011060000000000000000000000000000"
+```
+
+To switch to Modem Mode, run ```usb_modeswitch -I -W -c /etc/usb_modeswitch.d/12d1\:1f01```.
+
+If it worked, device will change to modem mode
+
+```
+root@fwhlin:~ # lsusb | grep Hu
+Bus 009 Device 003: ID 12d1:14dc Huawei Technologies Co., Ltd. 
+```
+
+Notice it changed name, also device ID changed to 14db, or something else.

@@ -115,3 +115,45 @@ ss>>number;
 
 每个顶点之间都有一个边的为连通图
 
+## make_share/share_ptr
+
+```
+#include <memory>
+#include <string>
+ 
+class Foo
+{
+public:
+    typedef std::shared_ptr<Foo> Ptr;
+ 
+    Foo()
+    : a(42)
+    , b(false)
+    , c(12.234)
+    , d("FooBarBaz")
+    {}
+ 
+private:
+    int a;
+    bool b;
+    float c;
+    std::string d;
+};
+ 
+const int loop_count = 100000000;
+int main(int argc, char** argv)
+{
+    for (int i = 0; i < loop_count; i++)
+    {
+#ifdef USE_MAKE_SHARED
+        Foo::Ptr p = std::make_shared<Foo>();
+#else
+        Foo::Ptr p = Foo::Ptr(new Foo);
+#endif
+    }
+    return 0;
+}
+```
+
+以上代码当使用```g++ -o2 main.cc```，即可看到make_shared的优势。
+
