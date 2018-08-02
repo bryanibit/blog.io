@@ -97,7 +97,7 @@ usb_modeswitch -v 0x12d1 -p 0x1f01 -V 0x12d1 -P 0x14dc -M "555342430000000000000
 
 Visual Studio Professional 2015简体中文版（专业版）下载地址：
 
-　　http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso
+　　*http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso*
 
 　　SHA1: 629E7154E2695F08A3C692C0B3F6CE19DF6D3A72
 
@@ -105,13 +105,19 @@ Visual Studio Professional 2015简体中文版（专业版）下载地址：
 
 　Visual Studio Enterprise 2015简体中文版（企业版）下载地址：
 
-　　http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso
+　　*http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso*
 
 　　SHA1: 4FFA1EE3E2D3337D3EDAE550A3583ABE9C426BEF
 
     ```激活密钥：HM6NR-QXX7C-DFW2Y-8B82K-WTYJV```
 
+UltrISO激活注册码
 
+```
+名：王涛
+域：7C81-1689-4046-626F
+```
 
+Git win 下载
 
-
+[GitHub地址](https://github.com/waylau/git-for-win)
