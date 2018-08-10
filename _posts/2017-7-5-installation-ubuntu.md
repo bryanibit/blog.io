@@ -150,7 +150,7 @@ sudo apt-get install pycharm  ## professional version
 ```
 
 * Download official version professional
-* go to [crack](idea.qinxi1992.cn)
+* go to [crack](http://idea.lanyus.com/)
 * add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 
 **1. Active server:** http://www.activejetbrains.gq (2017.3.4以上紧急车道 其他车辆请避让)

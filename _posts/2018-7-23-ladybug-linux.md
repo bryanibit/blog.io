@@ -15,6 +15,8 @@ sudo apt-get install xsdcxx
 sudo dpkg -i <ladybug5driver.deb> //download from official web
 ```
 
+Keep in mind that PTGrey SDK Flycapture **CANNOT** be installed simultaneously with Ladybug SDK.
+
 **需要修改grub图像大小，否则可以检测到设备但无法采集到图像！**
 
 ## USB RELATED NOTES

@@ -156,13 +156,24 @@ np.nonzero(ok1*ok2)[0]
 
 ```
 parser = argparse.ArgumentParser()
+parser.add_argument("path", help="Provide ANS_test path for create_link <ANS_test_path>")
+args = parser.parse_args()
+path = args.path// path is str
+xx.py <path-name> //必须提供此参数，否则程序报错
+
 parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
+args = parser.parse_args()
+args.verbosity
 ××.py -v 1
 
 parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")
+args = parser.parse_args()
 ××.py -vv --verbosity --verbosity
 
 parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
+args = parser.parse_args()
+if args.verbosity:
+   do something
 ××.py -v
 ```
 
@@ -326,12 +337,31 @@ np.r_[np.repeat(a, 3), np.tile(a, 3)]
 >> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
 ```
 
+## Python file path not related to input file path in terminal
 
+```
+#!/usr/bin/env python
+import os
 
+print("Path at terminal when executing this file")
+# 运行python脚步的路径
+print(os.getcwd() + "\n")
 
+print("This file path, relative to os.getcwd()")
+print(__file__ + "\n")
 
+print("This file full path (following symlinks)")
+full_path = os.path.realpath(__file__)
+# python real path
+print(full_path + "\n")
 
+print("This file directory and name")
+path, filename = os.path.split(full_path)
+print(path + ' --> ' + filename + "\n")
 
+print("This file directory only")
+print(os.path.dirname(full_path))
+```
 
 
 
