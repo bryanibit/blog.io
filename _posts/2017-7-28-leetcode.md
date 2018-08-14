@@ -4,7 +4,7 @@ title: Leetcode
 date: 2017-7-28
 categories: blog
 tags: [理论梳理]
-description: leetcode 题目心得总结
+description: Leetcode & Codeing skill
 ---
 
 ## 将string类型变量转换为常用的数值类型
@@ -156,4 +156,20 @@ int main(int argc, char** argv)
 ```
 
 以上代码当使用```g++ -o2 main.cc```，即可看到make_shared的优势。
+
+## Empty a normal array (e.g. int[])
+
+```
+std::fill_n(array, elementCount, 0);
+```
+
+## Mutex
+
+```
+using MuxGuard = std::lock_guard<std::mutex>;
+MuxGuard g(func_mutex);
+```
+
+以上代码将锁定上面代码所包括的域
+
 
