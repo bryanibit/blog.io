@@ -269,4 +269,8 @@ private:
 
 一个const member function(成员函数)不被允许改变调用它的object(对象)的任何non-static data members(非静态数据成员)。
 
+## Non-local static variable
+
+The relative order of initialization of non-local statciaovjects defined in different translation units is undefined.
+
 

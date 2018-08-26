@@ -260,3 +260,24 @@ gcc -o foo foo.c -L$(prefix)/lib -lfoo -Wl,-rpath=$(prefix)/lib
 
 然后执行如下命令：*ldconfig*
 
+
+## set
+
+```
+set(<variable> <value>
+    [[CACHE <type> <docstring> [FORCE]] | PARENT_SCOPE])
+```
+
+In CMake there are two types of variables: *normal variables* and *cache variables*. Normal variables are meant for the internal use of **the script** (just like variables in most programming languages); they are not persisted across CMake runs. Cache variables (unless set with INTERNAL) are mostly intended for configuration settings where the first CMake run determines a suitable default value, which the user can then override, by editing the cache with tools such as ccmake or cmake-gui. Cache variables are stored in the CMake cache file, and are persisted across CMake runs.
+
+```set(FOO "x")``` sets the normal variable *FOO*, then *${FOO}* first search normal variable, then find cache variable if no normal variable named *FOO*.
+
+* The code ```set(FOO "x")``` sets the normal variable *FOO*. It does not touch the cache, but it will hide any existing cache value *FOO*.
+
+* The code ```set(FOO "x" CACHE …)``` checks for *FOO* in the cache, ignoring any normal variable of the same name. If *FOO* is in the cache then nothing happens to either the normal variable or the cache variable. If *FOO* is not in the cache, then it is added to the cache.
+
+* whenever a cache variable is added or modified by a command, *CMake also removes the normal variable of the same name from the current scope* so that an immediately following evaluation of it will **expose the newly cached value**.
+
+
+
+
