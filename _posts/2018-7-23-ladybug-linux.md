@@ -25,9 +25,9 @@ Keep in mind that PTGrey SDK Flycapture **CANNOT** be installed simultaneously w
 On Linux systems, image size is restricted to 2MiB or less by default. To
 increase this limit so that you can make use of your imaging hardware's full
 capabilities, you will need to make a minor change to your system. Steps to
-make the change can be found below, or at 
-<https://www.ptgrey.com/tan/10685#ConfiguringUSBFS>
+make the change can be found below, or at [ptgrey](https://www.ptgrey.com/tan/10685#ConfiguringUSBFS).
 
+The USBFS buffer size is too small for 16 MB by default.
 
 * To *temporarily* set the maximum usbfs memory limit, run this command:
 

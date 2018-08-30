@@ -319,7 +319,11 @@ source ./devel/setup.zsh
 
 ## Huawei E353/E3131 massage storage
 
-Create file with ```sudo vi /etc/usb_modeswitch.d/12d1:1f01```.
+* *lsusb* can check the device called *ID 12d1:1f01*, use ```sudo usb_modeswitch -v 12d1 -p 1f01 -J``` to change the mode to modern.
+
+If the following method is not OK (ID is changed to 12d1:14db), then the above is worth trying.
+
+* Create file with ```sudo vi /etc/usb_modeswitch.d/12d1:1f01```.
 
 With following content
 
@@ -347,3 +351,4 @@ Bus 009 Device 003: ID 12d1:14dc Huawei Technologies Co., Ltd.
 ```
 
 Notice it changed name, also device ID changed to 14db, or something else.
+
