@@ -25,28 +25,32 @@ description: c++问题
 project(point_group)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
+
 # OpenCV is not install in default location, if not delete that.
-set(OpenCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
+set(OPENCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
 # optional conditions like the following line
 set(OpenCV_INCLUDE_DIRS "/home/opencv/install/include")
-set(OpenCV_LIBRARIES "/home/opencv/install/lib")
 # Find OpenCV at the default location
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.3.1 REQUIRED)
 set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)
 include_directories(${OpenCV_INCLUDE_DIRS})
+
 # Find PCL
 # lowcase common and io, correspond to libpcl_common,libpcl_io.so, both files are located in ${PCL_COMMON_LIBRARY}
 find_package(PCL 1.3 REQUIRED COMPONENTS common io)//
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
+
 # Find Boost
 find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
 include_directories(${Boost_INCLUDE_DIRS})
+
 # Add source directory
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
+# set(OpenCV_LIBRARIES ${OpenCV_LIBS}) is content of OpenCVConfig.cmake
 target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
 ```
 
@@ -98,8 +102,8 @@ for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i+
          std::ifstream infile;
          infile.open("./1.txt");
          string s;
-         // get a line
-         getline(infile, s);
+         while(infile >> s) //读取一个word
+         //while(getline(infile, s)) //读取一行
 
 ### 写入文件c++
 
