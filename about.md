@@ -5,11 +5,11 @@ description: "只有在安静平和的心境下，才能寻得最接近真像的
 header-img: "img/green.jpg"
 ---
 
-我是于华超，在读研究生
+我是于华超
 
 ![Mo](img/originbear.png)
 
-现在研习 **三维重建（SfM）** 
+现在研习 **三维重建（SfM）**
 
 
 ### 关注：

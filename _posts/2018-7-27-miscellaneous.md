@@ -21,4 +21,15 @@ In short, rvalue reference should be *unconditionally* cast to rvalue (via **std
 
 Universal refenrence should be *conditionally* cast to rvalue (via **std::forward**).
 
+## 外汇管理局新规2016
 
+根据外管局最新规定：[链接](https://xueqiu.com/5514474822/66337756)
+
+1. 5个以上不同个人，同日、隔日或连续多日分别购汇后，将外汇汇给境外同一个人或机构；
+2. 个人在7日内从同一外汇储蓄账户5次以上提取接近等值1万美元外币现钞；
+3. 同一个人将其外汇储蓄账户内存款划转至5个以上直系亲属等情况。
+将被界定为个人分拆结售汇行为，也就是俗称的“蚂蚁搬家”，一律进入黑名单，违规者将被剥夺两年合计10万美元的换汇额度。
+
+## 活着
+
+内心使他真正地了解自己，了解了自己也就了解了世界。
