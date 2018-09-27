@@ -212,40 +212,27 @@ sub   2048g/10AF40FE 2009-02-01
 
 Use ```apt-key del D50582E6``` to delete one key.
 
-```/etc/apt/trusted.gpg```
+```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted. 
 
-    Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted. 
+```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts. 
 
-```/etc/apt/trusted.gpg.d/```
+```/etc/apt/trustdb.gpg```: Local trust database of archive keys. 
 
-    File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts. 
+```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys. 
 
-```/etc/apt/trustdb.gpg```
-
-    Local trust database of archive keys. 
-
-```/usr/share/keyrings/ubuntu-archive-keyring.gpg```
-
-    Keyring of Ubuntu archive trusted keys. 
-
-```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```
-
-    Keyring of Ubuntu archive removed trusted keys. 
+```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys. 
 
 ## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
 ```
 sudo ln -s /usr/include/eigen3/Eigen /usr/local/include/Eigen
-```
-
-```
 unlink /usr/local/include/Eigen
 update-alternatives --config <file-name>
 ```
 
 if Eigen file is existed, then use -fs
 
-unlink can remove the old file, so caution is needed.
+unlink can remove the old file, so do it warely.
 
 这是由于eigen在安装后在子目录中，所以可以参考这个[链接的说明](https://askubuntu.com/questions/491067/eigen-installation-seemed-to-work-but-i-still-cant-make-eigen-work)
 
@@ -370,7 +357,7 @@ root@fwhlin:~ # cat /etc/usb_modeswitch.d/12d1:1f01
 TargetVendor=0x12d1
 TargetProduct=0x1f01
 # switch to 12d1:1001 (modem mode, 3 virtual serial ports)
-#MessageContent="55534243123456780000000000000011062000000100000000000000000000"
+# MessageContent="55534243123456780000000000000011062000000100000000000000000000"
 # switch to 12d1:14dc (default HiLink CDC-Ether mode)
 MessageContent="55534243123456780000000000000a11062000000000000100000000000000"
 # switch to 12d1:1442 (debug mode with 2 virtual serial ports)

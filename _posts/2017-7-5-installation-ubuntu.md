@@ -286,3 +286,34 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 
         sudo ./cuda_8.0.61_375.26_linux.run --no-opengl-libs
 
+**Table 1. CUDA Toolkit and Compatible Driver Versions**
+| CUDA Toolkit | Linux x8664 Driver Version | Windows x86_64 Driver Version |
+| :------: | :------: | :------: |
+| CUDA 10.0.130      |  >= 410.48  | 	>= 411.31 | 
+| CUDA 9.2 (9.2.148 Update 1) |  	>= 396.37 |  	>= 398.26 | 
+| CUDA 9.2 (9.2.88)  | 	>= 396.26  | 	>= 397.44 | 
+| CUDA 9.1 (9.1.85)  | 	>= 390.46  | 	>= 391.29 | 
+| CUDA 9.0 (9.0.76)  | 	>= 384.81  | 	>= 385.54 | 
+| CUDA 8.0 (8.0.61 GA2) |  >= 375.26  | >= 376.51 | 
+| CUDA 8.0 (8.0.44)  | 	>= 367.48  | 	>= 369.30 | 
+| CUDA 7.5 (7.5.16)  |  >= 352.31  | 	>= 353.66 | 
+| CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 | 
+
+## Install tensorflow
+
+推荐两种安装方式：virtualenv，docker
+
+查看[官网](https://www.tensorflow.org/install/)的安装指导，注意tensorflow >=1.5需要cuda9.0版本，如果已经安装cuda8.0，可以采用下面方法
+
+```
+pip3 uninstall tensorflow-gpu
+pip3 install --upgrade tensorflow-gpu==1.4
+```
+
+1. ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
+
+到[官网](https://developer.nvidia.com/cudnn)下载相应的cudnn库，在注册完帐号之后即可下载（应该选择自己对应的版本）。
+
+从下载完的文件中，将libcudnn.so.6.XXX（具体可修改到自己下载的版本）文件放在/usr/local/cuda/lib64/文件目录下
+
+从下载完的文件中，将cudnn.h（具体可修改到自己下载的版本）文件放在/usr/local/cuda/include/文件目录下
