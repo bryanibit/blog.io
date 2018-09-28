@@ -29,13 +29,13 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 - 下午：看公开课，看到第九周的内容
 - 晚上：读一篇英文小说，傲慢与偏见20分钟，对下午没有看完的第九周课程，继续看一下
 
-## 2018-7-4 :rocket: 
+## 2018-7-4 :rocket:
 
 - 上午：查看gridmap的readme，使用gridmap运行包中的pointcloud数据
 - 下午：查看elevation_map的代码
 - 晚上：读一篇英文小说，傲慢与偏见20分钟
 
-## 2018-7-5 :metal: 
+## 2018-7-5 :metal:
 
 - 上午：抛弃elevation_map，查看volumetric_map和grid_map直接绘制地图的可能性
 - 下午：同上
@@ -49,7 +49,7 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 # 2018-7 第二个周
 
-## 2018-7-9  :camel: 
+## 2018-7-9  :camel:
 
 - 上午：完成RCS建构搭建
 - 下午：同上
@@ -73,7 +73,7 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 - 下午：同上
 - 晚上：公开课
 
-## 2018-7-13 
+## 2018-7-13
 
 - 上午：修改ANS模块，现在将nml改完了，明天要改cfg，并用diag_NB工具调试
 - 下午：同上
@@ -115,3 +115,61 @@ go to the horse's mouth
 1. Merge code to track_uvc from dev_zjd
 2. 采集数据
 3. 激光标定
+
+## 国庆9天
+
+:camel: 多完成的加以备注
+
+1. 9-29
+
+- effective c++ 第一章（笔记blog）
+- the giver 20th 21st
+
+2. 9-30
+
+- effective c++ 第二章
+- liaoxuefeng python(函数式编程，面向对象编程，面向对象高级编程)(笔记blog)
+- the giver 22th and the left
+
+3. 10-1
+
+- Take a rest
+- 二十年
+
+4. 10-2
+
+- Take a rest
+- 二十年
+
+5. 10-3
+
+- effective C++ 第三章
+- liaoxuefeng python(错误调试，IO编程)
+- sophia's world 10pages
+
+6. 10-4
+
+- Take a test
+- 二十年
+
+7. 10-5
+
+- effective C++ 第四章
+- liaoxuefeng python(进程和线程，正则表达式)
+- sophia's world 20pages
+
+8. 10-6
+
+- effective C++ 第五章
+- liaoxuefeng python(内建模块)
+- sophia's world 20 pages
+
+9. 10-7
+
+- effective C++ 第六章
+- - liaoxuefeng python(异步IO，常用第三方模块)
+- sophia's world 20pages
+
+10. 10-8
+
+**Go to work**
