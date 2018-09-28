@@ -13,7 +13,7 @@
     <link rel="canonical" href="http://bryanibit/blog/2017/07/19/fk-gfw/">
 
     <!-- Icons -->
-  <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,6 +97,8 @@
     }
 </style>
 <header class="intro-header" >
+  
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -124,7 +126,9 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <h2 id="download-goagent">Download Goagent</h2>
+                <h1 id="你失去的只是锁链而获得的将是整个世界----共产党宣言">你失去的只是锁链，而获得的将是整个世界  –  《共产党宣言》</h1>
+
+<h2 id="download-goagent">Download Goagent</h2>
 
 <p>百度云已经配置好的GoAgent(sceret)</p>
 
@@ -219,13 +223,82 @@ sudo apt-get install libnss3-tools
 sudo /home/username/xxnet/xx_net.sh start</li>
 </ol>
 
+<h2 id="vps配置">vps配置</h2>
+
+<p>http://blog.csdn.net/boxuerixin/article/details/72393518
+http://www.cnvultr.com/416.html</p>
+
+<p>我还没有试试上面教程，只是我的同学试过，可以使用。</p>
+
+<h2 id="ubuntu上配置shadowsocks">Ubuntu上配置shadowsocks</h2>
+
+<ol>
+  <li>完成ss-qt5的安装</li>
+</ol>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo add-apt-repository ppa:hzwhuang/ss-qt5
+sudo apt-get update
+sudo apt-get install shadowsocks-qt5
+</code></pre></div></div>
+
+<p>可以去<a href="https://launchpad.net/">launchpad</a>搜索并下载.deb源文件。</p>
+
+<ol>
+  <li>
+    <p>新建gui-config.json,放在自己机器上一个可访问的目录</p>
+  </li>
+  <li>
+    <p>打开terminal,输入 ss-qt5</p>
+  </li>
+  <li>
+    <p>在弹出的connection Manager界面上file -&gt; import Connections from gui-config.json(选择步骤2中保存的gui-config.json)</p>
+  </li>
+  <li>
+    <p>配置浏览器的代理</p>
+  </li>
+</ol>
+
+<h2 id="macos-配置">macOS 配置</h2>
+
+<p><a href="https://lvii.gitbooks.io/outman/content/">参考这个链接下载shadowsocks</a></p>
+
+<h2 id="google-cloud-platform-vm实例">Google cloud platform vm实例</h2>
+
+<p>首先注册Google云后，新建vm实例，选择亚洲区，选择CPU为单核即可，选择系统为</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Debian GNU/Linux 8 (jessie)
+amd64 built on 20180611
+</code></pre></div></div>
+
+<p>勾选允许HTTP和HTTPS流量。</p>
+
+<p>使用ssh登录vm实例后：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -i
+wget -N --no-check-certificate https://raw.githubusercontent.com/FunctionClub/YankeeBBR/master/bbr.sh &amp;&amp; bash bbr.sh install
+</code></pre></div></div>
+
+<p>Abort kernel removal? Choose No. Then we reboot the system. Log the system with ssh another time.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo -i
+bash bbr.sh start
+wget --no-check-certificate https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocksR.sh &amp;&amp; chmod +x shadowsocksR.sh
+./shadowsocksR.sh
+</code></pre></div></div>
+
+<p>Input the password and port ID. And then enter all the time.</p>
+
+<p>在防火墙规则中的<strong>default-allow-http</strong> 和 <strong>default-allow-https</strong>中的TCP和UDP端口改为上面设置的端口号。</p>
+
+<p>Enjoy!</p>
+
 
                 <hr>
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/18/ROS-tutorial/" data-toggle="tooltip" data-placement="top" title="ROS tutorials">&larr; Previous Post</a>
+                        <a href="/blog/2017/07/18/ros-tutorial/" data-toggle="tooltip" data-placement="top" title="ROS tutorials">&larr; Previous Post</a>
                     </li>
                     
                     
@@ -251,17 +324,13 @@ sudo /home/username/xxnet/xx_net.sh start</li>
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/19/fk-gfw" data-title="How to fly over GFW"
                     data-images="http://bryanibit/img/black.jpg"
-                    data-content="Download Goagent
+                    data-content="你失去的只是锁链，而获得的将是整个世界  –  《共产党宣言》
+
+Download Goagent
 
 百度云已经配置好的GoAgent(sceret)
 
-配置
-
-windows chrome
-
-
-  下载xx-net
- ... | Microdust:Azeril's blog"
+... | Microdust:Azeril's blog"
                     data-url="http://bryanibit/blog/2017/07/19/fk-gfw/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -379,7 +448,7 @@ var duoshuoQuery = {short_name:"cnfeat"};
 
                 </ul>
                 <p class="copyright text-muted">
-                &copy; 2017  Bryan ❖ Powered by Jekyll.
+                &copy; 2018  Bryan ❖ Powered by Jekyll.
                 </p>
             </div>
         </div>

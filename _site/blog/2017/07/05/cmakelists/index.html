@@ -13,7 +13,7 @@
     <link rel="canonical" href="http://bryanibit/blog/2017/07/05/cmakelists/">
 
     <!-- Icons -->
-  <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,6 +97,8 @@
     }
 </style>
 <header class="intro-header" >
+  
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -124,10 +126,11 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 post-container">
 
-                <p><a href="https://cmake.org/Wiki/CMake_2.4.6_Docs"><strong>CMake Docs Link</strong>(<code class="highlighter-rouge">man cmake</code>)</a></p>
+                <p><a href="https://blog.csdn.net/wzzfeitian/article/details/40963457"><strong>解释cmake参数命令的博客</strong></a>
+<a href="https://cmake.org/Wiki/CMake_2.4.6_Docs"><strong>CMake Docs Link</strong>(<code class="highlighter-rouge">man cmake</code>)</a></p>
 
 <h2 id="use-opencv-install-not-in-default-location">Use OpenCV install not in default location</h2>
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  set(OpenCV "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  set(OpenCV_DIR "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
   ""中的内容应该包含OpenCVConfig.cmake
 </code></pre></div></div>
 
@@ -226,6 +229,31 @@ or <low-case-name>-config.cmake</low-case-name></NAME></p>
 
 <p>pkg-config is a build-helping tool, based on ‘.pc’ files that record the location of _ library files _ and _ include files _</p>
 
+<p>凡是由二进制文件（deb、源等）安装的包，都会将<package-name>.pc文件放置在 {PKG-CONFIG-PATH}所包含的路径下。*.pc的内容一般是：指明某个包include和lib的目录。</package-name></p>
+
+<p>e.g.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>➜  echo $PKG_CONFIG_PATH 
+/home/bryan/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
+➜  ls /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
+opencv-3.3.1-dev.pc
+➜  head -14 /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig/opencv-3.3.1-dev.pc //显示前14行
+\# Package Information for pkg-config
+
+prefix=/opt/ros/kinetic
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib/x86_64-linux-gnu
+includedir_old=${prefix}/include/opencv-3.3.1-dev/opencv
+includedir_new=${prefix}/include/opencv-3.3.1-dev
+
+Name: OpenCV
+Description: Open Source Computer Vision Library
+Version: 3.3.1
+Libs: -L${exec_prefix}/lib/x86_64-linux-gnu -lopencv_stitching3 -lopencv_superres3 -lopencv_videostab3 -lopencv_aruco3 -lopencv_bgsegm3 -lopencv_bioinspired3 -lopencv_ccalib3 -lopencv_cvv3 -lopencv_dpm3 -lopencv_face3 -lopencv_photo3 -lopencv_fuzzy3 -lopencv_hdf3 -lopencv_img_hash3 -lopencv_line_descriptor3 -lopencv_optflow3 -lopencv_reg3 -lopencv_rgbd3 -lopencv_saliency3 -lopencv_stereo3 -lopencv_structured_light3 -lopencv_viz3 -lopencv_phase_unwrapping3 -lopencv_surface_matching3 -lopencv_tracking3 -lopencv_datasets3 -lopencv_text3 -lopencv_dnn3 -lopencv_plot3 -lopencv_xfeatures2d3 -lopencv_shape3 -lopencv_video3 -lopencv_ml3 -lopencv_ximgproc3 -lopencv_calib3d3 -lopencv_features2d3 -lopencv_highgui3 -lopencv_videoio3 -lopencv_flann3 -lopencv_xobjdetect3 -lopencv_imgcodecs3 -lopencv_objdetect3 -lopencv_xphoto3 -lopencv_imgproc3 -lopencv_core3
+Libs.private: -ldl -lm -lpthread -lrt
+Cflags: -I${includedir_old} -I${includedir_new}
+</code></pre></div></div>
+
 <h2 id="include_directories-link_direcotries-link_libraries">INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES</h2>
 
 <p>INCLUDE_DIRECTORIES 增加include路径
@@ -279,6 +307,123 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库</p>
 **ADD_SURDIRECTORY(src_dir)**指明本项目包含一个子目录 src_dir，这样 src_dir 目录下的 CMakeLists.txt 文件和源代码也会被处理 (比如src_dir中cmakelists将自身目录编译为一个静态库\[使用add-library\]，在上一级目录中target_link_libraries，这个过程需要使用ADD_SURDIRECTORY(src_dir)，告知编译器需要编译该链接库目录)
 </code></pre></div></div>
 
+<h2 id="cmake中打印变量信息">cmake中打印变量信息</h2>
+
+<ul>
+  <li>message([STATUS] “message content”)</li>
+  <li>e.g.</li>
+  <li>message([WARRNING] ${EIGEN_INCLUDE_DIR})  e.g. PROJECT_SOURCE_DIR  CMAKE_INCLUDE_PATH</li>
+  <li>cmake gets a result: [WARNING]/usr/include/eigen3</li>
+</ul>
+
+<h2 id="cmake常见问题解析">cmake常见问题解析</h2>
+
+<ol>
+  <li>CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}</li>
+</ol>
+
+<blockquote>
+  <p>Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} “/home/inin/OpenDroneMap/SuperBuild//install/include/”)</p>
+</blockquote>
+
+<blockquote>
+  <p>设置include为库安装目录，解决问题</p>
+</blockquote>
+
+<ol>
+  <li>Could not find a package configuration file provided by “Eigen” with any of the following names: EigenConfig.cmake eigen-config.cmake <a href="https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html">config-file and find-module</a></li>
+</ol>
+
+<blockquote>
+  <p>Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)</p>
+</blockquote>
+
+<blockquote>
+  <p>Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)</p>
+</blockquote>
+
+<blockquote>
+  <p>The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.</p>
+</blockquote>
+
+<h2 id="cmakelists中关键字函数">cmakelists中关键字（函数）</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>cmakelists              makefile
+
+target_link_libraries  ==&gt; -l
+
+include_directories  ==&gt; -I/path
+
+link_directories  ==&gt; -L/path
+</code></pre></div></div>
+
+<p>CMake provides direct support for two forms of packages, Config-file Packages and Find-module Packages. Indirect support for pkg-config packages is also provided via the FindPkgConfig module. In all cases, the basic form of find_package() calls is the same: <em>find_package(Qt5Core 5.1.0 REQUIRED)</em></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find_package(Qt5Core 5.1.0 CONFIG REQUIRED) //显示说明使用Config-file (more modern approach)
+find_package(Qt4 4.7.0 MODULE REQUIRED) //显示说明使用find-module
+</code></pre></div></div>
+
+<p>findXXX.cmake中需要手动设置一些变量，包括<package>_FOUND等，而config.cmake中，一旦找到包，将自动设置该变量，config.cmake是一种更高级的方法。</package></p>
+
+<p>find_package() 命令会在模块路径中寻找 Find<name>.cmake ，这是查找库的一个典型方式。首先CMake查看${CMAKE_MODULE_PATH} 中的所有目录，然后再查看它自己的模块目录 <CMAKE_ROOT>/Modules/ ，这种称为模块模式。如果没找到这样的文件，会寻找 <Name>Config.cmake 或者 <lower-case-name>-config.cmake ，它们是假定库会安装的文件（但是目前还没有多少库会安装它们），这种叫做配置模式。在配置模式下，如果没有找到config.cmake，CMake expects the user to specify the location of this file by filling a cache entry called <name>_DIR (this entry is created by CMake automatically).无论哪种模式，只要找到包，就会定义下面的这些变量，只是这些变量在findXXX.cmake中需要显示声明，在config.cmake中不需要显示声明：</name></lower-case-name></Name></CMAKE_ROOT></name></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;NAME&gt;_FOUND
+&lt;NAME&gt;_INCLUDE_DIRS or &lt;NAME&gt;_INCLUDES
+&lt;NAME&gt;_LIBRARIES or &lt;NAME&gt;_LIBRARIES or &lt;NAME&gt;_LIBS
+&lt;NAME&gt;_DEFINITIONS
+</code></pre></div></div>
+
+<p>Find_package自动搜索<name>_DIR，查找config.cmake，并执行，config.cmake创建<name>_LIBRARIES, <name>_INCLUDE_DIRS and <name>_DEFINES</name></name></name></name></p>
+
+<h2 id="指定动态库动态加载时的目录">指定动态库动态加载时的目录</h2>
+
+<p>使用GCC编译动态链接库的项目时，在其他目录下执行很可以出现找不到动态链接库的问题。</p>
+
+<p>这种情况多发生在动态链接库是自己开发的情况下，原因就是程序运行时找不到去何处加载动态链接库。</p>
+
+<p>可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。程序执行时动态链接库加载不到动态链接库。</p>
+
+<p>解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。如：</link_path></link_path></p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -o foo foo.c -L. -lfoo -Wl,-rpath=./
+</code></pre></div></div>
+
+<p>上面就是指定了链接的位置在当前目录，这种情况只有在当前目录执行./foo时，才是可以正确使用的。一般情况我们使用如下格式：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>gcc -o foo foo.c -L$(prefix)/lib -lfoo -Wl,-rpath=$(prefix)/lib
+</code></pre></div></div>
+
+<p>第二种方式就是，将链接库的目录添加到<em>/etc/ld.so.conf</em>文件中或者添加到<em>/etc/ld.so.conf.d/</em>.conf*中，然后使用ldconfig进行更新，进行动态链接库的运行时动态绑定。如：</p>
+
+<p>添加文件<em>/etc/ld.so.conf.d/foo.conf</em>，内容如下：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/usr/local/lib
+</code></pre></div></div>
+
+<p>然后执行如下命令：<em>ldconfig</em></p>
+
+<h2 id="set">set</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>set(&lt;variable&gt; &lt;value&gt;
+    [[CACHE &lt;type&gt; &lt;docstring&gt; [FORCE]] | PARENT_SCOPE])
+</code></pre></div></div>
+
+<p>In CMake there are two types of variables: <em>normal variables</em> and <em>cache variables</em>. Normal variables are meant for the internal use of <strong>the script</strong> (just like variables in most programming languages); they are not persisted across CMake runs. Cache variables (unless set with INTERNAL) are mostly intended for configuration settings where the first CMake run determines a suitable default value, which the user can then override, by editing the cache with tools such as ccmake or cmake-gui. Cache variables are stored in the CMake cache file, and are persisted across CMake runs.</p>
+
+<p><code class="highlighter-rouge">set(FOO "x")</code> sets the normal variable <em>FOO</em>, then <em>${FOO}</em> first search normal variable, then find cache variable if no normal variable named <em>FOO</em>.</p>
+
+<ul>
+  <li>
+    <p>The code <code class="highlighter-rouge">set(FOO "x")</code> sets the normal variable <em>FOO</em>. It does not touch the cache, but it will hide any existing cache value <em>FOO</em>.</p>
+  </li>
+  <li>
+    <p>The code <code class="highlighter-rouge">set(FOO "x" CACHE …)</code> checks for <em>FOO</em> in the cache, ignoring any normal variable of the same name. If <em>FOO</em> is in the cache then nothing happens to either the normal variable or the cache variable. If <em>FOO</em> is not in the cache, then it is added to the cache.</p>
+  </li>
+  <li>
+    <p>whenever a cache variable is added or modified by a command, <em>CMake also removes the normal variable of the same name from the current scope</em> so that an immediately following evaluation of it will <strong>expose the newly cached value</strong>.</p>
+  </li>
+</ul>
+
 
 
                 <hr>
@@ -291,7 +436,7 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库</p>
                     
                     
                     <li class="next">
-                        <a href="/blog/2017/07/08/CPP-tips-shang/" data-toggle="tooltip" data-placement="top" title="C++ textbook 上">Next Post &rarr;</a>
+                        <a href="/blog/2017/07/08/cpp-shang/" data-toggle="tooltip" data-placement="top" title="C++ textbook 上">Next Post &rarr;</a>
                     </li>
                     
                 </ul>
@@ -312,10 +457,10 @@ TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库</p>
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/cmakelists" data-title="CMakeLists"
                     data-images="http://bryanibit/img/black.jpg"
-                    data-content="CMake Docs Link(man cmake)
+                    data-content="解释cmake参数命令的博客
+CMake Docs Link(man cmake)
 
-Use OpenCV install not in default location
-  set(... | Microdust:Azeril's blog"
+Use OpenCV install not in default ... | Microdust:Azeril's blog"
                     data-url="http://bryanibit/blog/2017/07/05/cmakelists/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
@@ -433,7 +578,7 @@ var duoshuoQuery = {short_name:"cnfeat"};
 
                 </ul>
                 <p class="copyright text-muted">
-                &copy; 2017  Bryan ❖ Powered by Jekyll.
+                &copy; 2018  Bryan ❖ Powered by Jekyll.
                 </p>
             </div>
         </div>

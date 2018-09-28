@@ -67,6 +67,7 @@ jupyter notebook ##启动notebook
 ## blog native compile
 
 [部署自己的博客：Github+Jekyll](http://harttle.com/2013/10/18/github-homepage-tutorial.html)
+[Provide Answers to Questions](https://www.zybuluo.com/wangjialin/note/456653)
 
 1. install jekyll
 
@@ -75,7 +76,7 @@ jupyter notebook ##启动notebook
 
 ```
 sudo apt-get install ruby ruby-dev make
-gem install jekyll --no-rdoc --no-ri
+sudo gem install jekyll --no-rdoc --no-ri
 sudo apt-get install nodejs    
 ```
 

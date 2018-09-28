@@ -5,103 +5,178 @@
     <description>于华超</description>
     <link>http://bryanibit/</link>
     <atom:link href="http://bryanibit/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 29 Sep 2017 10:46:36 +0800</pubDate>
-    <lastBuildDate>Fri, 29 Sep 2017 10:46:36 +0800</lastBuildDate>
-    <generator>Jekyll v3.6.0</generator>
+    <pubDate>Fri, 28 Sep 2018 16:41:00 +0800</pubDate>
+    <lastBuildDate>Fri, 28 Sep 2018 16:41:00 +0800</lastBuildDate>
+    <generator>Jekyll v3.8.4</generator>
     
       <item>
-        <title>Pip install on windows</title>
-        <description>&lt;h2 id=&quot;install-python&quot;&gt;install python&lt;/h2&gt;
+        <title>Effective C++</title>
+        <description>&lt;h1 id=&quot;template-type-deduce&quot;&gt;template type deduce&lt;/h1&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;Download python.exe and install, at the same time, add C:\Python27 (python install dir) to system env&lt;/li&gt;
-  &lt;li&gt;Go to &lt;a href=&quot;https://pypi.python.org/pypi/pip#downloads&quot;&gt;pip download&lt;/a&gt;, 解压到随便一个文件夹下，在cmd中找个该解压目录，输入&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;python setup.py install
+&lt;p&gt;The behaviour and purpose&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(ParamType param);
+f(expr); // deduce T and ParamType from expr
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;添加C:\Python27\Scripts到Windows系统环境变量(need to reboot)&lt;/li&gt;
-  &lt;li&gt;安装正确会在Python安装目录中多一个Scripts文件夹，此时cmd中找个Scripts文件夹，然后&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;by-referencepointer-之-lvalue-reference&quot;&gt;by-reference/pointer 之 lvalue-reference&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;easy_install.exe pip
+&lt;p&gt;&lt;strong&gt;Rule&lt;/strong&gt; is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;by-reference said &lt;em&gt;const int&lt;/em&gt; is different from &lt;em&gt;int&lt;/em&gt;. To be honest, both are different anywhere.&lt;/li&gt;
+  &lt;li&gt;If expr’s type is a reference, ignore the reference part.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(T&amp;amp; param); // param is a reference
+int x = 27; // x is an int
+const int cx = x; // cx is a const int
+const int&amp;amp; rx = x; // rx is a reference to x as a const int
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;打开cmd后，键入 pip install numpy&lt;/p&gt;
+&lt;p&gt;then&lt;/p&gt;
 
-&lt;p&gt;enjoy!&lt;/p&gt;
-</description>
-        <pubDate>Sat, 23 Sep 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/09/23/windows-pip-install/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/09/23/windows-pip-install/</guid>
-        
-        <category>技术总结</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Camera Calibration</title>
-        <description>&lt;h1 id=&quot;相机标定-目前使用的最好的方法是matlab自带的标定工具-最关键的一步是在拍摄图片的时候尽可能的让标定板覆盖相机所有的视角同时标定板也需要多个自由度的旋转特别是长焦镜头&quot;&gt;相机标定 ==目前使用的最好的方法是matlab自带的标定工具== ==最关键的一步是在拍摄图片的时候尽可能的让标定板覆盖相机所有的视角，同时标定板也需要多个自由度的旋转(特别是长焦镜头！)==&lt;/h1&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;f(x); // T is int, param's type is int&amp;amp;
+f(cx); // T is const int, param's type is const int&amp;amp;
+f(rx); // T is const int, param's type is const int&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;hr /&gt;
 
-&lt;p&gt;双目标定：&lt;/p&gt;
-
-&lt;p&gt;有两个选择，使用matlab自带的标定软件或者运行标定脚本。&lt;/p&gt;
-
-&lt;p&gt;一、使用matlab自带的标定软件&lt;/p&gt;
-
-&lt;p&gt;   1.在命令行窗口中输入 stereoCameraCalibrator 。然后点击左上角的Add Images，添加左右相机的图片，并且确定好board square，即棋盘格的一个格子长度，单位为mm
-&lt;img src=&quot;./image/image1.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;   2.点击确定以后程序会自动开始检测角点，等到其运行完成开始标定。    标定之前可以点击Optimization Options填进去初始化参数，然后点击Calibrate 即可开始标定，得到如下图所示：
-&lt;img src=&quot;./image/image2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
-
-&lt;p&gt;   3.将误差大的图片去掉重新标定。拖拽红线到可以接受的误差值，然后在左侧选定的图片上右击执行remove and recalibrate。    在 Overall Mean Error 0.5以下的时候，标定基本上是成功的，点击Export Camera Parameters即可把参数导入到matlab的工作区中。    随后在工作区中保存stereoParams到本地，即生成了参数的mat文件。&lt;/p&gt;
-
-&lt;p&gt;二、运行标定脚本&lt;/p&gt;
-
-&lt;p&gt;  执行stereocalibrate.m
-  命令：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;          stereocalibrate [图片地址] [board size]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(const T&amp;amp; param); // param is a const reference
+int x = 27; // x is an int
+const int cx = x; // cx is a const int
+const int&amp;amp; rx = x; // rx is a reference to x as a const int
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;  PS: 脚本没有第一种方法的交互式方便。不建议使用&lt;/p&gt;
+&lt;p&gt;then&lt;/p&gt;
 
-&lt;p&gt;三、标定注意点&lt;/p&gt;
-
-&lt;p&gt;  1、标定使用的图片和需要校正的图片的分辨率一定要一致   2、初始化参数最好加上,distort设为0即可
-单目标定&lt;/p&gt;
-
-&lt;p&gt;  在命令行窗口输入cameraCalibrator   后续操作基本和上面一致&lt;/p&gt;
-
-&lt;h1 id=&quot;相机校正&quot;&gt;相机校正&lt;/h1&gt;
-
-&lt;p&gt;一、参数校正&lt;/p&gt;
-
-&lt;p&gt;  使用标定得到的相机参数进行校正。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;             python  rectify.py  [待校正图片]  [相机参数.mat]
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;f(x); // T is int, param's type is const int&amp;amp;
+f(cx); // T is int, param's type is const int&amp;amp;
+f(rx); // T is int, param's type is const int&amp;amp;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;二、特征点校正。&lt;/p&gt;
-
-&lt;p&gt;  如果直接校正出来的图片有问题，可以使用特征点进行自动校正&lt;/p&gt;
-
-&lt;p&gt;./autorectify  [待校正图片.list]&lt;/p&gt;
-
-&lt;h1 id=&quot;to-do-by-qingyusui完善代码&quot;&gt;TO DO by qingyu.sui  完善代码&lt;/h1&gt;
 
 &lt;hr /&gt;
 
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(T* param); // param is a pointer
+int x = 27; // x is an int
+const int *cx = &amp;amp;x; // cx is a const int *
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;f(&amp;amp;x); // T is int, param's type is int*
+f(px); // T is const int, param's type is const int*
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;by-reference-之-universal-reference&quot;&gt;by-reference 之 universal-reference&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Rule&lt;/strong&gt; is:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;If &lt;em&gt;expr&lt;/em&gt; is an lvalue, both T and ParamType are deduced to be lvalue references.&lt;strong&gt;it’s the only situation in template type deduction where T is deduced to be a reference.&lt;/strong&gt;&lt;/li&gt;
+  &lt;li&gt;If expr is an rvalue, the “normal” (i.e., the above Case 1) rules apply.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(T&amp;amp;&amp;amp; param); // param is a universal reference
+int x = 27; // x is an int
+const int cx = x; // cx is a const int
+const int&amp;amp; rx = x; // rx is a reference to x as a const int
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;f(x); // T is int&amp;amp;, param's type is int&amp;amp;
+f(cx); // T is const int&amp;amp;, param's type is const int&amp;amp;
+f(rx); // T is const int&amp;amp;, param's type is const int&amp;amp;
+f(32); // 32 is rvalue, T is int, param's type is int&amp;amp;&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;by-value&quot;&gt;by-value&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Rule&lt;/strong&gt; is :&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;if expr’s type is a reference, ignore the reference part.&lt;/li&gt;
+  &lt;li&gt;if expr is const, ignore that, too. If it’s volatile, also ignore that&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(T param); // param is now pass by value
+int x = 27; // x is an int
+const int cx = x; // cx is a const int
+const int&amp;amp; rx = x; // rx is a reference to x as a const int
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;then&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;f(x); // T is int, param's type is int
+f(cx); // T is int, param's type is int
+f(rx); // T is int, param's type is int
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;This is because param is an object that’s completely independent of cx and rx—a copy of cx or rx. The fact that cx and rx can’t be modified says nothing about whether param can be. That’s why expr’s constness (and volatileness, if any) is ignored when deducing a type for param.&lt;/p&gt;
+
+&lt;h3 id=&quot;array-arguments&quot;&gt;Array Arguments&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const char name[] = &quot;J. P. Briggs&quot;;
+const char * ptrToName = name; 
+template&amp;lt;typename T&amp;gt;
+void f(T param); // template with by-value parameter
+f(name); // T is deduced to const char *, param is the same.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If the above is changed to:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(T&amp;amp; param); // template with by-reference parameter
+f(name); // T is deduced to const char [13], param is const char (&amp;amp;) [13]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;return size of an array as a compile-time constant.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename T, std::size_t N&amp;gt;
+constexpr std::size_t arraySize(**T (&amp;amp;) [N]**) noexcept //result availble during compilation
+{
+	return N;
+}
+int keyvals [] = {1,2,3,4,5,6,7};
+int mapvals [arraySize(keyvals)];
+std::array&amp;lt;int, arraySize(keyVals)&amp;gt; mappedVals;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;function-arguments&quot;&gt;Function Arguments&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void someFunc(int, double); // someFunc is a function; type is void(int, double)
+template&amp;lt;typename T&amp;gt;
+void f1(T param); // in f1, param passed by value
+template&amp;lt;typename T&amp;gt;
+void f2(T&amp;amp; param); // in f2, param passed by ref
+f1(someFunc); // param deduced as ptr-to-func; type is void (*)(int, double)
+f2(someFunc); // param deduced as ref-to-func; type is void (&amp;amp;)(int, double)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                   Things to Remember
+• During template type deduction, arguments that are references are treated as
+non-references, i.e., their reference-ness is ignored.
+• When deducing types for universal reference parameters, lvalue arguments get
+special treatment.
+• When deducing types for by-value parameters, const and/or volatile argu‐
+ments are treated as non-const and non-volatile.
+• During template type deduction, arguments that are array or function names
+decay to pointers, unless they’re used to initialize references.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
-        <pubDate>Wed, 30 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/30/camera-calibration/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/30/camera-calibration/</guid>
+        <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/09/28/effective-cpp/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/28/effective-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -111,23 +186,65 @@
       </item>
     
       <item>
-        <title>KalmanFilter</title>
-        <description>&lt;h2 id=&quot;problem-statement&quot;&gt;Problem Statement&lt;/h2&gt;
+        <title>Cross Obstables</title>
+        <description>&lt;p&gt;&lt;strong&gt;浮生如梦&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;where&lt;/p&gt;
+&lt;h2 id=&quot;all-in-all&quot;&gt;All in all&lt;/h2&gt;
 
-&lt;script type=&quot;text/javascript&quot; async=&quot;&quot; src=&quot;https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML&quot;&gt;
-&lt;/script&gt;
+&lt;p&gt;In words, control of the car is not accurate, planning of the car is not complete, and perspection of the car is not applicable.&lt;/p&gt;
 
-&lt;script type=&quot;math/tex; mode=display&quot;&gt;a^2 + b^2 = c^2&lt;/script&gt;
+&lt;p&gt;First of all, the control algorithm or excutive agencies may have latency problems which result from vehicle classis. And then, planning module lacks global planning, contains only local planning. The current methods of planning is solely suitable for closed road environment and not sparse RNDF. Both of them are missing in this game, so the game has not started but has finished. The failure is destined. Finally, the behavior of hitting trees is abnormal for UVCs, for which perspection of the car is responbible. It tells us that it is not sensible to depend on sole sensor giving up multi-sensor fusion. For detecting accessible areas of cars, which is so important that the car moving relys heavily on, at least two different sensors produce accessible areas. At the same time, different algorithms are used to the same sensors to realize different results. Multi-source sensors fusion results in sophisticated system integration. That makes us need more time to consume others’ algorithm. It proves that system integration is not a simple problem of “1+1”.&lt;/p&gt;
 
-&lt;p&gt;it is ok!&lt;/p&gt;
+&lt;p&gt;When results of multi-source sensors conflict with each other, how to fuse them to unified and wonderful result better than unique sensor. Or we can do fusion to a deeper degree, for example, fuse lasers and cameras data and then do clustering or segmentation.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://pic4.zhimg.com/v2-6c5677f554fb887fc18a235e8e1f21d7_b.jpg&quot; alt=&quot;GoT&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;in-future&quot;&gt;In future&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Add global planning module. Replace current text saving RNDF with GUI and third part API. The tool needs to manipulate map data quickly. Especially, it needs contain map mathcing for GPS points, such as QGIS.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;I should be familar with Kalman Filter from functions in OpenCV. KF is useful in multi-frame detection and tracking.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The final problem is Scene Understanding for UVCs. It may come true via fusing multi-cameras even add laser data. I have no thoughts for now.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 </description>
-        <pubDate>Tue, 29 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/29/kalman/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/29/kalman/</guid>
+        <pubDate>Wed, 19 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/09/19/cross-obstacles/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/19/cross-obstacles/</guid>
+        
+        <category>个人总结</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
+        <title>Eigen LIB</title>
+        <description>&lt;h2 id=&quot;transform&quot;&gt;Transform&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Eigen::Vector3f trans_vec_A;
+//note that you have to create a Translation because multiplying a 
+//Transform with a vector will _apply_ the transform to the vector
+Eigen::Translation&amp;lt;float,3&amp;gt; translation_A(trans_vec_A);
+Eigen::Quaternionf rotation_B;
+Eigen::Quaternionf rotation_C;
+Eigen::Quaternionf rotation_D;
+Eigen::Vector3f trans_vec_E;
+Eigen::Translation&amp;lt;float,3&amp;gt; translation_E(trans_vec_E);
+Eigen::Transform&amp;lt;float,3,Affine&amp;gt; combined = 
+      translation_A * rotation_B * rotation_C * rotation_D * translation_E;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;{Note that} &lt;code class=&quot;highlighter-rouge&quot;&gt;combined = A*B*C*D*E&lt;/code&gt;, so combined applied to a &lt;em&gt;vector v&lt;/em&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;combined*v = A*B*C*D*E*v = A*(B*(C*(D*(E*v))))&lt;/code&gt;.&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 04 Sep 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/09/04/eigen-lib/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/04/eigen-lib/</guid>
         
         <category>理论梳理</category>
         
@@ -137,25 +254,127 @@
       </item>
     
       <item>
-        <title>Git Push Suggestion</title>
-        <description>&lt;h2 id=&quot;在github新建分支安全操作&quot;&gt;在github新建分支安全操作&lt;/h2&gt;
+        <title>YAML-CPP</title>
+        <description>&lt;p&gt;##安装&lt;/p&gt;
 
-&lt;p&gt;Doing carefully is better than fixing after errors happen&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;github网站下载，编译成库文件&lt;/li&gt;
+  &lt;li&gt;安装ros后就安装了yaml-cpp&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git checkout -b &amp;lt;branch_name&amp;gt;  新建分支    这是两句 git branch &amp;lt;branch_name&amp;gt; 和git checkout &amp;lt;branch_name&amp;gt; 的和
-git add -A
-git commit -m &quot;×××××&quot;
-git push
-git push --set-upstream origin &amp;lt;branch_name&amp;gt;   push到新建分支上
-git checkout master      check到master分支
-git merge &amp;lt;branch_name&amp;gt;   合并修改 &amp;lt;branch_name&amp;gt;和master指向同一个修改，merge后的修改，如果冲突需要手工修改
-git branch -d test     删除本地分支
-git push origin --delete &amp;lt;branch_name&amp;gt;   删除远程分支(github)上的分支
+&lt;h2 id=&quot;读yaml文件&quot;&gt;读yaml文件&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;fstream&amp;gt; 
+#include &amp;lt;string&amp;gt;
+#include &quot;yaml-cpp/yaml.h&quot;
+template&amp;lt;typename T&amp;gt;
+void operator &amp;gt;&amp;gt; (const YAML::Node&amp;amp; node, T&amp;amp; i)  //最新的yaml-cpp 0.5取消了运算符&quot;&amp;gt;&amp;gt;&quot;，但是还是会有好多的旧代码
+{
+  i = node.as&amp;lt;T&amp;gt;();                              //依旧在使用，所以重载下&quot;&amp;gt;&amp;gt;&quot;运算符
+}
+void configure(const YAML::Node&amp;amp; node);
+void nodePrint(const YAML::Node&amp;amp; node);
+int main()
+{
+  YAML::Node config = YAML::LoadFile(&quot;../monsters.yaml&quot;);  
+  configure(config[&quot;Ladybug&quot;]);
+  return 0;
+}
+void configure(const YAML::Node&amp;amp; node)
+{
+  std::cout &amp;lt;&amp;lt; &quot;node size is &quot; &amp;lt;&amp;lt; node.size() &amp;lt;&amp;lt; std::endl;
+  for (unsigned int i = 0; i &amp;lt; node.size(); i++)
+  {
+    nodePrint(node[i]);
+  }
+}
+void nodePrint(const YAML::Node&amp;amp; node)
+{
+  int name;
+  int topic;
+  string timeout;
+  double priority;
+  node[&quot;showImage&quot;]       &amp;gt;&amp;gt; name;
+  node[&quot;saveImage&quot;]      &amp;gt;&amp;gt; topic;
+  node[&quot;savePath&quot;]    &amp;gt;&amp;gt; timeout;
+  node[&quot;resize&quot;]   &amp;gt;&amp;gt; priority;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;yaml文件&quot;&gt;yaml文件&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;# yaml for ladybug and rcs
+Ladybug:
+  - showImage:   1
+    saveImage:   1
+    savePath:    &quot;../filename&quot;
+    resize:      1.0
+    truncateBottom:    0.1
+    truncateTop:    0.1
+DetectArea:
+  - radius:      6.0
+    speed:       2.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;写yaml文件&quot;&gt;写yaml文件&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YAML::Emitter out;
+out &amp;lt;&amp;lt; YAML::BeginSeq;
+out &amp;lt;&amp;lt; &quot;eggs&quot;;
+out &amp;lt;&amp;lt; &quot;bread&quot;;
+out &amp;lt;&amp;lt; &quot;milk&quot;;
+out &amp;lt;&amp;lt; YAML::EndSeq;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;- eggs
+- bread
+- milk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;=========================&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YAML::Emitter out;
+out &amp;lt;&amp;lt; YAML::BeginMap;
+out &amp;lt;&amp;lt; YAML::Key &amp;lt;&amp;lt; &quot;name&quot;;
+out &amp;lt;&amp;lt; YAML::Value &amp;lt;&amp;lt; &quot;Ryan Braun&quot;;
+out &amp;lt;&amp;lt; YAML::Key &amp;lt;&amp;lt; &quot;position&quot;;
+out &amp;lt;&amp;lt; YAML::Value &amp;lt;&amp;lt; &quot;LF&quot;;
+out &amp;lt;&amp;lt; YAML::EndMap;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: Ryan Braun
+position: LF
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;=========================&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;YAML::Emitter out;
+out &amp;lt;&amp;lt; YAML::BeginMap;
+out &amp;lt;&amp;lt; YAML::Key &amp;lt;&amp;lt; &quot;name&quot;;
+out &amp;lt;&amp;lt; YAML::Value &amp;lt;&amp;lt; &quot;Barack Obama&quot;;
+out &amp;lt;&amp;lt; YAML::Key &amp;lt;&amp;lt; &quot;children&quot;;
+out &amp;lt;&amp;lt; YAML::Value &amp;lt;&amp;lt; YAML::BeginSeq &amp;lt;&amp;lt; &quot;Sasha&quot; &amp;lt;&amp;lt; &quot;Malia&quot; &amp;lt;&amp;lt; YAML::EndSeq;
+out &amp;lt;&amp;lt; YAML::EndMap;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;结果：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;name: Barack Obama
+children:
+  - Sasha
+  - Malia
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;==========================&lt;/p&gt;
+
 </description>
-        <pubDate>Tue, 22 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/22/git/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/22/git/</guid>
+        <pubDate>Sun, 26 Aug 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/08/26/yaml-cpp/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/08/26/yaml-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -165,100 +384,43 @@ git push origin --delete &amp;lt;branch_name&amp;gt;   删除远程分支(github
       </item>
     
       <item>
-        <title>Linux small tools</title>
-        <description>&lt;h2 id=&quot;install-vim&quot;&gt;install vim&lt;/h2&gt;
+        <title>Miscellaneous杂记</title>
+        <description>&lt;h2 id=&quot;小岛经济学&quot;&gt;小岛经济学&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install vim
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;没有自由的失败，就没有自由的成功&lt;/p&gt;
 
-&lt;p&gt;renew a file called .vimrc:&lt;/p&gt;
+&lt;h2 id=&quot;effective-modern-c&quot;&gt;Effective Modern C++&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;set nu
-set confirm
-set mouse=a
-set tabstop=4
-set cindent
-syntax on
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;It’s been said that the truth shall set you free, but under the right circumstances, a well-chose lie can be equally liberating. We comprise “lie” to abstraction.&lt;/p&gt;
 
-&lt;h2 id=&quot;install-terminator&quot;&gt;install terminator&lt;/h2&gt;
+&lt;p&gt;Bear in mind that the truth doesn’t make the abstraction any less useful.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install terminator
-sudo apt-get install dconf-tools
-gsettings set org.gnome.desktop.default-applications.terminal exec   /usr/bin/terminator
-gsettings set org.gnome.desktop.default-applications.terminal exec-arg &quot;-x&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In short, rvalue reference should be &lt;em&gt;unconditionally&lt;/em&gt; cast to rvalue (via &lt;strong&gt;std::move&lt;/strong&gt;).&lt;/p&gt;
 
-&lt;p&gt;快捷键使用
-Ctrl+Shift+O
-    Split terminals Horizontally.（上下开新窗口）
-Ctrl+Shift+E
-    Split terminals Vertically.（垂直开新窗口）&lt;/p&gt;
+&lt;p&gt;Universal refenrence should be &lt;em&gt;conditionally&lt;/em&gt; cast to rvalue (via &lt;strong&gt;std::forward&lt;/strong&gt;).&lt;/p&gt;
 
-&lt;h2 id=&quot;jupyter-notebook&quot;&gt;Jupyter Notebook&lt;/h2&gt;
+&lt;h2 id=&quot;外汇管理局新规2016&quot;&gt;外汇管理局新规2016&lt;/h2&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;安装&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;pip install --upgrade pip # upgrade pip to the newest version
-pip install jupyter
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;配置&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jupyter notebook --generate-config #如/home/inin下没有.jupyter file
-jupyter notebook password ##设置密码
-jupyter notebook ##启动notebook
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;打开浏览器 输入&lt;em&gt;127.0.0.1:8888&lt;/em&gt; 输入密码&lt;/p&gt;
-
-&lt;h2 id=&quot;blog-native-compile&quot;&gt;blog native compile&lt;/h2&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://harttle.com/2013/10/18/github-homepage-tutorial.html&quot;&gt;部署自己的博客：Github+Jekyll&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;根据外管局最新规定：&lt;a href=&quot;https://xueqiu.com/5514474822/66337756&quot;&gt;链接&lt;/a&gt;&lt;/p&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;install jekyll&lt;/li&gt;
+  &lt;li&gt;5个以上不同个人，同日、隔日或连续多日分别购汇后，将外汇汇给境外同一个人或机构；&lt;/li&gt;
+  &lt;li&gt;个人在7日内从同一外汇储蓄账户5次以上提取接近等值1万美元外币现钞；&lt;/li&gt;
+  &lt;li&gt;同一个人将其外汇储蓄账户内存款划转至5个以上直系亲属等情况。
+将被界定为个人分拆结售汇行为，也就是俗称的“蚂蚁搬家”，一律进入黑名单，违规者将被剥夺两年合计10万美元的换汇额度。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;solve the problem that gem install jekyll error:
-&lt;a href=&quot;https://stackoverflow.com/questions/22460117/error-error-installing-jekyll-error-failed-to-build-gem-native-extension&quot;&gt;stack exchange&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;h2 id=&quot;活着&quot;&gt;活着&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install ruby ruby-dev make
-gem install jekyll --no-rdoc --no-ri
-sudo apt-get install nodejs    
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;内心使他真正地了解自己，了解了自己也就了解了世界。&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;jekyll build -w
-jekyll serve
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;海盗经济学&quot;&gt;海盗经济学&lt;/h2&gt;
 
-&lt;h2 id=&quot;ssh登录&quot;&gt;ssh登录&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;被登录计算机安装
-sudo apt-get install openssh-server
-
-进行登录的计算机
-ssh &amp;lt;user_name&amp;gt;@&amp;lt;host_ip&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;find命令&quot;&gt;find命令&lt;/h2&gt;
-
-&lt;p&gt;find &lt;指定目录&gt; &lt;指定条件&gt; &lt;指定动作&gt;&lt;/指定动作&gt;&lt;/指定条件&gt;&lt;/指定目录&gt;&lt;/p&gt;
-
-&lt;p&gt;$ find . -name ‘my*’&lt;/p&gt;
-
-&lt;p&gt;搜索当前目录（含子目录，以下同）中，所有文件名以my开头的文件。&lt;/p&gt;
-
+&lt;p&gt;海盗船实行的是民主（democracy），而商船实行的是专制（autocracy）；在海盗船上，甚至黑人（18th century)也能够享受和白人一样的权利，很少出现像商船那样，船长侮辱甚至殴打船员的现像，而且无论船长还是舵手和普通船员的工资差不多，没有商船上的差别那么悬殊。归结原因其实是&lt;em&gt;所有制&lt;/em&gt;导致了二者实行不同的管理制度，不同的管理制度保证了二者都有最大的总体利益，只是相对个人而言不甚相同。&lt;/p&gt;
 </description>
-        <pubDate>Tue, 22 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/22/smalltool/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/22/smalltool/</guid>
+        <pubDate>Fri, 27 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/07/27/miscellaneous/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/27/miscellaneous/</guid>
         
         <category>技术总结</category>
         
@@ -268,114 +430,292 @@ ssh &amp;lt;user_name&amp;gt;@&amp;lt;host_ip&amp;gt;
       </item>
     
       <item>
-        <title>Xsens-710</title>
-        <description>&lt;h2 id=&quot;xsens-wire&quot;&gt;Xsens wire&lt;/h2&gt;
+        <title>C++ 11/14/17</title>
+        <description>&lt;h2 id=&quot;c-111417关键字&quot;&gt;C++ 11//14/17关键字&lt;/h2&gt;
 
-&lt;p&gt;使用的线缆名称为CA-MP2-MTi，9pin–9根线，连接电源到Vin和GND，连接USB+和USB-/电源地到USB接头。&lt;/p&gt;
-
-&lt;p&gt;serial RS232 有问题，无论连接tx/rx/电源地或者tx/rx或者交换tx/rx都无法与Windows上官方suite软件中的MT Manager通信，所以放弃使用串口，使用自制的USB接口&lt;/p&gt;
-
-&lt;h2 id=&quot;xsens-prerequisites&quot;&gt;Xsens Prerequisites&lt;/h2&gt;
+&lt;h3 id=&quot;using关键字&quot;&gt;using关键字&lt;/h3&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Install the MTi USB Serial Driver&lt;/li&gt;
+  &lt;li&gt;通常我们使用 typedef 定义别名的语法是：typedef 原名称 新名称;，但是对函数指针等别名的定义语法却不相同。&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ git clone https://github.com/xsens/xsens_mt.git
-$ cd ~/xsens_mt
-$ make
-$ sudo modprobe usbserial
-$ sudo insmod ./xsens_mt.ko # install module to /lib/modules/$(uname -r)/driver/usb/serial
-$ sudo reboot
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;typedef int (*process)(void*);
+using process = int(*)(void *);
+
+using TrueDarkMagic = MagicType&amp;lt;std::vector&amp;lt;T&amp;gt;, std::string&amp;gt;;
+TrueDarkMagic&amp;lt;bool&amp;gt; you;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;Run mtsdk_linux_4.8.sh in the “MT_Software_Suite_Linux_4.8”&lt;/li&gt;
+  &lt;li&gt;在传统 C++ 中，构造函数如果需要继承是需要将参数一一传递的，这将导致效率低下。C++11 利用关键字 using 引入了继承构造函数的概念：&lt;/li&gt;
 &lt;/ol&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class BASE{
+		public:
+				int value1;
+				int value2;
+				BASE(){
+						value1 = 1;
+				}
+				BASE(int value): BASE(){ //委托BASE()构造函数
+						value2 = 2;
+				}
+};
+class subBASE: public BASE{
+		using BASE:BASE; //继承构造
+};
+
+int main(){
+		subBASE s(3);
+		std::cout &amp;lt;&amp;lt; s.value1&amp;lt;&amp;lt;s.value2&amp;lt;&amp;lt;std::endl;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;c111417标准库&quot;&gt;C++11/14/17标准库&lt;/h2&gt;
+
+&lt;h3 id=&quot;stdarray&quot;&gt;std::array&lt;/h3&gt;
+
+&lt;p&gt;std::array 保存在栈内存中，std::vector保存在堆内存。&lt;/p&gt;
+
+&lt;p&gt;std::array 会在编译时创建一个固定大小的数组，std::array 不能够被&lt;em&gt;隐式&lt;/em&gt;的转换成指针。&lt;/p&gt;
+
+&lt;p&gt;使用 std::array 很简单，只需指定其类型和大小即可&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::array&amp;lt;int, 4&amp;gt; arr= {1,2,3,4};
+int len = 4;
+std::array&amp;lt;int, len&amp;gt; arr = {1,2,3,4}; // *非法*, 数组大小参数必须是常量表达式
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;与C风格接口传参&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void foo(int *p, int len) {
+    return;
+}
+std::array&amp;lt;int, 4&amp;gt; arr = {1,2,3,4}; //实例
+
+// C 风格接口传参
+// foo(arr, arr.size()); // *非法*, 无法隐式转换
+foo(&amp;amp;arr[0], arr.size());
+foo(arr.data(), arr.size()); //arr.data() return 指向arr的指针
+// 使用 `std::sort`
+std::sort(arr.begin(), arr.end());
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;智能指针&quot;&gt;智能指针&lt;/h3&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Download official software “MT_Software_Suite_Linux_4.8”.
-Test hardware connection and communication. Enter the installation directory you like.
-To test hardware, go to installed directory “MT_software/examples/mtsdk”, type “make src_cpp”; 
-run “./example”, enter COM port name:/dev/ttyUSB0, baud rate: 115200
-The result shows the following:&lt;/p&gt;
+  &lt;p&gt;智能指针实质是一个对象，行为表现的却像一个指针&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/xsens_test_example.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;引用计数不是垃圾回收，引用技术能够尽快收回不再被使用的对象，同时在回收的过程中也不会造成长时间的等待，更能够清晰明确的表明资源的生命周期。&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;这些智能指针包括 std::shared_ptr/std::unique_ptr/std::weak_ptr，使用它们需要包含头文件 &lt;memory&gt;。&lt;/memory&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;std::shared_ptr 是一种智能指针，它能够记录多少个 shared_ptr 共同指向一个对象，从而无需显示得调用 delete，当引用计数变为零的时候就会将对象自动删除。&lt;/p&gt;
+&lt;/blockquote&gt;
 
 &lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;Install gps_common&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $ sudo apt-get install ros-distro-gps-common
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
+  &lt;li&gt;shared_ptr and unique_ptr&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&quot;xsens-driver-in-ros&quot;&gt;Xsens driver in Ros&lt;/h2&gt;
+&lt;p&gt;单个unique_ptr离开作用域时，会立即释放底层内存，既然是独占，换句话说就是不可复制;可以有多个shared_ptr实例指向同一块动态分配的内存，当最后一个shared_ptr离开作用域时，才会释放这块内存.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo chmod 777 /dev/ttyUSB0
-rosrun xsens_driver mtdevice.py --configure=oe50,aa50,wr50,vv50,pl20 #publish sensor data,set as 50Hz
-roslaunch xsens_driver xsens_driver.launch
+&lt;h3 id=&quot;c中正则表达式&quot;&gt;C++中正则表达式&lt;/h3&gt;
+
+&lt;p&gt;正则表达式描述了一种字符串匹配的模式。一般使用正则表达式主要是实现下面三个需求：&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;检查一个串是否包含某种形式的子串；&lt;/li&gt;
+  &lt;li&gt;将匹配的子串替换；&lt;/li&gt;
+  &lt;li&gt;从某个串中取出符合条件的子串。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;| &lt;strong&gt;特殊字符&lt;/strong&gt;  | &lt;strong&gt;描述&lt;/strong&gt; |
+| :— | :—-: |
+| $ | 匹配输入字符串的结尾位置 |
+| (,) | 标记一个子表达式的开始和结束位置 |
+|* | 匹配前面的子表达式零次或多次。
+|+  | 匹配前面的子表达式一次或多次。
+|. | 匹配除换行符 \n 之外的任何单字符。
+————————————————–&lt;/p&gt;
+
+&lt;h2 id=&quot;线程与并发&quot;&gt;线程与并发&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;最简单的是使用std::thread创建一个线程实例，这是并发编程的基础，需要包含&lt;thread&gt;头文件，其提供很多基本的线程操作：&lt;/thread&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;em&gt;get_id()&lt;/em&gt; required ID of the created thead.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;join()&lt;/em&gt;  add one thread to pool.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\#include &amp;lt;iostream&amp;gt;
+\#include &amp;lt;thread&amp;gt;
+void foo()
+{
+    std::cout &amp;lt;&amp;lt; &quot;hello world&quot; &amp;lt;&amp;lt; std::endl;
+}
+int main()
+{
+    std::thread t(foo); //new one thread
+    t.join(); //start the thread, the main funtion waits until the thread ends
+    return 0;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;说明：iu UTMtime， oe Euler angle， aa acceleration， wr rate of turn， pl latitudeLongitude， vv velocity&lt;/p&gt;
 
-&lt;h2 id=&quot;xsens-message-格式&quot;&gt;Xsens message 格式&lt;/h2&gt;
+&lt;ol&gt;
+  &lt;li&gt;std::mutex is the basic class in C++11, mutex variables can be created via instancing std::mutex. &lt;mutex&gt; needs to be included.&lt;/mutex&gt;&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://xsens.com/download/usermanual/ISM/MT_LowLevelCommunicationProtocol_Documentation.pdf&quot;&gt;MT Low Level Communication Protocol documentation (LLCP)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;member funtion: lock() unlock()&lt;/p&gt;
 
-&lt;p&gt;以上文档中的page10注明了Xsens发出的信息格式详细情况&lt;/p&gt;
+&lt;p&gt;object: std::unique_lock&lt;std::mutex&gt; std::look_guard&lt;std::mutex&gt;&lt;/std::mutex&gt;&lt;/std::mutex&gt;&lt;/p&gt;
 
-&lt;h2 id=&quot;xsens-driver程序大致流程&quot;&gt;Xsens driver程序大致流程&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;二进制流根据以上的message格式解释为对应的各种物理意义的量，并存储在一个dict中，这是在函数parse_MTData2(self, data)中实现的&lt;/li&gt;
-  &lt;li&gt;通过函数locals()&lt;a href=&quot;o&quot;&gt;find_handler_name(n)&lt;/a&gt;，找到对应的函数的句柄，解析刚刚得到的数据，结果放在msgs中，最后publish出去&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;补充&quot;&gt;补充&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;文件的属主、属组可以通过chown命令更改。文件的权限可以通过chmod命令修改。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;groups #查看所有group名称
-users  #查看所有user名称
-groupadd &amp;lt;group_name&amp;gt; #add new group
-gpasswd -a &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户加到组中
-gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组中移除
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;thread&amp;gt;
+#include &amp;lt;mutex&amp;gt;
+std::mutex mtx;
+void block_area() {
+std::unique_lock&amp;lt;std::mutex&amp;gt; lock(mtx);
+    //...临界区
+lock.unlock();
+    //...some other code
+lock.lock(); //  can lock again
+}
+int main() {
+    std::thread thd1(block_area);
+    std::thread thd2(block_area);
+    thd1.join(); //阻塞式，main等待线程接受后一并返回
+    thd2.detach(); //放在后台执行，与main无关了
+    return 0;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;使用groups命令查看用户所在组的名称：&lt;/li&gt;
-&lt;/ul&gt;
+&lt;ol&gt;
+  &lt;li&gt;std::future, std::packaged_task&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;groups inin
+&lt;p&gt;std::future提供了一个访问异步操作结果的途径，是一种简单的线程同步手段。&lt;/p&gt;
+
+&lt;p&gt;std::packaged_task用来封装任何可以调用的目标，从而实现异步调用。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;future&amp;gt;
+#include &amp;lt;thread&amp;gt;
+int main()
+{
+    // 将一个返回值为7的 lambda 表达式封装到 task 中
+    // std::packaged_task 的模板参数为要封装函数的类型
+    std::packaged_task&amp;lt;int()&amp;gt; task([](){return 7;});
+    // 获得 task 的 future
+    std::future&amp;lt;int&amp;gt; result = task.get_future(); // 在一个线程中执行 task
+    std::thread(std::move(task)).detach(); std::cout &amp;lt;&amp;lt; &quot;Waiting...&quot;;
+    result.wait();
+    // 输出执行结果
+    std::cout &amp;lt;&amp;lt; &quot;Done!&quot; &amp;lt;&amp;lt; std:: endl &amp;lt;&amp;lt; &quot;Result is &quot; &amp;lt;&amp;lt; result.get() &amp;lt;&amp;lt; '\n';
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;ul&gt;
-  &lt;li&gt;make sure that your $USER is in dialout group, you can use following commands:&lt;/li&gt;
-&lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo usermod -G dialout -a $USER
+&lt;ol&gt;
+  &lt;li&gt;std::condition_variable&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;线程可能需要等待某个条件为真才能继续执行，而一个忙等待循环中可能会导致所有其他线程都无法进入临界区使得条件为真时，就会发生死锁。condition_variable 实例被创建出现主要就是用于唤醒等待线程从而避免死锁。&lt;/p&gt;
+
+&lt;h2 id=&quot;参数包&quot;&gt;参数包&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;模板参数包&lt;/strong&gt;是接受零或更多模板实参（非类型、类型或模板）的模板形参。函数模板形参报是接受零或更多函数实参的函数形参。&lt;/p&gt;
+
+&lt;p&gt;参考的链接：&lt;a href=&quot;https://www.cnblogs.com/qicosmos/p/4325949.html&quot;&gt;泛化之美&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;至少有一个参数包的模板被称作&lt;strong&gt;变参数模板&lt;/strong&gt;。&lt;/p&gt;
+
+&lt;p&gt;下面这种情况是&lt;em&gt;类模板&lt;/em&gt;（变参数类模板可用任意数量的模板参数实例化）：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;class ... Types&amp;gt; struct Tuple {};
+Tuple&amp;lt;&amp;gt; t0;           // Types 不包含实参
+Tuple&amp;lt;int&amp;gt; t1;        // Types 包含一个实参： int
+Tuple&amp;lt;int, float&amp;gt; t2; // Types 包含二个实参： int 与 float
+Tuple&amp;lt;0&amp;gt; error;       // 错误： 0 不是类型
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;calibration-in-windows&quot;&gt;Calibration (in windows)&lt;/h2&gt;
+&lt;p&gt;下面这种情况是&lt;em&gt;函数模板&lt;/em&gt;(变参数函数模板可用任意数量的函数实参调用{&lt;strong&gt;模板参数通过模板实参推导推导&lt;/strong&gt;}）：&lt;/p&gt;
 
-&lt;p&gt;Mti-710 needs sufficient velocity to do good heading estimation– search north&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;class ... Types&amp;gt; void f(Types ... args);
+f();       // OK ： args 不包含实参
+f(1);      // OK ： args 包含一个实参： int
+f(2, 1.0); // OK ： args 包含二个实参： int 与 double
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;Since the yaw of the MTi-G-700/710 is referenced by comparing GNSS acceleration with the on-board accelerometers, more movement (when GNSS is available) will result in a better yaw.&lt;/p&gt;
+&lt;p&gt;在初等类模板中，模板参数包必须是模板形参列表的最后一个形参。所以这是错误的&lt;code class=&quot;highlighter-rouge&quot;&gt;template&amp;lt;typename... Ts, typename U&amp;gt; struct Invalid;&lt;/code&gt;，&lt;code class=&quot;highlighter-rouge&quot;&gt;Ts.. 应该放在结尾&lt;/code&gt;。&lt;/p&gt;
 
-&lt;p&gt;The minimal acceleration and movement for the yaw to be estimated is above 7 m/s.&lt;/p&gt;
+&lt;p&gt;在函数模板中，模板参数包可以在列表中早于所有能从函数实参推导的参数出现，或拥有默认参数。所以：&lt;/p&gt;
 
-&lt;p&gt;In general, the more accelerations and movement will result in a better yaw. At lower speeds the yaw might be less accurate and take longer. If the velocity is lower, a good option might be to select the GeneralMag filter profile which also uses the magnetometer to stabilize the yaw.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename ...Ts, typename U, typename=void&amp;gt;
+void valid(U, Ts...);     // OK ：能推导 U
+// void valid(Ts..., U);  // 不能使用： Ts... 在此位置是非推导语境 
+valid(1.0, 1, 2, 3);      // OK ：推导 U 为 double ， Ts 为 {int,int,int}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;xsens与差分novatel对比&quot;&gt;Xsens与差分Novatel对比&lt;/h2&gt;
+&lt;h2 id=&quot;右值引用&quot;&gt;右值引用&lt;/h2&gt;
 
-&lt;p&gt;If you want to see result in detail, click &lt;a href=&quot;http://nbviewer.jupyter.org/github/bryanibit/bryanibit.github.io/blob/master/_posts/jupyter/visual.ipynb&quot;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;为了解决：第一个问题就是临时对象非必要的昂贵的拷贝操作，第二个问题是在模板函数中如何按照参数的实际类型进行转发。&lt;/p&gt;
+
+&lt;p&gt;区分左值和右值：能不能对表达式取地址，如果能，则为左值，否则为右值&lt;/p&gt;
+
+&lt;p&gt;非引用返回的临时变量、运算表达式产生的临时变量、原始字面量和lambda表达式等都是纯右值&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int i = getVar(); // i是左值
+T&amp;amp;&amp;amp; k = getVar(); // getVar()产生的临时值不会像第一行代码那样，在表达式结束之后就销毁了，而是会被“续命”。
+                  // 他的生命周期将会通过右值引用得以延续，和变量k的声明周期一样长。
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int g_constructCount=0;
+struct{
+  A(){
+        cout&amp;lt;&amp;lt;&quot;construct: &quot;&amp;lt;&amp;lt;++g_constructCount&amp;lt;&amp;lt;endl;    
+     }
+};
+A GetA()
+{
+    return A();
+}
+int main(){
+  A a = GetA(); //需要生成临时对象，而后销毁临时对象
+  const A&amp;amp; a = GetA(); // 与下面这句一样，少了一次拷贝和析构
+  A&amp;amp;&amp;amp; a = GetA(); //少了一次拷贝和析构
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;通过右值引用，比之前少了一次拷贝构造和一次析构，原因在于右值引用绑定了右值，让临时右值的生命周期延长了。我们可以利用这个特点做一些性能优化，即避免临时对象的拷贝构造和析构。&lt;/p&gt;
+
+&lt;p&gt;常量左值引用是一个“万能”的引用类型，可以接受左值、右值、常量左值和常量右值。需要注意的是普通的左值引用不能接受右值，比如这样的写法是不对的：&lt;code class=&quot;highlighter-rouge&quot;&gt;A&amp;amp; a = GetA();&lt;/code&gt;。但是右值引用独立于左值和右值，意思是右值引用类型的变量可能是左值也可能是右值，所以&lt;code class=&quot;highlighter-rouge&quot;&gt;T&amp;amp;&amp;amp; t&lt;/code&gt;在&lt;strong&gt;发生自动类型推断&lt;/strong&gt;的时候(一般都是模板的T&amp;amp;&amp;amp;)，它是未定的引用类型（universal references），如果被一个左值初始化，它就是一个左值；如果它被一个右值初始化，它就是一个右值，它是左值还是右值取决于它的初始化。&lt;/p&gt;
+
+&lt;p&gt;变量1 = 函数()–&amp;gt;返回值：这时出现函数返回一个临时变量，拷贝给变量1，一般此时要求返回值、变量的复制构造函数完成深拷贝，否则可能发生指针悬挂的问题，但是可以设置复制构造函数为&lt;code class=&quot;highlighter-rouge&quot;&gt;A(A&amp;amp;&amp;amp; a) :m_ptr(a.m_ptr)&lt;/code&gt;，这时只完成浅拷贝（移动构造，实际上&lt;code class=&quot;highlighter-rouge&quot;&gt;std::move&lt;/code&gt;实际上它并不能移动任何东西，它唯一的功能是将一个左值强制转换为一个右值引用），即函数返回的右值直接付给了变量1，由于右值没有内存地址，所以不会发生指针悬挂的问题；以前的方式可以采用这样&lt;code class=&quot;highlighter-rouge&quot;&gt;A(const A&amp;amp; a):m_ptr(new int(*a.m_ptr))&lt;/code&gt;完成深拷贝复制构造。&lt;/p&gt;
+
+&lt;h2 id=&quot;完美转发&quot;&gt;完美转发&lt;/h2&gt;
+
+&lt;p&gt;C++11引入了完美转发：在函数模板中，完全依照模板的参数的类型（即保持参数的左值、右值特征），将参数传递给函数模板中调用的另外一个函数。C++11中的std::forward正是做这个事情的，他会按照参数的实际类型进行转发。&lt;/p&gt;
+
+&lt;p&gt;最后给出一个使用完美转发的泛型模板：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename…  Args&amp;gt;
+T* Instance(Args&amp;amp;&amp;amp;… args)
+{
+    return new T(std::forward&amp;lt;Args &amp;gt;(args)…);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;这个工厂函数的参数是右值引用类型，内部使用std::forward按照参数的实际类型进行转发，如果参数的实际类型是右值，那么创建的时候会自动匹配移动构造，如果是左值则会匹配拷贝构造。&lt;/p&gt;
+
 </description>
-        <pubDate>Wed, 16 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/16/xsens/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/16/xsens/</guid>
+        <pubDate>Fri, 20 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/07/20/cpp-11-14-17/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/20/cpp-11-14-17/</guid>
         
         <category>技术总结</category>
         
@@ -385,109 +725,23 @@ gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组
       </item>
     
       <item>
-        <title>Harxon smart antenna</title>
-        <description>&lt;h2 id=&quot;使用的gps接收机简介&quot;&gt;使用的GPS接收机简介&lt;/h2&gt;
+        <title>Grid Map developed by ETHz</title>
+        <description>&lt;h2 id=&quot;grid-map-can-contain-multiple-map-layers&quot;&gt;Grid map can contain multiple map layers&lt;/h2&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;使用带3G功能的移动站TS102，移动站出厂设置为com1-115200 Baud，输出定位信息和航向(GGA,RMC,VTG,ZDA,HDT),现在硬件连接出来的串口线对应接收机的com1。&lt;/li&gt;
-  &lt;li&gt;使用3G网络接入&lt;a href=&quot;https://qxwz.com/&quot;&gt;千寻位置&lt;/a&gt;提供的差分位置服务，所以无需配置基站，只需配置移动站。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;配置方法&quot;&gt;配置方法&lt;/h2&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;
-    &lt;p&gt;连接好设备(定向天线，3G天线，电源线)，使用串口助手打开com×&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在上电(9-36V)前，保证定向天线及smart antenna处于空旷环境，防止GPS信号被遮挡，此时串口助手显示：&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; Output from Receiver:
-
- *****************MODULE SELFTEST*****************
- DTU MODULE: RX 451.12500 MHz
-             TX 451.12500 MHz
-             PRT TRIMTALK
-             BAUD 9600 
-             MODNM 1006D
-             E003.03.01  
- CAN MODULE: $GCAN=CANBUS_29B_250k
-             GC117033626
-             17031603
- GNSS MODULE: &quot;UB280&quot;, SW_VER &quot;R4.10Build15042&quot;
- ************************end**************************
- 3G MODULE: SIM  #QSS: 1
-             CLASS 2
-             CSQ 
-             IP   ××.×××.×××.×××
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;正常情况下，移动运营商会分配一点动态IP给接收机，显示在××××××中，使用以下命令，如果表现正常，说明接收机(smart antenna) SIM卡没有问题&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $CFG 3G U   //进入user模式，此时接受机返回 *&amp;gt;ok*
- AT+CGPADDR=1   //返回接收机IP地址，运营商分配的动态IP
- AT#PING=&quot;www.baidu.com&quot;  //ping外网，正常会有OK返回
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;使用&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=514&quot;&gt;千寻社区&lt;/a&gt;提供的工具，Ntrip client测试千寻差分账号是否正常，按照&lt;a href=&quot;https://bbs.qxwz.com/read.php?tid=453&quot;&gt;社区教程&lt;/a&gt;配置软件，需要登录账号发言后才能下载该软件&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;接收机可以ping通外网，千寻账号也可以使用，现在使用下面命令配置接收机，以下命令无需进入3G用户模式，直接在连接上接收机后即可输入以下命令&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $CFG NTRIP rtk.ntrip.qxwz.com, 8001 RTCM32_GGB NTRIP NtripLinuxClient *usrname* *passwd*
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;在输出的GGA信息中，你应该能看到第6位变为5或其他(见备注，1代表单点定位)，M后的字符不为0，为接收到的差分数据&lt;/p&gt;
-
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt; $GNGGA,055339.50,3903.60948753,N,11827.60751943,E,1,07,4.4,38.2096,M,-3.2007,M,00,0000*59
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;备注&quot;&gt;备注&lt;/h2&gt;
-
-&lt;h4 id=&quot;配置命令都已回车windows中rn结束&quot;&gt;配置命令都已回车(windows中/r/n)结束&lt;/h4&gt;
-&lt;h4 id=&quot;一个差分账号只能同时一个设备用否则会出现互踢现象&quot;&gt;一个差分账号只能同时一个设备用，否则会出现互踢现象&lt;/h4&gt;
-&lt;h4 id=&quot;接收机电源线连接时对准红点插入即可拔出时把前面的铁头往外拉固定后方的线此时可以拔出插头&quot;&gt;接收机电源线连接时，对准红点插入即可，拔出时，把前面的铁头往外拉，固定后方的线，此时可以拔出插头&lt;/h4&gt;
-
-&lt;h4 id=&quot;gps数据解析&quot;&gt;GPS数据解析&lt;/h4&gt;
-
-&lt;p&gt;$GPGSA:(模式、位置)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;模式, 定位形式, PRN数字, PDOP位置, HDOP水平精度因子, VDOP垂直精度因子, 检验位&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;$GPGSV:(卫星、角度)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;总的GSV语句电文数, 当前GSV语句号, 可视卫星总数, 卫星号, 仰角, 方位角,信噪比, 总和校验数, 回车, 换行&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;$BDGSV:GPGSV(卫星相关的信息)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;收到讯号的卫星总数,定位的卫星总数,卫星总数,卫星仰角,方位角,讯号信噪比,校验位&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;$GNRMC:GPRMC(时间日期、地面速度方向)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;UTC时间, 定位状态,纬度,纬半球,经度,经半球,地面速率,方向,UTC日期,磁偏角,磁偏角方向,模式指示,地面速度信息&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;$GNGGA:GPGGA(时间、定位质量)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;UTC时间,纬度,纬半球,经度,经半球,定位质量标,卫星数量,水平精确度,天、地水准高度，差分GPS数据等, *, 校验和, 回车、换行&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;测试ＧＰＳ精度Ｃ&quot;&gt;测试ＧＰＳ精度（Ｃ＋＋）&lt;/h2&gt;
-
-&lt;p&gt;读取串口调试助手保存的串口数据输出LOG.txt,具体程序在&lt;a href=&quot;https://github.com/bryanibit/-_DGPS&quot;&gt;ｇｉｔｈｕｂ链接&lt;/a&gt;上&lt;/p&gt;
+&lt;p&gt;The following map is constructed with one layer called “elevation”.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using namespace grid_map;
+GridMap map({&quot;elevation&quot;});
+for (GridMapIterator it(map); !it.isPastEnd(); ++it){
+  Position position;
+  map.getPosition(*it, position);
+  map.at(&quot;elevation&quot;, *it) = -0.04 + 0.2 * std::sin(3.0 * time.toSec() + 5.0 * position.y()) * position.x();
+  }
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 </description>
-        <pubDate>Wed, 09 Aug 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/08/09/harxon-GPS/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/08/09/harxon-GPS/</guid>
+        <pubDate>Tue, 03 Jul 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/07/03/ethz-grid-map/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/03/ethz-grid-map/</guid>
         
         <category>技术总结</category>
         
@@ -497,86 +751,99 @@ gpasswd -d &amp;lt;user_name&amp;gt; &amp;lt;group_name&amp;gt; #将用户从组
       </item>
     
       <item>
-        <title>socket tcp python实现</title>
-        <description>&lt;h2 id=&quot;连接canet-200t设备&quot;&gt;连接canet 200T设备&lt;/h2&gt;
+        <title>Real-time Control System</title>
+        <description>&lt;p&gt;&lt;strong&gt;千万不要以rcs-test等短划线的方式命名RCS工程&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;rcs-structure&quot;&gt;RCS Structure&lt;/h2&gt;
 
 &lt;ul&gt;
-  &lt;li&gt;canet设备的IP端口为：192.168.0.98:40001&lt;/li&gt;
-  &lt;li&gt;需要把电脑固定IP到同一个网段&lt;/li&gt;
+  &lt;li&gt;{project-name}.nml //配置buffer文件，使用#注释&lt;/li&gt;
+  &lt;li&gt;{project-name}svr.cc //server源文件，编译后变为可执行文件&lt;/li&gt;
+  &lt;li&gt;{project-name}main.cc //main程序，其中定义了module对象，并循环执行module中的××_process()&lt;/li&gt;
+  &lt;li&gt;{module-name}_module.cc // 模块代码，工程的功能模块&lt;/li&gt;
+  &lt;li&gt;{module-name}.hh // 对应上面的module.cc，是它的头文件&lt;/li&gt;
+  &lt;li&gt;{module-name}n.hh //模块的status和command通道&lt;/li&gt;
+  &lt;li&gt;{aux-channel}n.hh //工程的辅助通道&lt;/li&gt;
+  &lt;li&gt;GNUmakefile // makefile文件&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;   1. sudo gedit /etc/network/interfaces
-   2. add the following lines and save:
-   auto eth0  
-   iface eth0 inet static  
-   address 192.168.0.90  
-   netmask 255.255.255.0  
-   gateway 192.168.0.1
-   3. sudo /etc/init.d/networking restart
+&lt;h2 id=&quot;rcs-config&quot;&gt;RCS Config&lt;/h2&gt;
+
+&lt;p&gt;RCS中主要的配置都在.nml文件中，nml文件可以分为三部分：&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;buffer&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;module-name&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;srv&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;如果使用的buffer不是该工程的srv建立的，但该工程使用了这个buffer，那么在buffer和module-name部分都要声明这个buffer，但&lt;strong&gt;srv&lt;/strong&gt;部分没有这个buffer，对应&lt;strong&gt;{project-name}svr.cc&lt;/strong&gt;中也没有关于该buffer的构建的code。
+{Note} 该工程的nml文件中buffer部分声明的使用的buffer需要和定义该buffer的（srv申请的buffer）工程中的buffer MP必须相同，TCP貌似也应该相同。&lt;/p&gt;
+
+&lt;h2 id=&quot;rcs-module&quot;&gt;RCS Module&lt;/h2&gt;
+
+&lt;p&gt;在声明辅助通道时候，如果该module是input该辅助通道，那么一般会这样写&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//&amp;lt;module-name&amp;gt;.hh
+NML * ×××_CHANNEL;//
+×××_MSG * ×××_data;//这是一个指针
+//&amp;lt;module-name&amp;gt;_module.cc
+×××_CHANNEL = new NML(×××Format, &quot;&amp;lt;buffer-name&amp;gt;&quot;, &quot;&amp;lt;moudle-name&amp;gt;&quot;, &quot;×××.nml&quot;);
+×××_data = (×××_MSG *) ×××_CHANNEL-&amp;gt;get_address();
+switch(SLAMPOSAZIM_CHANNEL-&amp;gt;read())
+{
+  case ×××_MSG_TYPE:
+          do-someting....;
+	break;
+}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;can-to-ros--ros-to-can&quot;&gt;can to ros / ros to can&lt;/h2&gt;
+&lt;p&gt;如果该module是output该辅助通道，那么一般会这样写&lt;/p&gt;
 
-&lt;ul&gt;
-  &lt;li&gt;ROS message经过struct.pack序列化后使用socket发送到某IP的端口上&lt;/li&gt;
-  &lt;li&gt;Can报文使用socket接收后，经过struct.unpack反序列化后publish到ROS上&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;push_framecan_id-data&quot;&gt;push_frame(can_id, data)&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;将每针can报文打包为不定长度的字节（13个字节，一个字节8位），append到buffer，&lt;/li&gt;
-  &lt;li&gt;这个过程需要锁定buffer，（如何完成锁定的？buffer_mutex和buffer的关系是如何产生的）&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;send_buffer&quot;&gt;send_buffer&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;锁定buffer&lt;/li&gt;
-  &lt;li&gt;将buffer掏空，一个字节一个字节的掏空（在此为何一次取50个can报文【13个字节】）&lt;/li&gt;
-  &lt;li&gt;data是什么，一次循环加13个字节？&lt;/li&gt;
-  &lt;li&gt;dump.txt有什么用？&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;python-struct&quot;&gt;python struct&lt;/h2&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;struct.pack
-用于将Python的值根据格式符，转换为字符串（因为Python中没有字节(Byte)类型，可以把这里的字符串理解为字节流，或字节数组），函数原型为：struct.pack(format, var1,var2)&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;struct.unpack
-用于将字节流转换成python数据类型。它的函数原型为：struct.unpack(fmt, string)，该函数返回一个&lt;strong&gt;元组&lt;/strong&gt;&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;a = 20  
-b = 400   
-str = struct.pack(&quot;ii&quot;, a, b)  
-print 'length: ', len(str)          # length:  8  
-print str                           # # # #乱码   int==&amp;gt;string stream
-print repr(str)                     # '\x14\x00\x00\x00\x90\x01\x00\x00'
-
-str2 = struct.unpack(&quot;ii&quot;, str)  
-print 'length: ', len(str2)          # length:  2  
-print str2                           # (20, 400)  流==&amp;gt;int
-print repr(str2)                     # (20, 400)  
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;NML * ×××_CHANNEL;//
+×××_MSG ×××_data;//这是一个对象
+×××_CHANNEL = new NML(×××Format, &quot;&amp;lt;buffer-name&amp;gt;&quot;, &quot;&amp;lt;moudle-name&amp;gt;&quot;, &quot;×××.nml&quot;);
+...赋值操作。。。
+×××_CHANNEL-&amp;gt;write(&amp;amp;×××_data);
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;打包之后的数据所占用的字节数与C语言中的struct十分相似:
-&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/201112171613441943.png&quot; alt=&quot;format对照表&quot; /&gt;&lt;/p&gt;
+&lt;h2 id=&quot;命令通道&quot;&gt;命令通道&lt;/h2&gt;
 
-&lt;p&gt;打包的后的字节顺序默认上是由操作系统的决定的，当然struct模块也提供了自定义字节顺序的功能:
-&lt;img src=&quot;http://images.cnblogs.com/cnblogs_com/coser/201112/20111217161345373.png&quot; alt=&quot;library对照表&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;TODO&lt;/p&gt;
 
-&lt;p&gt;可以查看下列网站寻找 &lt;a href=&quot;http://blog.csdn.net/w83761456/article/details/21171085&quot;&gt;详细信息&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;两个文件夹在一台电脑上共用一个辅助通道&quot;&gt;两个文件夹在一台电脑上共用一个辅助通道&lt;/h2&gt;
 
-&lt;h3 id=&quot;python-str和repr的区别&quot;&gt;python str和repr的区别&lt;/h3&gt;
+&lt;p&gt;nml配置：对于这个通道的而言，其buffer number/MP/TCP port保持一致，否则diag_NB.jar会报错。&lt;/p&gt;
+
+&lt;h2 id=&quot;diag_nbjar&quot;&gt;diag_NB.jar&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;java -jar /usr/local/diag_NB.jar
+在对话框里open **.cfg
+这个过程需要打开cfg文件中提到的channel的P_**n.hh，否则diag_NB无法确定channel的类型
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;修改nml文件注意事项&quot;&gt;修改nml文件注意事项&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;在nml文件中增加删除某个buffer，注意更改相应的××svr.cc中的该buffer对应的channel相关代码&lt;/li&gt;
+  &lt;li&gt;由codegen.jar将{aux_channel}n.hh得到的{aux_channel}n_n.cc中会自动生成一个关于该通道最小是多少数值，供参考。&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;rcs-struct类型的声明&quot;&gt;RCS struct类型的声明&lt;/h2&gt;
+
+&lt;p&gt;DECLARE_NML_DYNAMIC_LENGTH_ARRAY({类型名}, 数组变量名, 数组的最大长度);//声明一个数组&lt;/p&gt;
+
+&lt;p&gt;在某个{aux_channel}n.hh中需要声明一个struct{结构体};，需要在该文件中同时声明&lt;code class=&quot;highlighter-rouge&quot;&gt;extern void nmlupdate(CMS *cms, {结构体名称} *x);&lt;/code&gt;，这将通过codegen产生结构体的构造函数&lt;/p&gt;
 </description>
-        <pubDate>Sat, 29 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/07/29/tcpSocket/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/07/29/tcpSocket/</guid>
+        <pubDate>Fri, 29 Jun 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</guid>
         
         <category>技术总结</category>
         
@@ -587,117 +854,55 @@ print repr(str2)                     # (20, 400)
     
       <item>
         <title>Leetcode</title>
-        <description>&lt;h2 id=&quot;将string类型变量转换为常用的数值类型&quot;&gt;将string类型变量转换为常用的数值类型&lt;/h2&gt;
-&lt;p&gt;//模板函数：（此方法具有普遍适用性）
-#include &lt;sstream&gt;  
-template &lt;class Type=&quot;&quot;&gt;  
-Type stringToNum(const string&amp;amp; str)  
-{  
-    istringstream iss(str);  
-    Type num;  
-    iss &amp;gt;&amp;gt; num;  
-    return num;      
-}&lt;/class&gt;&lt;/sstream&gt;&lt;/p&gt;
+        <description>&lt;h2 id=&quot;euler-and-quaternion&quot;&gt;Euler and Quaternion&lt;/h2&gt;
 
-&lt;h2 id=&quot;int-to-string&quot;&gt;int to string&lt;/h2&gt;
-&lt;ol&gt;
-  &lt;li&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;h3 id=&quot;from-euler-to-quaternion&quot;&gt;From Euler to Quaternion:&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int a = 10;
-char *intStr = itoa(a);
-string str = string(intStr);
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;using namespace Eigen;
+//Roll pitch and yaw in Radians
+float roll = 1.5707, pitch = 0, yaw = 0.707;    
+Quaternionf q;
+q = AngleAxisf(roll, Vector3f::UnitX())
+    * AngleAxisf(pitch, Vector3f::UnitY())
+    * AngleAxisf(yaw, Vector3f::UnitZ());
+std::cout &amp;lt;&amp;lt; &quot;Quaternion&quot; &amp;lt;&amp;lt; std::endl &amp;lt;&amp;lt; q.coeffs() &amp;lt;&amp;lt; std::endl;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;2.&lt;/p&gt;
+&lt;h3 id=&quot;from-quaternion-to-euler&quot;&gt;From Quaternion to Euler:&lt;/h3&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int a = 10;
-stringstream ss;
-ss &amp;lt;&amp;lt; a;
-string str = ss.str();
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto euler = q.toRotationMatrix().eulerAngles (0, 1, 2);
+std::cout &amp;lt;&amp;lt; &quot;Euler from quaternion in roll, pitch, yaw&quot;&amp;lt;&amp;lt; std::endl &amp;lt;&amp;lt; euler &amp;lt;&amp;lt; std::endl;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;3.&lt;/p&gt;
+&lt;h3 id=&quot;use-eigenisometry3d-pose-to-describe-translation-and-rotation&quot;&gt;Use Eigen::Isometry3d pose to describe translation and rotation&lt;/h3&gt;
 
-&lt;p&gt;```#include &lt;string&gt; 
-std::string s = std::to_string(42);
-'''&lt;/string&gt;&lt;/p&gt;
-
-&lt;h2 id=&quot;long-int-to-string&quot;&gt;long int to string&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;sstream&amp;gt;
-std::string number;
-std::stringstream strstream;
-strstream &amp;lt;&amp;lt; 1L;
-strstream &amp;gt;&amp;gt; number;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Eigen::Isometry3d pose; //4 by 4 matrix in fact
+pose.linear() = q.normalized().toRotationMatrix();
+pose(0,3) = pos_x;
+pose(1,3) = pos_y;
+pose(2,3) = pos_z;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;string-to-int&quot;&gt;string to int&lt;/h2&gt;
+&lt;h2 id=&quot;an-affine-transformation-to-an-isometric-transformation&quot;&gt;an affine transformation to an isometric transformation&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;1.
-string str=&quot;123&quot;;
-atoi( str.c_str() );
+&lt;p&gt;b.rotation() extract the rotation part of the transformation. It involves a SVD, and thus it is read-only. On the left hand side, you have to use .linear():&lt;/p&gt;
 
-2.
-std::stoi(str);
-
-3.
-std::stringstream ss(str);
-ss &amp;gt;&amp;gt; thevalue;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Eigen::AffineCompact3f a;
+Eigen::Isometry3f b;
+b.translation() = a.translation();
+b.linear() = a.rotation();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;string-to-double&quot;&gt;string to double&lt;/h2&gt;
+&lt;p&gt;If you know that ‘a’ is an isometry and only want to cast it to an Isometry 3f, you can simply do:&lt;/p&gt;
 
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;string str;
-double value = atof(str.c_str());&lt;/code&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string word;  
-openfile &amp;gt;&amp;gt; word;
-double lol = atof(word.c_str());
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;b = a.matrix();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;double-to-string&quot;&gt;double to string&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;string s=&quot;235.19123&quot;;   **最后输出的number只能显示s中的六位（从高位数）**
-std::stringstream ss(s);
-double number=0;
-ss&amp;gt;&amp;gt;number;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;二叉搜索树&quot;&gt;二叉搜索树&lt;/h2&gt;
-
-&lt;p&gt;同一层的情况下，右边的元素一定比左边的大&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;插入一个数&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;删除一个数&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;最小生成树&quot;&gt;最小生成树&lt;/h2&gt;
-
-&lt;p&gt;生成树是建立在无向图中的，对于有向图，则没有生成树的概念，最小生成树不一定唯一，当所有边权值不同时唯一。但是权值之和时一定的&lt;/p&gt;
-
-&lt;h2 id=&quot;邻接矩阵逆邻接矩阵&quot;&gt;邻接矩阵/逆邻接矩阵&lt;/h2&gt;
-
-&lt;p&gt;无向图的邻接矩阵时对称的，主队角元素为0，有向图不一定&lt;/p&gt;
-
-&lt;h2 id=&quot;连通图&quot;&gt;连通图&lt;/h2&gt;
-
-&lt;p&gt;每个顶点之间都有一个边的为连通图&lt;/p&gt;
-
 </description>
-        <pubDate>Fri, 28 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/07/28/leetcode/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/07/28/leetcode/</guid>
+        <pubDate>Wed, 13 Jun 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/06/13/laser-process/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/06/13/laser-process/</guid>
         
-        <category>理论梳理</category>
+        <category>技术总结</category>
         
         
         <category>blog</category>
@@ -705,105 +910,255 @@ ss&amp;gt;&amp;gt;number;
       </item>
     
       <item>
-        <title>How to fly over GFW</title>
-        <description>&lt;h2 id=&quot;download-goagent&quot;&gt;Download Goagent&lt;/h2&gt;
+        <title>Gitlab on Docker</title>
+        <description>&lt;h2 id=&quot;安装docker-on-ubuntu&quot;&gt;安装docker on ubuntu&lt;/h2&gt;
 
-&lt;p&gt;百度云已经配置好的GoAgent(sceret)&lt;/p&gt;
+&lt;h3 id=&quot;uninstall-old-versions&quot;&gt;Uninstall old versions&lt;/h3&gt;
 
-&lt;h2 id=&quot;配置&quot;&gt;配置&lt;/h2&gt;
+&lt;p&gt;Older versions of Docker were called docker or docker-engine. If these are installed, uninstall them:&lt;/p&gt;
 
-&lt;h3 id=&quot;windows-chrome&quot;&gt;windows chrome&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;下载&lt;a href=&quot;https://github.com/bryanibit/XX-Net&quot;&gt;xx-net&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;因为要使用自己的账号，所以需要在chrome中上传&lt;/li&gt;
-  &lt;li&gt;use it&lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h3 id=&quot;在ubuntu中结合foxyproxy实现翻墙&quot;&gt;在Ubuntu中结合foxyproxy实现翻墙&lt;/h3&gt;
-
-&lt;ol&gt;
-  &lt;li&gt;下载foxproxy&lt;/li&gt;
-  &lt;li&gt;Proxies 中 添加 goagent
-    &lt;ul&gt;
-      &lt;li&gt;proxy details中 manual中添加127.0.0.1:8087&lt;/li&gt;
-      &lt;li&gt;URL Patterns中&lt;/li&gt;
-      &lt;li&gt;Do not use this proxy for internal IP addresses&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Pattern Subscription
-    &lt;ul&gt;
-      &lt;li&gt;Subscription URL: https://raw.githubusercontent.com/gfwlist/gfwlist/master/gfwlist.txt&lt;/li&gt;
-      &lt;li&gt;Proxies: add proxies 用刚刚2中的GoAgent&lt;/li&gt;
-      &lt;li&gt;Format: Autoproxy   obfuscation: base64&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-  &lt;li&gt;Quick add
-    &lt;ul&gt;
-      &lt;li&gt;enabled&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
-&lt;/ol&gt;
-
-&lt;h2 id=&quot;terminal-use&quot;&gt;Terminal use&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    export https_proxy=&quot;127.0.0.1:8087&quot;
-    export http_proxy=&quot;127.0.0.1:8087&quot;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get remove docker docker-engine docker.io
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;[option]&lt;/p&gt;
+&lt;h3 id=&quot;prepare-install&quot;&gt;Prepare Install&lt;/h3&gt;
 
-&lt;p&gt;git config –global http.sslVerify false&lt;/p&gt;
-
-&lt;p&gt;then git config uses proxy agent.&lt;/p&gt;
-
-&lt;p&gt;When you use export, you could use&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    curl ip.gs
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update
+$ sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    software-properties-common
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;check the ip address&lt;/p&gt;
+&lt;p&gt;Add Docker’s official GPG key:&lt;/p&gt;
 
-&lt;p&gt;Of course, you should install curl&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;    sudo apt-get install curl
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h3 id=&quot;解除goagent占用端口问题&quot;&gt;解除GoAgent占用端口问题&lt;/h3&gt;
+&lt;p&gt;Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;直接关闭GoAgent会占用8087端口问题&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-key fingerprint 0EBFCD88
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;inin@inin-pc:~$ sudo lsof -i:8087
-COMMAND  PID USER   FD   TYPE DEVICE SIZE/OFF NODE NAME
-python  2274 root    6u  IPv4  16595      0t0  TCP localhost:8087 (LISTEN)
-inin@inin-pc:~$ kill 2274
+pub   4096R/0EBFCD88 2017-02-22
+      Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
+uid                  Docker Release (CE deb) &amp;lt;docker@docker.com&amp;gt;
+sub   4096R/F273FCD8 2017-02-22
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h2 id=&quot;xx-net使用&quot;&gt;xx-net使用&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo add-apt-repository \
+   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;登录&lt;a href=&quot;https://github.com/XX-net/XX-Net/wiki/How-to-use&quot;&gt;xx-net&lt;/a&gt;的使用方法一节，下载源码，无需下载百度云盘中的GoAgent源码&lt;/p&gt;
+&lt;p&gt;如果是在arm的电脑上，将上面几行改为&lt;/p&gt;
 
-&lt;ol&gt;
-  &lt;li&gt;安装下面软件
-    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo apt-get install python-openssl
-sudo apt-get install libffi-dev
-sudo apt-get install python-gtk2
-sudo apt-get install python-appindicator
-sudo apt-get install libnss3-tools
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;后台运行：在终端中运行：
-      xx_net.sh start/stop/restart
-此时会出现提示（在浏览器中键入127.0.0.1;8085)，&lt;em&gt;配置浏览器设置&lt;/em&gt;，使用上面的在Ubuntu中结合foxyproxy实现翻墙内容配置即可&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;开机自启：在/etc/rc.local中添加一行：（可选）
-sudo /home/username/xxnet/xx_net.sh start&lt;/li&gt;
-&lt;/ol&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo add-apt-repository \
+   &quot;deb [arch=armhf] https://download.docker.com/linux/ubuntu \
+   $(lsb_release -cs) \
+   stable&quot;
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;install-docker-ce-community-edition&quot;&gt;Install Docker CE (Community Edition)&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update
+$ sudo apt-get install docker-ce
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;verify-docker-ce-is-installed-correctly&quot;&gt;Verify Docker CE is installed correctly&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo docker run hello-world
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;镜像加速&quot;&gt;镜像加速&lt;/h3&gt;
+
+&lt;p&gt;..1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑&lt;strong&gt;/etc/default/docker&lt;/strong&gt;文件,在其中的&lt;strong&gt;DOCKER_OPTS&lt;/strong&gt;中添加获得的加速器配置**–registry-mirror=&lt;加速器地址&gt;**, 如:&lt;/加速器地址&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOCKER_OPTS=&quot;--registry-mirror=https://jxus37ad.mirror.aliyuncs.com&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;重新启动服务。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo service docker restart
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;..2. 对于使用systemd的系统 (ubuntu 16.04),用&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl enable docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;启用服务后,编辑&lt;strong&gt;/etc/systemd/system/multi-user.target.wants/docker.service&lt;/strong&gt;文件,找到&lt;strong&gt;ExecStart=&lt;/strong&gt;这一行,在这行最后添加加速器地址**–registry-mirror=&lt;加速器地址&gt;**, 如:&lt;/加速器地址&gt;&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ExecStart=/usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;重新加载配置并且重新启动。&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo systemctl daemon-reload
+$ sudo systemctl restart docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;deploy-gitlab-on-docker&quot;&gt;Deploy gitlab on docker&lt;/h2&gt;
+
+&lt;p&gt;参考gitlab官方网站关于docker的&lt;a href=&quot;https://docs.gitlab.com/omnibus/docker/README.html&quot;&gt;文档&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;pull镜像&quot;&gt;pull镜像&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker pull gitlab/gitlab-ce:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;启动gitlab&quot;&gt;启动Gitlab&lt;/h3&gt;
+
+&lt;p&gt;用下面的命令启动一个默认配置的Gitlab。如果我们只在本机测试使用的话，将hostname替换为localhost。如果需要让外部系统也能访问的话使用外网IP地址。&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker run --detach \
+    --hostname 127.0.0.1 \
+    --publish 443:443 --publish 80:80 --publish 22:22 \
+    --name gitlab \
+    --restart always \
+    --volume /srv/gitlab/config:/etc/gitlab \
+    --volume /srv/gitlab/logs:/var/log/gitlab \
+    --volume /srv/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;docker端口映射&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ip:hostport:containerport   #指定ip、指定主机port、指定容器port
+ip::containerport           #指定ip、未指定主机port、指定容器port
+hostport:container          #未指定ip port、指定主机port、指定容器port
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;可以采用以下的端口映射：&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker run --detach \
+    --hostname 127.0.0.1 \
+    --publish 4430:443 --publish 8000:80 --publish 2200:22 \
+    --name gitlab \
+    --restart always \
+    --volume /srv/gitlab/config:/etc/gitlab \
+    --volume /srv/gitlab/logs:/var/log/gitlab \
+    --volume /srv/gitlab/data:/var/opt/gitlab \
+    gitlab/gitlab-ce:latest
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;进人运行的容器（docker exec -it gitlab /bin/bash）&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Set external_url&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;p&gt;[ ] For HTTP  external_url “http://gitlab.example.com:8000”&lt;/p&gt;
+
+&lt;p&gt;[ ] For HTTPS (notice the https)  external_url “https://gitlab.example.com:8000”&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Set gitlab_shell_ssh_port&lt;/strong&gt; :&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;gitlab_rails[‘gitlab_shell_ssh_port’] = 2200&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Following the above example you will be able to reach GitLab from your web browser under &lt;em&gt;hostIP&lt;/em&gt;:8000 and push using SSH under the port 2200.&lt;/p&gt;
+
+&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gitlab-ctl reconfigure&lt;/code&gt;更新docker配置。&lt;/p&gt;
+
+&lt;p&gt;不知道有没有必要：Just allow git to login by ssh. Edit &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt;, and add this content: &lt;em&gt;AllowUsers git&lt;/em&gt;.
+可以使用以下方法验证git服务器的ssh功能&lt;/p&gt;
+
+&lt;h3 id=&quot;增加内容git服务器ssh验证&quot;&gt;增加内容：git服务器ssh验证&lt;/h3&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -p &amp;lt;port_num&amp;gt; git@192.168.1.254
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;如果以上的结果显示&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Welcome to GitLab, &amp;lt;UserName&amp;gt;!
+Connection to 192.168.1.254 closed.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;一直出现restarting&quot;&gt;一直出现restarting&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo docker logs &amp;lt;container_name&amp;gt;&lt;/code&gt;查看容器状态&lt;/li&gt;
+  &lt;li&gt;如果出现&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;exec user process caused &quot;exec format error&quot;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;说明下载的镜像不正确，不是适合x86或者arm的&lt;/p&gt;
+
+&lt;h2 id=&quot;gitlab迁移到another-pc&quot;&gt;gitlab迁移到another PC&lt;/h2&gt;
+
+&lt;p&gt;在原来PC上使用一下命令，并copy到新PC上&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker save -o gitlab.docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;在新PC上使用&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker load -i gitlab.docker
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;此时完成image拷贝到新电脑的过程，然后按照&lt;strong&gt;启动Gitlab&lt;/strong&gt;中的步骤，启动container for gitlab.&lt;/p&gt;
+
+&lt;p&gt;最后一步就是复制数据到新电脑上&lt;/p&gt;
+
+&lt;p&gt;将gitlab整个文件夹打包/压缩后复制到新PC。&lt;/p&gt;
+
+&lt;h2 id=&quot;remove-and-restore-for-docker-gitlab-installations&quot;&gt;Remove and Restore for DOCKER Gitlab installations&lt;/h2&gt;
+
+&lt;h3 id=&quot;在原来电脑上需要完成的工作&quot;&gt;在原来电脑上需要完成的工作：&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You have run sudo gitlab-ctl reconfigure at least once. 保证配置文件生效，所有配置文件和gitlab配置相同，可以不使用。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker exec -t &amp;lt;container name&amp;gt; gitlab-rake gitlab:backup:create //backup gitlab
+cp /etc/gitlab/gitlab-secrets.json ~/   //This file contains the database encryption key, CI/CD variables, and variables used for two-factor authentication.
+cp /etc/gitlab/gitlab.rb ~/
+cp -r /etc/ssh ~/    //backup ssh key
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server. 
+代替地，可以选择将整个/etc/gitlab和/etc/ssh文件夹备份。&lt;/p&gt;
+
+&lt;h3 id=&quot;在新迁移的电脑上需要完成的工作&quot;&gt;在新迁移的电脑上需要完成的工作：&lt;/h3&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created. 在&lt;a href=&quot;https://hub.docker.com/r/gitlab/gitlab-ce/tags/&quot;&gt;dockerImage&lt;/a&gt;上查找一定版本tag，即gitlab/gitlab-ce:{tag_name}。&lt;/li&gt;
+  &lt;li&gt;GitLab is running. If not, start it using sudo gitlab-ctl start.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl stop unicorn  // Stop the processes that are connected to the database. Leave the rest of GitLab running.
+sudo gitlab-ctl stop sidekiq
+sudo gitlab-ctl status // verify the two processes are down
+sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!. 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure your backup tarball (1493107454_2018_04_25_10.6.4-ce_gitlab_backup.tar) is in the backup directory described in the &lt;em&gt;gitlab.rb&lt;/em&gt; configuration &lt;em&gt;gitlab_rails[‘backup_path’]&lt;/em&gt;. The default is &lt;em&gt;/var/opt/gitlab/backups&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Restore /etc/gitlab/gitlab-secrets.json and /etc/ssh if necessary as mentioned above.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl restart  //Restart and check GitLab
+sudo gitlab-rake gitlab:check SANITIZE=true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Make sure the server is OK in chrome with username and passward.&lt;/p&gt;
+
+&lt;h2 id=&quot;issues-on-gitlab-install&quot;&gt;Issues on Gitlab install&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker logs -f gitlab&lt;/code&gt; shows &lt;em&gt;ERROR:  relation “plans” does not exist at character 183&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;docker exec -it gitlab gitlab-ctl restart gitlab-monitor&lt;/code&gt; to restart gitlab-monitor for shutting down gitlab-monitor to quiet the warning noise. The following command returns &lt;em&gt;ok: run: gitlab-monitor: (pid 1942) 1s&lt;/em&gt;, no need to reboot and your gitlab server should be OK!&lt;/p&gt;
+
+&lt;h2 id=&quot;disable-docker-autostart-container&quot;&gt;Disable docker autostart container&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker inspect {my-container} //Look for RestartPolicy in the output
+docker update --restart=no {my-container}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
 </description>
-        <pubDate>Wed, 19 Jul 2017 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2017/07/19/fk-gfw/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2017/07/19/fk-gfw/</guid>
+        <pubDate>Sat, 26 May 2018 00:00:00 +0800</pubDate>
+        <link>http://bryanibit/blog/2018/05/26/docker-gitlab/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/05/26/docker-gitlab/</guid>
         
         <category>技术总结</category>
         

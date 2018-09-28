@@ -8,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="于华超">
 
-    <title>KalmanFilter - 屋顶上的鱼</title>
+    <title>Kalman Filter - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/08/29/kalman/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/08/29/kalman/">
 
     <!-- Icons -->
-  <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,6 +97,29 @@
     }
 </style>
 <header class="intro-header" >
+  
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+>
+</script>
+<script
+  type="text/javascript"
+  charset="utf-8"
+  src="https://vincenttam.github.io/javascripts/MathJaxLocal.js"
+>
+</script>
+
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -106,7 +129,7 @@
                         <a class="tag" href="/Tags/#理论梳理" title="理论梳理">理论梳理</a>
                         
                     </div>
-                    <h1>KalmanFilter</h1>
+                    <h1>Kalman Filter</h1>
                     
                     <span class="meta">Posted by Bryan on August 29, 2017</span>
                 </div>
@@ -126,16 +149,41 @@
 
                 <h2 id="problem-statement">Problem Statement</h2>
 
-<p>where</p>
+<p><a href="http://bilgin.esme.org/BitsAndBytes/KalmanFilterforDummies">Kalman Filter Equation Explanation</a></p>
 
-<script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
+<p>All in all, the KF is shown like that:</p>
 
-<script type="math/tex; mode=display">a^2 + b^2 = c^2</script>
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/insight_formula.gif" alt="KF Equation" /></p>
 
-<p>it is ok!</p>
+<p>The above subscript $k$ is state. Our purpose is to find $\hat{X}_k$, the estimate of the signal $X_k$. The only unkonwn componet in this equation is the $K_k$, Kalman Gain, which you should calculate for each consequent state.</p>
 
-<p><img src="https://pic4.zhimg.com/v2-6c5677f554fb887fc18a235e8e1f21d7_b.jpg" alt="GoT" /></p>
+<p>If $K_k$ is constant like 0.5, then $\hat{X}_k$ is like half of measured value plus half of previous history value. From the above equation, we can conclude that <strong>Kalman Filter finds the most optimum averaging factor for each consequent state. Also somehow remembers a little bit about the past states</strong>. Unfortunately, it is more sophisticated in fact.</p>
+
+<h2 id="build-a-model">Build a Model</h2>
+
+<script type="math/tex; mode=display">x_k = Ax_{k-1} + B\mu_k + w_{k-1}\\z_k = Hx_k + v_k</script>
+
+<p>$x_k$ is signal value. $u_k$ is control signal and $w_{k-1}$ is process noise(which may be hard to conceptualize). Most of time, these is no control signal $u_k$. The second equation tells that any measurement value (which we are not sure its accuracy) is a linear combination of the signal value and the measurement noise. They are both considered to be Gaussian. The entities A, B and H are in general form matrices. But in most of our signal processing problems, we use models such that these entities are just numeric values and constant. Even most probably, they’ll be equal to 1.</p>
+
+<p>If we are pretty sure that our system <em>fits into this model</em> (most of the systems do by the way), the only thing left is to estimate the <strong>mean and standard deviation</strong> of the noise functions $w_{k-1}$ and $v_k$. The better you estimate the noise parameters, the better estimates you get.</p>
+
+<h2 id="process-iteration">Process iteration</h2>
+<p>The iteration process is shown the following:</p>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/iteration_steps.gif" alt="KF Iteration" /></p>
+
+<p>KF is an iteration process with two phases called Time Update(<em>state prediction</em>) and Measurement Update(<em>correction</em>).</p>
+
+<p>To start the process, we need to know the estimate initial values of x0, and P0. And the most remaining painful thing is to determine R and Q. R is rather simple to find out, because, in general, we’re quite sure about the noise in the environment. But finding out Q is not so obvious.</p>
+
+<h2 id="tutorial-for-source-code">Tutorial for source code</h2>
+
+<p>The code could be found <a href="https://github.com/hmartiro/kalman-cpp">here</a> and reference documents could be found <a href="http://www.cs.unc.edu/~welch/media/pdf/kalman_intro.pdf">here</a></p>
+
+<h2 id="handwrite-note">Handwrite Note</h2>
+
+<p><img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/kalman_handwrite1.jpg" alt="KF Handwrite" />
+<img src="https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/kalman_handwrite2.jpg" alt="KF Handwrite_" /></p>
 
 
                 <hr>
@@ -167,21 +215,14 @@
                 </style>
 
                 <div class="ds-share"
-                    data-thread-key="/blog/2017/08/29/kalman" data-title="KalmanFilter"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-thread-key="/blog/2017/08/29/kalman" data-title="Kalman Filter"
+                    data-images="http://bryanibit/img/black.jpg"
                     data-content="Problem Statement
 
-where
+Kalman Filter Equation Explanation
 
-
-
-
-
-it is ok!
-
-
- | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/08/29/kalman/">
+All in all, the KF is ... | Microdust:Azeril's blog"
+                    data-url="http://bryanibit/blog/2017/08/29/kalman/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -200,7 +241,7 @@ it is ok!
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/08/29/kalman" data-title="KalmanFilter" data-url="http://localhost:4000/blog/2017/08/29/kalman/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/08/29/kalman" data-title="Kalman Filter" data-url="http://bryanibit/blog/2017/08/29/kalman/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>
@@ -298,7 +339,7 @@ var duoshuoQuery = {short_name:"cnfeat"};
 
                 </ul>
                 <p class="copyright text-muted">
-                &copy; 2017  Bryan ❖ Powered by Jekyll.
+                &copy; 2018  Bryan ❖ Powered by Jekyll.
                 </p>
             </div>
         </div>

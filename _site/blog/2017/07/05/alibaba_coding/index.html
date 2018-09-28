@@ -13,7 +13,7 @@
     <link rel="canonical" href="http://bryanibit/blog/2017/07/05/alibaba_coding/">
 
     <!-- Icons -->
-  <link rel="shortcut icon" href="img/favicon.ico">
+    <link rel="shortcut icon" href="img/favicon.ico">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -97,6 +97,8 @@
     }
 </style>
 <header class="intro-header" >
+  
+
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -141,22 +143,38 @@
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>project(point_group)
 cmake_minimum_required(VERSION 2.8)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
-＞　# OpenCV is not install in default location, if not delete that.
-set(OpenCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
+
+# OpenCV is not install in default location, if not delete that.
+set(OPENCV_DIR "/home/inin/OpenDroneMap/SuperBuild/install/share/OpenCV")
+# optional conditions like the following line
+set(OpenCV_INCLUDE_DIRS "/home/opencv/install/include")
 # Find OpenCV at the default location
-find_package(OpenCV REQUIRED)
+find_package(OpenCV 3.3.1 REQUIRED)
 set(OpenCV_LIBS opencv_core opencv_imgproc opencv_highgui)
 include_directories(${OpenCV_INCLUDE_DIRS})
+
+# Find PCL
+# lowcase common and io, correspond to libpcl_common,libpcl_io.so, both files are located in ${PCL_COMMON_LIBRARY}
+find_package(PCL 1.3 REQUIRED COMPONENTS common io)//
+include_directories(${PCL_INCLUDE_DIRS})
+link_directories(${PCL_LIBRARY_DIRS})
+add_definitions(${PCL_DEFINITIONS})
+
+# Find Boost
+find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
+include_directories(${Boost_INCLUDE_DIRS})
+
 # Add source directory
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
-target_link_libraries(point_group ${OpenCV_LIBS})
+# set(OpenCV_LIBRARIES ${OpenCV_LIBS}) is content of OpenCVConfig.cmake
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
 </code></pre></div></div>
 
 <p>这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置</p>
 
-<p>有篇CMakeLists的博文（好像是7月5号更新的）里面写了指定${CMAKE_MODULE_PATH},</p>
+<p>有篇<a href="https://bryanibit.github.io/blog/2017/07/05/cmakelists/">CMakeLists的博文</a>,里面写了指定${CMAKE_MODULE_PATH},</p>
 
 <p>然后把.cmake copy 到工程根目录下</p>
 
@@ -176,6 +194,24 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
 
 <p>在自己的.cpp(main(int argc,char** argv)在此)加上include “.h”</p>
 
+<h3 id="获取文件夹下的文件名称">获取文件夹下的文件名称</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>argb[1] is the input path, char* type
+\#include &lt;string&gt;
+\#include &lt;iostream&gt;
+\#include "boost/filesystem.hpp"
+using namespace boost::filesystem;
+for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i++)
+    {
+        if (!is_directory(i-&gt;path())) 
+        {
+		string p_a = i-&gt;path().filename().string();
+            cout &lt;&lt; string(argv[1]) + "/" + p_a &lt;&lt; endl;
+	}
+        else
+           continue;
+</code></pre></div></div>
+
 <h3 id="读取文件c">读取文件C++</h3>
 
 <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>     #include&lt;fstream&gt;
@@ -183,8 +219,8 @@ include<cmath>即刻，但是存在复制的代码和自己的代码数据结构
      std::ifstream infile;
      infile.open("./1.txt");
      string s;
-     // get a line
-     getline(infile, s);
+     while(infile &gt;&gt; s) //读取一个word
+     //while(getline(infile, s)) //读取一行
 </code></pre></div></div>
 
 <h3 id="写入文件c">写入文件c++</h3>
@@ -308,13 +344,31 @@ for (auto ite = ch; ite-&gt;value != false; ++ite)
 	}
 </code></pre></div></div>
 
+<h2 id="设置timer-using-boost">设置Timer using Boost</h2>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>#include &lt;boost/asio.hpp&gt;
+#include &lt;boost/date_time/posix_time/posix_time.hpp&gt;
+int main()
+{
+    boost::asio::io_service io;
+    while(1)
+        {
+	  boost::asio::deadline_timer t(io, boost::posix_time::milliseconds(100));//boost::posix_time::seconds(5)
+          // process your IO here - not sure how long your IO takes, so you may need to adjust your timer
+	  t.wait();
+	}    
+    return 0;
+}
+</code></pre></div></div>
+
+
 
                 <hr>
 
                 <ul class="pager">
                     
                     <li class="previous">
-                        <a href="/blog/2017/07/05/multiple-view-geometry/" data-toggle="tooltip" data-placement="top" title="Multiview Geometry">&larr; Previous Post</a>
+                        <a href="/blog/2017/07/05/python-tips/" data-toggle="tooltip" data-placement="top" title="Python Tips">&larr; Previous Post</a>
                     </li>
                     
                     
@@ -462,7 +516,7 @@ var duoshuoQuery = {short_name:"cnfeat"};
 
                 </ul>
                 <p class="copyright text-muted">
-                &copy; 2017  Bryan ❖ Powered by Jekyll.
+                &copy; 2018  Bryan ❖ Powered by Jekyll.
                 </p>
             </div>
         </div>
