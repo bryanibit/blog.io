@@ -37,3 +37,7 @@ Universal refenrence should be *conditionally* cast to rvalue (via **std::forwar
 ## 海盗经济学
 
 海盗船实行的是民主（democracy），而商船实行的是专制（autocracy）；在海盗船上，甚至黑人（18th century)也能够享受和白人一样的权利，很少出现像商船那样，船长侮辱甚至殴打船员的现像，而且无论船长还是舵手和普通船员的工资差不多，没有商船上的差别那么悬殊。归结原因其实是*所有制*导致了二者实行不同的管理制度，不同的管理制度保证了二者都有最大的总体利益，只是相对个人而言不甚相同。
+
+## 精通数据科学
+The purpose of computing is insight, not numbers.
+If you are immune to boredom, there is literally nothing you cannot accomplish. -- David Foster Wallace

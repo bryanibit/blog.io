@@ -184,7 +184,7 @@ Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" 
 
 在clion中 Opening catkin packages (remember to source devel/setup.bash)
 
-File > Open Select the src/CMakeLists.txt (```catkin_init_workspace``` produces cmakelists.txt and cp it into your catkin_ws) 
+File > Open Select the src/CMakeLists.txt (```catkin_init_workspace``` produces cmakelists.txt and cp it into your catkin_ws)
 and open as Project (or open the folder containing CMakeLists.txt)
 
 在clion调试中include经常找不到生成的自定义message，在clion-file-settings-build-CMake中，在CMake options内填入
@@ -248,7 +248,7 @@ syntax on
          sudo vim /etc/modprobe.d/blacklist-nouveau.conf
 
   在文件 blacklist-nouveau.conf 中加入如下内容：
-  
+
 ```
   blacklist nouveau
   options nouveau modeset=0
@@ -279,7 +279,7 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 
 2. 后面的参数非常重要，不可省略：
 
-        sudo ./NVIDIA-Linux-x86_64-384.59.run –no-opengl-files 
+        sudo ./NVIDIA-Linux-x86_64-384.59.run –no-opengl-files
         //no-opengl-files表示只安装驱动文件，不安装OpenGL文件，避免login loop。
 
 3. 安装cuda
@@ -287,17 +287,18 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
         sudo ./cuda_8.0.61_375.26_linux.run --no-opengl-libs
 
 **Table 1. CUDA Toolkit and Compatible Driver Versions**
+
 | CUDA Toolkit | Linux x8664 Driver Version | Windows x86_64 Driver Version |
-| :------: | :------: | :------: |
-| CUDA 10.0.130      |  >= 410.48  | 	>= 411.31 | 
-| CUDA 9.2 (9.2.148 Update 1) |  	>= 396.37 |  	>= 398.26 | 
-| CUDA 9.2 (9.2.88)  | 	>= 396.26  | 	>= 397.44 | 
-| CUDA 9.1 (9.1.85)  | 	>= 390.46  | 	>= 391.29 | 
-| CUDA 9.0 (9.0.76)  | 	>= 384.81  | 	>= 385.54 | 
-| CUDA 8.0 (8.0.61 GA2) |  >= 375.26  | >= 376.51 | 
-| CUDA 8.0 (8.0.44)  | 	>= 367.48  | 	>= 369.30 | 
-| CUDA 7.5 (7.5.16)  |  >= 352.31  | 	>= 353.66 | 
-| CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 | 
+| ----------------- | ----------------------- | -------------------------------- |
+| CUDA 10.0.130      |  >= 410.48  | 	>= 411.31 |
+| CUDA 9.2 (9.2.148 Update 1) |  	>= 396.37 |  	>= 398.26 |
+| CUDA 9.2 (9.2.88)  | 	>= 396.26  | 	>= 397.44 |
+| CUDA 9.1 (9.1.85)  | 	>= 390.46  | 	>= 391.29 |
+| CUDA 9.0 (9.0.76)  | 	>= 384.81  | 	>= 385.54 |
+| CUDA 8.0 (8.0.61 GA2) |  >= 375.26  | >= 376.51 |
+| CUDA 8.0 (8.0.44)  | 	>= 367.48  | 	>= 369.30 |
+| CUDA 7.5 (7.5.16)  |  >= 352.31  | 	>= 353.66 |
+| CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 |
 
 ## Install tensorflow
 
