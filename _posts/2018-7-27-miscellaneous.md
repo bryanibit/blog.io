@@ -41,3 +41,26 @@ Universal refenrence should be *conditionally* cast to rvalue (via **std::forwar
 ## 精通数据科学
 The purpose of computing is insight, not numbers.
 If you are immune to boredom, there is literally nothing you cannot accomplish. -- David Foster Wallace
+
+## Effective C++
+I have not been able to find a convincing explanation. But the rule is the rule, and this means you must
+remember that if you declare a variable using auto and you initialize it with a braced initializer, the deduced type will always be std::initializer_list. It’s especially important to bear this in mind if you embrace the philosophy of uniform initialization—of enclosing initializing values in braces **as a matter of course(理所当然)**.
+
+It provides results that leave you scratching your head and turning to reference works or online Q&A sites for revelation.
+
+What may initially seem contradictory (decltype and auto?) actually makes perfect sense.
+
+Employing pass-by value for objects of **an unknown type** generally risks the performance hit of unnecessary
+copying, the behavioral problems of object slicing, and the sting of our coworkers’ derision.
+
+bring it into accord with admonition 使之符合告诫
+
+You’ll have to familiarize yourself with a few special cases. Most of these are too obscure to warrant discussion in a book like this, but looking at one lends insight into decltype as well as its use.
+
+At the same time, don’t lose sight of the bigger picture.
+
+I do my best to convice you to use lambdas instead of std::bind.
+
+Take a deep breath and relax. auto is a option, not a mandate.
+
+such abstract type information should almost always be at hand.
