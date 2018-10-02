@@ -523,6 +523,10 @@ False
 
 Iterator甚至可以表示一个无限大的数据流，例如全体自然数。而使用list是永远不可能存储全体自然数的。
 
+## 函数式编程
+
+### 返回函数
+
 ```
 def lazy_sum(*args):
     def sum():
@@ -539,3 +543,276 @@ def lazy_sum(*args):
 ```
 
 我们在函数lazy_sum中又定义了函数sum，并且，内部函数sum可以引用外部函数lazy_sum的参数和局部变量，当lazy_sum返回函数sum时，相关参数和变量都保存在返回的函数中，这种称为“闭包（Closure）”的程序结构拥有极大的威力。我们调用lazy_sum()时，每次调用都会返回一个新的函数，即使传入相同的参数。
+
+### 匿名函数
+
+```lambda x: x * x```实际上就是
+```
+def f(x):
+  return x*x
+```
+
+关键字**lambda**表示匿名函数，冒号前面的x表示函数参数。匿名函数有个限制，就是只能有一个表达式，不用写return，返回值就是该表达式的结果。
+
+### 装饰器
+
+在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）.装饰器的参数是函数，同时返回一个函数。
+```
+import functools
+def log(func):
+  @functools.wraps(func)
+  def wrapper(*args, **kw):
+    print('call %s():' % func.__name__)
+    return func(*args, **kw)
+  return wrapper
+```
+以上是一个decorator，所以接受一个函数作为参数，并返回一个函数。我们要借助Python的@语法，把decorator置于函数的定义处：
+```
+@log
+def now():
+    print('2015-3-25')
+```
+这样得到的结果是：
+```
+call now();
+2015-3-25
+```
+The above is simplified to ```now = log(now)```. But now本身而言，```now.__name__``` becomes ```wrapper```. So the above is changed and add ```@functools.wraps(func)```
+
+If I need to add param to log, then the function will modified to:
+```
+import functools
+def log(text): # text is "I " here
+  def decorator(func): # param is now
+    @functools.wraps(func)
+    def wrapper(*args, **kw): #now param
+      print('%s cal %s' %(text, func.__name__))
+      return func(*args, **kw) #let now() to run
+    return wrapper
+  return decorator
+@log("I ")
+def now():
+  print('2015-3-25')
+```
+The above decorator is simplified to ```now = log('execute')(now)```
+
+### 偏函数
+
+functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。
+```
+int('1234', base = 10) # return 1234
+int2 = functools.partial(int, base = 2)
+int2('101') #return 5
+```
+int2仅仅固定base参数，所以```int2('101', base = 10)```同样会返回101.
+
+### 类的私有对象和访问限制
+
+如果要让内部属性不被外部访问，可以把属性的名称前加上两个下划线__，在Python中，实例的变量名如果以__开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问。
+```
+class Student(object):
+
+    def __init__(self, name, score):
+        self.__name = name
+        self.__score = score
+
+    def print_score(self):
+        print('%s: %s' % (self.__name, self.__score))
+```
+- [ ] 在Python中，变量名类似__xxx__的，也就是以双下划线开头，并且以双下划线结尾的，是特殊变量，特殊变量是可以直接访问的，不是private变量，所以，不能用__name__、__score__这样的变量名。
+- [ ] 以一个下划线开头的实例变量名，比如_name，这样的实例变量外部是可以访问的，但是，按照约定俗成的规定，当你看到这样的变量时，意思就是，“虽然我可以被访问，但是，请把我视为私有变量，不要随意访问”。
+
+### 类的继承与多态
+
+```
+class Animal(object):
+    def run(self):
+        print('Animal is running...')
+# inherit from Animal
+class Cat(Animal):
+    def run(self):
+        print('Cat is running...')
+    def eat(self):
+        print('Cat eats fish.')
+class Dog(Animal):
+    def run(self):
+        print('Dog is running...')
+    def eat(self):
+        print('Dog eats meat')
+```
+
+Polymorphism can be accomplished by this way:
+```
+def run_twice(animal):
+    animal.run()
+```
+We could have this result:
+```
+>>> run_twice(Animal())
+Animal is running...
+Animal is running...
+>>> run_twice(Dog())
+Dog is running...
+Dog is running...
+>>> run_twice(Cat())
+Cat is running...
+Cat is running...
+```
+
+对于一个变量，我们只需要知道它是```Animal```类型，无需确切地知道它的子类型，就可以放心地调用```run()```方法，而具体调用的```run()```方法是作用在*Animal、Dog、Cat*还是其他Animal子类对象上，由运行时该对象的确切类型决定，这就是多态真正的威力：调用方只管调用，不管细节，而当我们新增一种Animal的子类时，只要确保run()方法编写正确，不用管原来的代码是如何调用的。这就是著名的“开闭”原则：
+
+对扩展开放：允许新增Animal子类；对修改封闭：不需要修改依赖Animal类型的run_twice()等函数。
+
+**静态语言 vs 动态语言**
+
+对于静态语言（例如Java, C++）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法。
+
+对于Python这样的动态语言来说，则**不一定需要传入Animal类型**。我们只需要保证传入的对象有一个run()方法就可以了：
+```
+class Timer(object):
+    def run(self):
+        print('Start...')
+```
+这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要*“看起来像鸭子，走起路来像鸭子”*，那它就可以被看做是鸭子。
+
+Python的“file-like object“就是一种鸭子类型。对真正的文件对象，它有一个read()方法，返回其内容。但是，许多对象，只要有read()方法，都被视为“file-like object“。许多函数接收的参数就是“file-like object“，你不一定要传入真正的文件对象，完全可以传入任何实现了read()方法的对象。
+```
+def readImage(fp):
+    if hasattr(fp, 'read'):
+        return readData(fp)
+    return None
+```
+从文件流fp中读取图像，我们首先要判断该fp对象是否存在read方法，如果存在，则该对象是一个流。但有read()方法，不代表该fp对象就是一个文件流，它也可能是网络流，也可能是内存中的一个字节流，但只要read()方法返回的是有效的图像数据，就不影响读取图像的功能。
+
+## 获取对象信息
+
+```
+>>> type(123)
+<class 'int'>
+>>> type('str')
+<class 'str'>
+>>> type(None)
+<type(None) 'NoneType'>
+>>> type(abs)
+<class 'builtin_function_or_method'>
+>>> a = Animal()
+>>> type(a)
+<class '__main__.Animal'>
+```
+----------------------------------------------
+
+对于class的继承关系来说，使用type()就很不方便。我们要判断class的类型，可以使用isinstance()函数:
+```
+# object -> Animal -> Dog -> Husky
+>>> a = Animal()
+>>> d = Dog()
+>>> h = Husky()
+>>> isinstance(h, Husky)
+True
+>>> isinstance(h, Dog)
+True
+>>> isinstance(b'a', bytes)
+True
+>>> isinstance(123, int)
+True
+>>> isinstance('a', str)
+True
+## list or tuple, either is true.
+>>> isinstance([1, 2, 3], (list, tuple))
+True
+>>> isinstance((1, 2, 3), (list, tuple))
+True
+```
+
+------------------------------------------------
+
+使用```dir()```
+
+如果要获得一个对象的所有**属性**和**方法**，可以使用dir()函数，它返回一个包含字符串的list，比如，获得一个str对象的所有属性和方法:
+```
+>>> dir('ABC')
+['__add__', '__class__',..., '__subclasshook__', 'capitalize', 'casefold',..., 'zfill']
+```
+其中**__×××__**有特殊用途,比如**__len__**方法返回长度,调用```len()```函数试图获取一个对象的长度，实际上，在len()函数内部，它自动去调用该对象的```__len__()```方法。
+```
+>>> len('ABC')
+3
+>>> 'ABC'.__len__()
+3
+```
+
+- [ ] 我们自己写的类，如果也想用**len(myObj)**的话，就自己写一个```__len__()```方法：
+```
+>>> class MyDog(object):
+...     def __len__(self):
+...         return 100
+>>> dog = MyDog()
+>>> len(dog)
+100
+```
+
+## Python动态绑定属性和方法
+
+给类的对象绑定属性和方法：
+```
+## Bind attributes
+class Student(object):
+    pass
+>>> s = Student()
+>>> s.name = 'Michael' # 动态给实例绑定一个属性
+>>> print(s.name)
+Michael
+## Bind function
+>>> def set_age(self, age): # 定义一个函数作为实例方法
+...     self.age = age
+...
+>>> from types import MethodType
+>>> s.set_age = MethodType(set_age, s) # 给实例绑定一个方法
+>>> s.set_age(25) # 调用实例方法
+>>> s.age # 测试结果
+25
+```
+
+绑定对象不会影响该类其他对象的属性和方法，如果想给所有该类的对象都绑定属性和方法：
+```
+# Bind attributes
+Student.name = 'Mike'
+## Bind function to class
+>>> def set_score(self, score):
+...     self.score = score
+...
+>>> Student.set_score = set_score
+```
+
+使用```__slot__```限制class可以绑定（添加）的属性，```__slots__```定义的属性仅对当前类实例起作用，对继承的子类是不起作用的。
+```
+class Student(object):
+    __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+```
+
+### 使用property
+
+Python内置的@property装饰器就是负责把一个方法变成属性调用的：
+```
+class Student(object):
+
+    @property
+    def score(self):
+        return self._score
+
+    @score.setter
+    def score(self, value):
+        if not isinstance(value, int):
+            raise ValueError('score must be an integer!')
+        if value < 0 or value > 100:
+            raise ValueError('score must between 0 ~ 100!')
+        self._score = value
+>>> s = Student()
+>>> s.score = 60 # OK，实际转化为s.set_score(60)
+>>> s.score # OK，实际转化为s.get_score()
+60
+>>> s.score = 9999
+Traceback (most recent call last):
+...
+ValueError: score must between 0 ~ 100!
+```

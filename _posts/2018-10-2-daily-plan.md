@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Daily Plan
-date: 2019-07-02
+date: 2018-10-02
 categories: blog
 tags: [个人总结]
 description: Life must have a goal
@@ -145,7 +145,7 @@ go to the horse's mouth
 
 - effective C++ 第三章
 - liaoxuefeng python(错误调试，IO编程)
-- sophia's world 10pages
+- Mindset 10 to 20 pages
 
 6. 10-4
 
@@ -156,19 +156,19 @@ go to the horse's mouth
 
 - effective C++ 第四章
 - liaoxuefeng python(进程和线程，正则表达式)
-- sophia's world 20pages
+- Mindset 10 to 20 pages
 
 8. 10-6
 
 - effective C++ 第五章
 - liaoxuefeng python(内建模块)
-- sophia's world 20 pages
+- Mindset 10 to 20 pages
 
 9. 10-7
 
 - effective C++ 第六章
 - - liaoxuefeng python(异步IO，常用第三方模块)
-- sophia's world 20pages
+- Mindset 10 to 20 pages
 
 10. 10-8
 

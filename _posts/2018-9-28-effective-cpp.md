@@ -167,7 +167,7 @@ f2(someFunc); // param deduced as ref-to-func; type is void (&)(int, double)
 ## conclusion
 
 ```
-                   Things to Remember
+      Things to Remember
 • During template type deduction, arguments that are references are treated as
 non-references, i.e., their reference-ness is ignored.
 • When deducing types for universal reference parameters, lvalue arguments get
@@ -212,7 +212,7 @@ int x3 = {27};
 int x4{27}
 ```
 The above is the same in c++11 to one result: an int with value 27. And use *auto* to replace the above *int*.
-Then the first two is ditto and the last two ones become **std::initializer_list<T>**. The treatment of braced(means {}) initializers is the only way in which auto type deduction and template type deduction differ. So the only real difference between auto and template type deduction is that auto assumes that a braced initializer represents a **std::initializer_list**, but template type deduction doesn’t. The evidence is shown the following:
+Then the first two is ditto and the last two ones become ```std::initializer_list<T>```. The treatment of braced(means {}) initializers is the only way in which auto type deduction and template type deduction differ. So the only real difference between auto and template type deduction is that auto assumes that a braced initializer represents a ```std::initializer_list```, but template type deduction doesn’t. The evidence is shown the following:
 ```
 template <typename T>
 void f(T param);
@@ -236,7 +236,7 @@ const Widget& cw = w;
 auto myWidget1 = cw; // auto type deduction(by-value): myWidget1's type is Widget
 decltype(auto) myWidget2 = cw; // decltype type deduction: myWidget2's type is const Widget&
 ```
-Just like the above myWidget1 and myWidget2, the value of function returning can not be auto. If not, the reference and anyother things will diminish.
+Just like the above ```myWidget1``` and ```myWidget2```, the value of function returning can not be auto. If not, the reference and anyother things will diminish.
 
 In according to rvalue and lvalue, the function's parameter becomes universal reference.
 ```
@@ -261,7 +261,7 @@ return std::forward<Container>(c)[i];
 ## Conclusion
 
 ```
-         Things to Remember
+      Things to Remember
  • decltype almost always yields the type of a variable or expression without any modifications.
  • For lvalue expressions of type T other than names, decltype always reports a type of T&.
  • C++14 supports decltype(auto), which, like auto, deduces a type from its initializer, but it performs the type deduction using the decltype rules.
@@ -270,7 +270,7 @@ return std::forward<Container>(c)[i];
 
 # 4. Know how to view deduced types
 
-*std::type_info::name* mandates that the type be treated as if it had been passed to a template
+```std::type_info::name``` mandates that the type be treated as if it had been passed to a template
 function as a by-value parameter. e.g.
 
 ```
@@ -280,7 +280,7 @@ std::cout << typeid(y).name() << '\n'; // x and y
 
 Boost TypeIndex library (often written as Boost.TypeIndex) is designed to succeed. And I don't want to expand the content.
 
-# 5. Prefer auto to explicit type
+# 5. Prefer auto to explicit type declarations
 
 Here, we insert something irrelevant to *auto*. It is how to reserve bidirectional iterators:
 ```
@@ -300,18 +300,47 @@ void my_reverse(BidirIt first, BidirIt last)
     }
 }
 ```
-**std::function** is a template in the C++11 Standard Library that *generalizes* the idea of a function pointer. But you must specify the type of function(function signature) to refer to when you create a std::function object.
+**std::function** is a template in the C++11 Standard Library that *generalizes* the idea of a function pointer. But you must specify the type of function(function signature) to refer to when you create a std::function object. the ```std::function``` approach is generally bigger and slower than the *auto* approach, and it may yield out-of-memory exceptions, too.
 
 ```
 std::vector<int> v;
-unsigned n = v.size()
+unsigned int n = v.size()
 ```
-To be honest, the real returning type of *v.size()* is **std::vector<int>::size_type**. It is the same with unsigned on 32-bit, but different on 64-bit
+To be honest, the real returning type of ```v.size()``` is ```std::vector<int>::size_type```. It is the same with *unsigned int* on 32-bit, but different on 64-bit.
 
 ```
 std::unordered_map<std::string, int> m;
 for(std::pair<std::string, int> &p: m){}
 ```
-This seem perfectly reasonable. But std::unordered_map's key is *const*, so it it std::pair<const std::string, int>. That will result in a temporary object producing.
+This seem perfectly reasonable. But std::unordered_map's key is *const*, so it it std::pair<const std::string, int>. That will result in a temporary object producing. Use auto: ```for(const auto& p: m){}```.
+
+The above examples show how	**explicitly specifying** types can lead to **implicit conversions** that you neither want nor expect. If you use ```auto``` as the type of the target variable, you need not worry about mismatches between the type of variable you’re declaring and the type of the expression used to initialize it.
 
 # 6. Use the explicitly typed initializer idiom when auto deduces undesired types.
+
+First of all, we see the example:
+```
+Widget w;
+bool highPriority = feature(w)[5]; //std::vector<bool> feature(Widget);
+processWidget(w, highPriority);
+```
+The code is right, but we can change that to the following:
+```
+auto highPriority = feature(w)[5];
+```
+[ ] return T&, auto here is deduced bool& as matter of course. But C++ is not empowered to use ```bool&```. So *highPriority* is ```std::vector<bool>::reference```. One implementation is for such objects to contain a pointer to the machine word holding the referenced bit,
+plus the offset into that word for that bit. So the above code has some problems: highPriority references the type function feature returns which is a temporay object and is reserved until the sentence "feature(w)[5] finishs.
+
+```std::vector<bool>::reference``` is an example of a **proxy class**: a class that exists for the purpose of emulating and augmenting the behavior of some other type. As a general rule, “invisible” proxy classes don’t play well with auto. The explicitly typed initializer idiom involves declaring a variable with auto, but casting the initialization expression to the type you want auto to deduce. The code above is modified like that:```auto highPriority = static_cast<bool>(features(w)[5]);```.
+
+## Conclusion
+
+```
+				Things to Remember
+• “Invisible” proxy types can cause auto to deduce the “wrong” type for an ini‐
+tializing expression.
+• The explicitly typed initializer idiom forces auto to deduce the type you want
+it to have.
+• Implicit type deduction is forbidden in C++11 and easy to result in undefined behaviour.
+Sometimes, static_cast<> is adopted with auto.
+```

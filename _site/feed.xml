@@ -3,15 +3,266 @@
   <channel>
     <title>屋顶上的鱼</title>
     <description>于华超</description>
-    <link>http://bryanibit/</link>
-    <atom:link href="http://bryanibit/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 28 Sep 2018 16:41:00 +0800</pubDate>
-    <lastBuildDate>Fri, 28 Sep 2018 16:41:00 +0800</lastBuildDate>
+    <link>http://localhost:4000/</link>
+    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Tue, 02 Oct 2018 11:38:31 +0800</pubDate>
+    <lastBuildDate>Tue, 02 Oct 2018 11:38:31 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
+        <title>Daily Plan</title>
+        <description>&lt;blockquote&gt;
+  &lt;p&gt;Add &lt;strong&gt;github star repo&lt;/strong&gt; to plan!&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;模仿gridmap_octomap–&amp;gt;interactivepc将octomap投影到nav_msgs/occupancy&lt;/p&gt;
+
+&lt;h1 id=&quot;2018-7-第一个周&quot;&gt;2018-7 第一个周&lt;/h1&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;搞懂ETHZ的gird map和运行Autoware效果,读几篇Hibert maps相关文章
+boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱动的关闭问题&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-2-1&quot;&gt;2018-7-2 :+1:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：查看关于grid地图的多种方法，读一篇文献&lt;/li&gt;
+  &lt;li&gt;下午：看公开课，完成一周（第8周）的内容，并做笔记&lt;/li&gt;
+  &lt;li&gt;晚上：树mei派安装gitlab + download所有的依赖for工作站（到8：00～8：30） + 运动&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-3-tada&quot;&gt;2018-7-3 :tada:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：读完grid_map的论文，共22页&lt;/li&gt;
+  &lt;li&gt;下午：看公开课，看到第九周的内容&lt;/li&gt;
+  &lt;li&gt;晚上：读一篇英文小说，傲慢与偏见20分钟，对下午没有看完的第九周课程，继续看一下&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-4-rocket&quot;&gt;2018-7-4 :rocket:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：查看gridmap的readme，使用gridmap运行包中的pointcloud数据&lt;/li&gt;
+  &lt;li&gt;下午：查看elevation_map的代码&lt;/li&gt;
+  &lt;li&gt;晚上：读一篇英文小说，傲慢与偏见20分钟&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-5-metal&quot;&gt;2018-7-5 :metal:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：抛弃elevation_map，查看volumetric_map和grid_map直接绘制地图的可能性&lt;/li&gt;
+  &lt;li&gt;下午：同上&lt;/li&gt;
+  &lt;li&gt;晚上：公开课完成第9周前两节课&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-6-octocat&quot;&gt;2018-7-6 :octocat:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：不使用octomap，直接使用gridmap，尝试pointcloud&lt;/li&gt;
+  &lt;li&gt;下午：同上&lt;/li&gt;
+  &lt;li&gt;晚上：空&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h1 id=&quot;2018-7-第二个周&quot;&gt;2018-7 第二个周&lt;/h1&gt;
+
+&lt;h2 id=&quot;2018-7-9--camel&quot;&gt;2018-7-9  :camel:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：完成RCS建构搭建&lt;/li&gt;
+  &lt;li&gt;下午：同上&lt;/li&gt;
+  &lt;li&gt;晚上：看公开课第九周&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-10--sparkles&quot;&gt;2018-7-10  :sparkles:&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：安装新电脑&lt;/li&gt;
+  &lt;li&gt;下午：集成浙大slam代码&lt;/li&gt;
+  &lt;li&gt;晚上：公开课&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-11&quot;&gt;2018-7-11&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：docker-gitlab端口映射的搭建&lt;/li&gt;
+  &lt;li&gt;下午：同上，验收激光雷达&lt;/li&gt;
+  &lt;li&gt;晚上：docker搭建验收&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-12&quot;&gt;2018-7-12&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：修改Yaowen的ANS模块&lt;/li&gt;
+  &lt;li&gt;下午：同上&lt;/li&gt;
+  &lt;li&gt;晚上：公开课&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-13&quot;&gt;2018-7-13&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：修改ANS模块，现在将nml改完了，明天要改cfg，并用diag_NB工具调试&lt;/li&gt;
+  &lt;li&gt;下午：同上&lt;/li&gt;
+  &lt;li&gt;晚上：聚餐&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-14&quot;&gt;2018-7-14&lt;/h2&gt;
+
+&lt;p&gt;:octocat: 确认新的模块是可以运行的&lt;/p&gt;
+
+&lt;p&gt;bryan/ANS_test是push到git的模块; 桌面hee是由基于master修改的ans和原来的zt; bryan里面的hee-originalverson是没有修改的ans（没有加入sjdw-module的）和原来的zt&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;2018-7-18&quot;&gt;2018-7-18&lt;/h2&gt;
+
+&lt;p&gt;git中origin master（branch）和 working space 暂存区的区别，commit是到分支上而暂存区是每个分支共有吗？&lt;/p&gt;
+
+&lt;p&gt;看代码rcslib源码，传递long型的效果&lt;/p&gt;
+
+&lt;p&gt;/etc/modprode   /dev/rule.d&lt;/p&gt;
+
+&lt;p&gt;办理电脑入网，打电话给王申&lt;/p&gt;
+
+&lt;p&gt;询问张凯路径重规划的问题&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;上午：抽一会儿看一下线程的概念&lt;/li&gt;
+  &lt;li&gt;下午：今天任务大约完成&lt;/li&gt;
+  &lt;li&gt;晚上：English&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;we will stick to the strictest definition in the interest of clarity.&lt;/p&gt;
+
+&lt;p&gt;go to the horse’s mouth&lt;/p&gt;
+
+&lt;p&gt;属性图-概率图  场景建模模块 加个通道，
+64线，读32线，三张图，同样的消息类型&lt;/p&gt;
+
+&lt;h2 id=&quot;2018-7-31&quot;&gt;2018-7-31&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Merge code to track_uvc from dev_zjd&lt;/li&gt;
+  &lt;li&gt;采集数据&lt;/li&gt;
+  &lt;li&gt;激光标定&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;国庆9天&quot;&gt;国庆9天&lt;/h2&gt;
+
+&lt;p&gt;:camel: 多完成的加以备注&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;9-29&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective c++ 第一章（笔记blog）&lt;/li&gt;
+  &lt;li&gt;the giver 20th 21st&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;9-30&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective c++ 第二章&lt;/li&gt;
+  &lt;li&gt;liaoxuefeng python(函数式编程，面向对象编程，面向对象高级编程)(笔记blog)&lt;/li&gt;
+  &lt;li&gt;the giver 22th and the left&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-1&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Take a rest&lt;/li&gt;
+  &lt;li&gt;二十年&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-2&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Take a rest&lt;/li&gt;
+  &lt;li&gt;二十年&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-3&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective C++ 第三章&lt;/li&gt;
+  &lt;li&gt;liaoxuefeng python(错误调试，IO编程)&lt;/li&gt;
+  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-4&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Take a test&lt;/li&gt;
+  &lt;li&gt;二十年&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-5&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective C++ 第四章&lt;/li&gt;
+  &lt;li&gt;liaoxuefeng python(进程和线程，正则表达式)&lt;/li&gt;
+  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-6&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective C++ 第五章&lt;/li&gt;
+  &lt;li&gt;liaoxuefeng python(内建模块)&lt;/li&gt;
+  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-7&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;effective C++ 第六章&lt;/li&gt;
+  &lt;li&gt;
+    &lt;ul&gt;
+      &lt;li&gt;liaoxuefeng python(异步IO，常用第三方模块)&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;10-8&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;strong&gt;Go to work&lt;/strong&gt;&lt;/p&gt;
+</description>
+        <pubDate>Tue, 02 Oct 2018 00:00:00 +0800</pubDate>
+        <link>http://localhost:4000/blog/2018/10/02/daily-plan/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/10/02/daily-plan/</guid>
+        
+        <category>个人总结</category>
+        
+        
+        <category>blog</category>
+        
+      </item>
+    
+      <item>
         <title>Effective C++</title>
-        <description>&lt;h1 id=&quot;template-type-deduce&quot;&gt;template type deduce&lt;/h1&gt;
+        <description>&lt;h1 id=&quot;1-template-type-deduce&quot;&gt;1. template type deduce&lt;/h1&gt;
 
 &lt;p&gt;The behaviour and purpose&lt;/p&gt;
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
@@ -123,7 +374,7 @@ f(rx); // T is int, param's type is int
 &lt;h3 id=&quot;array-arguments&quot;&gt;Array Arguments&lt;/h3&gt;
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;const char name[] = &quot;J. P. Briggs&quot;;
-const char * ptrToName = name; 
+const char * ptrToName = name;
 template&amp;lt;typename T&amp;gt;
 void f(T param); // template with by-value parameter
 f(name); // T is deduced to const char *, param is the same.
@@ -163,7 +414,7 @@ f2(someFunc); // param deduced as ref-to-func; type is void (&amp;amp;)(int, dou
 
 &lt;h2 id=&quot;conclusion&quot;&gt;conclusion&lt;/h2&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                   Things to Remember
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      Things to Remember
 • During template type deduction, arguments that are references are treated as
 non-references, i.e., their reference-ness is ignored.
 • When deducing types for universal reference parameters, lvalue arguments get
@@ -173,10 +424,164 @@ ments are treated as non-const and non-volatile.
 • During template type deduction, arguments that are array or function names
 decay to pointers, unless they’re used to initialize references.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;2-auto-type-deduction&quot;&gt;2. auto type deduction&lt;/h1&gt;
+
+&lt;h2 id=&quot;same-with-template-type-deduction&quot;&gt;Same with template type deduction&lt;/h2&gt;
+
+&lt;p&gt;When a variable is declared using &lt;em&gt;auto&lt;/em&gt;, auto plays the role of &lt;strong&gt;T&lt;/strong&gt; in the template, and
+the type specifier for the variable acts as &lt;em&gt;ParamType&lt;/em&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;------------lvalue reference-------------
+auto x = 27; //auto is deducted to int, x is int
+const auto cx = x; //auto is deducted to int, cx is const int
+const auto&amp;amp; rx = x; // auto is deducted to int, rx is const int&amp;amp;
+--------------universal reference--------
+auto&amp;amp;&amp;amp; uref1 = x; // x is int and lvalue, so uref1's type is int&amp;amp;
+auto&amp;amp;&amp;amp; uref2 = cx; // cx is const int and lvalue, so uref2's type is const int&amp;amp;
+auto&amp;amp;&amp;amp; uref3 = 27; // 27 is rvalue, so uref3's type is int&amp;amp;&amp;amp;
+const char name[] = // name's type is const char[13]
+----------array and function-------------
+&quot;R. N. Briggs&quot;;
+auto arr1 = name; // arr1's type is const char*
+auto&amp;amp; arr2 = name; // arr2's type is const char (&amp;amp;)[13]
+void someFunc(int, double); // someFunc is a function; type is void(int, double)
+auto func1 = someFunc; // func1's type is void (*)(int, double)
+auto&amp;amp; func2 = someFunc; // func2's type is void (&amp;amp;)(int, double)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The template type deduction is the same with the auto type deduction. They are essentially
+two sides of the same coin. Except for the one way they differ.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int x1 = 27;
+int x2(27);
+int x3 = {27};
+int x4{27}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above is the same in c++11 to one result: an int with value 27. And use &lt;em&gt;auto&lt;/em&gt; to replace the above &lt;em&gt;int&lt;/em&gt;.
+Then the first two is ditto and the last two ones become &lt;code class=&quot;highlighter-rouge&quot;&gt;std::initializer_list&amp;lt;T&amp;gt;&lt;/code&gt;. The treatment of braced(means {}) initializers is the only way in which auto type deduction and template type deduction differ. So the only real difference between auto and template type deduction is that auto assumes that a braced initializer represents a &lt;code class=&quot;highlighter-rouge&quot;&gt;std::initializer_list&lt;/code&gt;, but template type deduction doesn’t. The evidence is shown the following:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename T&amp;gt;
+void f(T param);
+f({1,2,3}); // fail
+template &amp;lt;typename T&amp;gt;
+void f(std::initializer_list&amp;lt;T&amp;gt; param);
+f({1,2,3}); // OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In C++14, the tale continues. C++14 permits auto to indicate that a function’s return type should be deduced, and
+C++14 lambdas may use auto in parameter declarations.
+auto in a function return type or a lambda parameter implies template type deduction, not auto type deduction.&lt;/p&gt;
+
+&lt;h1 id=&quot;3-understand-decltype&quot;&gt;3. Understand decltype&lt;/h1&gt;
+
+&lt;h2 id=&quot;decltype-type&quot;&gt;decltype type&lt;/h2&gt;
+
+&lt;p&gt;decltype saves the original type of variable, no complex deduction.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Widget w;
+const Widget&amp;amp; cw = w;
+auto myWidget1 = cw; // auto type deduction(by-value): myWidget1's type is Widget
+decltype(auto) myWidget2 = cw; // decltype type deduction: myWidget2's type is const Widget&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Just like the above &lt;code class=&quot;highlighter-rouge&quot;&gt;myWidget1&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;myWidget2&lt;/code&gt;, the value of function returning can not be auto. If not, the reference and anyother things will diminish.&lt;/p&gt;
+
+&lt;p&gt;In according to rvalue and lvalue, the function’s parameter becomes universal reference.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename Container, typename Index&amp;gt; // final
+decltype(auto) 															 // C++14
+authAndAccess(Container&amp;amp;&amp;amp; c, Index i) 			 // version
+{
+authenticateUser();
+return std::forward&amp;lt;Container&amp;gt;(c)[i];
+}
+--------------------------------------
+template&amp;lt;typename Container, typename Index&amp;gt; // final
+auto 																				 // C++11
+authAndAccess(Container&amp;amp;&amp;amp; c, Index i) 			 // version
+-&amp;gt; decltype(std::forward&amp;lt;Container&amp;gt;(c)[i])
+{
+authenticateUser();
+return std::forward&amp;lt;Container&amp;gt;(c)[i];
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-1&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;      Things to Remember
+ • decltype almost always yields the type of a variable or expression without any modifications.
+ • For lvalue expressions of type T other than names, decltype always reports a type of T&amp;amp;.
+ • C++14 supports decltype(auto), which, like auto, deduces a type from its initializer, but it performs the type deduction using the decltype rules.
+ • auto variables have their type deduced from their initializer,
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;4-know-how-to-view-deduced-types&quot;&gt;4. Know how to view deduced types&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;std::type_info::name&lt;/code&gt; mandates that the type be treated as if it had been passed to a template
+function as a by-value parameter. e.g.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; typeid(x).name() &amp;lt;&amp;lt; '\n'; // display types for
+std::cout &amp;lt;&amp;lt; typeid(y).name() &amp;lt;&amp;lt; '\n'; // x and y
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Boost TypeIndex library (often written as Boost.TypeIndex) is designed to succeed. And I don’t want to expand the content.&lt;/p&gt;
+
+&lt;h1 id=&quot;5-prefer-auto-to-explicit-type-declarations&quot;&gt;5. Prefer auto to explicit type declarations&lt;/h1&gt;
+
+&lt;p&gt;Here, we insert something irrelevant to &lt;em&gt;auto&lt;/em&gt;. It is how to reserve bidirectional iterators:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include&amp;lt;iterator&amp;gt;
+template&amp;lt;class BidirIt&amp;gt;
+void my_reverse(BidirIt first, BidirIt last)
+{
+    typename std::iterator_traits&amp;lt;BidirIt&amp;gt;::difference_type n = std::distance(first, last);//complete written
+		//auto n = std::distance(first, last);//correct like ditto
+    --n;
+    while(n &amp;gt; 0) {
+        typename std::iterator_traits&amp;lt;BidirIt&amp;gt;::value_type tmp = *first;//complete written
+				//auto tmp = *first;//correct like ditto
+        *(first++) = *(--last);
+        *last = tmp;
+        n -= 2;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;std::function&lt;/strong&gt; is a template in the C++11 Standard Library that &lt;em&gt;generalizes&lt;/em&gt; the idea of a function pointer. But you must specify the type of function(function signature) to refer to when you create a std::function object. the &lt;code class=&quot;highlighter-rouge&quot;&gt;std::function&lt;/code&gt; approach is generally bigger and slower than the &lt;em&gt;auto&lt;/em&gt; approach, and it may yield out-of-memory exceptions, too.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::vector&amp;lt;int&amp;gt; v;
+unsigned int n = v.size()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;To be honest, the real returning type of &lt;code class=&quot;highlighter-rouge&quot;&gt;v.size()&lt;/code&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;std::vector&amp;lt;int&amp;gt;::size_type&lt;/code&gt;. It is the same with &lt;em&gt;unsigned int&lt;/em&gt; on 32-bit, but different on 64-bit.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::unordered_map&amp;lt;std::string, int&amp;gt; m;
+for(std::pair&amp;lt;std::string, int&amp;gt; &amp;amp;p: m){}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This seem perfectly reasonable. But std::unordered_map’s key is &lt;em&gt;const&lt;/em&gt;, so it it std::pair&amp;lt;const std::string, int&amp;gt;. That will result in a temporary object producing. Use auto: &lt;code class=&quot;highlighter-rouge&quot;&gt;for(const auto&amp;amp; p: m){}&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The above examples show how	&lt;strong&gt;explicitly specifying&lt;/strong&gt; types can lead to &lt;strong&gt;implicit conversions&lt;/strong&gt; that you neither want nor expect. If you use &lt;code class=&quot;highlighter-rouge&quot;&gt;auto&lt;/code&gt; as the type of the target variable, you need not worry about mismatches between the type of variable you’re declaring and the type of the expression used to initialize it.&lt;/p&gt;
+
+&lt;h1 id=&quot;6-use-the-explicitly-typed-initializer-idiom-when-auto-deduces-undesired-types&quot;&gt;6. Use the explicitly typed initializer idiom when auto deduces undesired types.&lt;/h1&gt;
+
+&lt;p&gt;First of all, we see the example:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Widget w;
+bool highPriority = feature(w)[5]; //std::vector&amp;lt;bool&amp;gt; feature(Widget);
+processWidget(w, highPriority);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The code is right, but we can change that to the following:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto highPriority = feature(w)[5];
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;[ ] return T&amp;amp;, auto here is deduced bool&amp;amp; as matter of course. But C++ is not empowered to use &lt;code class=&quot;highlighter-rouge&quot;&gt;bool&amp;amp;&lt;/code&gt;. So &lt;em&gt;highPriority&lt;/em&gt; is &lt;code class=&quot;highlighter-rouge&quot;&gt;std::vector&amp;lt;bool&amp;gt;::reference&lt;/code&gt;. One implementation is for such objects to contain a pointer to the machine word holding the referenced bit,
+plus the offset into that word for that bit. So the above code has some problems: highPriority references the type function feature returns which is a temporay object and is reserved until the sentence “feature(w)[5] finishs.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;std::vector&amp;lt;bool&amp;gt;::reference&lt;/code&gt; is an example of a &lt;strong&gt;proxy class&lt;/strong&gt;: a class that exists for the purpose of emulating and augmenting the behavior of some other type. As a general rule, “invisible” proxy classes don’t play well with auto. The explicitly typed initializer idiom involves declaring a variable with auto, but casting the initialization expression to the type you want auto to deduce. The code above is modified like that:&lt;code class=&quot;highlighter-rouge&quot;&gt;auto highPriority = static_cast&amp;lt;bool&amp;gt;(features(w)[5]);&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-2&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• “Invisible” proxy types can cause auto to deduce the “wrong” type for an ini‐
+tializing expression.
+• The explicitly typed initializer idiom forces auto to deduce the type you want
+it to have.
+• Implicit type deduction is forbidden in C++11 and easy to result in undefined behaviour.
+Sometimes, static_cast&amp;lt;&amp;gt; is adopted with auto.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/09/28/effective-cpp/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/09/28/effective-cpp/</guid>
+        <link>http://localhost:4000/blog/2018/09/28/effective-cpp/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/28/effective-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -212,8 +617,8 @@ decay to pointers, unless they’re used to initialize references.
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 19 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/09/19/cross-obstacles/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/09/19/cross-obstacles/</guid>
+        <link>http://localhost:4000/blog/2018/09/19/cross-obstacles/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/19/cross-obstacles/</guid>
         
         <category>个人总结</category>
         
@@ -243,8 +648,8 @@ Eigen::Transform&amp;lt;float,3,Affine&amp;gt; combined =
 
 </description>
         <pubDate>Tue, 04 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/09/04/eigen-lib/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/09/04/eigen-lib/</guid>
+        <link>http://localhost:4000/blog/2018/09/04/eigen-lib/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/04/eigen-lib/</guid>
         
         <category>理论梳理</category>
         
@@ -373,8 +778,8 @@ children:
 
 </description>
         <pubDate>Sun, 26 Aug 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/08/26/yaml-cpp/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/08/26/yaml-cpp/</guid>
+        <link>http://localhost:4000/blog/2018/08/26/yaml-cpp/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/08/26/yaml-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -417,10 +822,37 @@ children:
 &lt;h2 id=&quot;海盗经济学&quot;&gt;海盗经济学&lt;/h2&gt;
 
 &lt;p&gt;海盗船实行的是民主（democracy），而商船实行的是专制（autocracy）；在海盗船上，甚至黑人（18th century)也能够享受和白人一样的权利，很少出现像商船那样，船长侮辱甚至殴打船员的现像，而且无论船长还是舵手和普通船员的工资差不多，没有商船上的差别那么悬殊。归结原因其实是&lt;em&gt;所有制&lt;/em&gt;导致了二者实行不同的管理制度，不同的管理制度保证了二者都有最大的总体利益，只是相对个人而言不甚相同。&lt;/p&gt;
+
+&lt;h2 id=&quot;精通数据科学&quot;&gt;精通数据科学&lt;/h2&gt;
+&lt;p&gt;The purpose of computing is insight, not numbers.
+If you are immune to boredom, there is literally nothing you cannot accomplish. – David Foster Wallace&lt;/p&gt;
+
+&lt;h2 id=&quot;effective-c&quot;&gt;Effective C++&lt;/h2&gt;
+&lt;p&gt;I have not been able to find a convincing explanation. But the rule is the rule, and this means you must
+remember that if you declare a variable using auto and you initialize it with a braced initializer, the deduced type will always be std::initializer_list. It’s especially important to bear this in mind if you embrace the philosophy of uniform initialization—of enclosing initializing values in braces &lt;strong&gt;as a matter of course(理所当然)&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;It provides results that leave you scratching your head and turning to reference works or online Q&amp;amp;A sites for revelation.&lt;/p&gt;
+
+&lt;p&gt;What may initially seem contradictory (decltype and auto?) actually makes perfect sense.&lt;/p&gt;
+
+&lt;p&gt;Employing pass-by value for objects of &lt;strong&gt;an unknown type&lt;/strong&gt; generally risks the performance hit of unnecessary
+copying, the behavioral problems of object slicing, and the sting of our coworkers’ derision.&lt;/p&gt;
+
+&lt;p&gt;bring it into accord with admonition 使之符合告诫&lt;/p&gt;
+
+&lt;p&gt;You’ll have to familiarize yourself with a few special cases. Most of these are too obscure to warrant discussion in a book like this, but looking at one lends insight into decltype as well as its use.&lt;/p&gt;
+
+&lt;p&gt;At the same time, don’t lose sight of the bigger picture.&lt;/p&gt;
+
+&lt;p&gt;I do my best to convice you to use lambdas instead of std::bind.&lt;/p&gt;
+
+&lt;p&gt;Take a deep breath and relax. auto is a option, not a mandate.&lt;/p&gt;
+
+&lt;p&gt;such abstract type information should almost always be at hand.&lt;/p&gt;
 </description>
         <pubDate>Fri, 27 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/07/27/miscellaneous/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/07/27/miscellaneous/</guid>
+        <link>http://localhost:4000/blog/2018/07/27/miscellaneous/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/27/miscellaneous/</guid>
         
         <category>技术总结</category>
         
@@ -714,8 +1146,8 @@ T* Instance(Args&amp;amp;&amp;amp;… args)
 
 </description>
         <pubDate>Fri, 20 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/07/20/cpp-11-14-17/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/07/20/cpp-11-14-17/</guid>
+        <link>http://localhost:4000/blog/2018/07/20/cpp-11-14-17/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/20/cpp-11-14-17/</guid>
         
         <category>技术总结</category>
         
@@ -740,8 +1172,8 @@ for (GridMapIterator it(map); !it.isPastEnd(); ++it){
 
 </description>
         <pubDate>Tue, 03 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/07/03/ethz-grid-map/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/07/03/ethz-grid-map/</guid>
+        <link>http://localhost:4000/blog/2018/07/03/ethz-grid-map/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/03/ethz-grid-map/</guid>
         
         <category>技术总结</category>
         
@@ -842,8 +1274,8 @@ switch(SLAMPOSAZIM_CHANNEL-&amp;gt;read())
 &lt;p&gt;在某个{aux_channel}n.hh中需要声明一个struct{结构体};，需要在该文件中同时声明&lt;code class=&quot;highlighter-rouge&quot;&gt;extern void nmlupdate(CMS *cms, {结构体名称} *x);&lt;/code&gt;，这将通过codegen产生结构体的构造函数&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Jun 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</guid>
+        <link>http://localhost:4000/blog/2018/06/29/realtimecontrolsystem/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/29/realtimecontrolsystem/</guid>
         
         <category>技术总结</category>
         
@@ -899,266 +1331,8 @@ b.linear() = a.rotation();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Wed, 13 Jun 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/06/13/laser-process/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/06/13/laser-process/</guid>
-        
-        <category>技术总结</category>
-        
-        
-        <category>blog</category>
-        
-      </item>
-    
-      <item>
-        <title>Gitlab on Docker</title>
-        <description>&lt;h2 id=&quot;安装docker-on-ubuntu&quot;&gt;安装docker on ubuntu&lt;/h2&gt;
-
-&lt;h3 id=&quot;uninstall-old-versions&quot;&gt;Uninstall old versions&lt;/h3&gt;
-
-&lt;p&gt;Older versions of Docker were called docker or docker-engine. If these are installed, uninstall them:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get remove docker docker-engine docker.io
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;prepare-install&quot;&gt;Prepare Install&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update
-$ sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Add Docker’s official GPG key:&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Verify that you now have the key with the fingerprint 9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88, by searching for the last 8 characters of the fingerprint.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-key fingerprint 0EBFCD88
-
-pub   4096R/0EBFCD88 2017-02-22
-      Key fingerprint = 9DC8 5822 9FC7 DD38 854A  E2D8 8D81 803C 0EBF CD88
-uid                  Docker Release (CE deb) &amp;lt;docker@docker.com&amp;gt;
-sub   4096R/F273FCD8 2017-02-22
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo add-apt-repository \
-   &quot;deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;如果是在arm的电脑上，将上面几行改为&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo add-apt-repository \
-   &quot;deb [arch=armhf] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable&quot;
-
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;install-docker-ce-community-edition&quot;&gt;Install Docker CE (Community Edition)&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo apt-get update
-$ sudo apt-get install docker-ce
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;verify-docker-ce-is-installed-correctly&quot;&gt;Verify Docker CE is installed correctly&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo docker run hello-world
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;镜像加速&quot;&gt;镜像加速&lt;/h3&gt;
-
-&lt;p&gt;..1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑&lt;strong&gt;/etc/default/docker&lt;/strong&gt;文件,在其中的&lt;strong&gt;DOCKER_OPTS&lt;/strong&gt;中添加获得的加速器配置**–registry-mirror=&lt;加速器地址&gt;**, 如:&lt;/加速器地址&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DOCKER_OPTS=&quot;--registry-mirror=https://jxus37ad.mirror.aliyuncs.com&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;重新启动服务。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo service docker restart
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;..2. 对于使用systemd的系统 (ubuntu 16.04),用&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;systemctl enable docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;启用服务后,编辑&lt;strong&gt;/etc/systemd/system/multi-user.target.wants/docker.service&lt;/strong&gt;文件,找到&lt;strong&gt;ExecStart=&lt;/strong&gt;这一行,在这行最后添加加速器地址**–registry-mirror=&lt;加速器地址&gt;**, 如:&lt;/加速器地址&gt;&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ExecStart=/usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;重新加载配置并且重新启动。&lt;/p&gt;
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ sudo systemctl daemon-reload
-$ sudo systemctl restart docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h2 id=&quot;deploy-gitlab-on-docker&quot;&gt;Deploy gitlab on docker&lt;/h2&gt;
-
-&lt;p&gt;参考gitlab官方网站关于docker的&lt;a href=&quot;https://docs.gitlab.com/omnibus/docker/README.html&quot;&gt;文档&lt;/a&gt;&lt;/p&gt;
-&lt;h3 id=&quot;pull镜像&quot;&gt;pull镜像&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker pull gitlab/gitlab-ce:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;启动gitlab&quot;&gt;启动Gitlab&lt;/h3&gt;
-
-&lt;p&gt;用下面的命令启动一个默认配置的Gitlab。如果我们只在本机测试使用的话，将hostname替换为localhost。如果需要让外部系统也能访问的话使用外网IP地址。&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker run --detach \
-    --hostname 127.0.0.1 \
-    --publish 443:443 --publish 80:80 --publish 22:22 \
-    --name gitlab \
-    --restart always \
-    --volume /srv/gitlab/config:/etc/gitlab \
-    --volume /srv/gitlab/logs:/var/log/gitlab \
-    --volume /srv/gitlab/data:/var/opt/gitlab \
-    gitlab/gitlab-ce:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;docker端口映射&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ip:hostport:containerport   #指定ip、指定主机port、指定容器port
-ip::containerport           #指定ip、未指定主机port、指定容器port
-hostport:container          #未指定ip port、指定主机port、指定容器port
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;可以采用以下的端口映射：&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo docker run --detach \
-    --hostname 127.0.0.1 \
-    --publish 4430:443 --publish 8000:80 --publish 2200:22 \
-    --name gitlab \
-    --restart always \
-    --volume /srv/gitlab/config:/etc/gitlab \
-    --volume /srv/gitlab/logs:/var/log/gitlab \
-    --volume /srv/gitlab/data:/var/opt/gitlab \
-    gitlab/gitlab-ce:latest
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;进人运行的容器（docker exec -it gitlab /bin/bash）&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Set external_url&lt;/strong&gt; :&lt;/p&gt;
-
-&lt;p&gt;[ ] For HTTP  external_url “http://gitlab.example.com:8000”&lt;/p&gt;
-
-&lt;p&gt;[ ] For HTTPS (notice the https)  external_url “https://gitlab.example.com:8000”&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Set gitlab_shell_ssh_port&lt;/strong&gt; :&lt;/p&gt;
-
-&lt;p&gt;&lt;em&gt;gitlab_rails[‘gitlab_shell_ssh_port’] = 2200&lt;/em&gt;&lt;/p&gt;
-
-&lt;p&gt;Following the above example you will be able to reach GitLab from your web browser under &lt;em&gt;hostIP&lt;/em&gt;:8000 and push using SSH under the port 2200.&lt;/p&gt;
-
-&lt;p&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo gitlab-ctl reconfigure&lt;/code&gt;更新docker配置。&lt;/p&gt;
-
-&lt;p&gt;不知道有没有必要：Just allow git to login by ssh. Edit &lt;em&gt;/etc/ssh/sshd_config&lt;/em&gt;, and add this content: &lt;em&gt;AllowUsers git&lt;/em&gt;.
-可以使用以下方法验证git服务器的ssh功能&lt;/p&gt;
-
-&lt;h3 id=&quot;增加内容git服务器ssh验证&quot;&gt;增加内容：git服务器ssh验证&lt;/h3&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ssh -p &amp;lt;port_num&amp;gt; git@192.168.1.254
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;如果以上的结果显示&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Welcome to GitLab, &amp;lt;UserName&amp;gt;!
-Connection to 192.168.1.254 closed.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;h3 id=&quot;一直出现restarting&quot;&gt;一直出现restarting&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;使用&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo docker logs &amp;lt;container_name&amp;gt;&lt;/code&gt;查看容器状态&lt;/li&gt;
-  &lt;li&gt;如果出现&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;exec user process caused &quot;exec format error&quot;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;说明下载的镜像不正确，不是适合x86或者arm的&lt;/p&gt;
-
-&lt;h2 id=&quot;gitlab迁移到another-pc&quot;&gt;gitlab迁移到another PC&lt;/h2&gt;
-
-&lt;p&gt;在原来PC上使用一下命令，并copy到新PC上&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker save -o gitlab.docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;在新PC上使用&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker load -i gitlab.docker
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;此时完成image拷贝到新电脑的过程，然后按照&lt;strong&gt;启动Gitlab&lt;/strong&gt;中的步骤，启动container for gitlab.&lt;/p&gt;
-
-&lt;p&gt;最后一步就是复制数据到新电脑上&lt;/p&gt;
-
-&lt;p&gt;将gitlab整个文件夹打包/压缩后复制到新PC。&lt;/p&gt;
-
-&lt;h2 id=&quot;remove-and-restore-for-docker-gitlab-installations&quot;&gt;Remove and Restore for DOCKER Gitlab installations&lt;/h2&gt;
-
-&lt;h3 id=&quot;在原来电脑上需要完成的工作&quot;&gt;在原来电脑上需要完成的工作：&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;You have run sudo gitlab-ctl reconfigure at least once. 保证配置文件生效，所有配置文件和gitlab配置相同，可以不使用。&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker exec -t &amp;lt;container name&amp;gt; gitlab-rake gitlab:backup:create //backup gitlab
-cp /etc/gitlab/gitlab-secrets.json ~/   //This file contains the database encryption key, CI/CD variables, and variables used for two-factor authentication.
-cp /etc/gitlab/gitlab.rb ~/
-cp -r /etc/ssh ~/    //backup ssh key
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server. 
-代替地，可以选择将整个/etc/gitlab和/etc/ssh文件夹备份。&lt;/p&gt;
-
-&lt;h3 id=&quot;在新迁移的电脑上需要完成的工作&quot;&gt;在新迁移的电脑上需要完成的工作：&lt;/h3&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created. 在&lt;a href=&quot;https://hub.docker.com/r/gitlab/gitlab-ce/tags/&quot;&gt;dockerImage&lt;/a&gt;上查找一定版本tag，即gitlab/gitlab-ce:{tag_name}。&lt;/li&gt;
-  &lt;li&gt;GitLab is running. If not, start it using sudo gitlab-ctl start.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl stop unicorn  // Stop the processes that are connected to the database. Leave the rest of GitLab running.
-sudo gitlab-ctl stop sidekiq
-sudo gitlab-ctl status // verify the two processes are down
-sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!. 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Make sure your backup tarball (1493107454_2018_04_25_10.6.4-ce_gitlab_backup.tar) is in the backup directory described in the &lt;em&gt;gitlab.rb&lt;/em&gt; configuration &lt;em&gt;gitlab_rails[‘backup_path’]&lt;/em&gt;. The default is &lt;em&gt;/var/opt/gitlab/backups&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Restore /etc/gitlab/gitlab-secrets.json and /etc/ssh if necessary as mentioned above.&lt;/p&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;sudo gitlab-ctl restart  //Restart and check GitLab
-sudo gitlab-rake gitlab:check SANITIZE=true
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Make sure the server is OK in chrome with username and passward.&lt;/p&gt;
-
-&lt;h2 id=&quot;issues-on-gitlab-install&quot;&gt;Issues on Gitlab install&lt;/h2&gt;
-
-&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;docker logs -f gitlab&lt;/code&gt; shows &lt;em&gt;ERROR:  relation “plans” does not exist at character 183&lt;/em&gt;.&lt;/p&gt;
-
-&lt;p&gt;Use &lt;code class=&quot;highlighter-rouge&quot;&gt;docker exec -it gitlab gitlab-ctl restart gitlab-monitor&lt;/code&gt; to restart gitlab-monitor for shutting down gitlab-monitor to quiet the warning noise. The following command returns &lt;em&gt;ok: run: gitlab-monitor: (pid 1942) 1s&lt;/em&gt;, no need to reboot and your gitlab server should be OK!&lt;/p&gt;
-
-&lt;h2 id=&quot;disable-docker-autostart-container&quot;&gt;Disable docker autostart container&lt;/h2&gt;
-
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;docker inspect {my-container} //Look for RestartPolicy in the output
-docker update --restart=no {my-container}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-</description>
-        <pubDate>Sat, 26 May 2018 00:00:00 +0800</pubDate>
-        <link>http://bryanibit/blog/2018/05/26/docker-gitlab/</link>
-        <guid isPermaLink="true">http://bryanibit/blog/2018/05/26/docker-gitlab/</guid>
+        <link>http://localhost:4000/blog/2018/06/13/laser-process/</link>
+        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/13/laser-process/</guid>
         
         <category>技术总结</category>
         
