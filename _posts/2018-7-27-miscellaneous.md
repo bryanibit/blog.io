@@ -81,3 +81,5 @@ to rely on your compilers finding a way to take advantage of it.
 Don’t let the warm glow of this happy ending distract you from the true point of this Item
 
 Restrictions are imposed on their implementations.
+
+have endured my endless blathering about the rules governing the copy and move operations in C++11.

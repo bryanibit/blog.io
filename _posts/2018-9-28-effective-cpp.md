@@ -846,7 +846,8 @@ be used in a concurrent context.
 they’re suited for manipulation of only a single variable or memory location.
 ```
 
-# 17. Understand special member function generation
+# 17. Understand special member function generation (Generation of the copy operations in classes with an explicitly
+declared destructor is deprecated?)
 
 C++98 has four such functions: the default constructor, the destructor, the copy constructor, and the copy assignment operator.
 
@@ -862,25 +863,26 @@ Widget& operator=(Widget&& rhs); // move assignment operator
 };
 ```
 
-The move operations perform “**memberwise moves**” on the non-static data members of the class.
-the move assignment operator move-assigns each non-static data member and base class parts from its parameter.
+1. The move operations perform “**memberwise moves**” on the non-static data members of the class.
+2. The move assignment operator move-assigns each non-static data member and base class parts from its parameter.
 
 - [ ] Simply remember that a *default memberwise move* consists of move operations on data members and base classes that support move operations, but a copy operation for those that don’t.
 
-## self-defined move member functions (dctor influence copy Operations)
+## self-defined move member functions
 
-The two copy operations are independent: declaring one doesn’t prevent compilers from generating the other. The two move operations are not independent. If you declare either, that prevents compilers from generating the other.
+1. The two copy operations are independent: declaring one doesn’t prevent compilers from generating the other. The two move operations are not independent. If you declare either, that prevents compilers from generating the other.
 
 If you declare, say, a move constructor for your class, you’re indicating that there’s something about how move
 construction should be implemented that’s different from the **default memberwise move** that *compilers would generate*.
 
-Furthermore, move operations (construction or assignment) won’t be generated for any class if explicitly declaring a copy operation.
+1. Furthermore, move operations (construction or assignment) won’t be generated for any class if explicitly declaring a copy operation.
 The justification is that declaring a copy operation indicates that the normal approach to copying an object
 isn't appropriate for the class. Compiler figures that *memberwise move* is not as appropriate as *memberwise copy*.
 
-Declaring a move operation (construction or assignment) in a class causes compilers to disable the copy operations, too.
+2. Declaring a move operation (construction or assignment) in a class causes compilers to disable the copy operations, too.
 
-In C++98/11, the existence of a user-declared destructor had no impact on compilers’ willingness to generate copy operations.
+In C++98/11, the existence of a user-declared destructor had no impact on compilers’ willingness to generate copy operations. But C++11
+realise user-declared destructor means different memory management. So user-declared destructor will stop generating move operations.
 
 In C++11(C++98 no move operations), move operations are generated for classes (when needed) only if these three things are true:
 
