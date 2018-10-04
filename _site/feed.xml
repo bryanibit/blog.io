@@ -5,8 +5,8 @@
     <description>于华超</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Tue, 02 Oct 2018 11:38:31 +0800</pubDate>
-    <lastBuildDate>Tue, 02 Oct 2018 11:38:31 +0800</lastBuildDate>
+    <pubDate>Fri, 05 Oct 2018 00:43:52 +0800</pubDate>
+    <lastBuildDate>Fri, 05 Oct 2018 00:43:52 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -197,7 +197,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第三章&lt;/li&gt;
   &lt;li&gt;liaoxuefeng python(错误调试，IO编程)&lt;/li&gt;
-  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -216,7 +215,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第四章&lt;/li&gt;
   &lt;li&gt;liaoxuefeng python(进程和线程，正则表达式)&lt;/li&gt;
-  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -226,7 +224,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第五章&lt;/li&gt;
   &lt;li&gt;liaoxuefeng python(内建模块)&lt;/li&gt;
-  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -240,7 +237,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
       &lt;li&gt;liaoxuefeng python(异步IO，常用第三方模块)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
-  &lt;li&gt;Mindset 10 to 20 pages&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -514,7 +510,8 @@ return std::forward&amp;lt;Container&amp;gt;(c)[i];
 &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;std::type_info::name&lt;/code&gt; mandates that the type be treated as if it had been passed to a template
 function as a by-value parameter. e.g.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::cout &amp;lt;&amp;lt; typeid(x).name() &amp;lt;&amp;lt; '\n'; // display types for
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;typeinfo&amp;gt;
+std::cout &amp;lt;&amp;lt; typeid(x).name() &amp;lt;&amp;lt; '\n'; // display types for
 std::cout &amp;lt;&amp;lt; typeid(y).name() &amp;lt;&amp;lt; '\n'; // x and y
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -577,6 +574,534 @@ tializing expression.
 it to have.
 • Implicit type deduction is forbidden in C++11 and easy to result in undefined behaviour.
 Sometimes, static_cast&amp;lt;&amp;gt; is adopted with auto.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;7-distinguish-between--and--when-creating-objects&quot;&gt;7. Distinguish between () and {} when creating objects&lt;/h1&gt;
+
+&lt;p&gt;What can {} do?&lt;/p&gt;
+
+&lt;p&gt;Let try something simple.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Widget w1(10);// call Widget ctor with argument 10
+Widget w2(); //error, compiler see it to function returning Widget class
+Widget w3{}; // calls Widget ctor with no args
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto i = {1};
+typeid(i).name() //i, int
+auto j = {1, 2};
+typeid(j).name() //St16initializer_listIiE, initializer_list&amp;lt;int&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;We can see that {multiple element} will be an initializer_list. For example,&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget {
+public:
+Widget(int i, bool b);
+Widget(int i, double d);
+Widget(std::initializer_list&amp;lt;bool&amp;gt; il); // element type is now bool
+... // no implicit conversionEntities funcs
+};
+Widget w{10, 5.0}; // use initializer_list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;One rule is that {} is not allowed implicit conversion, but I think it it not certain every time. But if the code above is changed to &lt;code class=&quot;highlighter-rouge&quot;&gt;Widget(std::initializer_list&amp;lt;std::string&amp;gt; il)&lt;/code&gt;, then &lt;code class=&quot;highlighter-rouge&quot;&gt;Widget w{10, 5.0}&lt;/code&gt; will use &lt;code class=&quot;highlighter-rouge&quot;&gt;Widget(int i, double d)&lt;/code&gt; as ctor.&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;std::vector&amp;lt;T&amp;gt;&lt;/code&gt; has initializer_list ctor, so&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::vector v1(10, 20); // 10 20s
+std::vector v1{10, 20}; //two elements 10 and 20
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-3&quot;&gt;conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;						Things to Remember
+• Braced initialization is the most widely usable initialization syntax, it prevents
+narrowing conversions, and it’s immune to C++’s most vexing parse.
+• During constructor overload resolution, braced initializers are matched to
+std::initializer_list parameters if at all possible, even if other construc‐
+tors offer seemingly better matches.
+• An example of where the choice between parentheses and braces can make a
+significant difference is creating a std::vector&amp;lt;numeric type&amp;gt; with two
+arguments.
+• Choosing between parentheses and braces for object creation inside templates
+can be challenging.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;prefer-nullptr-to-0-and-null&quot;&gt;Prefer nullptr to 0 and NULL&lt;/h2&gt;
+
+&lt;p&gt;It is the blending of NULL and 0 that C++98 programmers avoid overloading on pointer and
+integral types. &lt;code class=&quot;highlighter-rouge&quot;&gt;“I’m calling f with NULL -- the null pointer”&lt;/code&gt; and its actual meaning &lt;code class=&quot;highlighter-rouge&quot;&gt;“I’m calling f with
+some kind of integrals -- not the null pointer”&lt;/code&gt;. NULL has a integer type and nullptr’s advantage is that it doesn’t have an integral type.
+You can think &lt;strong&gt;nullptr&lt;/strong&gt; as a point of all type.&lt;/p&gt;
+
+&lt;p&gt;nullptr is derived from &lt;code class=&quot;highlighter-rouge&quot;&gt;std::nullptr_t&lt;/code&gt;, which can convert to any raw pointers.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void* a = nullptr;
+a == 0; // true
+int a = 0;
+a == nullptr; //error: invalid operands of types ‘int’
+              //and ‘std::nullptr_t’ to binary ‘operator==’
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;h2 id=&quot;conclusion-4&quot;&gt;conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Prefer nullptr to 0 and NULL.
+• Avoid overloading on integral and pointer types.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;9-prefer-alias-declarations-to-typedefs&quot;&gt;9. Prefer alias declarations to typedefs&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//a unique_ptr
+typedef std::unique_ptr&amp;lt;std::unordered_map&amp;lt;std::string, std::string&amp;gt;&amp;gt; UPtrMapSS; //c++ 98
+using UPtrMapSS = std::unique_ptr&amp;lt;std::unordered_map&amp;lt;std::string, std::string&amp;gt;&amp;gt;; //c++ 11
+//FP is a synonym for a pointer to a function taking an int and
+// a const std::string&amp;amp; and returning nothing
+typedef void (*FP)(int, const std::string&amp;amp;)
+using FP = void (*)(int, const std::string&amp;amp;);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;alias-template&quot;&gt;alias template&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;//set structure member saving typedef objects
+template&amp;lt;typename T&amp;gt; // MyAllocList&amp;lt;T&amp;gt;::type is synonym for std::list&amp;lt;T,MyAlloc&amp;lt;T&amp;gt;&amp;gt;
+struct MyAllocList {
+typedef std::list&amp;lt;T, MyAlloc&amp;lt;T&amp;gt;&amp;gt; type; //type could change to any name you like
+};
+MyAllocList&amp;lt;Widget&amp;gt;::type lw; // client code
+---------------------------
+template&amp;lt;typename T&amp;gt;
+using MyAllocList = std::list&amp;lt;T, MyAlloc&amp;lt;T&amp;gt;&amp;gt;; // MyAllocList&amp;lt;T&amp;gt; is synonym for std::list&amp;lt;T,MyAlloc&amp;lt;T&amp;gt;&amp;gt;
+MyAllocList&amp;lt;Widget&amp;gt; lw; // client code
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you want to use typedef inside a template for purpose of creating a linked list holding
+objects of a type specified by a template parameter, you need to precede the &lt;strong&gt;typedef name&lt;/strong&gt; with &lt;code class=&quot;highlighter-rouge&quot;&gt;typename&lt;/code&gt;.
+For instance,&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename T&amp;gt;
+class Widget{
+	private:
+		typename MyAllocList&amp;lt;T&amp;gt;::type lw;// structure member type
+		...
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here, MyAllocList&lt;T&gt;::type refers to a type that’s dependent on a template type
+parameter (T). MyAllocList&lt;T&gt;::type is thus a *dependent type*, and one of C++’s
+many endearing rules is that the names of dependent types must be preceded by type
+name.&lt;/T&gt;&lt;/T&gt;&lt;/p&gt;
+
+&lt;p&gt;If MyAllocList is defined as an alias template, this need for typename vanishes (as
+does the cumbersome “::type” suffix):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename T&amp;gt;
+class Widget{
+	private:
+	MyAllocList&amp;lt;T&amp;gt; lw;
+	...
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Alias template must name a type, &lt;code class=&quot;highlighter-rouge&quot;&gt;MyAllocList&amp;lt;T&amp;gt;&lt;/code&gt; above is thus a &lt;em&gt;non-dependent&lt;/em&gt; type. A &lt;strong&gt;typename&lt;/strong&gt;
+specifier is neither required nor permitted. However compiler can not know &lt;code class=&quot;highlighter-rouge&quot;&gt;MyAllocList&amp;lt;T&amp;gt;::type&lt;/code&gt;, which
+just a structure member object, so need &lt;strong&gt;typename&lt;/strong&gt; to tell compiler it refers to a type.&lt;/p&gt;
+
+&lt;h2 id=&quot;header-file-&quot;&gt;header file &lt;type_traits&gt;&lt;/type_traits&gt;&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::remove_const&amp;lt;T&amp;gt;::type // yields T from const T
+std::remove_reference&amp;lt;T&amp;gt;::type // yields T from T&amp;amp; and T&amp;amp;&amp;amp;
+std::add_lvalue_reference&amp;lt;T&amp;gt;::type // yields T&amp;amp; from T
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;C++14 add something simplified:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::remove_const&amp;lt;T&amp;gt;::type 					// C++11: const T → T
+std::remove_const_t&amp;lt;T&amp;gt;     					// C++14 equivalent
+std::remove_reference&amp;lt;T&amp;gt;::type 			// C++11: T&amp;amp;/T&amp;amp;&amp;amp; → T
+std::remove_reference_t&amp;lt;T&amp;gt;     			// C++14 equivalent
+std::add_lvalue_reference&amp;lt;T&amp;gt;::type  // C++11: T → T&amp;amp;
+std::add_lvalue_reference_t&amp;lt;T&amp;gt;      // C++14 equivalent
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above is achieved by :&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;class T&amp;gt;
+using remove_const_t = typename remove_const&amp;lt;T&amp;gt;::type;
+template &amp;lt;class T&amp;gt;
+using remove_reference_t = typename remove_reference&amp;lt;T&amp;gt;::type;
+template &amp;lt;class T&amp;gt;
+using add_lvalue_reference_t = typename add_lvalue_reference&amp;lt;T&amp;gt;::type;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-5&quot;&gt;conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• typedefs don’t support templatization, but alias declarations do.
+• Alias templates avoid the “::type” suffix and, in templates, the “typename”
+prefix often required to refer to typedefs.
+• C++14 offers alias templates for all the C++11 type traits transformations.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;10-prefer-scoped-enum-s-to-unscoped-enum-s&quot;&gt;10. Prefer scoped enum s to unscoped enum s&lt;/h1&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;enum Color { black, white, red }; // unscoped enum
+Color c = red;
+--------------------------------
+enum class Color { black, white, red }; // enum is now scoped
+Color c = Color::red;
+c &amp;gt; 14.5;//error, c is class, can not compare with int
+static_cast&amp;lt;int&amp;gt;(c) &amp;gt; 14.5; // OK
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In practice, the declaration and definition of enum are separated:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;enum class Status; // forward declaration(.h)
+enum class Status{one, two, three}; // definition(.cc)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Here, &lt;em&gt;Status&lt;/em&gt;’s underlying type is int. We can specify it using:&lt;code class=&quot;highlighter-rouge&quot;&gt;enmu class Status:std::uint32_t{one, two}&lt;/code&gt;(combine definition and declaration from &lt;cstdin&gt;). We can often use enum as int number, for example:&lt;/cstdin&gt;&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// unscoped enum
+using UserInfo = std::tuple&amp;lt;std::string, std::string, std::size_t&amp;gt;
+enum UserInfoFields { uiName, uiEmail, uiReputation };
+UserInfo uInfo;
+auto val = std::get&amp;lt;uiEmail&amp;gt;(uInfo);//tuple member function get&amp;lt;T&amp;gt;()
+---------------------------------------
+// scoped enum
+using UserInfo = std::tuple&amp;lt;std::string, std::string, std::size_t&amp;gt;
+enum class UserInfoFields { uiName, uiEmail, uiReputation };
+UserInfo uInfo;
+auto val = std::get&amp;lt;static_cast&amp;lt;std::size_t&amp;gt;(UserInfoFields::uiEmail)&amp;gt;(uInfo);//tuple member function get&amp;lt;T&amp;gt;()
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;In fact, there is a function which access &lt;strong&gt;enum&lt;/strong&gt;’s underlying type via the &lt;code class=&quot;highlighter-rouge&quot;&gt;std::underlying_type&lt;/code&gt; type trait.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename E&amp;gt;
+constexpr typename std::underlying_type&amp;lt;E&amp;gt;::type//C++11
+//constexpr typename std::underlying_type_t&amp;lt;E&amp;gt;  //C++14
+//constexpr auto                                //C++14
+toUType(E enumerator) noexcept
+{
+return
+static_cast&amp;lt;typename std::underlying_type&amp;lt;E&amp;gt;::type&amp;gt;(enumerator);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So &lt;code class=&quot;highlighter-rouge&quot;&gt;auto val = std::get&amp;lt;toUType(UserInfoFields::uiEmail)&amp;gt;(uInfo)&lt;/code&gt; replaces the above &lt;code class=&quot;highlighter-rouge&quot;&gt;static_cast&amp;lt;std::size_t&amp;gt;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-6&quot;&gt;conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• C++98-style enums are now known as unscoped enums.
+• Enumerators of scoped enums are visible only within the enum. They convert
+to other types only with a cast.
+• Both scoped and unscoped enums support specification of the underlying type.
+The default underlying type for scoped enums is int. Unscoped enums have no
+default underlying type.
+• Scoped enums may always be forward-declared. Unscoped enums may be
+forward-declared only if their declaration specifies an underlying type.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;11-prefer-deleted-functions-to-private-undefined-ones&quot;&gt;11. Prefer deleted functions to private undefined ones&lt;/h1&gt;
+
+&lt;p&gt;In C++98, declaring class member functions &lt;em&gt;private&lt;/em&gt; prevents clients(class objects) from calling them.
+Deliberately failing to define them means that if code that still has access to them (i.e., member
+functions or friends of the class) uses them, linking will fail due to missing function definition.&lt;/p&gt;
+
+&lt;p&gt;In C++11, there’s a better way to achieve essentially the same end: use &lt;code class=&quot;highlighter-rouge&quot;&gt;= delete&lt;/code&gt; to
+mark the copy constructor and the copy assignment operator as &lt;strong&gt;deleted functions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;An important advantage of deleted functions is that &lt;em&gt;any function&lt;/em&gt; may be deleted,
+while only member functions may be private.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;bool isLucky(int number); // original function
+bool isLucky(char) = delete; // reject chars
+bool isLucky(bool) = delete; // reject bools
+bool isLucky(double) = delete; // reject doubles and floats
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Delete a template instantiation inside a class:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// global template
+template&amp;lt;typename T&amp;gt;
+void processPointer(T* ptr);
+template&amp;lt;&amp;gt;
+void processPointer&amp;lt;void&amp;gt;(void*) = delete;
+----------------------------------------
+// class template functions
+class Widget {
+public:
+...
+template&amp;lt;typename T&amp;gt;
+void processPointer(T* ptr)
+{ ... }
+...
+};
+template&amp;lt;&amp;gt;
+void Widget::processPointer&amp;lt;void&amp;gt;(void*) = delete;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;template specializations must be written at namespace scope, not class scope.
+They can be deleted outside the class(hence at namespace scope).&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-7&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Prefer deleted functions to private undefined ones.
+• Any function may be deleted, including non-member functions and template
+instantiations.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;12-declare-overriding-functions-override&quot;&gt;12. Declare overriding functions override&lt;/h1&gt;
+
+&lt;p&gt;For overriding to occur, several requirments must be met:
+• The base class function must be virtual.
+• The base and derived function names must be identical (except in the case of
+destructors).
+• The parameter types of the base and derived functions must be identical.
+• The constness of the base and derived functions must be identical.
+• The return types and exception specifications of the base and derived functions
+must be compatible.
+• The functions’ reference qualifiers must be identical.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;The last requirment points:
+class Widget {
+public:
+...
+void doWork() &amp;amp;; // this version of doWork applies only when *this is an lvalue
+void doWork() &amp;amp;&amp;amp;; // this version of doWork applies only when *this is an rvalue
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;A policy of using override on all your &lt;strong&gt;derived class&lt;/strong&gt; overrides can do more than just
+enable compilers to tell you when would-be overrides aren’t overriding anything.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Base {
+public:
+virtual void mf1() const;
+virtual void mf2(int x);
+virtual void mf3() &amp;amp;;
+virtual void mf4() const;
+};
+class Derived: public Base {
+public:
+virtual void mf1() const override;
+virtual void mf2(int x) override;
+virtual void mf3() &amp;amp; override;
+void mf4() const override;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Let me show you reference qualifiers:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget {
+public:
+using DataType = std::vector&amp;lt;double&amp;gt;;
+...
+DataType&amp;amp; data() &amp;amp;
+{ return values; } // for lvalue Widgets, return lvalue
+DataType data() &amp;amp;&amp;amp; // for rvalue Widgets, return rvalue
+{ return std::move(values); }
+...
+private:
+DataType values;
+};
+Widget w;
+auto val1 = w.data();//calls lvalue overload for Widget::data, copy-constructs for val1
+auto val2 = makeWidget().data();//calls rvalue overload for Widget::data, move-construct for val2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-8&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Declare overriding functions override.
+• Member function reference qualifiers make it possible to treat lvalue and rvalue objects (*this) differently.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;13-prefer-const_iterators-to-iterators&quot;&gt;13. Prefer const_iterators to iterators&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;const_iterator&lt;/code&gt;s simply don’t convert to &lt;code class=&quot;highlighter-rouge&quot;&gt;iterator&lt;/code&gt;s.&lt;/p&gt;
+
+&lt;p&gt;C++11 added the &lt;strong&gt;non-member&lt;/strong&gt; function &lt;code class=&quot;highlighter-rouge&quot;&gt;begin&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;end&lt;/code&gt;, but it failed to add &lt;code class=&quot;highlighter-rouge&quot;&gt;cbegin&lt;/code&gt;,  &lt;code class=&quot;highlighter-rouge&quot;&gt;rbegin&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;rend&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;crbegin&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;crend&lt;/code&gt;. For example, you can write non-memnber &lt;em&gt;cbegin&lt;/em&gt; youselves:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename C&amp;gt;
+auto cbegin(const C&amp;amp; container)
+-&amp;gt; decltype(std::begin(container))
+{
+	return std::begin(container);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In C++11, std::vector has member function &lt;em&gt;cbegin&lt;/em&gt; and &lt;em&gt;cend&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;algorithm&amp;gt;//std::find
+#include &amp;lt;vector&amp;gt;
+#include &amp;lt;typeinfo&amp;gt;
+#include &amp;lt;iterator&amp;gt;
+int main(){
+	std::vector&amp;lt;int&amp;gt; v{1,2,3,4,5};
+	// auto ite is also OK
+	std::vector&amp;lt;int&amp;gt;::const_iterator ite = std::find(v.cbegin(), v.cend(), 3);
+	std::cout &amp;lt;&amp;lt; &quot;ite type is &quot; &amp;lt;&amp;lt; typeid(ite).name() &amp;lt;&amp;lt; std::endl;
+	v.insert(ite, 2);
+	for(auto &amp;amp;p: v)
+		std::cout &amp;lt;&amp;lt; &quot;v is &quot; &amp;lt;&amp;lt; p &amp;lt;&amp;lt; std::endl;
+	return 0;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If you change compiler to C++14, the following is OK:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template &amp;lt;typename C, typename T&amp;gt;
+void findAndInsert(C&amp;amp; container, const T&amp;amp; valueFind, const T&amp;amp; valueInsert)
+{
+	//non-member function
+	auto place = std::find(std::cbegin(container), std::cend(container), valueFind);
+	container.insert(place, valueInsert);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-9&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Prefer const_iterators to iterators.
+• In maximally generic code, prefer non-member versions of begin, end,
+rbegin, etc., over their member function counterparts.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;14-declare-functions-noexcept-if-they-wont-emit-exceptions&quot;&gt;14. Declare functions noexcept if they won’t emit exceptions&lt;/h1&gt;
+
+&lt;h1 id=&quot;15-use-constexpr-whenever-possible&quot;&gt;15. Use constexpr whenever possible&lt;/h1&gt;
+
+&lt;p&gt;Conceptually, constexpr indicates a value that’s not only constant, it’s known during compilation. I’ll just say that you can’t assume that the results of constexpr functions are const, nor can you take for granted that their values are known during compilation.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;constexpr&lt;/em&gt; objects are, in fact, &lt;em&gt;const&lt;/em&gt;, have values at compile time. ((Technically, their values are
+determined during translation, and translation consists not just of compilation but also of linking.)&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int a = 2;
+const auto b = a; //find, b is const copy of a
+constexpr auto c = a; //error, value not known at compilation time
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;all &lt;strong&gt;constexpr&lt;/strong&gt; objects are const, but not all &lt;strong&gt;const&lt;/strong&gt; objects are constexpr.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;constexpr int pow(int base, int exp) noexcept {}
+constexpr auto numConds = 5;
+std::array&amp;lt;int, pow(3, numConds)&amp;gt; results; //std::array allocates memory at compilation time
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If &lt;em&gt;base&lt;/em&gt; and &lt;em&gt;exp&lt;/em&gt; are compile-time constants, &lt;code class=&quot;highlighter-rouge&quot;&gt;pow&lt;/code&gt;’s result may be used as a
+compile-time constant. If base and/or exp are not compile-time constants, &lt;code class=&quot;highlighter-rouge&quot;&gt;pow&lt;/code&gt;’s
+result will be computed at runtime.&lt;/p&gt;
+
+&lt;p&gt;If params of constexpr functions can be specified at compilation time, them the function should
+be computed at compilation time. C++11, constexpr member functions are implicitly const(const member functions
+are forbidden &lt;em&gt;this).
+And constexpr functions are limited to taking and returning *literal types&lt;/em&gt;. (void is not)&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-10&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• constexpr objects are const and are initialized with values known during
+compilation.
+• constexpr functions can produce compile-time results when called with
+arguments whose values are known during compilation.
+• constexpr objects and functions may be used in a wider range of contexts
+than non-constexpr objects and functions.
+• constexpr is part of an object’s or function’s interface.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;16-make-const-member-functions-thread-safe&quot;&gt;16. Make const member functions thread safe&lt;/h1&gt;
+
+&lt;p&gt;Operations on &lt;code class=&quot;highlighter-rouge&quot;&gt;std::atomic&lt;/code&gt; variables are often less expensive than &lt;strong&gt;mutex acquisition and release&lt;/strong&gt;, you may be tempted to lean on std::atomics more heavily than you should.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Point { // 2D point
+public:
+...
+double distanceFromOrigin() const noexcept
+{
+	++callCount; // atomic increment
+	return std::sqrt((x * x) + (y * y));
+}
+private:
+	mutable std::atomic&amp;lt;unsigned&amp;gt; callCount{ 0 };
+	double x, y;
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;There’s a lesson here. For a single variable or memory location requiring synchroni‐
+zation, use of a std::atomic is adequate, but once you get to two or more variables
+or memory locations that require manipulation as a unit, you should reach for a
+mutex.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget {
+public:
+...
+int magicValue() const
+{
+std::lock_guard&amp;lt;std::mutex&amp;gt; guard(m);// lock m
+if (cacheValid) return cachedValue;
+else {
+	auto val1 = expensiveComputation1();
+	auto val2 = expensiveComputation2();
+	cachedValue = val1 + val2;
+	cacheValid = true;
+	return cachedValue;
+			}
+}// unlock m
+...
+private:
+mutable std::mutex m;
+mutable int cachedValue; // no longer atomic
+mutable bool cacheValid{ false }; // no longer atomic
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-11&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Make const member functions thread safe unless you’re certain they’ll never
+be used in a concurrent context.
+• Use of std::atomic variables may offer better performance than a mutex, but
+they’re suited for manipulation of only a single variable or memory location.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;17-understand-special-member-function-generation&quot;&gt;17. Understand special member function generation&lt;/h1&gt;
+
+&lt;p&gt;C++98 has four such functions: the default constructor, the destructor, the copy constructor, and the copy assignment operator.&lt;/p&gt;
+
+&lt;p&gt;Generated special member functions are implicitly public and inline.(Normal member functions written outside the space of class are not inline.)
+A destructor in a derived class inheriting from a base class with a virtual destructor is a virtual function.&lt;/p&gt;
+
+&lt;p&gt;C++11, the special member functions club has two more inductees: the move constructor and the move assignment operator.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget {
+public:
+Widget(Widget&amp;amp;&amp;amp; rhs); // move constructor
+Widget&amp;amp; operator=(Widget&amp;amp;&amp;amp; rhs); // move assignment operator
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The move operations perform “&lt;strong&gt;memberwise moves&lt;/strong&gt;” on the non-static data members of the class.
+the move assignment operator move-assigns each non-static data member and base class parts from its parameter.&lt;/p&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simply remember that a &lt;em&gt;default memberwise move&lt;/em&gt; consists of move operations on data members and base classes that support move operations, but a copy operation for those that don’t.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;self-defined-move-member-functions-dctor-influence-copy-operations&quot;&gt;self-defined move member functions (dctor influence copy Operations)&lt;/h2&gt;
+
+&lt;p&gt;The two copy operations are independent: declaring one doesn’t prevent compilers from generating the other. The two move operations are not independent. If you declare either, that prevents compilers from generating the other.&lt;/p&gt;
+
+&lt;p&gt;If you declare, say, a move constructor for your class, you’re indicating that there’s something about how move
+construction should be implemented that’s different from the &lt;strong&gt;default memberwise move&lt;/strong&gt; that &lt;em&gt;compilers would generate&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Furthermore, move operations (construction or assignment) won’t be generated for any class if explicitly declaring a copy operation.
+The justification is that declaring a copy operation indicates that the normal approach to copying an object
+isn’t appropriate for the class. Compiler figures that &lt;em&gt;memberwise move&lt;/em&gt; is not as appropriate as &lt;em&gt;memberwise copy&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Declaring a move operation (construction or assignment) in a class causes compilers to disable the copy operations, too.&lt;/p&gt;
+
+&lt;p&gt;In C++98/11, the existence of a user-declared destructor had no impact on compilers’ willingness to generate copy operations.&lt;/p&gt;
+
+&lt;p&gt;In C++11(C++98 no move operations), move operations are generated for classes (when needed) only if these three things are true:&lt;/p&gt;
+
+&lt;p&gt;• No copy operations are declared in the class.
+• No move operations are declared in the class.
+• No destructor is declared in the class.&lt;/p&gt;
+
+&lt;p&gt;Polymorphic base classes normally have virtual destructors&lt;/p&gt;
+
+&lt;p&gt;Declaring a destructor has a potentially significant side effect: it prevents the move operations from being generated. However, creation of
+the class’s copy operations is unaffected. requests to move it will compile and run. Such requests will cause copies to be made.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-12&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• The special member functions are those compilers may generate on their own:
+default constructor, destructor, copy operations, and move operations.
+• Move operations are generated only for classes lacking explicitly declared
+move operations, copy operations, and a destructor.
+• The copy constructor is generated only for classes lacking an explicitly
+declared copy constructor, and it’s deleted if a move operation is declared.
+The copy assignment operator is generated only for classes lacking an explic‐
+itly declared copy assignment operator, and it’s deleted if a move operation is
+declared. Generation of the copy operations in classes with an explicitly
+declared destructor is deprecated.
+• Member function templates never suppress generation of special member
+functions.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
@@ -849,6 +1374,23 @@ copying, the behavioral problems of object slicing, and the sting of our coworke
 &lt;p&gt;Take a deep breath and relax. auto is a option, not a mandate.&lt;/p&gt;
 
 &lt;p&gt;such abstract type information should almost always be at hand.&lt;/p&gt;
+
+&lt;p&gt;nullptr shines especially brightly when templates enter the picture.&lt;/p&gt;
+
+&lt;p&gt;There’s a historical reason for that, but we’ll skip over it (it’s dull, I promise)&lt;/p&gt;
+
+&lt;p&gt;Examples will clarify what I mean:&lt;/p&gt;
+
+&lt;p&gt;In many cases, you may decide that typing a few extra characters is a reasonable price to pay for the ability to avoid the pitfalls of an enum technology that dates to a time when the state of the art in digital telecommunications was the 2400-baud modem.&lt;/p&gt;
+
+&lt;p&gt;This is hardly the most encapsulated design that’s seen the light of day.&lt;/p&gt;
+
+&lt;p&gt;There’s some wiggle room for optimization through what is known as the “as if rule,” but you’d be foolish
+to rely on your compilers finding a way to take advantage of it.&lt;/p&gt;
+
+&lt;p&gt;Don’t let the warm glow of this happy ending distract you from the true point of this Item&lt;/p&gt;
+
+&lt;p&gt;Restrictions are imposed on their implementations.&lt;/p&gt;
 </description>
         <pubDate>Fri, 27 Jul 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/blog/2018/07/27/miscellaneous/</link>
@@ -987,8 +1529,8 @@ std::sort(arr.begin(), arr.end());
 
 &lt;p&gt;&lt;em&gt;join()&lt;/em&gt;  add one thread to pool.&lt;/p&gt;
 
-&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;\#include &amp;lt;iostream&amp;gt;
-\#include &amp;lt;thread&amp;gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;thread&amp;gt;
 void foo()
 {
     std::cout &amp;lt;&amp;lt; &quot;hello world&quot; &amp;lt;&amp;lt; std::endl;
@@ -1091,7 +1633,7 @@ f(2, 1.0); // OK ： args 包含二个实参： int 与 double
 
 &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename ...Ts, typename U, typename=void&amp;gt;
 void valid(U, Ts...);     // OK ：能推导 U
-// void valid(Ts..., U);  // 不能使用： Ts... 在此位置是非推导语境 
+// void valid(Ts..., U);  // 不能使用： Ts... 在此位置是非推导语境
 valid(1.0, 1, 2, 3);      // OK ：推导 U 为 double ， Ts 为 {int,int,int}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1143,7 +1685,6 @@ T* Instance(Args&amp;amp;&amp;amp;… args)
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 &lt;p&gt;这个工厂函数的参数是右值引用类型，内部使用std::forward按照参数的实际类型进行转发，如果参数的实际类型是右值，那么创建的时候会自动匹配移动构造，如果是左值则会匹配拷贝构造。&lt;/p&gt;
-
 </description>
         <pubDate>Fri, 20 Jul 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/blog/2018/07/20/cpp-11-14-17/</link>

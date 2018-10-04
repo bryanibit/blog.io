@@ -145,7 +145,6 @@ go to the horse's mouth
 
 - effective C++ 第三章
 - liaoxuefeng python(错误调试，IO编程)
-- Mindset 10 to 20 pages
 
 6. 10-4
 
@@ -156,19 +155,16 @@ go to the horse's mouth
 
 - effective C++ 第四章
 - liaoxuefeng python(进程和线程，正则表达式)
-- Mindset 10 to 20 pages
 
 8. 10-6
 
 - effective C++ 第五章
 - liaoxuefeng python(内建模块)
-- Mindset 10 to 20 pages
 
 9. 10-7
 
 - effective C++ 第六章
 - - liaoxuefeng python(异步IO，常用第三方模块)
-- Mindset 10 to 20 pages
 
 10. 10-8
 

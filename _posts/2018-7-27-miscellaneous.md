@@ -64,3 +64,20 @@ I do my best to convice you to use lambdas instead of std::bind.
 Take a deep breath and relax. auto is a option, not a mandate.
 
 such abstract type information should almost always be at hand.
+
+nullptr shines especially brightly when templates enter the picture.
+
+There’s a historical reason for that, but we’ll skip over it (it’s dull, I promise)
+
+Examples will clarify what I mean:
+
+In many cases, you may decide that typing a few extra characters is a reasonable price to pay for the ability to avoid the pitfalls of an enum technology that dates to a time when the state of the art in digital telecommunications was the 2400-baud modem.
+
+This is hardly the most encapsulated design that’s seen the light of day.
+
+There’s some wiggle room for optimization through what is known as the “as if rule,” but you’d be foolish
+to rely on your compilers finding a way to take advantage of it.
+
+Don’t let the warm glow of this happy ending distract you from the true point of this Item
+
+Restrictions are imposed on their implementations.
