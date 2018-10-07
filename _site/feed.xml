@@ -5,8 +5,8 @@
     <description>于华超</description>
     <link>http://localhost:4000/</link>
     <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Fri, 05 Oct 2018 00:43:52 +0800</pubDate>
-    <lastBuildDate>Fri, 05 Oct 2018 00:43:52 +0800</lastBuildDate>
+    <pubDate>Sun, 07 Oct 2018 00:44:38 +0800</pubDate>
+    <lastBuildDate>Sun, 07 Oct 2018 00:44:38 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -214,7 +214,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第四章&lt;/li&gt;
-  &lt;li&gt;liaoxuefeng python(进程和线程，正则表达式)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -223,7 +222,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第五章&lt;/li&gt;
-  &lt;li&gt;liaoxuefeng python(内建模块)&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -232,11 +230,6 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 
 &lt;ul&gt;
   &lt;li&gt;effective C++ 第六章&lt;/li&gt;
-  &lt;li&gt;
-    &lt;ul&gt;
-      &lt;li&gt;liaoxuefeng python(异步IO，常用第三方模块)&lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;ol&gt;
@@ -1039,7 +1032,8 @@ be used in a concurrent context.
 they’re suited for manipulation of only a single variable or memory location.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;h1 id=&quot;17-understand-special-member-function-generation&quot;&gt;17. Understand special member function generation&lt;/h1&gt;
+&lt;h1 id=&quot;17-understand-special-member-function-generation-generation-of-the-copy-operations-in-classes-with-an-explicitly&quot;&gt;17. Understand special member function generation (Generation of the copy operations in classes with an explicitly&lt;/h1&gt;
+&lt;p&gt;declared destructor is deprecated?)&lt;/p&gt;
 
 &lt;p&gt;C++98 has four such functions: the default constructor, the destructor, the copy constructor, and the copy assignment operator.&lt;/p&gt;
 
@@ -1054,27 +1048,37 @@ Widget&amp;amp; operator=(Widget&amp;amp;&amp;amp; rhs); // move assignment oper
 };
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;The move operations perform “&lt;strong&gt;memberwise moves&lt;/strong&gt;” on the non-static data members of the class.
-the move assignment operator move-assigns each non-static data member and base class parts from its parameter.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The move operations perform “&lt;strong&gt;memberwise moves&lt;/strong&gt;” on the non-static data members of the class.&lt;/li&gt;
+  &lt;li&gt;The move assignment operator move-assigns each non-static data member and base class parts from its parameter.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;ul class=&quot;task-list&quot;&gt;
   &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Simply remember that a &lt;em&gt;default memberwise move&lt;/em&gt; consists of move operations on data members and base classes that support move operations, but a copy operation for those that don’t.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2 id=&quot;self-defined-move-member-functions-dctor-influence-copy-operations&quot;&gt;self-defined move member functions (dctor influence copy Operations)&lt;/h2&gt;
+&lt;h2 id=&quot;self-defined-move-member-functions&quot;&gt;self-defined move member functions&lt;/h2&gt;
 
-&lt;p&gt;The two copy operations are independent: declaring one doesn’t prevent compilers from generating the other. The two move operations are not independent. If you declare either, that prevents compilers from generating the other.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;The two copy operations are independent: declaring one doesn’t prevent compilers from generating the other. The two move operations are not independent. If you declare either, that prevents compilers from generating the other.&lt;/li&gt;
+&lt;/ol&gt;
 
 &lt;p&gt;If you declare, say, a move constructor for your class, you’re indicating that there’s something about how move
 construction should be implemented that’s different from the &lt;strong&gt;default memberwise move&lt;/strong&gt; that &lt;em&gt;compilers would generate&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Furthermore, move operations (construction or assignment) won’t be generated for any class if explicitly declaring a copy operation.
+&lt;ol&gt;
+  &lt;li&gt;
+    &lt;p&gt;Furthermore, move operations (construction or assignment) won’t be generated for any class if explicitly declaring a copy operation.
 The justification is that declaring a copy operation indicates that the normal approach to copying an object
 isn’t appropriate for the class. Compiler figures that &lt;em&gt;memberwise move&lt;/em&gt; is not as appropriate as &lt;em&gt;memberwise copy&lt;/em&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Declaring a move operation (construction or assignment) in a class causes compilers to disable the copy operations, too.&lt;/p&gt;
+  &lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;Declaring a move operation (construction or assignment) in a class causes compilers to disable the copy operations, too.&lt;/p&gt;
-
-&lt;p&gt;In C++98/11, the existence of a user-declared destructor had no impact on compilers’ willingness to generate copy operations.&lt;/p&gt;
+&lt;p&gt;In C++98/11, the existence of a user-declared destructor had no impact on compilers’ willingness to generate copy operations. But C++11
+realise user-declared destructor means different memory management. So user-declared destructor will stop generating move operations.&lt;/p&gt;
 
 &lt;p&gt;In C++11(C++98 no move operations), move operations are generated for classes (when needed) only if these three things are true:&lt;/p&gt;
 
@@ -1096,13 +1100,527 @@ default constructor, destructor, copy operations, and move operations.
 move operations, copy operations, and a destructor.
 • The copy constructor is generated only for classes lacking an explicitly
 declared copy constructor, and it’s deleted if a move operation is declared.
-The copy assignment operator is generated only for classes lacking an explic‐
-itly declared copy assignment operator, and it’s deleted if a move operation is
-declared. Generation of the copy operations in classes with an explicitly
-declared destructor is deprecated.
+The copy assignment operator is generated only for classes lacking an explicitly declared
+copy assignment operator, and it’s deleted if a move operation is declared. Generation of
+the copy operations in classes with an explicitly declared destructor is deprecated.
 • Member function templates never suppress generation of special member
 functions.
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;use-stdunique_ptr-for-exclusive-ownership-resource-management&quot;&gt;Use std::unique_ptr for exclusive-ownership resource management.&lt;/h1&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;std::unique_ptr&lt;/code&gt;(唯一) is a move-only type pointer.&lt;/p&gt;
+
+&lt;p&gt;Attempting to assign a raw pointer (e.g., from new) to a std::unique_ptr won’t compile, because it would constitute an implicit conversion from a raw to a smart pointer. Such implicit conversions can be problematic.&lt;/p&gt;
+
+&lt;h2 id=&quot;stdunique_ptr-size&quot;&gt;std::unique_ptr size&lt;/h2&gt;
+
+&lt;p&gt;when using the default deleter (i.e., delete), you can reasonably assume that std::unique_ptr objects are the same size as &lt;em&gt;raw pointers&lt;/em&gt;. When
+custom deleters(自定义) enter the picture, this may no longer be the case. std::unique_ptr typically grows up to two words from one. For example:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto delInvmt1 = [](Investment* pInvestment) //custom deleter as stateless lambda
+{
+	makeLogEntry(pInvestment);
+	delete pInvestment;
+};
+template&amp;lt;typename... Ts&amp;gt;
+std::unique_ptr&amp;lt;Investment, decltype(delInvmt1)&amp;gt;
+makeInvestment(Ts&amp;amp;&amp;amp;... args); // return type has size of Investment*
+-------------------------------------------
+void delInvmt2(Investment* pInvestment) //custom deleter as function
+{
+	makeLogEntry(pInvestment);
+	delete pInvestment;
+} // custom deleter as function
+template&amp;lt;typename... Ts&amp;gt;
+std::unique_ptr&amp;lt;Investment, void (*)(Investment*)&amp;gt; // return type has size of Invectment*
+makeInvestment(Ts&amp;amp;&amp;amp;... params); //  plus at least size of function pointer!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;stdunique_ptr-format&quot;&gt;std::unique_ptr format&lt;/h2&gt;
+
+&lt;p&gt;std::unique_ptr comes in two forms, one for individual objects (&lt;code class=&quot;highlighter-rouge&quot;&gt;std::unique_ptr&amp;lt;T&amp;gt;&lt;/code&gt;) and one for arrays (&lt;code class=&quot;highlighter-rouge&quot;&gt;std::unique_ptr&amp;lt;T[]&amp;gt;&lt;/code&gt;).
+About the only situation I can conceive of when a std::unique_ptr&amp;lt;T[]&amp;gt; would make sense would be when you’re using a &lt;strong&gt;C-like&lt;/strong&gt; API that returns a raw pointer to a &lt;em&gt;heap array&lt;/em&gt; that you assume ownership of.&lt;/p&gt;
+
+&lt;p&gt;it easily and efficiently converts to a std::shared_ptr:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::shared_ptr&amp;lt;Investment&amp;gt; sp = makeInvestment( arguments ); // converts std::unique_ptr to std::shared_ptr
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This is a key part of why std::unique_ptr is so well suited as a factory function return type. Factory functions can’t know whether callers will want to use exclusive-ownership semantics for the object they return or whether shared ownership (i.e., std::shared_ptr) would be more appropriate.&lt;/p&gt;
+
+&lt;h2 id=&quot;factory-functions&quot;&gt;factory functions&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// a simple factory function
+#include &amp;lt;iostream&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;memory&amp;gt;
+class Cup
+{
+    public:
+        Cup()
+          : color(&quot;&quot;)
+        {}
+        std::string color;
+        /* This is the factory method. */
+        static std::unique_ptr&amp;lt;Cup&amp;gt; getCup(std::string color);
+};
+class RedCup : public Cup
+{
+    public:
+        RedCup()
+        {
+            color = &quot;red&quot;;
+        }
+};
+class BlueCup : public Cup
+{
+    public:
+        BlueCup()
+        {
+            color = &quot;blue&quot;;
+        }
+};
+std::unique_ptr&amp;lt;Cup&amp;gt; Cup::getCup(std::string color)
+{
+    if (color == &quot;red&quot;)
+        return std::unique_ptr&amp;lt;Cup&amp;gt;(new RedCup());
+    else if (color == &quot;blue&quot;)
+        return std::unique_ptr&amp;lt;Cup&amp;gt;(new BlueCup());
+    else
+        return 0;
+}
+/* A little testing */
+int main()
+{
+    /* Now we decide the type of the cup at
+       runtime by the factory method argument */
+    std::unique_ptr&amp;lt;Cup&amp;gt; redCup  = Cup::getCup(&quot;red&quot;);
+    std::cout &amp;lt;&amp;lt; redCup-&amp;gt;color &amp;lt;&amp;lt; std::endl;
+
+    std::unique_ptr&amp;lt;Cup&amp;gt; blueCup = Cup::getCup(&quot;blue&quot;);
+    std::cout &amp;lt;&amp;lt; blueCup-&amp;gt;color &amp;lt;&amp;lt; std::endl;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;conclusion-13&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• std::unique_ptr is a small, fast, move-only smart pointer for managing
+resources with exclusive-ownership semantics.
+• By default, resource destruction takes place via delete, but custom deleters can be specified.
+Stateful deleters and function pointers as deleters increase the size of std::unique_ptr objects.
+• Converting a std::unique_ptr to a std::shared_ptr is easy.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;19-use-stdshared_ptr-for-shared-ownership-resource-management&quot;&gt;19. Use std::shared_ptr for shared-ownership resource management&lt;/h1&gt;
+
+&lt;p&gt;A simple example about shared_ptr reference count: If sp1 and sp2 are std::shared_ptrs to different objects, the assignment “sp1 = sp2;” modifies sp1 such that it points to the object pointed to by sp2. The net effect of the assignment is that the reference count for the object originally pointed to by sp1 is decremented, while that for the object pointed to by sp2 is incremented. If a std::shared_ptr sees a reference count of zero after performing a decrement, no more std::shared_ptrs point to the resource, so the std::shared_ptr destroys it.&lt;/p&gt;
+
+&lt;h2 id=&quot;characteristic-of-shared_ptr&quot;&gt;characteristic of shared_ptr&lt;/h2&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;std::shared_ptrs are twice the size of a raw pointer.&lt;/li&gt;
+  &lt;li&gt;Memory for the reference count must be dynamically allocated.&lt;/li&gt;
+  &lt;li&gt;Increments and decrements of the reference count must be atomic.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;This is as true for assignment as for construction, so move construction is faster than copy construction, and move
+assignment is faster than copy assignment. Because no reference count manipulation is required. Regardless of deleter, a
+std::shared_ptr object is two pointers(pointers to object T and to control block) in size.&lt;/p&gt;
+
+&lt;h2 id=&quot;distinguish-between-unique_ptr-and-shared_ptr&quot;&gt;distinguish between unique_ptr and shared_ptr&lt;/h2&gt;
+
+&lt;p&gt;The type of the deleter is part of the type of the unique_ptr, but shared_ptr is not. Another difference is specifying a custom deleter doesn’t
+change the size of a std::shared_ptr object. It can change unique_ptr size notwithstanding.&lt;/p&gt;
+
+&lt;h2 id=&quot;shared_ptr-format&quot;&gt;shared_ptr format&lt;/h2&gt;
+
+&lt;p&gt;An object’s control block is set up by the function creating the first &lt;code class=&quot;highlighter-rouge&quot;&gt;std::shared_ptr&lt;/code&gt; to the object.&lt;/p&gt;
+
+&lt;p&gt;In general, it’s impossible for a function creating a std::shared_ptr to an object to know whether some other std::shared_ptr already points to that object, so the following rules for control block creation are used:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;std::make_shared (see Item 21) always creates a control block.&lt;/li&gt;
+  &lt;li&gt;A control block is created when a std::shared_ptr is constructed from a unique-ownership pointer.&lt;/li&gt;
+  &lt;li&gt;When a std::shared_ptr constructor is called with a raw pointer, it creates a control block&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;If you wanted to create a std::shared_ptr from an object that already had a control block, you’d presumably pass a std::shared_ptr or a
+std::weak_ptr (see Item 20) as a constructor argument, not a raw pointer or a unique_ptr.&lt;/p&gt;
+
+&lt;p&gt;A consequence of these rules is that constructing more than one std::shared_ptr from a single raw pointer gives you a complimentary ride on the particle accelerator of undefined behavior, because the pointed-to object will have multiple control blocks. Multiple control blocks means multiple reference counts, and multiple reference counts means the object will be destroyed multiple times (once for each reference count).&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto loggingDel = [](Widget *pw)
+{
+std::cout &amp;lt;&amp;lt; &quot;destruct\n&quot;;
+delete pw;
+};
+Widget* pw = new Widget;
+std::shared_ptr&amp;lt;Widget&amp;gt; spw1(pw, loggingDel);
+std::shared_ptr&amp;lt;Widget&amp;gt; spw2(pw, loggingDel);
+&amp;gt;&amp;gt; destruct
+&amp;gt;&amp;gt; destruct
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;So try to avoid passing raw pointers to a std::shared_ptr constructor. The usual alternative is to use &lt;code class=&quot;highlighter-rouge&quot;&gt;std::make_share&lt;/code&gt;. Or pass the result of new directly instead of going through a raw pointer variable. Like &lt;code class=&quot;highlighter-rouge&quot;&gt;std::shared_ptr&amp;lt;Widget&amp;gt; spw1(new Widget, loggingDel)&lt;/code&gt;.
+The instance is using raw points &lt;em&gt;*this&lt;/em&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget {
+public:
+void process(){
+	//create new control block for each this
+	processedWidgets.emplace_back(this);
+}
+};
+---------------------------------------------
+class Widget: public std::enable_shared_from_this&amp;lt;Widget&amp;gt;{
+public:
+void process(){
+	//enable_shared_from_this is template base class
+	//std::enable_shared_from_this defines a member
+	//function that creates a std::shared_ptr to the
+	//current object, but it does it without duplicating control
+	//blocks. The member function is shared_from_this.
+	processedWidgets.emplace_back(shared_from_this());
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;shared_from_this&lt;/code&gt; looks up the control block for the current object, and it creates a new &lt;em&gt;std::shared_ptr&lt;/em&gt; that refers to that control block.
+For that to be the case, there must be an existing std::shared_ptr. To prevent clients from calling member functions that invoke &lt;code class=&quot;highlighter-rouge&quot;&gt;shared_from_this&lt;/code&gt;
+before a &lt;em&gt;std::shared_ptr&lt;/em&gt; points to the object, the above code is changed to:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;class Widget: public std::enable_shared_from_this&amp;lt;Widget&amp;gt; {
+public:
+	// factory function that perfect-forwards args to a private ctor
+	template&amp;lt;typename... Ts&amp;gt;
+	static std::shared_ptr&amp;lt;Widget&amp;gt; create(Ts&amp;amp;&amp;amp;... params);
+	void process();
+private:
+	// ...  ctor
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;std::shared_ptr implementation is more sophisicated thant you can expect, which may include dynamically allocated control blocks, arbitrarily large deleters and allocators, virtual function machinery(when the object is destroyed), and atomic reference count manipulations.&lt;/p&gt;
+
+&lt;p&gt;There’s no std::shared_ptr&amp;lt;T[]&amp;gt; but std::unique_ptr&amp;lt;T[]&amp;gt; is OK.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-14&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• std::shared_ptrs offer convenience approaching that of garbage collection
+for the shared lifetime management of arbitrary resources.
+• Compared to std::unique_ptr, std::shared_ptr objects are typically
+twice as big, incur overhead for control blocks, and require atomic reference
+count manipulations.
+• Default resource destruction is via delete, but custom deleters are supported.
+The type of the deleter has no effect on the type of the std::shared_ptr.
+• Avoid creating std::shared_ptrs from variables of raw pointer type.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;20-use-stdweak_ptr-for-stdshared_ptr-like-pointers-that-can-dangle&quot;&gt;20. Use std::weak_ptr for std::shared_ptr like pointers that can dangle&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;Pointer dangling&lt;/em&gt; is that what it points to has been destroyed.&lt;/p&gt;
+
+&lt;p&gt;std::weak_ptrs can’t be dereferenced, nor can they be tested for nullness. It’s an augmentation of std::shared_ptr.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;auto pw = std::make_shared&amp;lt;Widget&amp;gt;(); //reference count is 1
+std::weak_ptr&amp;lt;Widget&amp;gt; wp(pw); //weak_ptr is created from shared_ptr,reference count is still 1
+pw = nullptr; //RC goes to 0, Widget is destroyed. pw now dangles.
+if (wpw.expired()) //
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;One form is std::weak_ptr::lock, which returns a std::shared_ptr. The std::shared_ptr is null if the std::weak_ptr has
+expired:&lt;code class=&quot;highlighter-rouge&quot;&gt;std::shared_ptr&amp;lt;Widget&amp;gt; spw1 = wpw.lock()&lt;/code&gt;; The other form is the std::shared_ptr constructor taking a std::weak_ptr as an
+argument. In this case, if the std::weak_ptr has expired, an exception is thrown:&lt;code class=&quot;highlighter-rouge&quot;&gt;std::shared_ptr&amp;lt;Widget&amp;gt; spw3(wpw)&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&quot;observer-design-pattern&quot;&gt;Observer design pattern&lt;/h2&gt;
+
+&lt;p&gt;The primary components of this pattern are subjects(object whose state may change) and observers(objects to be notified when state changes occur).&lt;/p&gt;
+
+&lt;p&gt;A reasonable design is for each subject to hold a container of std::weak_ptrs to its observers, thus making it possible for the subject to determine
+whether a pointer dangles before using it. It is that weak_ptr is used to check whether the pointed objects exist.&lt;/p&gt;
+
+&lt;h2 id=&quot;weak_ptr-size&quot;&gt;weak_ptr size&lt;/h2&gt;
+
+&lt;p&gt;std::weak_ptr objects are the same size as std::shared_ptr objects, they make use of the same control blocks as std::shared_ptrs. Remember weak_ptr doesn’t participate shared ownership of objects and hence don’t affect the pointed-to object’s reference count.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-15&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Use std::weak_ptr for std::shared_ptr-like pointers that can dangle.
+• Potential use cases for std::weak_ptr include caching, observer lists, and the prevention of std::shared_ptr cycles.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;21-prefer-stdmake_unique-and-stdmake_shared-to-direct-use-of-new&quot;&gt;21. Prefer std::make_unique and std::make_shared to direct use of new&lt;/h1&gt;
+
+&lt;p&gt;&lt;em&gt;std::make_unique&lt;/em&gt; is included in C++14, &lt;em&gt;std::make_shared&lt;/em&gt; is included in C++11. Hence, you can do it yourself in C++11(This form of the function
+doesn’t support arrays or custom deleters):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T, typename... Ts&amp;gt;
+std::unique_ptr&amp;lt;T&amp;gt; make_unique(Ts&amp;amp;&amp;amp;... params)
+{
+	return std::unique_ptr&amp;lt;T&amp;gt;(new T(std::forward&amp;lt;Ts&amp;gt;(params)...));
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The third make function is &lt;code class=&quot;highlighter-rouge&quot;&gt;std::allocate_shared&lt;/code&gt; for dynamic memory allocation. You can unleash your Google engine if you want to know it.&lt;/p&gt;
+
+&lt;h2 id=&quot;tidy-and-safe-new-a-shared_ptr&quot;&gt;tidy and safe new a shared_ptr&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;int computePriority();
+void processWidget(std::shared_ptr&amp;lt;Widget&amp;gt; spw, int priority);
+processWidget(std::shared_ptr&amp;lt;Widget&amp;gt;(new Widget), computePriority()); //potential resource leak
+processWidget(std::make_shared&amp;lt;Widget&amp;gt;(), computePriority()); //no potential resource leak
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;If we replace std::shared_ptr and std::make_shared with std::unique_ptr and std::make_unique, exactly the same reasoning applies.&lt;/p&gt;
+
+&lt;h2 id=&quot;distinguish-between-new-and-make_shared&quot;&gt;distinguish between new and make_shared&lt;/h2&gt;
+
+&lt;ul class=&quot;task-list&quot;&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;memory allocation
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// requires one memory allocation for the Widget
+// and a second allocation for the control block.
+std::shared_ptr&amp;lt;Widget&amp;gt; spw(new Widget);
+// a single chunk of memory to hold both the
+// Widget object and the control block
+auto spw = std::make_shared&amp;lt;Widget&amp;gt; ();
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;None of the make functions permit the specification of custom deleters. There’s no way to do the same (following) thing with a make function.
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;std::unique_ptr&amp;lt;Widget, decltype(widgetDeleter)&amp;gt; upw(new Widget, widgetDeleter);
+std::shared_ptr&amp;lt;Widget&amp;gt; spw(new Widget, widgetDeleter);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Because braced initializers can’t be perfect-forwarded. &lt;strong&gt;make&lt;/strong&gt; functions do not support braces “{}” you must use &lt;strong&gt;new&lt;/strong&gt; directly. But there is always a workaround:
+    &lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// create std::initializer_list
+auto initList = { 10, 20 };
+// create std::vector using std::initializer_list ctor
+auto spv = std::make_shared&amp;lt;std::vector&amp;lt;int&amp;gt;&amp;gt;(initList);
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;
+    &lt;p&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;Using make functions to create objects of types with class-specific versions of operator new and operator delete is typically a poor idea.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; class=&quot;task-list-item-checkbox&quot; disabled=&quot;disabled&quot; /&gt;The size and speed disadvantages of std::make_shared&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;The reference count tracks how many &lt;em&gt;std::shared_ptr&lt;/em&gt;s refer to the control block. The second reference count(weak count) tallies how many &lt;em&gt;std::weak_ptr&lt;/em&gt;s refer to the control block. (&lt;em&gt;weak_ptr&lt;/em&gt; checks the reference count to make sure whether std::shared_ptr needs to be destroyed)
+If new produces memory alocation, then shared_ptr to object will destroyed when reference count is 0. But std::weak_ptrs to it remain. One of two allocated memory is released(object block), the other(control block) will wait until weak_ptr to objects is destroyed.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-16&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• Compared to direct use of new, make functions eliminate source code duplication, improve exception safety, and, for std::make_shared and std::allocate_shared, generate code that’s smaller and faster.
+• Situations where use of make functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
+• For std::shared_ptrs, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and std::weak_ptrs that outlive the corresponding std::shared_ptrs.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;22-when-using-the-pimpl-idiom-define-special-member-functions-in-the-implementation-file&quot;&gt;22. When using the Pimpl Idiom, define special member functions in the implementation file&lt;/h1&gt;
+
+&lt;p&gt;The Pimpl Idiom is a way to reduce compilation dependencies between a class’s implementation and the class’s clients, but, conceptually, use of the idiom doesn’t change what the class represents.&lt;/p&gt;
+
+&lt;p&gt;If member variables has unique_ptr or something which can not be copyed and moved only, move ctor should typically written down explicitly. If copy and copy assignment are adopted, deep copy should be operated:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;// declare only in .h
+// class Widget has two member variables:
+// struct Impl; std::unique_ptr&amp;lt;Impl&amp;gt; pImpl;
+Widget(const Widget&amp;amp; rhs);
+Widget&amp;amp; operator=(const Widget&amp;amp; rhs);
+// definition in .cpp
+Widget::Widget(const Widget&amp;amp; rhs)
+: pImpl(std::make_unique&amp;lt;Impl&amp;gt;(*rhs.pImpl))
+{} // copy ctor
+Widget&amp;amp; Widget::operator=(const Widget&amp;amp; rhs)
+{
+*pImpl = *rhs.pImpl;
+return *this;
+} // copy operator=
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above, we simply copy the fields of the &lt;code class=&quot;highlighter-rouge&quot;&gt;Impl&lt;/code&gt; struct from the source object (rhs) to the destination object (*this). We take advantage of the fact that compilers will create the copy operations for &lt;code class=&quot;highlighter-rouge&quot;&gt;Impl&lt;/code&gt;, and these operations will copy each field automatically.&lt;/p&gt;
+
+&lt;p&gt;{class_name} client points .h and {class_name} implementation points .cpp.&lt;/p&gt;
+
+&lt;p&gt;In PImpl, A consequence of unique_ptr’s greater efficiency is that pointed-to types must be complete when compiler-generated special functions (e.g.,
+destructors or move operations) are used. So destructor need to be written. For std::shared_ptr, the type of the deleter is not part of the type of the smart pointer. This necessitates larger runtime data structures and somewhat slower code, but pointed-to types need not be complete when compiler-generated special functions are employed.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-17&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• The Pimpl Idiom decreases build times by reducing compilation dependencies between class clients and class implementations.
+• For std::unique_ptr pImpl pointers, declare special member functions in the class header, but implement them in the implementation file. Do this even
+if the default function implementations are acceptable.
+• The above advice applies to std::unique_ptr, but not to std::shared_ptr.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;23-understand-stdmove-and-stdforward&quot;&gt;23. Understand std::move and std::forward&lt;/h1&gt;
+
+&lt;h2 id=&quot;what-is-lvalue-and-rvalue&quot;&gt;What is lvalue and rvalue&lt;/h2&gt;
+
+&lt;p&gt;A useful heuristic to determine whether an expression is an lvalue is to ask if you can take its address. If you can, it typically is. If you can’t, it’s usually an rvalue. It’s especially important to remember this when dealing with a parameter of rvalue reference type, because the parameter itself is an lvalue:&lt;code class=&quot;highlighter-rouge&quot;&gt;Widget(Widget&amp;amp;&amp;amp; rhs)&lt;/code&gt;. rhs is an lvalue, though it has rvalue reference type.&lt;/p&gt;
+
+&lt;h2 id=&quot;move-and-perfect-forward&quot;&gt;move and perfect forward&lt;/h2&gt;
+
+&lt;p&gt;&lt;em&gt;std::move&lt;/em&gt; unconditionally casts its argument to an rvalue, while &lt;em&gt;std::forward&lt;/em&gt; performs this cast only if a particular condition is fulfilled.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt; // in namespace std C++11
+typename remove_reference&amp;lt;T&amp;gt;::type&amp;amp;&amp;amp; move(T&amp;amp;&amp;amp; param)
+{
+	using ReturnType = // alias declaration;
+	typename remove_reference&amp;lt;T&amp;gt;::type&amp;amp;&amp;amp;;
+	return static_cast&amp;lt;ReturnType&amp;gt;(param);
+}
+-------------------------------------
+template&amp;lt;typename T&amp;gt;
+// C++14; still in namespace std
+decltype(auto) move(T&amp;amp;&amp;amp; param)
+{
+	using ReturnType = remove_reference_t&amp;lt;T&amp;gt;&amp;amp;&amp;amp;;
+	return static_cast&amp;lt;ReturnType&amp;gt;(param);
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;std::move&lt;/em&gt; casts its argument to an rvalue, and that’s all it does. Moving a value out of an objet generally modifies the object, so the language should not permit &lt;strong&gt;const&lt;/strong&gt; objects to be passed to functions(such as move constructors) that could modify them.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;---------use string as member----------
+class Annotation {
+public:
+explicit Annotation(const std::string text)
+: value(std::move(text)) // &quot;move&quot; text into value; this code doesn't do what it seems to!
+private:
+		std::string value;
+};
+---------string class ctor------------
+class string{
+public:
+		string(const string&amp;amp;); // copy ctor
+		string(string&amp;amp;&amp;amp;); // move ctor
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;The above &lt;em&gt;text&lt;/em&gt; is not moved into value, it’s &lt;strong&gt;copied&lt;/strong&gt;. An rvalue of type &lt;em&gt;const std::string&lt;/em&gt; can’t be passed to std::string’s move constructor, because the move constructor takes an rvalue reference to a &lt;em&gt;non-const std::string&lt;/em&gt;. The rvalue can, however, be passed to the copy constructor, because an &lt;em&gt;lvalue-reference-to-const&lt;/em&gt; is permitted to bind to a &lt;em&gt;const rvalue&lt;/em&gt;. The member initialization therefore invokes &lt;em&gt;the copy constructor&lt;/em&gt; in std::string, even though text has been cast to an rvalue! Such behavior is essential to maintaining &lt;em&gt;const-correctness&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;The most common scenario is a function template taking a universal reference parameter that is to be passed to another function:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;void process(const Widget&amp;amp; lvalArg); // process lvalues
+void process(Widget&amp;amp;&amp;amp; rvalArg);// process rvalues
+template&amp;lt;typename T&amp;gt;					// template that passes
+void logAndProcess(T&amp;amp;&amp;amp; param)// param to process
+{
+auto now = std::chrono::system_clock::now();
+makeLogEntry(&quot;Calling 'process'&quot;, now);
+process(std::forward&amp;lt;T&amp;gt;(param));
+}
+----------------implementation------------------
+Widget w;
+logAndProcess(w); // call with lvalue
+logAndProcess(std::move(w)); // call with rvalue
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In the above code, the &lt;strong&gt;param&lt;/strong&gt; is always lvalue in &lt;em&gt;logAndProcess&lt;/em&gt; function, so can not transform param to &lt;em&gt;process&lt;/em&gt; function directly. We adopt *std::forward&lt;T&gt;()*. That’s why std::forward is a conditional cast: it casts to an rvalue only if its argument was initialized with an rvalue. Whether
+param was initialized with an lvalue or an rvalue is encoded in **logAndProcess**’s template parameter **T**.&lt;/T&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-18&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;				Things to Remember
+• std::move performs an unconditional cast to an rvalue. In and of itself, it doesn’t move anything.
+• std::forward casts its argument to an rvalue only if that argument is bound to an rvalue.
+• Neither std::move nor std::forward do anything at runtime.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;24-distinguish-universal-references-from-rvalue-references&quot;&gt;24. Distinguish universal references from rvalue references&lt;/h1&gt;
+
+&lt;h2 id=&quot;not-a-universal-reference&quot;&gt;not a universal reference&lt;/h2&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;typename T&amp;gt;
+void f(const T&amp;amp;&amp;amp; param); // param is an rvalue reference
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;That’s because being in a template doesn’t guarantee the presence of type deduction.&lt;/p&gt;
+
+&lt;h2 id=&quot;vector-type-deduction&quot;&gt;vector type deduction&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;----------------push_back(rvalue)---------------------------
+template&amp;lt;class T, class Allocator = allocator&amp;lt;T&amp;gt;&amp;gt;
+class vector {
+public:
+void push_back(T&amp;amp;&amp;amp; x); //rvalue reference, no type deduction
+...
+};
+----------------emplace_back(universal reference)-------------
+template&amp;lt;class T, class Allocator = allocator&amp;lt;T&amp;gt;&amp;gt;
+class vector {
+public:
+template &amp;lt;class... Args&amp;gt;
+void emplace_back(Args&amp;amp;&amp;amp;... args); // universal reference
+...
+};
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;em&gt;push_back&lt;/em&gt; can’t exist without a particular vector instantiation for it to be part of, and the type of that instantiation fully determines the declaration for &lt;em&gt;push_back&lt;/em&gt;. In &lt;em&gt;emplace_back&lt;/em&gt;, the type parameter &lt;em&gt;Args&lt;/em&gt; is independent of vector’s type parameter T, so &lt;em&gt;Args&lt;/em&gt; must be deduced each time &lt;em&gt;emplace_back&lt;/em&gt; is called.&lt;/p&gt;
+
+&lt;p&gt;Variables declared with the type &lt;code class=&quot;highlighter-rouge&quot;&gt;auto&amp;amp;&amp;amp;&lt;/code&gt; (typically C++14) are universal references, because type deduction takes place and they have the correct form (“&lt;strong&gt;T&amp;amp;&amp;amp;&lt;/strong&gt;”).&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion-19&quot;&gt;Conclusion&lt;/h2&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;			Things to Remember
+• If a function template parameter has type T&amp;amp;&amp;amp; for a deduced type T, or if an object is declared using auto&amp;amp;&amp;amp;, the parameter or object is a universal reference.
+• If the form of the type declaration isn’t precisely type&amp;amp;&amp;amp;, or if type deduction does not occur, type&amp;amp;&amp;amp; denotes an rvalue reference.
+• Universal references correspond to rvalue references if they’re initialized with rvalues. They correspond to lvalue references if they’re initialized with lvalues.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;25-use-stdmove-on-rvalue-references-stdforward-on-universal-references&quot;&gt;25. Use std::move on rvalue references, std::forward on universal references.&lt;/h1&gt;
+
+&lt;p&gt;In short, rvalue references should be unconditionally cast to rvalues (via std::move) when forwarding them to other functions, because they’re always bound to rvalues, and universal references should be conditionally cast to rvalues (via std::forward) when forwarding them, because they’re only sometimes bound to rvalues.&lt;/p&gt;
+
+&lt;h2 id=&quot;move-meaning&quot;&gt;move meaning&lt;/h2&gt;
+
+&lt;p&gt;If I use &lt;em&gt;std::move&lt;/em&gt; to universal reference, n has undefined behavior:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;-----------------code-------------------
+#include &amp;lt;memory&amp;gt;
+#include &amp;lt;string&amp;gt;
+#include &amp;lt;iostream&amp;gt;
+class Widget {
+public:
+template&amp;lt;typename T&amp;gt;
+void setName(T&amp;amp;&amp;amp; newName)
+{ name = std::move(newName); }
+private:
+    std::string name;
+    std::shared_ptr&amp;lt;int&amp;gt; p;
+};
+std::string getWidgetName(){
+    const std::string str = &quot;whatthehell&quot;;
+    return str;
+}
+int main(){
+    Widget w;
+    auto n = getWidgetName(); // n is local variable
+    std::cout &amp;lt;&amp;lt; &quot;n is &quot; &amp;lt;&amp;lt; n &amp;lt;&amp;lt; std::endl;
+    w.setName(n);
+    std::cout &amp;lt;&amp;lt; &quot;n is &quot; &amp;lt;&amp;lt; n &amp;lt;&amp;lt; std::endl;
+}
+------------------result------------------
+n is whatthehell
+n is
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;template-member-function-of-universal-reference&quot;&gt;template member function of universal reference&lt;/h2&gt;
+
+&lt;p&gt;The string literal “Adela Novak” would be passed to &lt;em&gt;setName&lt;/em&gt;, where it would be conveyed to the assignment operator for the &lt;em&gt;std::string&lt;/em&gt; inside &lt;em&gt;w&lt;/em&gt;. &lt;em&gt;w&lt;/em&gt;’s name data member would thus be assigned directly from the string literal. With the overloaded versions of setName, however, a temporary &lt;em&gt;std::string&lt;/em&gt; object would be created for &lt;em&gt;setName&lt;/em&gt;’s parameter to bind to, and this temporary &lt;em&gt;std::string&lt;/em&gt; would then be moved into w’s data member.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;--------------template universal ctor----------------
+class Widget {
+public:
+template&amp;lt;typename T&amp;gt;
+void setName(T&amp;amp;&amp;amp; newName) // newName is universal reference
+{ name = std::forward&amp;lt;T&amp;gt;(newName); }
+...
+};
+---------------a pair ctor------------------
+class Widget {
+public:
+void setName(const std::string&amp;amp; newName)// set from const lvalue
+{ name = newName; }
+void setName(std::string&amp;amp;&amp;amp; newName) // set from rvalue
+{ name = std::move(newName); }
+...
+};
+--------------implementation--------------------
+w.setName(&quot;Adela Novak&quot;); // use std::string&amp;amp;&amp;amp;
+w.setName(std::move(getWidgetName()); // if getWidgetName return const std::string, then use const std::string&amp;amp;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The real and serious problem with overloading of rvalue and lvalue is poor scalability of the design. If we have unlimited params, how to make overloading for each param. The following (universal references) is the best and only way to solve the problem.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;template&amp;lt;class T, class... Args&amp;gt;
+shared_ptr&amp;lt;T&amp;gt; make_shared(Args&amp;amp;&amp;amp;... args);//不定参数
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Remember that apply &lt;code class=&quot;highlighter-rouge&quot;&gt;std::move&lt;/code&gt; (for rvalue references) or &lt;code class=&quot;highlighter-rouge&quot;&gt;std::forward&lt;/code&gt; (for universal references) to only the &lt;strong&gt;final&lt;/strong&gt; use of the reference.&lt;/p&gt;
+
+&lt;h2 id=&quot;return-local-variable-by-value&quot;&gt;return local variable by value&lt;/h2&gt;
+
+&lt;p&gt;Compilers may elide the copying (or moving) of a local object 2 in a function that returns by value&lt;/p&gt;
 </description>
         <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/blog/2018/09/28/effective-cpp/</link>
@@ -1391,6 +1909,26 @@ to rely on your compilers finding a way to take advantage of it.&lt;/p&gt;
 &lt;p&gt;Don’t let the warm glow of this happy ending distract you from the true point of this Item&lt;/p&gt;
 
 &lt;p&gt;Restrictions are imposed on their implementations.&lt;/p&gt;
+
+&lt;p&gt;Have endured my endless blathering about the rules governing the copy and move operations in C++11.&lt;/p&gt;
+
+&lt;p&gt;Don’t worry if you see something whose motivation is less than obvious.&lt;/p&gt;
+
+&lt;p&gt;They don’t hinder callers from replacing it with its more flexible sibling.&lt;/p&gt;
+
+&lt;p&gt;How primitive!&lt;/p&gt;
+
+&lt;p&gt;Unleash your search engine.&lt;/p&gt;
+
+&lt;p&gt;No divorce, no annulment, no dispensations.&lt;/p&gt;
+
+&lt;p&gt;The more experience you have with these features, the more you realize that your initial impression was based on only the metaphorical tip of the proverbial iceberg.&lt;/p&gt;
+
+&lt;p&gt;No matter how far you dig into these features, it can seem that there’s always more to uncover. Fortunately, there is a limit to their depths. This chapter will take you to the bedrock.&lt;/p&gt;
+
+&lt;p&gt;It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.&lt;/p&gt;
+
+&lt;p&gt;My liberal use of quotation marks should tip you off that this line of reasoning is flawed.&lt;/p&gt;
 </description>
         <pubDate>Fri, 27 Jul 2018 00:00:00 +0800</pubDate>
         <link>http://localhost:4000/blog/2018/07/27/miscellaneous/</link>

@@ -82,4 +82,22 @@ Don’t let the warm glow of this happy ending distract you from the true point 
 
 Restrictions are imposed on their implementations.
 
-have endured my endless blathering about the rules governing the copy and move operations in C++11.
+Have endured my endless blathering about the rules governing the copy and move operations in C++11.
+
+Don’t worry if you see something whose motivation is less than obvious.
+
+They don’t hinder callers from replacing it with its more flexible sibling.
+
+How primitive!
+
+Unleash your search engine.
+
+No divorce, no annulment, no dispensations.
+
+The more experience you have with these features, the more you realize that your initial impression was based on only the metaphorical tip of the proverbial iceberg.
+
+No matter how far you dig into these features, it can seem that there’s always more to uncover. Fortunately, there is a limit to their depths. This chapter will take you to the bedrock.
+
+It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.
+
+My liberal use of quotation marks should tip you off that this line of reasoning is flawed.

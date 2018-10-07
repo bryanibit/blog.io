@@ -154,17 +154,14 @@ go to the horse's mouth
 7. 10-5
 
 - effective C++ 第四章
-- liaoxuefeng python(进程和线程，正则表达式)
 
 8. 10-6
 
 - effective C++ 第五章
-- liaoxuefeng python(内建模块)
 
 9. 10-7
 
 - effective C++ 第六章
-- - liaoxuefeng python(异步IO，常用第三方模块)
 
 10. 10-8
 
