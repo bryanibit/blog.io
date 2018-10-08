@@ -1142,9 +1142,19 @@ The primary components of this pattern are subjects(object whose state may chang
 A reasonable design is for each subject to hold a container of std::weak_ptrs to its observers, thus making it possible for the subject to determine
 whether a pointer dangles before using it. It is that weak_ptr is used to check whether the pointed objects exist.
 
+### complement
+
+定义对象间的一种一对多的依赖关系，当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新。这种模式中的关键对象是*目标（subject）*和*观察者（observer）*，这种交互称为*发布--订阅（publish-subscribe）*。
+
 ## weak_ptr size
 
 std::weak_ptr objects are the same size as std::shared_ptr objects, they make use of the same control blocks as std::shared_ptrs. Remember weak_ptr doesn't participate shared ownership of objects and hence don’t affect the pointed-to object’s reference count.
+
+## where is weak_ptr useful
+
+- When you have a weak pointer, you can attempt to **promote it to a strong pointer**.(```auto s = std::make_shared<Widget>();std::weak_ptr<Widget> w = s;```) If that object still exists (because at least one strong pointer to it exists still) that operation succeeds and gives you a strong pointer to it. If that object does not exist (because all strong pointers went away), then that operation fails (and typically you react by throwing away the weak pointer).
+
+- It sometimes becomes convenient to have the **subject maintain a list of weak pointers** and do its own list cleanup. It saves a little bit of effort explicitly removing observers when they are deleted, and more significantly you don't have to have information about the subjects available when destroying observers which generally simplifies things a lot.
 
 ## Conclusion
 
@@ -1217,6 +1227,34 @@ If new produces memory alocation, then shared_ptr to object will destroyed when 
 • Compared to direct use of new, make functions eliminate source code duplication, improve exception safety, and, for std::make_shared and std::allocate_shared, generate code that’s smaller and faster.
 • Situations where use of make functions is inappropriate include the need to specify custom deleters and a desire to pass braced initializers.
 • For std::shared_ptrs, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and std::weak_ptrs that outlive the corresponding std::shared_ptrs.
+```
+
+# complement: dumb mistakes to avoid with C++ 11 smart pointers
+
+- Not assigning an object(raw pointer) to a shared_ptr as soon as it is created !
+```
+// the following code results in "Error in
+// `./a.out': double free or corruption (fasttop)"
+int main()
+{
+	Aircraft* myAircraft = new Aircraft("F-16");
+	shared_ptr pAircraft(myAircraft);
+	cout << pAircraft.use_count() << endl; // ref-count is 1
+	shared_ptr pAircraft2(myAircraft);
+	cout << pAircraft2.use_count() << endl; // ref-count is 1
+	return 0;
+}
+```
+
+- Deleting the raw pointer used by the shared_ptr
+```
+// The same situation like above: double free memory
+void StartJob()
+{
+	shared_ptr pAircraft(new Aircraft("F-16"));
+	Aircraft* myAircraft = pAircraft.get(); // returns the raw pointer
+	delete myAircraft;  // myAircraft is gone
+}
 ```
 
 # 22. When using the Pimpl Idiom, define special member functions in the implementation file

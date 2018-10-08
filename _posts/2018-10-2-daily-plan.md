@@ -165,4 +165,5 @@ go to the horse's mouth
 
 10. 10-8
 
-**Go to work**
+weak_ptr
+observer patten using weak_ptr
