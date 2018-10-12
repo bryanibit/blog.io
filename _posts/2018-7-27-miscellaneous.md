@@ -101,3 +101,11 @@ No matter how far you dig into these features, it can seem that there’s always
 It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.
 
 My liberal use of quotation marks should tip you off that this line of reasoning is flawed.
+
+## 鞋狗（译）
+
+除了时刻都在排队等待死亡之外，人生还是非常美好的（P354）
+
+据说加强某一方面知识的最好方法就是和别人分享。（P311）
+
+找出你对某人态度的最简单方式就是想象与他分别（P141）

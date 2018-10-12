@@ -7,6 +7,12 @@ tags: [技术总结]
 description: Linux中的一些问题，总结一下
 ---
 
+## Can not open netease/sogoupinyin or sth. else
+
+```
+ps -e | grep <keywords>
+kill -9 <PID>
+```
 
 ## build-essential
 
@@ -212,15 +218,15 @@ sub   2048g/10AF40FE 2009-02-01
 
 Use ```apt-key del D50582E6``` to delete one key.
 
-```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted. 
+```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted.
 
-```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts. 
+```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts.
 
-```/etc/apt/trustdb.gpg```: Local trust database of archive keys. 
+```/etc/apt/trustdb.gpg```: Local trust database of archive keys.
 
-```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys. 
+```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys.
 
-```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys. 
+```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys.
 
 ## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
@@ -259,7 +265,7 @@ Makefile:127: recipe for target 'all' failed
 make: *** [all] Error 2
 ```
 
-The problem is described as libboost_system.so找不到链接目录 
+The problem is described as libboost_system.so找不到链接目录
 
 解决方案为:
 
@@ -275,17 +281,17 @@ locate  boost_system
 将libboost_system.so复制到ORB_SLAM2/lib下，并且将ORBSLAM2/Examples/ROS/ORBSLAM2下的Cmakelists.txt中加入库目录，具体为在
 
 ```
-set(LIBS 
-${OpenCV_LIBS} 
-${EIGEN3_LIBS} 
-${Pangolin_LIBRARIES} 
-${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so 
-${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so 
+set(LIBS
+${OpenCV_LIBS}
+${EIGEN3_LIBS}
+${Pangolin_LIBRARIES}
+${PROJECT_SOURCE_DIR}/../../../Thirdparty/DBoW2/lib/libDBoW2.so
+${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
 ```
 之后加入
 
-${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so 
+${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so
 
 问题得以解决
 
@@ -370,8 +376,7 @@ If it worked, device will change to modem mode
 
 ```
 root@fwhlin:~ # lsusb | grep Hu
-Bus 009 Device 003: ID 12d1:14dc Huawei Technologies Co., Ltd. 
+Bus 009 Device 003: ID 12d1:14dc Huawei Technologies Co., Ltd.
 ```
 
 Notice it changed name, also device ID changed to 14db, or something else.
-
