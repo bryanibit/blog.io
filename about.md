@@ -2,7 +2,7 @@
 layout: page
 title: "About"
 description: "只有在安静平和的心境下，才能寻得最接近真像的答案"
-header-img: "img/green.jpg"
+header-img: "img/tree.jpg"
 ---
 
 我是于华超

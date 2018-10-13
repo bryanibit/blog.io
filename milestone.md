@@ -2,7 +2,7 @@
 layout: page
 title: "milestone"
 description: "不积跬步无以至千里，不积小流无以成江海 "
-header-img: "img/blue.jpg"
+header-img: "img/Country.jpg"
 ---
 
 
@@ -29,9 +29,3 @@ header-img: "img/blue.jpg"
 - [《乡土中国》](http://product.dangdang.com/23678069.html)
 
 - [《一只特立独行的猪》](http://product.dangdang.com/24516890.html)
-
-
-
-
-
-
