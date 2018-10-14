@@ -318,3 +318,12 @@ pip3 install --upgrade tensorflow-gpu==1.4
 从下载完的文件中，将libcudnn.so.6.XXX（具体可修改到自己下载的版本）文件放在/usr/local/cuda/lib64/文件目录下
 
 从下载完的文件中，将cudnn.h（具体可修改到自己下载的版本）文件放在/usr/local/cuda/include/文件目录下
+
+
+## Launch a Website with a Custom URL using Github Pages
+
+1. Add ```connorleech.info\n www.connorleech.info``` to **CNAME**
+2. Add the changes to git and push them to your repo.
+3. Add two “@” type A records that point to the GitHub ips *192.30.252.153* and *192.30.252.154* and one “www” CNAME record that points to your **USERNAME.github.io** url.
+
+![Custom URL](img/customURLSetting.png)
