@@ -66,13 +66,13 @@ jupyter notebook ##启动notebook
 
 ## blog native compile
 
+准备工作，参考下列教程：
+
 [部署自己的博客：Github+Jekyll](http://harttle.com/2013/10/18/github-homepage-tutorial.html)
+
 [Provide Answers to Questions](https://www.zybuluo.com/wangjialin/note/456653)
 
-1. install jekyll
-
-- solve the problem that gem install jekyll error:
-[stack exchange](https://stackoverflow.com/questions/22460117/error-error-installing-jekyll-error-failed-to-build-gem-native-extension)
+Install jekyll on Ubuntu
 
 ```
 sudo apt-get install ruby ruby-dev make
@@ -85,9 +85,11 @@ jekyll build -w
 jekyll serve
 ```
 
-2. Use mathjax
+* Solve the problem that gem install jekyll error: Reference to [stack exchange](https://stackoverflow.com/questions/22460117/error-error-installing-jekyll-error-failed-to-build-gem-native-extension)
 
-Follow the [link](http://sgeos.github.io/github/jekyll/2016/08/21/adding_mathjax_to_a_jekyll_github_pages_blog.html)
+* Use mathjax: Follow the [link](http://sgeos.github.io/github/jekyll/2016/08/21/adding_mathjax_to_a_jekyll_github_pages_blog.html)
+
+* Use table of content: I use the tutorial of the [link](https://github.com/allejo/jekyll-toc).
 
 ## ssh登录
 
