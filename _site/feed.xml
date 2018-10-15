@@ -3,10 +3,10 @@
   <channel>
     <title>屋顶上的鱼</title>
     <description>于华超</description>
-    <link>http://localhost:4000/</link>
-    <atom:link href="http://localhost:4000/feed.xml" rel="self" type="application/rss+xml" />
-    <pubDate>Mon, 08 Oct 2018 20:43:47 +0800</pubDate>
-    <lastBuildDate>Mon, 08 Oct 2018 20:43:47 +0800</lastBuildDate>
+    <link>http://bryanibit/</link>
+    <atom:link href="http://bryanibit/feed.xml" rel="self" type="application/rss+xml" />
+    <pubDate>Mon, 15 Oct 2018 09:17:37 +0800</pubDate>
+    <lastBuildDate>Mon, 15 Oct 2018 09:17:37 +0800</lastBuildDate>
     <generator>Jekyll v3.8.4</generator>
     
       <item>
@@ -240,8 +240,8 @@ boost::bind(), git submodule, ros::Time(0), ros::WallTime(0), 多线程相机驱
 observer patten using weak_ptr&lt;/p&gt;
 </description>
         <pubDate>Tue, 02 Oct 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/10/02/daily-plan/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/10/02/daily-plan/</guid>
+        <link>http://bryanibit/blog/2018/10/02/daily-plan/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/10/02/daily-plan/</guid>
         
         <category>个人总结</category>
         
@@ -1668,8 +1668,8 @@ shared_ptr&amp;lt;T&amp;gt; make_shared(Args&amp;amp;&amp;amp;... args);//不定
 &lt;p&gt;Compilers may elide the copying (or moving) of a local object 2 in a function that returns by value&lt;/p&gt;
 </description>
         <pubDate>Fri, 28 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/09/28/effective-cpp/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/28/effective-cpp/</guid>
+        <link>http://bryanibit/blog/2018/09/28/effective-cpp/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/28/effective-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -1705,8 +1705,8 @@ shared_ptr&amp;lt;T&amp;gt; make_shared(Args&amp;amp;&amp;amp;... args);//不定
 &lt;/ol&gt;
 </description>
         <pubDate>Wed, 19 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/09/19/cross-obstacles/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/19/cross-obstacles/</guid>
+        <link>http://bryanibit/blog/2018/09/19/cross-obstacles/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/19/cross-obstacles/</guid>
         
         <category>个人总结</category>
         
@@ -1736,8 +1736,8 @@ Eigen::Transform&amp;lt;float,3,Affine&amp;gt; combined =
 
 </description>
         <pubDate>Tue, 04 Sep 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/09/04/eigen-lib/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/09/04/eigen-lib/</guid>
+        <link>http://bryanibit/blog/2018/09/04/eigen-lib/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/09/04/eigen-lib/</guid>
         
         <category>理论梳理</category>
         
@@ -1866,8 +1866,8 @@ children:
 
 </description>
         <pubDate>Sun, 26 Aug 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/08/26/yaml-cpp/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/08/26/yaml-cpp/</guid>
+        <link>http://bryanibit/blog/2018/08/26/yaml-cpp/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/08/26/yaml-cpp/</guid>
         
         <category>技术总结</category>
         
@@ -1974,10 +1974,23 @@ to rely on your compilers finding a way to take advantage of it.&lt;/p&gt;
 &lt;p&gt;It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.&lt;/p&gt;
 
 &lt;p&gt;My liberal use of quotation marks should tip you off that this line of reasoning is flawed.&lt;/p&gt;
+
+&lt;h2 id=&quot;鞋狗译&quot;&gt;鞋狗（译）&lt;/h2&gt;
+
+&lt;p&gt;除了时刻都在排队等待死亡之外，人生还是非常美好的（P354）&lt;/p&gt;
+
+&lt;p&gt;据说加强某一方面知识的最好方法就是和别人分享。（P311）&lt;/p&gt;
+
+&lt;p&gt;找出你对某人态度的最简单方式就是想象与他分别（P141）&lt;/p&gt;
+
+&lt;h2 id=&quot;人间失格&quot;&gt;人间失格&lt;/h2&gt;
+
+&lt;p&gt;一旦试图富有实验性地、忠诚于自我地生活下去，就很可能遭到社会的疏远和异化，成为“人间失格者”。或许在所有的现代人的心中，都或明或暗地存在者一块懦弱、孤独而又渴求爱的荒地，而这块荒地却被太宰治的文字无声地侵蚀着，而且无从回避。&lt;/p&gt;
+
 </description>
         <pubDate>Fri, 27 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/07/27/miscellaneous/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/27/miscellaneous/</guid>
+        <link>http://bryanibit/blog/2018/07/27/miscellaneous/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/27/miscellaneous/</guid>
         
         <category>技术总结</category>
         
@@ -2270,8 +2283,8 @@ T* Instance(Args&amp;amp;&amp;amp;… args)
 &lt;p&gt;这个工厂函数的参数是右值引用类型，内部使用std::forward按照参数的实际类型进行转发，如果参数的实际类型是右值，那么创建的时候会自动匹配移动构造，如果是左值则会匹配拷贝构造。&lt;/p&gt;
 </description>
         <pubDate>Fri, 20 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/07/20/cpp-11-14-17/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/20/cpp-11-14-17/</guid>
+        <link>http://bryanibit/blog/2018/07/20/cpp-11-14-17/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/20/cpp-11-14-17/</guid>
         
         <category>技术总结</category>
         
@@ -2296,8 +2309,8 @@ for (GridMapIterator it(map); !it.isPastEnd(); ++it){
 
 </description>
         <pubDate>Tue, 03 Jul 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/07/03/ethz-grid-map/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/07/03/ethz-grid-map/</guid>
+        <link>http://bryanibit/blog/2018/07/03/ethz-grid-map/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/07/03/ethz-grid-map/</guid>
         
         <category>技术总结</category>
         
@@ -2398,8 +2411,8 @@ switch(SLAMPOSAZIM_CHANNEL-&amp;gt;read())
 &lt;p&gt;在某个{aux_channel}n.hh中需要声明一个struct{结构体};，需要在该文件中同时声明&lt;code class=&quot;highlighter-rouge&quot;&gt;extern void nmlupdate(CMS *cms, {结构体名称} *x);&lt;/code&gt;，这将通过codegen产生结构体的构造函数&lt;/p&gt;
 </description>
         <pubDate>Fri, 29 Jun 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/06/29/realtimecontrolsystem/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/29/realtimecontrolsystem/</guid>
+        <link>http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/06/29/realtimecontrolsystem/</guid>
         
         <category>技术总结</category>
         
@@ -2455,8 +2468,8 @@ b.linear() = a.rotation();
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 </description>
         <pubDate>Wed, 13 Jun 2018 00:00:00 +0800</pubDate>
-        <link>http://localhost:4000/blog/2018/06/13/laser-process/</link>
-        <guid isPermaLink="true">http://localhost:4000/blog/2018/06/13/laser-process/</guid>
+        <link>http://bryanibit/blog/2018/06/13/laser-process/</link>
+        <guid isPermaLink="true">http://bryanibit/blog/2018/06/13/laser-process/</guid>
         
         <category>技术总结</category>
         

@@ -10,7 +10,7 @@
 
     <title>Multiview Geometry - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/multiple-view-geometry/">
 
     <!-- Icons -->
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -93,11 +93,28 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/black.jpg')
+        background-image: url('/img/grey_second.jpeg')
     }
 </style>
 <header class="intro-header" >
   
+
+  <h2><code></code></h2>
+  <ul>
+  <li><a href="#奇异值分解svd原理详解及推导">奇异值分解(SVD)原理详解及推导</a></li>
+  <li><a href="#local-feature-and-global-feature">Local Feature and Global Feature</a></li>
+  <li><a href="#sfm中的关键计算总结">SfM中的关键计算总结</a>
+    <ul>
+      <li><a href="#恢复运动中的rt">恢复运动中的R，t</a></li>
+      <li><a href="#3d-3d匹配">3D-3D匹配</a></li>
+      <li><a href="#3d-2d匹配">3D-2D匹配</a></li>
+    </ul>
+  </li>
+  <li><a href="#feature检测">Feature检测</a></li>
+  <li><a href="#回环检测">回环检测</a></li>
+  <li><a href="#过滤特征点">过滤特征点</a></li>
+  <li><a href="#orb-slam">ORB-SLAM</a></li>
+</ul>
 
     <div class="container">
         <div class="row">
@@ -260,7 +277,7 @@ HoG: Histogram of oriented gradient</p>
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/multiple-view-geometry" data-title="Multiview Geometry"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/grey_second.jpeg"
                     data-content="奇异值分解(SVD)原理详解及推导
 
 转
@@ -269,7 +286,7 @@ HoG: Histogram of oriented gradient</p>
 转stackexchage
 
 I’m assuming that the R... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/">
+                    data-url="http://bryanibit/blog/2017/07/05/multiple-view-geometry/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -288,7 +305,7 @@ I’m assuming that the R... | Microdust:Azeril's blog"
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/multiple-view-geometry" data-title="Multiview Geometry" data-url="http://localhost:4000/blog/2017/07/05/multiple-view-geometry/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/multiple-view-geometry" data-title="Multiview Geometry" data-url="http://bryanibit/blog/2017/07/05/multiple-view-geometry/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>

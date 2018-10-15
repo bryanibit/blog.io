@@ -326,4 +326,4 @@ pip3 install --upgrade tensorflow-gpu==1.4
 2. Add the changes to git and push them to your repo.
 3. Add two “@” type A records that point to the GitHub ips *192.30.252.153* and *192.30.252.154* and one “www” CNAME record that points to your **USERNAME.github.io** url.
 
-![Custom URL](img/customURLSetting.png)
+![Custom URL](img/doc/customURLSetting.png)

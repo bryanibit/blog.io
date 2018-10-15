@@ -10,7 +10,7 @@
 
     <title>CMakeLists - 屋顶上的鱼</title>
 
-    <link rel="canonical" href="http://localhost:4000/blog/2017/07/05/cmakelists/">
+    <link rel="canonical" href="http://bryanibit/blog/2017/07/05/cmakelists/">
 
     <!-- Icons -->
     <link rel="shortcut icon" href="img/favicon.ico">
@@ -93,11 +93,39 @@
     <!-- Post Header -->
 <style type="text/css">
     header.intro-header{
-        background-image: url('/img/black.jpg')
+        background-image: url('/img/grey_second.jpeg')
     }
 </style>
 <header class="intro-header" >
   
+
+  <h2><code></code></h2>
+  <ul>
+  <li><a href="#use-opencv-install-not-in-default-location">Use OpenCV install not in default location</a></li>
+  <li><a href="#using-external-libraries-cmakehow-to-find-libraries">Using external libraries (CMake:How To Find Libraries)</a>
+    <ul>
+      <li><a href="#use-cmakes-own-moduleusrsharecmakemodules">use cmake’s own module(/usr/share/cmake/Modules)</a></li>
+      <li><a href="#using-external-libraries-that-cmake-doesnt-have-module">Using external libraries that CMake doesn’t have module</a></li>
+      <li><a href="#需要一个包的一部分">需要一个包的一部分</a></li>
+      <li><a href="#how-package-find-working">How package find working?</a></li>
+      <li><a href="#pkg-config">pkg-config</a></li>
+    </ul>
+  </li>
+  <li><a href="#include_directories-link_direcotries-link_libraries">INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES</a></li>
+  <li><a href="#cmake中一些预定义变量">CMake中一些预定义变量</a>
+    <ul>
+      <li><a href="#cmake变量">cmake变量</a></li>
+      <li><a href="#系统信息">系统信息</a></li>
+      <li><a href="#开关选项">开关选项</a></li>
+      <li><a href="#cmake常用命令">cmake常用命令</a></li>
+    </ul>
+  </li>
+  <li><a href="#cmake中打印变量信息">cmake中打印变量信息</a></li>
+  <li><a href="#cmake常见问题解析">cmake常见问题解析</a></li>
+  <li><a href="#cmakelists中关键字函数">cmakelists中关键字（函数）</a></li>
+  <li><a href="#指定动态库动态加载时的目录">指定动态库动态加载时的目录</a></li>
+  <li><a href="#set">set</a></li>
+</ul>
 
     <div class="container">
         <div class="row">
@@ -456,12 +484,12 @@ find_package(Qt4 4.7.0 MODULE REQUIRED) //显示说明使用find-module
 
                 <div class="ds-share"
                     data-thread-key="/blog/2017/07/05/cmakelists" data-title="CMakeLists"
-                    data-images="http://localhost:4000/img/black.jpg"
+                    data-images="http://bryanibit/img/grey_second.jpeg"
                     data-content="解释cmake参数命令的博客
 CMake Docs Link(man cmake)
 
 Use OpenCV install not in default ... | Microdust:Azeril's blog"
-                    data-url="http://localhost:4000/blog/2017/07/05/cmakelists/">
+                    data-url="http://bryanibit/blog/2017/07/05/cmakelists/">
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
 
@@ -480,7 +508,7 @@ Use OpenCV install not in default ... | Microdust:Azeril's blog"
 
                 <!-- 多说评论框 start -->
                 <div class="comment">
-                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/cmakelists" data-title="CMakeLists" data-url="http://localhost:4000/blog/2017/07/05/cmakelists/"></div>
+                    <div class="ds-thread" data-thread-key="/blog/2017/07/05/cmakelists" data-title="CMakeLists" data-url="http://bryanibit/blog/2017/07/05/cmakelists/"></div>
                 </div>
                 <!-- 多说评论框 end -->
             </div>
