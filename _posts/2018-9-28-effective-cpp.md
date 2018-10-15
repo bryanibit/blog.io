@@ -399,7 +399,7 @@ arguments.
 can be challenging.
 ```
 
-## Prefer nullptr to 0 and NULL
+# 8. Prefer nullptr to 0 and NULL
 
 It is the blending of NULL and 0 that C++98 programmers avoid overloading on pointer and
 integral types. ```“I’m calling f with NULL -- the null pointer”``` and its actual meaning ```“I’m calling f with
@@ -1229,7 +1229,7 @@ If new produces memory alocation, then shared_ptr to object will destroyed when 
 • For std::shared_ptrs, additional situations where make functions may be ill-advised include (1) classes with custom memory management and (2) systems with memory concerns, very large objects, and std::weak_ptrs that outlive the corresponding std::shared_ptrs.
 ```
 
-# complement: dumb mistakes to avoid with C++ 11 smart pointers
+## complement: dumb mistakes to avoid with C++ 11 smart pointers
 
 - Not assigning an object(raw pointer) to a shared_ptr as soon as it is created !
 ```
