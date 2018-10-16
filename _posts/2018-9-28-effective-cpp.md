@@ -34,7 +34,7 @@ const int& rx = x; // rx is a reference to x as a const int
 then
 
 ```
-f(x); // T is int, param's type is int&
+f(x); // T is int, param's type is int&  
 f(cx); // T is const int, param's type is const int&
 f(rx); // T is const int, param's type is const int&
 ```
@@ -1482,6 +1482,36 @@ shared_ptr<T> make_shared(Args&&... args);//不定参数
 
 Remember that apply ```std::move``` (for rvalue references) or ```std::forward``` (for universal references) to only the **final** use of the reference.
 
-## return local variable by value
+## return lvalue or universal reference for functions which return by value
 
-Compilers may elide the copying (or moving) of a local object 2 in a function that returns by value
+Example 1:
+```
+Matrix operator+(Matrix&& lhs, const Matrix& rhs)
+{
+	lhs += rhs;
+	return std::move(lhs); // move lhs into return location
+}
+```
+The above is suitable for function that returns by value which binds to an rvalue or universal reference. By casting lhs to an rvalue in the return statement, lhs(bind to rvalue) will be moved to return location. If Matrix class does not support *move* ctor, it will copy lhs to return location until Matrix class move ctor is constructed.
+
+```
+template<typename T>
+Fraction   // by-value return
+reduceAndCopy(T&& frac)// universal reference param
+{  
+	frac.reduce();  
+	return std::forward<T>(frac);    // move rvalue into return
+}                                  // value, copy lvalu
+```
+Ditto, if frac is rvalue, the situation is the same with Matrix: no copy. If lvalue is applied, the copy is evitable.
+
+If the return value is local variable, the situation is totally different. The CPP committee has employed a way called *return value optimization*(ROV) to optimize the functon returning. ROV is employed in return local variables.
+
+```
+				Things to Remember
+• Apply std::move to rvalue references and std::forward to universal references the last time each is used.
+• Do the same thing for rvalue references and universal references being returned from functions that return by value.
+• Never apply std::move or std::forward to local objects if they would otherwise be eligible for the return value optimization.
+```
+
+# 26. Avoid overloading on universal references.
