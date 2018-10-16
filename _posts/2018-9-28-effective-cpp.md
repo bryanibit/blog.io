@@ -34,9 +34,9 @@ const int& rx = x; // rx is a reference to x as a const int
 then
 
 ```
-f(x); // T is int, param's type is int&  
-f(cx); // T is const int, param's type is const int&
-f(rx); // T is const int, param's type is const int&
+f(x); // T is int, param type is int&.
+f(cx); // T is const int, param type is const int&
+f(rx); // T is const int, param type is const int&
 ```
 ----------------------------------
 
@@ -51,9 +51,9 @@ const int& rx = x; // rx is a reference to x as a const int
 then
 
 ```
-f(x); // T is int, param's type is const int&
-f(cx); // T is int, param's type is const int&
-f(rx); // T is int, param's type is const int&
+f(x); // T is int, param type is const int&
+f(cx); // T is int, param type is const int&
+f(rx); // T is int, param type is const int&
 ```
 
 -----------------------------------
@@ -68,8 +68,8 @@ const int *cx = &x; // cx is a const int *
 then
 
 ```
-f(&x); // T is int, param's type is int*
-f(px); // T is const int, param's type is const int*
+f(&x); // T is int, param type is int*
+f(px); // T is const int, param type is const int*
 ```
 
 ## by-reference 之 universal-reference
@@ -90,10 +90,10 @@ const int& rx = x; // rx is a reference to x as a const int
 then
 
 ```
-f(x); // T is int&, param's type is int&
-f(cx); // T is const int&, param's type is const int&
-f(rx); // T is const int&, param's type is const int&
-f(32); // 32 is rvalue, T is int, param's type is int&&
+f(x); // T is int&, param type is int&
+f(cx); // T is const int&, param type is const int&
+f(rx); // T is const int&, param type is const int&
+f(32); // 32 is rvalue, T is int, param type is int&&
 ```
 
 ## by-value
@@ -114,9 +114,9 @@ const int& rx = x; // rx is a reference to x as a const int
 then
 
 ```
-f(x); // T is int, param's type is int
-f(cx); // T is int, param's type is int
-f(rx); // T is int, param's type is int
+f(x); // T is int, param type is int
+f(cx); // T is int, param type is int
+f(rx); // T is int, param type is int
 ```
 
 This is because param is an object that’s completely independent of cx and rx—a copy of cx or rx. The fact that cx and rx can’t be modified says nothing about whether param can be. That’s why expr’s constness (and volatileness, if any) is ignored when deducing a type for param.
@@ -190,17 +190,17 @@ auto x = 27; //auto is deducted to int, x is int
 const auto cx = x; //auto is deducted to int, cx is const int
 const auto& rx = x; // auto is deducted to int, rx is const int&
 --------------universal reference--------
-auto&& uref1 = x; // x is int and lvalue, so uref1's type is int&
-auto&& uref2 = cx; // cx is const int and lvalue, so uref2's type is const int&
-auto&& uref3 = 27; // 27 is rvalue, so uref3's type is int&&
-const char name[] = // name's type is const char[13]
+auto&& uref1 = x; // x is int and lvalue, so uref1 type is int&
+auto&& uref2 = cx; // cx is const int and lvalue, so uref2 type is const int&
+auto&& uref3 = 27; // 27 is rvalue, so uref3 type is int&&
+const char name[] = // name type is const char[13]
 ----------array and function-------------
 "R. N. Briggs";
-auto arr1 = name; // arr1's type is const char*
-auto& arr2 = name; // arr2's type is const char (&)[13]
+auto arr1 = name; // arr1 type is const char*
+auto& arr2 = name; // arr2 type is const char (&)[13]
 void someFunc(int, double); // someFunc is a function; type is void(int, double)
-auto func1 = someFunc; // func1's type is void (*)(int, double)
-auto& func2 = someFunc; // func2's type is void (&)(int, double)
+auto func1 = someFunc; // func1 type is void (*)(int, double)
+auto& func2 = someFunc; // func2 type is void (&)(int, double)
 ```
 The template type deduction is the same with the auto type deduction. They are essentially
 two sides of the same coin. Except for the one way they differ.
@@ -233,8 +233,8 @@ decltype saves the original type of variable, no complex deduction.
 ```
 Widget w;
 const Widget& cw = w;
-auto myWidget1 = cw; // auto type deduction(by-value): myWidget1's type is Widget
-decltype(auto) myWidget2 = cw; // decltype type deduction: myWidget2's type is const Widget&
+auto myWidget1 = cw; // auto type deduction(by-value): myWidget1 type is Widget
+decltype(auto) myWidget2 = cw; // decltype type deduction: myWidget2 type is const Widget&
 ```
 Just like the above ```myWidget1``` and ```myWidget2```, the value of function returning can not be auto. If not, the reference and anyother things will diminish.
 
@@ -348,8 +348,7 @@ Sometimes, static_cast<> is adopted with auto.
 
 # 7. Distinguish between () and {} when creating objects
 
-What can {} do?
-
+What can {} do?  
 Let try something simple.
 ```
 Widget w1(10);// call Widget ctor with argument 10
@@ -374,10 +373,8 @@ Widget(std::initializer_list<bool> il); // element type is now bool
 };
 Widget w{10, 5.0}; // use initializer_list
 ```
-One rule is that {} is not allowed implicit conversion, but I think it it not certain every time. But if the code above is changed to ```Widget(std::initializer_list<std::string> il)```, then ```Widget w{10, 5.0}``` will use ```Widget(int i, double d)``` as ctor.
-
+One rule is that {} is not allowed implicit conversion, but I think it it not certain every time. But if the code above is changed to ```Widget(std::initializer_list<std::string> il)```, then ```Widget w{10, 5.0}``` will use ```Widget(int i, double d)``` as ctor.  
 ```std::vector<T>``` has initializer_list ctor, so
-
 ```
 std::vector v1(10, 20); // 10 20s
 std::vector v1{10, 20}; //two elements 10 and 20
@@ -386,27 +383,17 @@ std::vector v1{10, 20}; //two elements 10 and 20
 ## conclusion
 
 ```
-						Things to Remember
-• Braced initialization is the most widely usable initialization syntax, it prevents
-narrowing conversions, and it’s immune to C++’s most vexing parse.
-• During constructor overload resolution, braced initializers are matched to
-std::initializer_list parameters if at all possible, even if other construc‐
-tors offer seemingly better matches.
-• An example of where the choice between parentheses and braces can make a
-significant difference is creating a std::vector<numeric type> with two
-arguments.
-• Choosing between parentheses and braces for object creation inside templates
-can be challenging.
+					Things to Remember
+• Braced initialization is the most widely usable initialization syntax, it prevents narrowing conversions, and it’s immune to C++’s most vexing parse.
+• During constructor overload resolution, braced initializers are matched to std::initializer_list parameters if at all possible, even if other constructors offer seemingly better matches.
+• An example of where the choice between parentheses and braces can make a significant difference is creating a std::vector<numeric type> with two arguments.
+• Choosing between parentheses and braces for object creation inside templates can be challenging.
 ```
 
 # 8. Prefer nullptr to 0 and NULL
 
-It is the blending of NULL and 0 that C++98 programmers avoid overloading on pointer and
-integral types. ```“I’m calling f with NULL -- the null pointer”``` and its actual meaning ```“I’m calling f with
-some kind of integrals -- not the null pointer”```. NULL has a integer type and nullptr’s advantage is that it doesn’t have an integral type.
-You can think **nullptr** as a point of all type.
-
-nullptr is derived from ```std::nullptr_t```, which can convert to any raw pointers.
+It is the blending of NULL and 0 that C++98 programmers avoid overloading on pointer and integral types. ```“I’m calling f with NULL -- the null pointer”``` and its actual meaning ```“I’m calling f with some kind of integrals -- not the null pointer”```. *NULL* has a integer type and *nullptr*’s advantage is that it doesn’t have an integral type. You can think **nullptr** as a point of all type.  
+*nullptr* is derived from ```std::nullptr_t```, which can convert to any raw pointers.
 ```
 void* a = nullptr;
 a == 0; // true
@@ -437,19 +424,20 @@ using FP = void (*)(int, const std::string&);
 ## alias template
 
 ```
+-------------typedef version---------------
 //set structure member saving typedef objects
 template<typename T> // MyAllocList<T>::type is synonym for std::list<T,MyAlloc<T>>
 struct MyAllocList {
 typedef std::list<T, MyAlloc<T>> type; //type could change to any name you like
 };
 MyAllocList<Widget>::type lw; // client code
----------------------------
+------------using version---------------
 template<typename T>
 using MyAllocList = std::list<T, MyAlloc<T>>; // MyAllocList<T> is synonym for std::list<T,MyAlloc<T>>
 MyAllocList<Widget> lw; // client code
 ```
 
-If you want to use typedef inside a template for purpose of creating a linked list holding
+If you want to use *typedef* inside a template for purpose of creating a linked list holding
 objects of a type specified by a template parameter, you need to precede the **typedef name** with ```typename```.
 For instance,
 ```
@@ -460,12 +448,12 @@ class Widget{
 		...
 };
 ```
-Here, MyAllocList<T>::type refers to a type that’s dependent on a template type
-parameter (T). MyAllocList<T>::type is thus a *dependent type*, and one of C++’s
+Here, ```MyAllocList<T>::type``` refers to a type that’s dependent on a template type
+parameter (**T**). MyAllocList<T>::type is thus a *dependent type*, and one of C++’s
 many endearing rules is that the names of dependent types must be preceded by type
 name.
 
-If MyAllocList is defined as an alias template, this need for typename vanishes (as
+If **MyAllocList** is defined as an alias template, this need for typename vanishes (as
 does the cumbersome “::type” suffix):
 ```
 template <typename T>
@@ -628,15 +616,15 @@ instantiations.
 
 # 12. Declare overriding functions override
 
-For overriding to occur, several requirments must be met:
-• The base class function must be virtual.
+For overriding to occur, several requirments must be met:  
+• The base class function must be virtual.  
 • The base and derived function names must be identical (except in the case of
-destructors).
-• The parameter types of the base and derived functions must be identical.
-• The constness of the base and derived functions must be identical.
+destructors).  
+• The parameter types of the base and derived functions must be identical.  
+• The constness of the base and derived functions must be identical.  
 • The return types and exception specifications of the base and derived functions
-must be compatible.
-• The functions’ reference qualifiers must be identical.
+must be compatible.  
+• The functions’ reference qualifiers must be identical.  
 
 ```
 The last requirment points:
