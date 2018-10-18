@@ -315,7 +315,7 @@ for(std::pair<std::string, int> &p: m){}
 ```
 This seem perfectly reasonable. But std::unordered_map's key is *const*, so it it std::pair<const std::string, int>. That will result in a temporary object producing. Use auto: ```for(const auto& p: m){}```.
 
-The above examples show how	**explicitly specifying** types can lead to **implicit conversions** that you neither want nor expect. If you use ```auto``` as the type of the target variable, you need not worry about mismatches between the type of variable you’re declaring and the type of the expression used to initialize it.
+The foregoing examples show how	**explicitly specifying** types can lead to **implicit conversions** that you neither want nor expect. If you use ```auto``` as the type of the target variable, you need not worry about mismatches between the type of variable you’re declaring and the type of the expression used to initialize it.
 
 # 6. Use the explicitly typed initializer idiom when auto deduces undesired types.
 
@@ -1503,3 +1503,118 @@ If the return value is local variable, the situation is totally different. The C
 ```
 
 # 26. Avoid overloading on universal references.
+
+ Per the normal overload resolution rules, an exact match(including deduction from **T** to be int or else) beats a match with a promotion, so the universal reference overload is invoked.   
+ Functions taking universal references are the greediest functions in C++.
+
+```
+				Things to Remember
+• Overloading on universal references almost always leads to the universal reference overload being called more frequently than expected.
+• Perfect-forwarding constructors are especially problematic, because they’re typically better matches than copy constructors for non-const lvalues, and they can hijack derived class calls to base class copy and move constructors.
+```
+
+# 27. Familiarize yourself with alternatives to overloading on universal references
+
+If we don’t give up overloading and we don’t give up universal references, how can we avoid overloading on universal references?  
+If the universal reference is part of a parameter list containing other parameters that are not universal references, sufficiently poor matches on the non-universal reference parameters can knock an overload with a universal reference out of the running. This is the basis behind **tag dispatch**（标签派遣） approach. For example:
+```
+-------overload universal reference--------------
+std::multiset<std::string> name;
+template <typename T>
+void logAndAdd(T&& name)
+{
+	auto time = std::chrono::system_clock::now();
+	log(now, "logAndAdd")；
+	name.emplace_back(std::forward<T>(name));
+}
+------------change for avoiding item26 error------------
+template <typename T>
+void logAndAddImpl(T&& name, std::false_type)
+{
+	auto time = std::chrono::system_clock::now();
+	log(now, "logAndAdd")；
+	name.emplace_back(std::forward<T>(name));
+}
+std::string nameFromIdx(int idx);
+void logAndAddImpl(int idx, std::true_type)
+{
+	logAndAdd(nameFromIdx(idx));
+}
+template <typename T>
+void logAndAdd(T&& name)
+{
+	logAndAddImpl(std::forward<T>(name),
+	std::is_integral<std::remove_reference_t<T>>());
+}
+```
+The foregoing second parameter is what will prevent us from tumbling into the moras described in item26(overloading universal reference).  
+First of all, *true_type* is a kind of type and is different from *true* which is used in *running time*. *true_tyep* and *false_type* are *compiling time* type and different types.  
+In this design, the types ```std::true_type``` and ```std::false_type``` are “tags” whose only purpose is to force overload resolution to go the way we want.  
+The dispatching function—logAndAdd—takes an unconstrained universal reference parameter, but this function is not overloaded. The implementation functions—logAndAddImpl—are overloaded, and one takes a universal reference parameter, one takes a tag which determines overloading functions.  
+A keystone of tag dispatch is the existence of a single (unoverloaded) function as the client API. This single function dispatches the work to be done to the implementation (overloaded) functions.  
+
+## enable_if
+
+Lets you rachet down the universal reference overloading error conditions under which the function template that the universal reference is part of is permitted to be employed.  
+By default, all templates are enabled, but a template using ```std::enable_if``` is enabled only if the condition specified by ```std::enable_if``` is satisfied. In practice, **SFINAE** is the technology that makes ```std::enable_if``` work.  
+OK, there are some boilerplate that goes around the condition part of *enable_if*. I am showing only declaration not implementation which is ditto.
+```
+class Person
+{
+	public:
+	template <typename T, typename = typename enable_if<
+						!std::is_same<Person, typename std::decay<T>::type>
+				::value>
+	::type>
+	explicit Person(T&& n);
+};
+```
+```std::is_same<Person, T>::value``` in the foregoing code is called condition for ```enable_if```. The "typename" in front of *std::decay* is required, because the type ```std::decay<T>::type``` depends on the template parameter **T**.  
+
+Another instance for derived class will deploy ctor of base class. The code is:
+```
+class SpecialPerson: class Person
+{
+	SpecialPerson(const SpecialPerson& sp):Person(sp){}
+	SpecialPerson(SpecialPerson&& sp):Person(std::move(sp)){}
+}
+```
+The foregoing code ```Person(sp)``` and ```Person(std::move(sp))``` will call Person class's template ctor not move and copy ctor. Because template is better matched than derived-to-base. However, template ctor is not suitable for Person objects. The undesired situation is shown. How to solve?  
+```std::is_base_of<T1, T2>::value``` is true if **T2** is derived from **T1**. So we can use ```is_base_of``` in Person code instead of ```is_same```:
+```
+!std::is_base_of<Person, typename std::decay<T>::type>
+```
+
+C++14 employs alias templates for ```std::enable_if``` and ```std::decay``` to get rid of the two “typename” and “::type” cruft.
+```
+class Person
+{
+	public:
+	template <typename T, typename = enable_if_t<
+						!std::is_base_of<Person, std::decay_t<T>>
+				::value>
+	>
+	explicit Person(T&& n);
+};
+```
+
+If we add another ctor for *Person*, the ctor's param is integral. So template ctor is forbidden to be used when integral param is transformed to ctor. At this time, we can combine the two situation: derived class and integral overloading.
+```
+class Person
+{
+	public:
+	template <typename T, typename = enable_if_t<
+						!std::is_base_of<Person, std::decay_t<T>>::value
+						&&
+						!std::is_integral<std::remove_reference_t<T>>::value
+					>
+	>
+	explicit Person(T&& n):name(std::forward<T>(n)){}
+	explicit Person(int a):name(nameFromIdx(a)){}
+	private:
+	std::string name;
+};
+```
+This technique can be applied in circumstances (such as constructors) where overloading is unavoidable.  Try not to overload universal reference.
+
+### trade-off

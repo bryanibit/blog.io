@@ -44,63 +44,42 @@ If you are immune to boredom, there is literally nothing you cannot accomplish. 
 
 ## Effective C++
 I have not been able to find a convincing explanation. But the rule is the rule, and this means you must
-remember that if you declare a variable using auto and you initialize it with a braced initializer, the deduced type will always be std::initializer_list. It’s especially important to bear this in mind if you embrace the philosophy of uniform initialization—of enclosing initializing values in braces **as a matter of course(理所当然)**.
-
-It provides results that leave you scratching your head and turning to reference works or online Q&A sites for revelation.
-
-What may initially seem contradictory (decltype and auto?) actually makes perfect sense.
-
+remember that if you declare a variable using auto and you initialize it with a braced initializer, the deduced type will always be std::initializer_list. It’s especially important to bear this in mind if you embrace the philosophy of uniform initialization—of enclosing initializing values in braces **as a matter of course(理所当然)**.  
+It provides results that leave you scratching your head and turning to reference works or online Q&A sites for revelation.  
+What may initially seem contradictory (decltype and auto?) actually makes perfect sense.  
 Employing pass-by value for objects of **an unknown type** generally risks the performance hit of unnecessary
-copying, the behavioral problems of object slicing, and the sting of our coworkers’ derision.
-
-bring it into accord with admonition 使之符合告诫
-
-You’ll have to familiarize yourself with a few special cases. Most of these are too obscure to warrant discussion in a book like this, but looking at one lends insight into decltype as well as its use.
-
-At the same time, don’t lose sight of the bigger picture.
-
-I do my best to convice you to use lambdas instead of std::bind.
-
-Take a deep breath and relax. auto is a option, not a mandate.
-
-such abstract type information should almost always be at hand.
-
-nullptr shines especially brightly when templates enter the picture.
-
-There’s a historical reason for that, but we’ll skip over it (it’s dull, I promise)
-
-Examples will clarify what I mean:
-
-In many cases, you may decide that typing a few extra characters is a reasonable price to pay for the ability to avoid the pitfalls of an enum technology that dates to a time when the state of the art in digital telecommunications was the 2400-baud modem.
-
-This is hardly the most encapsulated design that’s seen the light of day.
-
+copying, the behavioral problems of object slicing, and the sting of our coworkers’ derision.  
+bring it into accord with admonition 使之符合告诫  
+You’ll have to familiarize yourself with a few special cases. Most of these are too obscure to warrant discussion in a book like this, but looking at one lends insight into decltype as well as its use.  
+At the same time, don’t lose sight of the bigger picture.  
+I do my best to convice you to use lambdas instead of std::bind.  
+Take a deep breath and relax. auto is a option, not a mandate.  
+such abstract type information should almost always be at hand.  
+nullptr shines especially brightly when templates enter the picture.  
+There’s a historical reason for that, but we’ll skip over it (it’s dull, I promise)  
+Examples will clarify what I mean:  
+In many cases, you may decide that typing a few extra characters is a reasonable price to pay for the ability to avoid the pitfalls of an enum technology that dates to a time when the state of the art in digital telecommunications was the 2400-baud modem.  
+This is hardly the most encapsulated design that’s seen the light of day.  
 There’s some wiggle room for optimization through what is known as the “as if rule,” but you’d be foolish
-to rely on your compilers finding a way to take advantage of it.
-
-Don’t let the warm glow of this happy ending distract you from the true point of this Item
-
-Restrictions are imposed on their implementations.
-
-Have endured my endless blathering about the rules governing the copy and move operations in C++11.
-
-Don’t worry if you see something whose motivation is less than obvious.
-
-They don’t hinder callers from replacing it with its more flexible sibling.
-
-How primitive!
-
-Unleash your search engine.
-
-No divorce, no annulment, no dispensations.
-
-The more experience you have with these features, the more you realize that your initial impression was based on only the metaphorical tip of the proverbial iceberg.
-
-No matter how far you dig into these features, it can seem that there’s always more to uncover. Fortunately, there is a limit to their depths. This chapter will take you to the bedrock.
-
-It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.
-
-My liberal use of quotation marks should tip you off that this line of reasoning is flawed.
+to rely on your compilers finding a way to take advantage of it.  
+Don’t let the warm glow of this happy ending distract you from the true point of this Item  
+Restrictions are imposed on their implementations.  
+Have endured my endless blathering about the rules governing the copy and move operations in C++11.  
+Don’t worry if you see something whose motivation is less than obvious.  
+They don’t hinder callers from replacing it with its more flexible sibling.  
+How primitive!  
+Unleash your search engine.  
+No divorce, no annulment, no dispensations.  
+The more experience you have with these features, the more you realize that your initial impression was based on only the metaphorical tip of the proverbial iceberg.  
+No matter how far you dig into these features, it can seem that there’s always more to uncover. Fortunately, there is a limit to their depths. This chapter will take you to the bedrock.  
+It’s been said that the truth shall set you free, but under the right circumstances, a well-chosen lie can be equally liberating.  
+My liberal use of quotation marks should tip you off that this line of reasoning is flawed.  
+Relising problems is tantamount to solving them.  
+The syntax is off-putting.  
+Make it easier to see how the pieces fit together.  
+Tantalizingly close.  
+We got dragged into along the way.  
+Pour these ingredients into the pot with everything else we’ve discussed, simmer over a low flame, and savor the aroma of success.  
 
 ## 鞋狗（译）
 
