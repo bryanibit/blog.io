@@ -1617,4 +1617,38 @@ class Person
 ```
 This technique can be applied in circumstances (such as constructors) where overloading is unavoidable.  Try not to overload universal reference.
 
-### trade-off
+### trade-offs
+
+Perfect forwarding has drawbacks. One is that some kinds of arguments can’t be perfect-forwarded. A second issue is the comprehensibility of error messages when clients pass invalid arguments. The resulting error message is likely to be, er, impressive. With one of the compilers I use, it’s more than 160 lines long. The more times the universal reference is forwarded, the more baffling the error message may be when something goes wrong.
+
+```
+class Person
+{
+	public: // as before
+	template <typename T, typename = enable_if_t<
+						!std::is_base_of<Person, std::decay_t<T>>::value
+						&&
+						!std::is_integral<std::remove_reference_t<T>>::value
+					>
+	>
+	explicit Person(T&& n):name(std::forward<T>(n))
+	{
+		static_assert(std::is_constructible<std::string, T>::value,
+						"Parameter n can't be used to construct a std::string")
+	}
+	private:
+	std::string name;
+};
+```
+The ```std::is_constructible``` type trait performs a *compile-time* test to determine whether an object of one type can be constructed from an object (or set of objects) of a different type (or set of types). ```static_assert ``` can detect error in *compile-time*.  
+This causes the specified error message to be produced if client code tries to create a **Person** from a type that can’t be used to construct a **std::string**. Unfortunately, in this example the ```static_assert``` is in the body of the constructor, but the forwarding code, being part of the member initialization list, precedes it.  
+Luckily, compiler will usually produce *static_assert* error messages after long long 160 lines error messages.
+
+```
+				Things to Remember
+• Alternatives to the combination of universal references and overloading include the use of distinct function names, passing parameters by lvaluereference-to-const, passing parameters by value, and using tag dispatch.
+• Constraining templates via std::enable_if permits the use of universal references and overloading together, but it controls the conditions under which compilers may use the universal reference overloads.
+• Universal reference parameters often have efficiency advantages, but they typically have usability disadvantages.
+```
+
+# 28. Understand reference collapsing
