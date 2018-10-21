@@ -5,14 +5,13 @@ description: "不积跬步无以至千里，不积小流无以成江海 "
 header-img: "img/Country.jpg"
 ---
 
-
 <center>
     <p><img src="https://vignette1.wikia.nocookie.net/gameofthrones/images/6/6c/Sam_S2.jpg/revision/latest?cb=20120324131039" align="center"></p>
 </center>
 
 **Even in the unlikely place, hope can still be found.**
 
-###最近看的闲书：
+### 通识类：
 
 - [《为数据而生:大数据创新实践》](http://product.dangdang.com/23953149.html)
 
@@ -29,3 +28,9 @@ header-img: "img/Country.jpg"
 - [《乡土中国》](http://product.dangdang.com/23678069.html)
 
 - [《一只特立独行的猪》](http://product.dangdang.com/24516890.html)
+
+- [Shoe Dog](127.0.0.1)
+
+### 非通识类：
+
+- [Introduction to R for Natural Resource Scientists](bstaton1.github.io/au-r-workshop)

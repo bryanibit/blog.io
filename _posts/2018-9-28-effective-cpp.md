@@ -1495,6 +1495,8 @@ Ditto, if frac is rvalue, the situation is the same with Matrix: no copy. If lva
 
 If the return value is local variable, the situation is totally different. The CPP committee has employed a way called *return value optimization*(ROV) to optimize the functon returning. ROV is employed in return local variables.
 
+## Conclusion
+
 ```
 				Things to Remember
 • Apply std::move to rvalue references and std::forward to universal references the last time each is used.
@@ -1504,8 +1506,10 @@ If the return value is local variable, the situation is totally different. The C
 
 # 26. Avoid overloading on universal references.
 
- Per the normal overload resolution rules, an exact match(including deduction from **T** to be int or else) beats a match with a promotion, so the universal reference overload is invoked.   
- Functions taking universal references are the greediest functions in C++.
+Per the normal overload resolution rules, an exact match(including deduction from **T** to be int or else) beats a match with a promotion, so the universal reference overload is invoked.   
+Functions taking universal references are the greediest functions in C++.
+
+## Conclusion
 
 ```
 				Things to Remember
@@ -1652,3 +1656,89 @@ Luckily, compiler will usually produce *static_assert* error messages after long
 ```
 
 # 28. Understand reference collapsing
+
+Compiler forbid reference to reference. Such as ```auto & & rx = x```.
+
+However, if a reference to a reference arises in a context where this is permitted (e.g., **during template instantiation**, **type generation for *auto* variables**), the *references collapse* to a single reference according to this rule:  
+*If either reference is an lvalue reference, the result is an lvalue reference. Otherwise (i.e., if both are rvalue references) the result is an rvalue reference.*
+
+Reference collapsing is a key part of what makes ```std::forward``` work. Let's look at ```std::forward``` once more:
+```
+------------std::forward function---------------
+template <typename T>		 // in std namespace
+T&& forward(std::remove_reference_t<T>& param)
+{
+	return static_cast<T&&>(param);
+}
+-----------function f----------------------------
+template <typename T>
+void f(T&& fParam)
+{
+	someFunc(std::forward<T>(fParam));
+}
+```
+Suppose that the argument passed to **f** is an lvalue of type **Widget**. **T** will be deduced as **Widget&**. Plugging **Widget&** into the ```std::forward``` implementation yields this:
+```
+Widget& && forward(std::remove_reference_t<widget&>& param)  
+// ditto
+//Widget& forward<Widget>& param
+{
+	return static_cast<Widget& &&>(param);
+	// ditto
+	//return static_cast<widget&>(param);
+}
+```
+Now suppose that the argument passed to **f** is an rvalue of type **Widget**. In this case, the deduced type for **f**’s type parameter **T** will simply be **Widget**. Sustituting **Widget** to **T** in ```std::forward``` implementation gives this:
+```
+Widget&& forward(std::remove_reference_t<widget>& param)
+{
+	return static_cast<Widget&&>(param)
+}
+```
+The foregoing code has no *reference collapsing*. It only change param to rvalue. ```std::forward``` will turn **f**’s parameter **fParam** (an lvalue,形参都是左值) into an rvalue, which is precisely what is supposed to happen.
+
+We’re now in a position to truly understand the universal references. A universal reference isn’t a new kind of reference, it’s actually an rvalue reference in a context where two conditions are satisfied:  
+* Type deduction distinguishes lvalues from rvalues. Lvalues of type T are deduced to have type T&, while rvalues of type T yield T as their deduced type.  
+* Reference collapsing occurs.  
+Another two conditions occur in ```typedef``` and ```decltype```. I will not to explain them.
+
+## Conclusion
+
+```
+Things to Remember
+• Reference collapsing occurs in four contexts: template instantiation, auto type generation, creation and use of typedefs and alias declarations, and decltype.
+• When compilers generate a reference to a reference in a reference collapsing context, the result becomes a single reference. If either of the original references is an lvalue reference, the result is an lvalue reference. Otherwise it’s an rvalue reference.
+• Universal references are rvalue references in contexts where type deduction distinguishes lvalues from rvalues and where reference collapsing occurs. (Generalization)
+```
+
+# 29. Assume that move operations are not present, not cheap, and not used
+
+Some standard containers store its contents on the heap. Only a pointer to the heap memory storing the contents of the container.(such as ```std::vector```)  
+The existence of this pointer makes it possible to move the contents of an entire container in constant time(just move pointer): just copy the pointer to the container’s contents from the source container to the target, and set the source’s pointer to null.  
+```
+std::vector<int> v;
+auto v1 = std::move(v);
+```
+However, ```std::array``` objects lack such a pointer, because the data for a **std::array**’s contents are stored directly in the **std::array** object:
+```
+std::array<int> a;
+auto a1 = std::move(a);
+```
+This shows that move *std::array* is no faster than copy. That scenery is not the same with *std::vector*.  
+
+## C++11's move semantics do you no good
+
+* No move operations: The object to be moved from fails to offer move operations. The move request therefore becomes a copy request.
+* Move not faster: The object to be moved from has move operations that are no faster than its copy operations.
+* Move not usable: The context in which the moving would take place requires a move operation that emits no exceptions, but that operation isn’t declared **noexcept**.
+* Source object is lvalue: With very few exceptions only rvalues may be used as the source of a move operation.
+
+## Conclusion
+
+```
+Things to Remember
+• Assume that move operations are not present, not cheap, and not used.
+• In code with known types or support for move semantics, there is no need for assumptions.
+```
+
+# 30. Familiarize yourself with perfect forwarding failure cases

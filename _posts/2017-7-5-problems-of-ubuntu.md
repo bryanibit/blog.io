@@ -380,3 +380,85 @@ Bus 009 Device 003: ID 12d1:14dc Huawei Technologies Co., Ltd.
 ```
 
 Notice it changed name, also device ID changed to 14db, or something else.
+
+## grub rescue: no such partition
+
+### Simple operation on boot from Ubuntu
+
+The foregoing messages prove that grub has been broken. In the rescue mode, few commands can be applied:
+*set, ls, insmod, root, prefix*.
+
+```
+grub rescue> ls
+(hd0) (hd0, msdos4) (hd0, msdos3) (hd0, msdos2) (hd0, msdos1)
+grub rescue> ls (hd0, msdos1)/
+./  ../  lost+found/
+grub rescue> set root=(hd0,msdos1)  #设置grub启动分区
+grub rescue> set prefix=(hd0,msdos1)/boot/grub/  #设置grub启动路径
+grub rescue> set   # check the setting
+prefix=(hd0,msdos1)/boot/grub
+root=hd0,msdos1
+grub rescue> insmod /boot/grub/normal.mod    ## if this produced an error,
+## Or use "insmod /boot/grub/grub.cfg"       ## reset root and prefix to something else ..
+grub rescue > normal                                          
+```
+normal  #进入正常模式，出现菜单，如果加载grub.cfg（错误的）可能出现问题，按shift可以出现菜单，之后按c键进入控制台
+
+For permanent fix, try the following command:
+```
+sudo update-grub
+sudo grub-install /dev/sdX # sdX is boot drive
+```
+
+### Boot-Repair free software
+
+Boot-Repair also has advanced options to back up table partitions, back up bootsectors, create a Boot-Info (to get help by email or forum), or change the default repair parameters: configure GRUB, add kernel options (```acpi=off``` ...), purge GRUB, change the default OS, restore a Windows-compatible MBR, repair a broken filesystem, specify the disk where GRUB should be installed, etc.
+
+**Getting Boot-Repair**
+
+*1st option* : get a disk including Boot-Repair  
+The easiest way to use Boot-Repair is to create a disk containing the tool (eg Boot-Repair-Disk, a disk starting Boot-Repair automatically), and boot on it.
+
+Remark : it is recommended to install the ISO on a live-USB (eg via UnetBootin or LiliUSB or Universal USB Installer). Do not burn it on a DVD if your computer has Windows8 pre-installed, or if your boot is in EFI mode.
+
+*2nd option* : install Boot-Repair in Ubuntu
+Either from an Ubuntu live-session (boot your computer on a Ubuntu live-CD or live-USB then choose "Try Ubuntu") or from your installed Ubuntu session (if you can access it)  
+Connect to the Internet  
+Open a new Terminal, then type the following commands (press Enter after each line):  
+```
+sudo add-apt-repository ppa:yannubuntu/boot-repair
+sudo apt-get update
+sudo apt-get install -y boot-repair && boot-repair
+```
+
+**Using Boot-Repair**
+
+*Recommended repair*  
+launch Boot-Repair from either :  
+the *Dash* (the Ubuntu logo at the top-left of the screen) or by typing 'boot-repair' in a terminal  
+Then click the "Recommended repair" button. When repair is finished, note the URL (paste.ubuntu.com/XXXXX) that appeared on a paper, then reboot and check if you recovered access to your OSs.
+
+If the repair did not succeed, indicate the URL to people who help you by email or forum.  
+
+**Warning**: the default settings are the ones used by the "Recommended Repair". Changing them may worsen your problem. Don't modify them before creating a BootInfo URL, and asking for advice on Ubuntu Forums Absolute Beginners Section or in Installation and Upgrades.
+
+### Start from Windows
+
+Burn the iso into the USB with Rufus. Boot from USB, click Troubleshooting, then Command Prompt, and type:
+```Bootrec /fixmbr```
+Windows will start normally without Ubuntu's GRUB. You can reinstall Ubuntu again.  
+In pratice, the complete commands is shown below:
+```
+c:\user> diskpart
+DISKPART> list disk
+DISKPART> select disk X # X points 0, 1 or etc
+DISKPART> list partition
+DISKPART> select partition X # X points windows C disk 
+DISKPART> active
+DISKPART> exit
+c:\user> bootrec /fixmbr # Operation completed successfully
+c:\user> bootrec /fixboot # Operation completed successfully
+c:\user> bootrec /scanos # Operation completely successfully
+c:\user> bootrec /rebuildbcd # Operation completely successfully
+c:\user> exit # exit terminal and continue boot
+```

@@ -37,3 +37,12 @@ time. So it is important to be clear about what your principles are. You can gai
 
 First of all, I want to cite the book:  
 Time is like a river that carries us forward into encounters with reality that require us to make decisions. We can't stop our movement down this river and we can't avoid those encounters. We can only approach them in the best possible way. Author fears boredom and mediocrity more than he fears failure. Author chooses a different path from oridinary people, but he with oridinary people has innate strength and weakness. How can he achieve the distinctive? Author is experiencing something different from us and thinks a lot after failure, I think.
+
+# 10-19
+kind of culmination of the lifelong dream!  
+We just look at the mountains ahead of us, and forget the mountains behind us were just as hard to climb.
+
+# 10-20
+
+Legends, however, are generally the result of exaggeration.  
+Keep your expectations grounded. 

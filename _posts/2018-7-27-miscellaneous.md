@@ -80,6 +80,8 @@ Make it easier to see how the pieces fit together.
 Tantalizingly close.  
 We got dragged into along the way.  
 Pour these ingredients into the pot with everything else we’ve discussed, simmer over a low flame, and savor the aroma of success.  
+Reference collapsing will kick in(起作用) to eliminate it.  
+Move semantics can really pull that off, and that grants the feature an aura worthy of legend. Legends, however, are generally the result of exaggeration
 
 ## 鞋狗（译）
 
