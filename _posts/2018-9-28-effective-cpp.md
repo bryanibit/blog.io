@@ -1742,3 +1742,51 @@ Things to Remember
 ```
 
 # 30. Familiarize yourself with perfect forwarding failure cases
+
+When it comes to generalpurpose forwarding, we’ll be dealing with parameters that are references, not pointer or by value.  
+*Perfect forwarding* means we don’t just forward objects, we also forward their salient characteristics: their **types**, whether they’re **lvalues** or **rvalues**, and whether they’re **const** or **volatile**.  
+This implies that universal reference will be adopted, because only universal reference parameters encode information about the lvalueness and rvalueness of the arguments that are passed to them.  
+
+Let's show you a variadic parameter template:
+```
+template<typename... Ts>
+void fwd(Ts&&... params)
+{
+	f(std::forward<Ts>(params)...);
+}
+```
+The above codes can be found in the standard containers’ emplacement functions(std::vector<>::emplace_back) and the smart pointer factory functions(*std::make_shared* and *std::make_unique*).  
+
+Perfect forwarding fails when either of the following occurs:  
+* **Compilers are unable to deduce a type** for one or more of fwd’s parameters. In this case, the code fails to compile.  
+* **Compilers deduce the “wrong” type** for one or more of fwd’s parameters. Here, “wrong” could mean that *fwd*’s instantiation won’t compile with the types that were deduced, but it could **also** mean that the call to *f* using *fwd*’s deduced types behaves differently from a direct call to *f* with the arguments that were passed to *fwd*.
+
+For example,
+```
+void f(const std::vector<int>& v);
+f({1,2,3}); // fine
+fwd({1,2,3}); // error
+```
+Compilers are forbidden from deducing a type for the expression *{1, 2, 3}* in the call to *fwd*, because fwd’s parameter isn’t declared to be a std::initializer_list. It can be explained by me: *fwd* would deduce *{1,2,3}* to *std::initializer_list* which is divergent from directly using *f* that would deduce *{1,2,3}* to *std::vector<int>*.  
+
+However, you can use the following workaround if you still want to pass *std::initializer_list* to fwd.
+```
+auto i = {1,2,3};
+fwd(i);
+```
+## Declaration-only integral static const data members
+
+```
+class Widgets{
+public:
+	static const std::size_t minVal = 28; // only declaration
+};
+...           // // no defn. for MinVals
+std::vector<int> widgetData;
+widgetData.push_back(Widgets::minVal); // fine
+--------another function without perfect_forwar-------
+void f(std::size_t val);
+f(Widgets::minVal); // fine
+fwd(Widgets::minVal); //error, no definition
+```
+Passing integral static const data members by reference “generally” requires that they be defined.
