@@ -84,6 +84,7 @@ Reference collapsing will kick in(起作用) to eliminate it.
 Move semantics can really pull that off, and that grants the feature an aura worthy of legend. Legends, however, are generally the result of exaggeration.  
 At this level, there’s truth to the adage that references are simply pointers that are automatically dereferenced.  
 Perhaps you noticed the weasel words I sprinkled through the preceding discussion.  
+Do not stress over the detail.  
 Default by-value capture isn’t the antidangling elixir you might imagine.  
 
 ## 鞋狗（译）
