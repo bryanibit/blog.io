@@ -1790,3 +1790,65 @@ f(Widgets::minVal); // fine
 fwd(Widgets::minVal); //error, no definition
 ```
 Passing integral static const data members by reference “generally” requires that they be defined.
+
+
+## Pass overload function to fwd
+
+
+# lambda function ------90------------
+
+* A lambda expression is just that: an expression. It’s part of the source code.
+```
+std::find_if(container.begin(), container.end(),
+  '[](int val) { return 0 < val && val < 10; })';
+```
+The second line is the lambda.
+
+* A closure is the runtime object created by a lambda. In the call to ```std::find_if``` above, the closure is the object that is passed at runtime as the third argument to ```std::find_if```.  
+* A closure class is a class from which a closure is instantiated.
+
+# 31. Avoid default capture modes
+
+There are two default capture modes in C++11: by-reference and by-value. Captures apply only to **non-static local** variables or parameters.  
+* As for by reference capture, captured local variables should outlive the closure.
+
+Every **non-static** member function has a **this** pointer, and you use that pointer every time you mention a data member of the *class*.  
+* If lambda by value contains an entry with a pointer, make sure it not dangling.  
+
+In conclusion, copy local value not pointer will not be precarious by value not by reference. So if you want to copy a member variable, better not to capture *this* pointer but copy its value. For example,  
+```
+class Widgets
+{
+	public:
+	void addFilter() constant;
+  private:
+	int divisor;
+};
+-----------------CPP 11-------------------------
+void Widget::addFilter() const
+{
+	auto divisorCopy = divisor; // copy data member
+  filters.emplace_back(['divisorCopy'](int value) // capture the copy    
+	         { return value % 'divisorCopy' == 0; } // use the copy  
+					 );
+}
+------------------CPP 14-----------------------
+void Widget::addFilter() const
+{
+	filters.emplace_back(['divisor = divisor'](int value) // copy divisor to closure    
+										{ return value % divisor == 0; }  // use the copy  
+					 );
+}
+```
+
+In general, that’s not true, because lambdas may be dependent not just on local variables and parameters (which may be captured), but also on objects with **static storage* duration. Such objects are defined at *global* or *namespace scope* or are declared *static* inside classes, functions and files. These objects can be used inside lambdas, but they can’t be captured.
+
+## Upshot
+
+```
+				Things to Remember
+• Default by-reference capture can lead to dangling references.
+• Default by-value capture is susceptible to dangling pointers (especially this), and it misleadingly suggests that lambdas are self-contained.
+```
+
+32. Use init capture to move objects into closures
