@@ -1843,4 +1843,72 @@ There’s no way to create a pointer to arbitrary bits (C++ dictates that the sm
 ```
 
 **--------------Lambda Expressions-----------**
+* A lambda expression is just that: an expression. It’s part of the source code. a lambda expression is simply a way to cause a class to be generated and an object of that type to be created.
+```
+std::find_if(container.begin(), container.end(),
+  '[](int val) { return 0 < val && val < 10; })';
+```
+The second line is the lambda.
+
+* A closure is the runtime object created by a lambda. In the call to ```std::find_if``` above, the closure is the object that is passed at runtime as the third argument to ```std::find_if```.  
+* A closure class is a class from which a closure is instantiated.
+
 # 31. Avoid default capture modes
+
+There are two default capture modes in C++11: by-reference and by-value. Captures apply only to **non-static local** variables or parameters.  
+* As for by reference capture, captured local variables should outlive the closure.
+
+Every **non-static** member function has a **this** pointer, and you use that pointer every time you mention a data member of the *class*.  
+* If lambda by value contains an entry with a pointer, make sure it not dangling.  
+
+In conclusion, copy local value not pointer will not be precarious by value not by reference. So if you want to copy a member variable, better not to capture *this* pointer but copy its value. For example,  
+```
+class Widgets
+{
+	public:
+	void addFilter() constant;
+  private:
+	int divisor;
+};
+-----------------CPP 11-------------------------
+void Widget::addFilter() const
+{
+	auto divisorCopy = divisor; // copy data member
+  filters.emplace_back([divisorCopy](int value) // capture the copy    
+	         { return value % divisorCopy == 0; } // use the copy  
+					 );
+}
+------------------CPP 14-----------------------
+void Widget::addFilter() const
+{
+	filters.emplace_back([divisor = divisor](int value) // copy divisor to closure    
+										{ return value % divisor == 0; }  // use the copy  
+					 );
+}
+```
+
+In general, that’s not true, because lambdas may be dependent not just on local variables and parameters (which may be captured), but also on objects with **static storage* duration. Such objects are defined at *global* or *namespace scope* or are declared *static* inside classes, functions and files. These objects can be used inside lambdas, but they can’t be captured.
+
+## Upshot
+
+```
+				Things to Remember
+• Default by-reference capture can lead to dangling references.
+• Default by-value capture is susceptible to dangling pointers (especially this), and it misleadingly suggests that lambdas are self-contained.
+```
+
+# 32. Use init capture to move objects into closures
+
+C++14 offers direct support for moving objects into closures. The new capability of C++14 is called *init capture*. The following is init capture example:
+```
+class Widget{...};
+auto pw = std::make_unique<Widget>();
+auto fw = [pw = std::move(pw)]{...};
+```
+The foregoing code means: create a **data member** pw (left of "=") in the closure, and initialize that data member with the result of applying std::move to the **local variable** pw (right of "=").  
+The scope on the left is that of the closure class. The scope on the right is the same as where the lambda is being defined. No capture, no same scope. As usual, code in the body of the lambda is in the scope of the closure class, so uses of pw there refer to the closure class data member. So the above lambda can be changed to ```auto func = [pw = std::make_unique<Widget>()]```. 
+
+
+
+
+
