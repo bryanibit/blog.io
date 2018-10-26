@@ -1902,7 +1902,229 @@ C++14 offers direct support for moving objects into closures. The new capability
 ```
 class Widget{...};
 auto pw = std::make_unique<Widget>();
-auto fw = [pw = std::move(pw)]{...};
+auto fw = [pw = std::move(pw)]{...};  // C++ 14
 ```
 The foregoing code means: create a **data member** pw (left of "=") in the closure, and initialize that data member with the result of applying std::move to the **local variable** pw (right of "=").  
-The scope on the left is that of the closure class. The scope on the right is the same as where the lambda is being defined. No capture, no same scope. As usual, code in the body of the lambda is in the scope of the closure class, so uses of pw there refer to the closure class data member. So the above lambda can be changed to ```auto func = [pw = std::make_unique<Widget>()]```.
+The scope on the left is that of the closure class. The scope on the right is the same as where the lambda is being defined. No capture, no same scope. As usual, code in the body of the lambda is in the scope of the closure class, so uses of pw there refer to the closure class data member. So the above lambda can be changed to ```auto func = [pw = std::make_unique<Widget>()]```.  
+
+## Complement: std::bind
+
+```
+template< class F, class... Args >
+bind( F&& f, Args&&... args );
+```
+* f	-	可调用 (Callable) 对象（函数对象、指向函数指针、到函数引用、指向成员函数指针或指向数据成员指针）
+* args	-	要绑定的参数列表，未绑定参数为命名空间 *std::placeholders* 的占位符 _1, _2, _3... 所替换
+
+```
+#include <random>
+#include <iostream>
+#include <memory>
+#include <functional>
+void f(int n1, int n2, int n3, const int& n4, int n5)
+{
+  std::cout << n1 << ' ' << n2 << ' ' << n3 << ' ' << n4 << ' ' << n5 << '\n';
+}
+int main()
+{
+	int n = 7;
+	// _1 与 _2 来自 std::placeholders ，并表示将来会传递给 f1 的参数
+	auto f1 = std::bind(f, _2, _1, 42, std::cref(n), n);
+	int n = 10;
+	f1(1, 2, 1001);// 1 为 _1 所绑定， 2 为 _2 所绑定，不使用 1001
+                 // 进行到 f(2, 1, 42, n, 7) 的调用
+								 // Output: 1, 2, 42, 10, 7
+								 // std::bind is by value, so std::ref is applied
+}
+```
+
+## Use move in C++11 by hand
+
+```
+v = std::vector<int>(3,4);
+auto f = std::bind([](const std::vector<int>& data){...}, std::move(data));
+f(v);// const v can not modified in Lambda
+```
+Like lambda expressions, std::bind produces function objects. I call function objects returned by *std::bind* **bind objects**.  
+A *bind object* contains copies of all the arguments passed to **std::bind**. For each lvalue argument, the corresponding object in the bind object is copy constructed. For each rvalue, it’s move constructed.  
+When a bind object is “called”, the move constructed *copy* of data inside **f** is passed as an argument to the lambda that was passed to **std::bind**. It is that we move copy of *data*, not *data* itself.
+
+## Complement: mutable used in lambda expression
+
+**mulable Usage**:  
+* mutable type specifier
+* **lambda-declarator** that removes const qualification from parameters captured by copy  
+
+By default, the operator() member function inside the closure class generated from a lambda is const. Declaration of a const lambda: the objects **captured by copy** are const in the lambda body, namely, in {}. That has the effect of rendering all data members in the closure **const** within the body of the lambda.  
+The move-constructed copy of data inside the bind object is not const, however, so to prevent that copy of data( in () ) from being modified *inside the lambda*, the lambda’s parameter is declared *reference-to-const*(const std::vector<int>& data).  
+If the lambda were declared **mutable**, operator() in its closure class would not be declared *const*, so no need to declare *data* to *const*:
+```
+std::vector<int> v;
+auto f = std::bind([](std::vector<int>& data) mutable
+{...}, std::move(data));
+f(v);// v could be modified
+```
+
+## operator() of closure class
+
+```
+class ClosureType
+{
+public:
+    // ...
+    ReturnType operator(params) const { body };
+}
+```
+The above means lambda can not modify the variables captured by value, because the function above is declared to *const*. If you want to change the variables by value, you can declare the function to **mutable**.
+
+## Upshot
+
+```
+Things to Remember
+• Use C++14’s init capture to move objects into closures.
+• In C++11, emulate init capture via hand-written classes or std::bind.
+```
+
+# 33. Use decltype on auto&& parameters to std::forward them
+
+One of the most exciting features of C++14 is *generic lambdas*. For example:
+```
+auto f = [](auto&& x)
+{
+	return func(normalize(std::forward<???>(x)));
+};
+```
+If an lvalue was passed in, decltype(x) will produce a type that’s an lvalue reference. If an rvalue was passed, decltype(x) will produce an rvalue reference type.  
+For ```std::forward<T>(param)```, we know that *T* and *param* is [the same when passing lvalues, but different when passing rvalue](http://yhc201.com/blog/2018/09/28/effective-cpp/#by-reference-%E4%B9%8B-universal-reference).
+
+That is ```std::forward``` source code:  
+```
+template<typename T>                      // in namespace
+T&& forward(remove_reference_t<T>& param) // std
+{  
+	return static_cast<T&&>(param);
+}
+```
+We can compare them with *Widget* when passing rvalues.
+```
+------------------- T is Widget --------------------
+Widget&& forward(Widget& param)   // instantiation of
+{ 																// std::forward when  
+	return static_cast<Widget&&>(param);
+}
+--------------------T is Widget&&--------------------
+Widget&& && forward(Widget& param)   // instantiation of
+{ 																   // std::forward when  
+	return static_cast<Widget&& &&>(param);
+}
+------They are the same with reference collapsing----
+```
+
+So in C++14, generic lambda can be written like:
+```
+auto f =  [](auto&& param)  
+{    
+	return func(normalize(std::forward<decltype(param)>(param)));  
+};
+```
+C++14 lambdas can *also* be variadic:
+```
+auto f =  [](auto&&... param)  
+{    
+	return func(normalize(std::forward<decltype(param)>(param)...));  
+};
+```
+
+## Upshot
+
+```
+				Things to Remember
+• Use decltype on auto&& parameters to std::forward them.
+```
+
+# 34. Prefer lambdas to std::bind
+
+## More readable
+
+```
+void setAlarm(Time t, Sound s, Duration d);
+-------------lambda----------
+auto setSoundL =                               
+[](Sound s)  
+{    
+	using namespace std::chrono;    
+	using namespace std::literals;        // for C++14 suffixes
+    setAlarm(steady_clock::now() + 1h,  // alarm to go off             
+		s,                            			// in an hour             
+		30s);                         			// for 30s  
+};
+-------------std::bind-------------------
+using namespace std::chrono;           // as above
+using namespace std::literals;
+using namespace std::placeholders;     // needed for use of "_1"
+auto setSoundB =                       // "B" for "bind"  
+	std::bind(setAlarm,
+		steady_clock::now() + 1h,  // incorrect! see below           
+		_1,
+		30s);
+```
+The type of this argument ('_1') is not identified in the call to *std::bind*, so readers have to consult the *setAlarm* declaration to determine what kind of argument to pass to *setSoundB*.  
+
+## parameter timeliness
+
+However, ```steady_clock::now() + 1h``` is passed as an argument to ```std::bind```, not to ```setAlarm```. That means that the expression will be evaluated when *std::bind* is **called**, and the time resulting from that expression will be stored inside the resulting *bind object*. As a consequence, the alarm will be set to go off an hour after the call to std::bind, not an hour after the call to setAlarm!  
+So we can defer evaluation of the expression until **setAlarm** is called, and the way to do that is to nest a second call to std::bind inside the first one:
+```
+auto setSoundB =  std::bind(setAlarm,            
+	std::bind(std::plus<>(), steady_clock::now(), 1h),  C++14 auto deduce           
+	_1,            
+	30s);
+```
+
+## As for overload functions
+
+If we overload function **setAlarm** with ```void setAlarm(Time t, Sound s, Duration d, Volume v)```, compilers have no way to determine which of the two *setAlarm* functions they should pass to **std::bind**. However, it doesn't not influence lambda. We can change *std::bind* to:
+```
+using SetAlarm3ParamType = void(*)(Time t, Sound s, Duration d);
+auto setSoundB =                                    
+   std::bind(static_cast<SetAlarm3ParamType>(setAlarm),  
+	 	std::bind(std::plus<>(), steady_clock::now(), 1h),            
+         _1,            
+         30s);
+```
+
+## Running speed
+
+It’s thus possible that using lambdas generates (setSoundL) faster code than using std::bind (setSoundB).  
+
+## local variable capture
+
+```
+-----------lambda-------------------------
+auto betweenL =  
+[lowVal, highVal]  
+(const auto& val)   // C++14  
+{
+	return lowVal <= val && val <= highVal;
+};
+--------------std::bind--------------------
+using namespace std::placeholders;                // as above
+auto betweenB =  std::bind(std::logical_and<>(),  // C++14              
+    std::bind(std::less_equal<>(), lowVal, _1),   // no need for two bind           
+    std::bind(std::less_equal<>(), _1, highVal));
+```
+
+## by value or by reference
+
+*std::bind* always copies its arguments, but callers can achieve the effect of having an argument stored by reference by applying ```std::ref``` to it.  
+The result of ```auto compressRateB = std::bind(compress, std::ref(w), _1);``` is that **compressRateB** acts as if it holds a reference to w, rather than a copy.  
+But *bind object* always use by reference (because use of perfect forward) to pass variable, such as ```compressRateB(CompLevel::High);```.  
+That results in unreadable code for *std::bind*.
+
+## Upshot
+
+```
+Things to Remember
+• Lambdas are more readable, more expressive, and may be more efficient than using std::bind.
+• In C++11 only, std::bind may be useful for implementing move capture or for binding objects with templatized function call operators.
+```
