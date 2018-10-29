@@ -231,9 +231,9 @@ that computes the cost function in terms of the template parameter *T*.
             new ceres::AutoDiffCostFunction<SnavelyReprojectionError, 2, 9, 3>(
                  new SnavelyReprojectionError(observed_x, observed_y)));
 
-以上公式会计算SnavelyReprojectionError的雅克比矩阵，Where, 2 is the number of residual of output, 
+以上公式会计算SnavelyReprojectionError的雅克比矩阵，Where, 2 is the number of residual of output,
 
-9 and 3 are the number of input like the following camera(9,rotation, translation, focal, distortion) and 
+9 and 3 are the number of input like the following camera(9,rotation, translation, focal, distortion) and
 
 point(3,z,y,z). SnavelyReprojectionError is displayed the following:
 
@@ -317,7 +317,7 @@ Model generation: A multi-resolution mesh is generated for each fused depth map 
 
  ### KLT algorithm
 
- 最初，KLT算法是为了解决图像配准问题（Registration Problem）而提出的，可以表述如下：对于给定的图像F(x)和G(x)，需要找到一个视差向量（Disparity Vector）h使得F(x+h)与G(x)的差异最小
+ 最初，KLT算法是为了解决图像配准问题（Registration Problem）而提出的，可以表述如下：对于给定的图像F(x)和G(x)，需要找到一个视差向量（Disparity Vector）h使得F(x+h)与G(x)的差异最小。
 
 # Name
 
@@ -325,3 +325,7 @@ Model generation: A multi-resolution mesh is generated for each fused depth map 
 Gaussian Mixture Model
 Fisher
 似然函数
+
+# relative benchmarks
+
+There are [*links to relative benchmarks](http://www2.isprs.org/commissions/comm2/wg6/bench.html).

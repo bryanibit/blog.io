@@ -167,3 +167,9 @@ go to the horse's mouth
 
 weak_ptr
 observer patten using weak_ptr
+
+# 10-27
+
+赵总分享的链接，使用esr进行场景建模
+effective c++ 最后两章
+game vpn creation对应的GitHub fork的两个工程的作用：shadowsocks_install/YankeeBBR

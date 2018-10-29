@@ -117,3 +117,10 @@ audacious goals -> failure -> leanring principles -> imporving -> more audacious
 ## 教师的自我修养
 
 我无法想象她多日以来承受的压力有多大，或许她不应该选择这条道路，或许是时候通过哭泣释放一下自己内心的压抑了。
+
+## Principle
+
+Maturarity is the ability to reject good alternatives in order to persue even better ones.  
+I've learned that judging people before really seeing things through their eyes stands in the way of understanding their circumstances -- that isn't smart. I urge you to be curious enough to want to understand how the people who see things differently from you came to see them that way. You will find that interesing and invaluable, and the richer perspective you gain will help you dicide what you should do.  
+My belief that having ability to figure things out is more important than having specific knowledge of how to do something.  
+Stifle your mild disbelief at the necessary circumlocution.  

@@ -2128,3 +2128,63 @@ Things to Remember
 • Lambdas are more readable, more expressive, and may be more efficient than using std::bind.
 • In C++11 only, std::bind may be useful for implementing move capture or for binding objects with templatized function call operators.
 ```
+
+**----The Concurrency API----**
+# 35. Prefer task-based programming to threadbased
+
+If you want to run a function **doAsyncWork** asynchronously, you have two basic choices: based on *std::thread* or based on *std::async*. Such as ```int doAsyncWork(); std::thread t(doAsyncWork); auto fut = std::async(doAsyncWork)```.  
+In such calls, the *function object* passed to *std::async* (e.g., **doAsyncWork**) is considered a *task*.  
+* With the thread-based invocation, there’s no straightforward way to get access to function returning values. With the task-based approach, it’s easy, because the **future** returned from *std::async* offers the **get** function.  
+* The **get ** can access to exceptions, if doAsyncWork emits an exception. With the thread-based approach, if **doAsyncWork** throws, the program dies via a call to **std::terminate**.  
+* The more fundamental difference between *thread-based* and *task-based* is the higher level of abstraction that task-based embodies, which free you from the details of thread management.
+
+If you program directly with *std::thread*s, you assume the burden of dealing with thread exhaustion, oversubscription, and load balancing yourself. Nevertheless, there are some situations where using thread directly may be appropriate.  
+* You need access to the API of the underlying threading implementation.  
+* You need to and are able to optimize thread usage for your application.
+* You need to implement threading technology beyond the C++ concurrency API, e.g., thread pools on platforms where your C++ implementations don’t offer them.  
+
+## Upshot
+
+```
+				Things to Remember
+• The std::thread API offers no direct way to get return values from asynchronously run functions, and if those functions throw, the program is terminated.
+• Thread-based programming calls for manual management of thread exhaustion, oversubscription, load balancing, and adaptation to new platforms.
+• Task-based programming via std::async with the default launch policy handles most of these issues for you.
+```
+
+# 36. Specify std::launch::async if asynchronicity is essential
+
+There are two standard policies, each represented by an enumerator in the ```std::launch``` scoped **enum**.  
+* The ```std::launch::async``` launch policy means that *f* must be run asynchronously, i.e., on a different thread.   
+* The ```std::launch::deferred``` launch policy means that *f* may run only when **get** or **wait** is called on the *future* returned by **std::async**. That is, *f*’s execution is deferred until such a call is made. When **get** or **wait** is invoked, *f* will execute synchronously, i.e., the caller will block until *f* finishes running. If neither get nor wait is called, *f* will never run.  
+If neither of policies are specified, the *default launch* policy is employed -- either of the obove.
+```
+auto fut1 = std::async(f);
+auto fut2 = std::async(std::launch::async |
+											 std::launch::deferred, f); //ditto
+```  
+The *default* policy thus permits *f* to be run either asynchronously or synchronously. The *default launch policy*’s scheduling flexibility often mixes *poorly* with the use of **thread_local** variables, because it means that if *f* reads or writes such **thread-local storage** (TLS), it’s not possible to predict which thread’s variables will be accessed: ```auto fut = std::async(f);```.  
+
+Automatically uses ```std::launch::async``` as the launch policy, is a convenient tool to have around, so it’s nice that it’s easy to write. Here’s the C++11 version:  
+```
+template<typename F, typename... Ts>
+inline
+std::future<typename std::result_of<F(Ts...)>::type>
+reallyAsync(F&& f, Ts&&... params)       // return future
+{                                        // for asynchronous  
+	return
+	std::async(std::launch::async,  // call to f(params...)                    
+	std::forward<F>(f),                    
+	std::forward<Ts>(params)...);
+}
+----------------C++14-------------------------
+template<typename F, typename... Ts>
+inline auto
+reallyAsync(F&& f, Ts&&... params)
+{
+	return
+	std::async(std::launch::async,
+	std::forward<F>(f),
+	std::forward<Ts>(params)...);
+}
+```

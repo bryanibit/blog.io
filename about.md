@@ -5,15 +5,11 @@ description: "只有在安静平和的心境下，才能寻得最接近真像的
 header-img: "img/tree.jpg"
 ---
 
-我是于华超
-
+我是于华超。  
+现在研习 **三维重建（SfM）**, **无人驾驶**，**系统集成**。  
 ![Mo](img/originbear.png)
 
-现在研习 **三维重建（SfM）**
-
-
 ### 关注：
-
 
 - [Leetcode](https://leetcode.com/problemset/algorithms/)
 - Python
@@ -36,5 +32,9 @@ header-img: "img/tree.jpg"
 - [Facebook](https://www.facebook.com/profile.php?id=100009262672437&ref=bookmarks)
 - [github](https://github.com/bryanibit)
 
+**群居守口，独居守心**  
+
+趁你现在还有时间，尽你自己最大的努力，努力做成你最想做的那件事。成为你最想成为的那种人，过着你最想过的那种生活。这个世界永远比你想的要更精彩，不要败给生活。  
+While there's time, try your best to achieve what you want most. And become what kind of man you admire, live what kind of life you desire. The world is always more fabulous than that you image. Do not lose to the life.  
 
 ![Moi](img/IMG_2728.JPG)
