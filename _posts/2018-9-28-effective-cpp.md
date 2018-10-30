@@ -19,11 +19,11 @@ f(expr); // deduce T and ParamType from expr
 
 ## by-reference/pointer 之 lvalue-reference
 
-**Rule** is:
-
+**Rule** is:  
 1. by-reference said *const int* is different from *int*. To be honest, both are different anywhere.
 2. If expr’s type is a reference, ignore the reference part.
 
+If
 ```
 template<typename T>
 void f(T& param); // param is a reference
@@ -31,16 +31,14 @@ int x = 27; // x is an int
 const int cx = x; // cx is a const int
 const int& rx = x; // rx is a reference to x as a const int
 ```
-
 then
-
 ```
 f(x); // T is int, param type is int&.
 f(cx); // T is const int, param type is const int&
 f(rx); // T is const int, param type is const int&
 ```
-----------------------------------
-
+----------------------------------  
+If
 ```
 template<typename T>
 void f(const T& param); // param is a const reference
@@ -48,29 +46,25 @@ int x = 27; // x is an int
 const int cx = x; // cx is a const int
 const int& rx = x; // rx is a reference to x as a const int
 ```
-
 then
-
 ```
 f(x); // T is int, param type is const int&
 f(cx); // T is int, param type is const int&
 f(rx); // T is int, param type is const int&
 ```
 
------------------------------------
-
+-----------------------------------  
+If
 ```
 template<typename T>
 void f(T* param); // param is a pointer
 int x = 27; // x is an int
 const int *cx = &x; // cx is a const int *
 ```
-
 then
-
 ```
 f(&x); // T is int, param type is int*
-f(px); // T is const int, param type is const int*
+f(cx); // T is const int, param type is const int*
 ```
 
 ## by-reference 之 universal-reference
@@ -80,6 +74,7 @@ f(px); // T is const int, param type is const int*
 1. If *expr* is an lvalue, both T and ParamType are deduced to be lvalue references.**it’s the only situation in template type deduction where T is deduced to be a reference.**
 2. If expr is an rvalue, the “normal” (i.e., the above Case 1) rules apply.
 
+If
 ```
 template<typename T>
 void f(T&& param); // param is a universal reference
@@ -87,9 +82,7 @@ int x = 27; // x is an int
 const int cx = x; // cx is a const int
 const int& rx = x; // rx is a reference to x as a const int
 ```
-
 then
-
 ```
 f(x); // T is int&, param type is int&
 f(cx); // T is const int&, param type is const int&
@@ -104,6 +97,7 @@ f(32); // 32 is rvalue, T is int, param type is int&&
 1. if expr’s type is a reference, ignore the reference part.
 2. if expr is const, ignore that, too. If it’s volatile, also ignore that
 
+If  
 ```
 template<typename T>
 void f(T param); // param is now pass by value
@@ -111,7 +105,6 @@ int x = 27; // x is an int
 const int cx = x; // cx is a const int
 const int& rx = x; // rx is a reference to x as a const int
 ```
-
 then
 
 ```
@@ -120,7 +113,7 @@ f(cx); // T is int, param type is int
 f(rx); // T is int, param type is int
 ```
 
-This is because param is an object that’s completely independent of cx and rx—a copy of cx or rx. The fact that cx and rx can’t be modified says nothing about whether param can be. That’s why expr’s constness (and volatileness, if any) is ignored when deducing a type for param.
+This is because param is an object that’s completely independent of cx and rx -- a copy of cx or rx. The fact that cx and rx can’t be modified says nothing about whether param can be. That’s why expr’s constness (and volatileness, if any) is ignored when deducing a type for param.
 
 ### Array Arguments
 
@@ -190,7 +183,7 @@ the type specifier for the variable acts as *ParamType*.
 auto x = 27; //auto is deducted to int, x is int
 const auto cx = x; //auto is deducted to int, cx is const int
 const auto& rx = x; // auto is deducted to int, rx is const int&
---------------universal reference--------
+------------universal reference----------
 auto&& uref1 = x; // x is int and lvalue, so uref1 type is int&
 auto&& uref2 = cx; // cx is const int and lvalue, so uref2 type is const int&
 auto&& uref3 = 27; // 27 is rvalue, so uref3 type is int&&
@@ -1729,7 +1722,7 @@ However, ```std::array``` objects lack such a pointer, because the data for a **
 std::array<int> a;
 auto a1 = std::move(a);
 ```
-This shows that move *std::array* is no faster than copy. That scenery is not the same with *std::vector*.  
+This shows that move **std::array** is no faster than copy. That scenery is not the same with *std::vector*.  
 
 ## C++11's move semantics do you no good
 
@@ -1741,7 +1734,7 @@ This shows that move *std::array* is no faster than copy. That scenery is not th
 ## Conclusion
 
 ```
-Things to Remember
+				Things to Remember
 • Assume that move operations are not present, not cheap, and not used.
 • In code with known types or support for move semantics, there is no need for assumptions.
 ```
@@ -1929,8 +1922,9 @@ int main()
 {
 	int n = 7;
 	// _1 与 _2 来自 std::placeholders ，并表示将来会传递给 f1 的参数
+	using namespace std::placeholders;
 	auto f1 = std::bind(f, _2, _1, 42, std::cref(n), n);
-	int n = 10;
+	n = 10;
 	f1(1, 2, 1001);// 1 为 _1 所绑定， 2 为 _2 所绑定，不使用 1001
                  // 进行到 f(2, 1, 42, n, 7) 的调用
 								 // Output: 1, 2, 42, 10, 7
