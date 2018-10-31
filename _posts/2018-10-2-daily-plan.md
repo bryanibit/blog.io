@@ -173,3 +173,6 @@ observer patten using weak_ptr
 赵总分享的链接，使用esr进行场景建模
 effective c++ 最后两章
 game vpn creation对应的GitHub fork的两个工程的作用：shadowsocks_install/YankeeBBR
+
+# 10-31
+*AIzaSyDLRnQ_0bD2edUmazUSNFCVaICtpgi58ew* Google map platform .
