@@ -25,3 +25,36 @@ EPSG:3857也是一张世界地图，目前主要是各大互联网地图公司�
 ![Transverse Mercator](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/traverse_mercator.png)
 
 ## 地球坐标系 :dolphin:
+
+1. pass
+2. pass
+
+## QGIS Library of network analysis: description and examples
+
+In QGIS, features mean point, line and polygon, which can be added :pencil: to separated layer.  
+
+Algorithm application network-analysis library can be written in three steps:  
+* Get Count of geographic data  
+* Run Count Analysis  
+* Use the analysis results for their own purposes, for example, to visualize  
+
+Converting from a vector layer to the graph([QgsGraph](https://qgis.org/api/classQgsGraph.html) objects) is done using the [*QgsGraphBuilder*](http://qgis.org/api/classQgsGraphBuilder.html) programming pattern with basic setting ordered by [*QgsLineVectorLayerDirector*](http://qgis.org/api/classQgsLineVectorLayerDirector.html).
+
+```
+-------省略初始化-----------
+pStart = QgsPoint(116.104052, 40.166027)
+pStop = QgsPoint(116.1052922, 40.1661006)
+pStop_final = QgsPoint(116.106188, 40.166182)
+tiedPoints = director.makeGraph(builder, [pStart, pStop, pStop_final])
+# We build a graph, and "attached" the foregoing points to it in terms.
+# In tiedPoints recorded coordinates of the "bound" points.
+# We got the final result graph attached with "bound" points.
+graph = builder.graph()
+tStart = tiedPoints[0]
+tStop = tiedPoints[1]
+tStop_final = tiedPoints[2]
+idStart = graph.findVertex(tStart)
+idStop = graph.findVertex(tStop)
+idStop_final = graph.findVertex(tStop_final)
+(tree, cost) = QgsGraphAnalyzer.dijkstra(graph, idStart, 0)
+```

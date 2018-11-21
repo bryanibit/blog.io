@@ -462,3 +462,89 @@ c:\user> bootrec /scanos # Operation completely successfully
 c:\user> bootrec /rebuildbcd # Operation completely successfully
 c:\user> exit # exit terminal and continue boot
 ```
+
+## Ubuntu unmet dependencies
+
+Such as ``` libudev-dev : depends: libudev1 (= 229-4ubuntu21.6) but 229-4ubuntu21.4 is to be installed udev : depends: libudev1 (= 229-4ubuntu21) but 229-4ubuntu21.4 is to be installed``` or sth. else like ```<some-package>: Depends: <other-package> (= version) but this-version is to be installed```, the universal solutions are the following:
+
+Make sure that the restricted and universe repositories are enabled:  
+[software sources](https://i.stack.imgur.com/cGmRz.png)
+
+* :skull: The possible cause of unmet dependencies could be corrupted package database, or unproperly installed packages. For fixing the problem, use ```sudo apt-get clean``` or ```sudo apt-get autoclean```.  
+```apt-get clean``` clears out the local repository of retrieved package files (the .deb files). It removes everything but the lock file from ```/var/cache/apt/archives/``` and ```/var/cache/apt/archives/partial/```. ```apt-get autoclean``` clears out the local repository of retrieved package files, but unlike ```apt-get clean```, it only removes package files that can no longer be downloaded, and are largely useless.
+
+* :feet: One of the most basic fixes to resolve dependencies problems is to run:
+```
+sudo apt-get -f install
+```
+
+Then run:
+
+```
+sudo dpkg --configure -a
+```
+
+Then run this again:
+
+```
+sudo apt-get -f install
+```
+
+If the output is:
+
+```
+0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
+```
+
+That means it failed.
+
+* :droplet: Next solution is to run:
+
+The more advanced method is found in [askUbuntu](https://askubuntu.com/questions/140246/how-do-i-resolve-unmet-dependencies-after-adding-a-ppa).
+
+## apt-get error: can not install package
+
+**Question:**
+
+```
+E: Could not get lock /var/lib/dpkg/lock - open (11 Resource temporarily unavailable)
+E: Unable to lock the administration directory (/var/lib/dpkg/) is another process using it? 
+```
+
+**Answer:**
+
+1. The prefered way: Kill *apt* or *apititude* process:
+
+```
+ps aux | grep apt
+kill -9 <processing number>
+```
+Killing apt or relative process is safer than killing **dpkg** process directly.
+
+2. The second way: You can delete the lock file with the following command:
+
+```
+sudo rm /var/lib/apt/lists/lock
+```
+You may also need to delete the lock file in the cache directory:
+
+```
+sudo rm /var/cache/apt/archives/lock
+sudo rm /var/lib/dpkg/lock
+```
+
+3. After the second way, you can try ```sudo dpkg --configure -a``` to configure all unpack or interrupted packages.
+
+```
+--configure package...|-a|--pending
+          Reconfigure an unpacked package. If -a  or  --pending  is  given
+          instead  of  package, all unpacked but unconfigured packages are
+          configured.
+
+          Configuring consists of the following steps:
+
+          1. Unpack the conffiles, and at the same time back  up  the  old
+          conffiles, so that they can be restored if something goes wrong.
+
+          2. Run postinst script, if provided by the package.
+```
