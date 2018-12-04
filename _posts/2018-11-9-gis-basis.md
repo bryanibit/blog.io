@@ -24,6 +24,50 @@ EPSG:3857也是一张世界地图，目前主要是各大互联网地图公司�
 
 ![Transverse Mercator](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/traverse_mercator.png)
 
+## Install QGIS 2 and 3
+
+```
+sudo apt-get --purge remove # remove QGIS
+sudo apt autoremove # remove qgis libs
+```
+In its [official website](https://qgis.org/en/site/forusers/alldownloads.html), find the correct source list. And add them to ```/etc/apt/source.list``` according to the format:
+```
+deb     *repository* *codename* main
+deb-src *repository* *codename* main
+```
+
+In conclusion, use the following command for qgis3.0 on ubuntu 16.04：
+```
+sudo sh -c 'echo "deb https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
+```
+
+And use the following for qgis 2.x on ubuntu 16.04:
+```
+sudo sh -c 'echo "deb https://qgis.org/ubuntu-ltr xenial main" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src https://qgis.org/ubuntu-ltr xenial main" >> /etc/apt/sources.list'
+```
+
+If ```apt update``` echos ```The following signatures couldn't be verified because the public key is not available: NO_PUBKEY CAEB3DC3BDF7FB45```, then we need import pub key. The official document explains [the acceident](https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu).
+
+```
+wget -O - http://qgis.org/downloads/qgis-2017.gpg.key | gpg --import
+gpg --fingerprint CAEB3DC3BDF7FB45
+```
+If the key is successful to be imported, then the following should be displayed in terminal.
+```
+pub   2048R/BDF7FB45 2017-08-16 [expires: 2019-08-16]
+      Key fingerprint = 61E0 A086 749E 463E DE50  2255 CAEB 3DC3 BDF7 FB45
+uid                  QGIS Archive Automatic Signing Key (2017) <qgis-developer@lists.osgeo.org>
+sub   2048R/E959BBCF 2017-08-16 [expires: 2019-08-16]
+```
+then use:
+```
+sudo apt-get update
+gpg --export --armor CAEB3DC3BDF7FB45 | sudo apt-key add -
+sudo apt-get update (again to see if there are still any errors)
+```
+
 ## 地球坐标系 :dolphin:
 
 1. pass
@@ -37,7 +81,7 @@ Algorithm application network-analysis library can be written in three steps:
 * Get Count of geographic data  
 * Run Count Analysis  
 * Use the analysis results for their own purposes, for example, to visualize  
-
+writing and updating (to a limited extent) ESRI Shapefiles, and the associated a
 Converting from a vector layer to the graph([QgsGraph](https://qgis.org/api/classQgsGraph.html) objects) is done using the [*QgsGraphBuilder*](http://qgis.org/api/classQgsGraphBuilder.html) programming pattern with basic setting ordered by [*QgsLineVectorLayerDirector*](http://qgis.org/api/classQgsLineVectorLayerDirector.html).
 
 ```
@@ -58,3 +102,11 @@ idStop = graph.findVertex(tStop)
 idStop_final = graph.findVertex(tStop_final)
 (tree, cost) = QgsGraphAnalyzer.dijkstra(graph, idStart, 0)
 ```
+
+## Shapefile :fire:
+
+What is Shapefile?  
+The file format actually consists of three files.  
+:kiss: XXX.shp - holds the actual vertices.
+:kiss: XXX.shx - hold index data pointing to the structures in the .shp file.
+:kiss: XXX.dbf - holds the attributes in xBase (dBase) format.  

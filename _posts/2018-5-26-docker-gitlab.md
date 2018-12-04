@@ -48,19 +48,14 @@ sub   4096R/F273FCD8 2017-02-22
 
 ```
 $ sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
 如果是在arm的电脑上，将上面几行改为
 
 ```
 $ sudo add-apt-repository \
-   "deb [arch=armhf] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-
+   "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ```
 
 ###  Install Docker CE (Community Edition)
@@ -74,6 +69,14 @@ $ sudo apt-get install docker-ce
 
 ```
 $ sudo docker run hello-world
+```
+
+### Add user to docker
+
+In case Docker complains about not being able to connect to the Docker daemon make sure you are in the docker group. Then you do not need to use ```sudo```, everytime you run docker image.  
+
+```
+sudo usermod -aG docker $USER
 ```
 
 ### 镜像加速
@@ -231,7 +234,7 @@ cp /etc/gitlab/gitlab.rb ~/
 cp -r /etc/ssh ~/    //backup ssh key
 ```
 
-上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server. 
+上面的gitlab-secrets.json需要单独备份到本地，如果丢失可能导致：GitLab Runners will lose access to your GitLab server.
 代替地，可以选择将整个/etc/gitlab和/etc/ssh文件夹备份。
 
 ### 在新迁移的电脑上需要完成的工作：
@@ -243,7 +246,7 @@ cp -r /etc/ssh ~/    //backup ssh key
 sudo gitlab-ctl stop unicorn  // Stop the processes that are connected to the database. Leave the rest of GitLab running.
 sudo gitlab-ctl stop sidekiq
 sudo gitlab-ctl status // verify the two processes are down
-sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!. 
+sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!.
 ```
 
 Make sure your backup tarball (1493107454_2018_04_25_10.6.4-ce_gitlab_backup.tar) is in the backup directory described in the *gitlab.rb* configuration *gitlab_rails['backup_path']*. The default is */var/opt/gitlab/backups*.
@@ -269,4 +272,3 @@ Use ```docker exec -it gitlab gitlab-ctl restart gitlab-monitor``` to restart gi
 docker inspect {my-container} //Look for RestartPolicy in the output
 docker update --restart=no {my-container}
 ```
-
