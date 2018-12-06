@@ -300,6 +300,15 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 | CUDA 7.5 (7.5.16)  |  >= 352.31  | 	>= 353.66 |
 | CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 |
 
+4. Add Path and Env
+
+```
+export PATH=$PATH:/usr/local/cuda-10.0/bin
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64 ## 64-bit
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib ##32-bit
+```
+关于安装驱动和CUDA的官方指导请查看[链接](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+
 ## Install tensorflow
 
 推荐两种安装方式：virtualenv，docker

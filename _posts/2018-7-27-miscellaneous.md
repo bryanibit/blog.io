@@ -121,3 +121,7 @@ Maturarity is the ability to reject good alternatives in order to persue even be
 I've learned that judging people before really seeing things through their eyes stands in the way of understanding their circumstances -- that isn't smart. I urge you to be curious enough to want to understand how the people who see things differently from you came to see them that way. You will find that interesing and invaluable, and the richer perspective you gain will help you dicide what you should do.  
 My belief that having ability to figure things out is more important than having specific knowledge of how to do something.  
 Stifle your mild disbelief at the necessary circumlocution.  
+
+## Zero to One
+
+Outsiders are fascinated by the greate fortunes being made inside China. However, they pay less attentions to wealthy people trying hard to get the money out of the country. Poorer people save everything they can and hope it can be enough. Every class of people in China takes the future deadly seriously.
