@@ -47,20 +47,30 @@ sub   4096R/F273FCD8 2017-02-22
 
 
 ```
+<<<<<<< HEAD
 $ sudo add-apt-repository
    "deb [arch=amd64] https://download.docker.com/linux/ubuntu
    $(lsb_release -cs)
    stable"
+=======
+$ sudo add-apt-repository \
+   "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+>>>>>>> f61c11b3afdbdd3b5737241336c0da1cf420fcbb
 ```
 
 如果是在arm的电脑上，将上面几行改为
 
 ```
+<<<<<<< HEAD
 $ sudo add-apt-repository
    "deb [arch=armhf] https://download.docker.com/linux/ubuntu
    $(lsb_release -cs)
    stable"
 
+=======
+$ sudo add-apt-repository \
+   "deb [arch=armhf] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+>>>>>>> f61c11b3afdbdd3b5737241336c0da1cf420fcbb
 ```
 
 ###  Install Docker CE (Community Edition)
@@ -74,6 +84,14 @@ $ sudo apt-get install docker-ce
 
 ```
 $ sudo docker run hello-world
+```
+
+### Add user to docker
+
+In case Docker complains about not being able to connect to the Docker daemon make sure you are in the docker group. Then you do not need to use ```sudo```, everytime you run docker image.  
+
+```
+sudo usermod -aG docker $USER
 ```
 
 ### 镜像加速
