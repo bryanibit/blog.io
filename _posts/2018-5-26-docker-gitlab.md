@@ -287,3 +287,11 @@ Use ```docker exec -it gitlab gitlab-ctl restart gitlab-monitor``` to restart gi
 docker inspect {my-container} //Look for RestartPolicy in the output
 docker update --restart=no {my-container}
 ```
+
+## Donation
+
+If you think this useful for you, you can donate something a little.
+
+![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
+
+

@@ -109,4 +109,4 @@ What is Shapefile?
 The file format actually consists of three files.  
 :kiss: XXX.shp - holds the actual vertices.
 :kiss: XXX.shx - hold index data pointing to the structures in the .shp file.
-:kiss: XXX.dbf - holds the attributes in xBase (dBase) format.  
+:kiss: XXX.dbf - holds the attributes in xBase (dBase) format.

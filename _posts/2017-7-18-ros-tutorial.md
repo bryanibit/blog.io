@@ -119,16 +119,21 @@ e.g.控制乌龟运动
 
 ## ROS launch
 
-````
-roslaunch [package] [filename.launch]
+[ROS官方解释](http://wiki.ros.org/roslaunch/XML)了每个参数的含义。launch文件采用深度优先搜索的方法，如果一个变量被多次定义，则采用最后一次定义的参数。  
+最简单的配置如下：
 ```
-在beginner_tutorials中新建一个launch的方法
+<launch>
+  <node name="you_define_node_name" pkg="package_name" type="exe_name" args="$(arg a) $(arg b)" />
+</launch>
+```
+启动上面的launch文件就会启动package_name包下的exe_name执行文件,you_define_node_name自定义的node_name，即rosnode list的name，等效为：```rosrun [package_name] [you_define_node_name] a:=1 b:=5```.  
+The <param> tag can be put inside of a <node> </node> tag, in which case the parameter is treated like a private parameter.  
 
+在beginner_tutorials中新建一个launch的方法
 ```
 roscd beginner_tutorials
 mkdir launch
 touch launch
-
 --------------------------------------------------------------
 <launch>
   <group ns="turtlesim1">
@@ -351,25 +356,6 @@ bool[]                see above                   std::vector<uint8_t>          
 - rospy将arrays反序列化为元组，同struct.unpack return 一个元组
 - Header is not a built-in type (it's defined in std_msgs/msg/Header.msg
 
-## ROS launch 文件
-
-[ROS官方解释](http://wiki.ros.org/roslaunch/XML)了每个参数的含义：
-
-launch文件采用深度优先搜索的方法，如果一个变量被多次定义，则采用最后一次定义的参数。
-
-```
-<launch>
-<node name="add_two_ints_client" pkg="beginner_tutorials" type="add_two_ints_client" args="$(arg a) $(arg b)" />
-</launch>
-```
-
-这将打开节点add_two_ints_client，同时穿进去value a和b，使用的方法为
-
-```
-roslaunch <package_name> abovelaunch.launch a:=1 b:=5
-```
-The <param> tag can be put inside of a <node> </node> tag, in which case the parameter is treated like a private parameter. 
-
 ## ROS在多台机器上的配置
 
 - You only need one master. Select one machine to run it on.
@@ -378,7 +364,7 @@ The <param> tag can be put inside of a <node> </node> tag, in which case the par
 
 - There must be complete, bi-directional connectivity between all pairs of machines, on all ports (see ROS/NetworkSetup).
 
-- Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup). 
+- Each machine must advertise itself by a name that all other machines can resolve (see ROS/NetworkSetup).
 
 ### ROS文件结构 c++ & python
 
@@ -442,13 +428,13 @@ so it can be found by python.
 
 ## Package tf
 
-**tf** is a package that lets the user keep track of multiple coordinate frames over time. **tf** maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time. 
+**tf** is a package that lets the user keep track of multiple coordinate frames over time. **tf** maintains the relationship between coordinate frames in a tree structure buffered in time, and lets the user transform points, vectors, etc between any two coordinate frames at any desired point in time.
 
-The tf package provides an implementation of a **TransformBroadcaster** to help make the task of **publishing** transforms easier. 
+The tf package provides an implementation of a **TransformBroadcaster** to help make the task of **publishing** transforms easier.
 
 The tf package provides an implementation of a **TransformListener** to help make the task of **receiving** transforms easier.
 
-The TransformListener object should be scoped to persist otherwise it's cache will be unable to fill and almost every query will fail. A common method is to make the TransformListener object a member variable of a class. 
+The TransformListener object should be scoped to persist otherwise it's cache will be unable to fill and almost every query will fail. A common method is to make the TransformListener object a member variable of a class.
 
 ```
 rosrun tf view_frames
@@ -491,11 +477,3 @@ listener.lookupTransform("/map", "/base_link", ros::Time(0), transform);
 ```
 
 ## Public param or private param
-
-
-
-
-
-
-
-

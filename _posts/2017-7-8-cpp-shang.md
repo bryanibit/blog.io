@@ -349,6 +349,16 @@ char* a;
 string (a);
 ```
 
+- std::string to double/float
+```
+//C++ 11
+std::stod("2.345");
+```
+
+- double to std::string
+```
+std::to_string(123.4);
+```
 
 data type in all
 ```
