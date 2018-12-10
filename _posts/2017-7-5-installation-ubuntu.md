@@ -336,3 +336,11 @@ pip3 install --upgrade tensorflow-gpu==1.4
 3. Add two “@” type A records that point to the GitHub ips *192.30.252.153* and *192.30.252.154* and one “www” CNAME record that points to your **USERNAME.github.io** url.
 
 ![Custom URL](img/doc/customURLSetting.png)
+
+## Donation
+
+**If you think this useful for you, you can donate for me. Thank you for your support!**
+
+![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
+
+

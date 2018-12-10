@@ -106,3 +106,11 @@ E的分解常用的有8点算法和5点算法。8点算法要求所有点不能�
 # ORB-SLAM
 
 http://shanmo.github.io/2016/05/ORB-SLAM
+
+# Donation
+
+**If you think this useful for you, you can donate for me. Thank you for your support!**
+
+![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
+
+

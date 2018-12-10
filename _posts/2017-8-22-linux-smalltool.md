@@ -222,3 +222,11 @@ systemctl status <application>.service
 systemctl is-active <app>.service //输出是否
 systemctl is-enabled <app>.service //输出是否
 ```
+
+## Donation
+
+**If you think this useful for you, you can donate for me. Thank you for your support!**
+
+![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
+
+
