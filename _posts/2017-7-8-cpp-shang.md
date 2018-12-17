@@ -350,9 +350,24 @@ string (a);
 ```
 
 - std::string to double/float
+**If cout transformed string has missing numbers, it must be cout's error not transform**
+**Use compiler to see the double or use**
+```
+double d = 3.14159265358979
+cout.precision(17);
+cout << "Pi: " << fixed << d << endl;
+// or
+//should include <iomanip>
+cout << std::setprecision (15) << d << endl;
 ```
 //C++ 11
 std::stod("2.345");
+// sstream
+std::istringstream iss("2.345");
+double d = 0;
+iss >> d;
+//lexical_cast
+boost::lexical_cast<double>("1.234567")
 ```
 
 - double to std::string

@@ -110,3 +110,19 @@ The file format actually consists of three files.
 :kiss: XXX.shp - holds the actual vertices.
 :kiss: XXX.shx - hold index data pointing to the structures in the .shp file.
 :kiss: XXX.dbf - holds the attributes in xBase (dBase) format.
+
+## openstreetmap element
+
+OSM consists of:  
+* nodes (defining points feature in space)  
+* ways (defining linear features and area boundaries)  
+* relations (which are sometimes used to explain how other elements work together)  
+All of the above can have one or more associated tags.  
+
+1. **Node**: Each node comprises at least an **id number** and a pair of **coordinates**.  
+2. A **way** is an ordered list of between 2 and 2,000 nodes that define a polyline. **Ways** are used to represent linear features such as rivers and roads.   
+3. **Relations** can have different meanings. The relation's meaning is defined by its tags. Typically, the relation will have a 'type' tag. Each element can optionally have a role within the relation. For example, a *turn restriction* would have members with "from" and "to" roles, describing the particular turn that is forbidden.
+4. All types of data element (nodes, ways and relations) can have **tags**. Tags describe the meaning of the particular element to which they are attached. A tag consists of two free format text fields; **a 'key' and a 'value'**. Each of these are **Unicode strings** of up to 255 characters. For example, ```highway=residential``` defines the way as a road whose main function is to give access to people's homes. Every key is unique and there is no fixed dictionary of tags.  
+**Not all elements** have tags. Nodes are often untagged if they are part of ways. Both ways and nodes may be untagged if they are members of a relation.
+
+

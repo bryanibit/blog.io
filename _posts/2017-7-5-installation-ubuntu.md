@@ -204,6 +204,31 @@ Pycharm 和 Clion 2018.1 版本下载地址 (链接: https://pan.baidu.com/s/1mn
 settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
 ```
 
+#### Configure vitualenv environment
+
+**To create a virtual environment**  
+    1. In the *Settings/Preferences* dialog (*Ctrl+Alt+S*), select Project: ```<project name> | Project Interpreter```.  
+    2. In the *Project Interpreter* page, click icons :gear: and select *Add*.
+    3. In the left-hand pane of the *Add Python Interpreter* dialog box, select *Virtualenv Environment*. The following actions depend on whether the virtual environment existed before.
+
+    If **New environment** is selected (not run ```virtualenv ENV```):
+
+       1. Specify the location of the new virtual environment in the text field, or click (virtual environment location) and find location in your file system. Note that the directory where the new virtual environment should be located, must be empty!
+	
+       2. Choose the base interpreter from the drop-down list, or click (choose the base interpreter) and find the base interpreter in the your file system.
+
+       3. Select the *Inherit global site-packages* check-box if you want to inherit your global site-packages directory. This check-box corresponds to the *--system-site-packages* option of the **virtualenv** tool.
+
+       4. Select the *Make available to all projects* check-box, if needed.
+
+    If **Existing environment** is selected (have run ``` virtualenv ENV```):
+
+       1. Specify the required interpreter: use the drop-down list, or click (Select an interpreter) and find ```bin/python2.7``` in your file system.
+
+       2. Select the check-box *Make available to all projects*, if needed.
+
+    4. Click OK to complete the task.
+
 ### install zsh
 
 ```

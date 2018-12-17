@@ -103,7 +103,7 @@ for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i+
          infile.open("./1.txt");
          string s;
          while(infile >> s) //读取一个word
-         //while(getline(infile, s)) //读取一行
+         //while(std::getline(infile, s)) //读取一行
 
 ### 写入文件c++
 

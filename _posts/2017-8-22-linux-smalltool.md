@@ -175,12 +175,12 @@ On Posix systems, this resides in /ENV/bin/, so you can run:
 $ source bin/activate
 ```
 
-This will change your $PATH so its first entry is the virtualenv’s bin/ directory. (You have to use source because it changes your shell environment in-place.) This is all it does.
+This will change your $PATH so its first entry is the virtualenv’s bin/ directory. (You have to use source because it changes your shell environment in-place.) This is all it does.  
+To undo these changes to your path (and prompt), just run:```deactivate```.
 
-To undo these changes to your path (and prompt), just run:
-```
-deactivate
-```
+### The --system-site-packages Option
+
+If you build with ```virtualenv --system-site-packages ENV```, your virtual environment will inherit packages from ```/usr/lib/python2.7/site-packages``` (or wherever your global **site-packages** directory is). If you want isolation from the **global** system, do not use this flag.
 
 ## Use Systemctl to manage Systemd Services and Units
 

@@ -26,12 +26,18 @@ easy_install.exe pip
 
 打开cmd后，键入 pip install numpy
 
+For certain version:
+```pip install networkx==1.9.1```
+
 enjoy!
 
 
 ## Python packaging ecosystem
 
-参考一下链接[sholmes](http://shanmo.github.io/2016/08/Python-Packaging-Ecosystem)，系统是Ubuntu 14.04 Python2.7/3.0
+参考一下链接[sholmes](http://shanmo.github.io/2016/08/Python-Packaging-Ecosystem)，系统是Ubuntu 14.04 Python2.7/3.0.  
+**dist-packages** is a Debian-specific convention that is also present in its derivatives, like Ubuntu.  
+Package via *pip* are installed from the package manager and put in ```/usr/local/lib/python2.7/dist-packages```. System packages are located in
+```/usr/lib/python2.7/dist-packages``` on Ubuntu. However, if you manually install Python from source, it uses the **site-packages** directory. 
 
 ## 两个维数相同的bool类型数组做与运算
 
@@ -211,6 +217,36 @@ plt.plot(a[:,0],a[:,1])
 ```
 
 numpy.ndarry.tolist #numpy to list
+
+## 整数之间的进制转换:
+    10进制转16进制: hex(16)  ==>  0x10  
+    16进制转10进制: int('0x10', 16)  ==>  16  
+
+## 字符串转整数:
+    10进制字符串: int('10')  ==>  10  
+    16进制字符串: int('10', 16)  ==>  16  
+    16进制字符串: int('0x10', 16)  ==>  16  
+
+## 字节串转整数:
+    转义为short型整数: struct.unpack('<hh', bytes(b'\x01\x00\x00\x00'))  ==>  (1, 0)  
+    转义为long型整数: struct.unpack('<L', bytes(b'\x01\x00\x00\x00'))  ==>  (1,)  
+
+## 整数转字节串:
+    转为两个字节: struct.pack('<HH', 1,2)  ==>  b'\x01\x00\x02\x00'  
+    转为四个字节: struct.pack('<LL', 1,2)  ==>  b'\x01\x00\x00\x00\x02\x00\x00\x00'  
+
+## 字符串转字节串:
+    字符串编码为字节码: '12abc'.encode('ascii')  ==>  b'12abc'  
+    数字或字符数组: bytes([1,2, ord('1'),ord('2')])  ==>  b'\x01\x0212'  
+    16进制字符串: bytes().fromhex('010210')  ==>  b'\x01\x02\x10'  
+    16进制字符串: bytes(map(ord, '\x01\x02\x31\x32'))  ==>  b'\x01\x0212'  
+    16进制数组: bytes([0x01,0x02,0x31,0x32])  ==>  b'\x01\x0212'  
+
+## 字节串转字符串:
+    字节码解码为字符串: bytes(b'\x31\x32\x61\x62').decode('ascii')  ==>  12ab  
+    字节串转16进制表示,夹带ascii: str(bytes(b'\x01\x0212'))[2:-1]  ==>  \x01\x0212  
+    字节串转16进制表示,固定两个字符表示: str(binascii.b2a_hex(b'\x01\x0212'))[2:-1]  ==>  01023132  
+    字节串转16进制数组: [hex(x) for x in bytes(b'\x01\x0212')]  ==>  ['0x1', '0x2', '0x31', '0x32']  
 
 ## list.pop()使用
 
