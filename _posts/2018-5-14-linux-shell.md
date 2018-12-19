@@ -22,11 +22,63 @@ If the file call main.sh. It is the same with ```su -c ./main.sh root```
 ## if-else
 
 ```
-if [ -f main.md ]; then //-f means file exists not directory;   -d means directory
+if [ -f main.md ] //-f means file exists not directory;
+then              //-d means directory
     rm main.md          //-s means file exists and is not empty;  -x means file is executable 
 else                    //-w means file is writable; -r means file is readable
     touch main.md
 fi
+-------------------------------------
+if [ -f main.md ]; then //-f means file exists not directory;
+                        //-d means directory
+    rm main.md          //-s means file exists and is not empty;  -x means file is executable 
+else                    //-w means file is writable; -r means file is readable
+    touch main.md
+fi
+```
+
+## Echo with color
+
+```
+NONE='\033[00m'
+RED='\033[01;31m'
+GREEN='\033[01;32m'
+YELLOW='\033[01;33m'
+echo -e "${RED}Begin Extracting${NONE}!"
+echo -e "${GREEN}Finish Partition${NONE}\n"
+```
+
+## Variable renew using expression
+
+```
+export OSRM="$(find ./ -name "*\.osrm")"
+echo $OSRM
+```
+
+
+## Command line Arguments
+
+```$0``` is the name of the command run (usually the name of the shell script file); ```$1``` is the first argument, ```$2``` is the second argument, ```$3``` is the third argument, etc...  
+```echo $*``` and ```echo $@``` print the list of all command line arguments. However, **$*** is one string and **$@** is a list of separate strings for each parameter. ```$#``` reports the number of command line arguments passed to the shell script program.  
+
+```
+./myscript a b c
+---------
+for i in "$*"
+do
+   echo $i
+done
+---------
+# a b c
+---------
+for i in "$@"
+do
+   echo $i
+done
+---------
+a
+b
+c
 ```
 
 ## 查看两个文件夹不同点
