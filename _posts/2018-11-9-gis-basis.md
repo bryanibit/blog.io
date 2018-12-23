@@ -125,4 +125,30 @@ All of the above can have one or more associated tags.
 4. All types of data element (nodes, ways and relations) can have **tags**. Tags describe the meaning of the particular element to which they are attached. A tag consists of two free format text fields; **a 'key' and a 'value'**. Each of these are **Unicode strings** of up to 255 characters. For example, ```highway=residential``` defines the way as a road whose main function is to give access to people's homes. Every key is unique and there is no fixed dictionary of tags.  
 **Not all elements** have tags. Nodes are often untagged if they are part of ways. Both ways and nodes may be untagged if they are members of a relation.
 
+At least, how to navigate using OSM, please [check this link](https://www.mapbox.com/mapping/mapping-for-navigation/).
 
+## OSRM Usage Method
+
+OSRM (OpenStreetRoutingMachine) has high performance routing engine written in C++14 designed to run on OpenStreetMap data. It has 2 projects mainly: osrm-backend and osrm-frontend.  
+osrm-frontend is used to display tile map online and uses the local server to route a path on online map. It is written in javascript, therefore, not our today's key point. osrm-backend is written in C++ and all algorithms are summed up to:  
+* Nearest - Snaps coordinates to the street network and returns the nearest matches  
+* Route - Finds the fastest route between coordinates  
+* Table - Computes the duration or distances of the fastest route between all pairs of supplied coordinates  
+* Match - Snaps noisy GPS traces to the road network in the most plausible way  
+* Trip - Solves the Traveling Salesman Problem using a greedy heuristic  
+* Tile - Generates Mapbox Vector Tiles with internal routing metadata  
+
+Let me introduce the one of all projects - **Route**.
+
+* Creating inputFile - data.osm  
+We can download .osm dataset from Internet or We can create .osm via openstreetmap editor called JOSM(Java OpenSteetMap).  
+When editing or creating .osm data, make sure add attributes to roads you create, for example, add ```highway=residential```. The shortcut keys for copy and paste attributes in JOSM are ```ctrl+c/ctrl+shift+v```. We can use ```ctrl+i``` to show osm node or line infomation.
+
+* Run OSRM
+
+```
+osrm-extract data.osm -p profiles/car.lua
+osrm-partition data.osrm
+osrm-customize data.osrm
+```
+The above commands would produce usable 
