@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Something necessary to know about GIS
+title: GIS Reading
 date: 2018-11-9
 categories: blog
 tags: [知识梳理]
@@ -146,7 +146,7 @@ When editing or creating .osm data, make sure add attributes to roads you create
 
 * Install and Run OSRM
 
-The installation tutorial could be found on [github project](https://github.com/Project-OSRM/osrm-backend).  Make sure you have installed OSRM-backend, and then keep track of the foollowing:
+:camel: The installation tutorial could be found on [github project](https://github.com/Project-OSRM/osrm-backend).  Make sure you have installed OSRM-backend, and then keep track of the foollowing:
 
 ```
 osrm-extract data.osm -p profiles/car.lua
@@ -158,6 +158,29 @@ For shortest path, we should modify original ```car.lua``` to
 ```
 weight_name  = 'distance',
 continue_straight_at_waypoint = false
+```
+
+:penguin: Use Docker method in order to avoid environment configuration.  
+
+```
+docker run -t -v $(pwd):/data osrm/osrm-backend:v5.20.0 osrm-extract -p /opt/car.lua /data/berlin-latest.osm.pbf
+docker run -t -v $(pwd):/data osrm/osrm-backend:v5.20.0 osrm-partition /data/berlin-latest.osrm
+docker run -t -v $(pwd):/data osrm/osrm-backend:v5.20.0 osrm-customize /data/berlin-latest.osrm
+docker run -t -i -p 5000:5000 -v $(pwd):/data osrm/osrm-backend:v5.20.0 osrm-routed --algorithm mld /data/berlin-latest.osrm
+```
+Thanks to Docker. It is pretty beautiful. Let us route and check out the routing in firefox!  
+```
+http://127.0.0.1:5000/route/v1/driving/116.1139397,40.1705255;116.1029796,40.1641884?overview=full&annotations=nodes&geometries=geojson
+```
+You can see json result in firefox. Or you can also check in python commands:  
+```
+$ cd python-osrm # github project
+$ python
+>> import osrm
+>> osrm.RequestConfig.host = "http://127.0.0.1:5000"
+>> osrm.RequestConfig
+>> osrm.nearest((14.4458221,35.8868013))
+>> osrm.simple_route((14.4458221,35.8868013), (14.4296317, 35.9152936), overview="full", output="route", geometry="wkt")
 ```
 
 * Produce routing from planning points

@@ -275,3 +275,16 @@ In CMake there are two types of variables: *normal variables* and *cache variabl
 * whenever a cache variable is added or modified by a command, *CMake also removes the normal variable of the same name from the current scope* so that an immediately following evaluation of it will **expose the newly cached value**.  
 * No need to use ```find_library``` in root directory after applying ```set(<libname> <libvalue> CACHE STRING "description" FORCE)``` before or after *add_library and target_link_directories* in subdirectory.  
 As usual, you sould add include_directories of subdirectory to root cmakelists: ```set(${PROJECT_SOURCE_DIR}_lib ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)```
+
+## Load Script in CMakeLists.txt
+
+* Use the following commands to load python or shell scripts.  
+
+```
+set(cmd "python")
+set(generated_path "${PROJECT_SOURCE_DIR}/generated")
+execute_process(COMMAND ${cmd} "script.py"
+                WORKING_DIRECTORY ${generated_path}
+                RESULT_VARIABLE result_generated)
+```
+The last command means executing ```python script.py``` in directory called "${generated_path}". result_generated save whether true or not.
