@@ -144,11 +144,32 @@ Let me introduce the one of all projects - **Route**.
 We can download .osm dataset from Internet or We can create .osm via openstreetmap editor called JOSM(Java OpenSteetMap).  
 When editing or creating .osm data, make sure add attributes to roads you create, for example, add ```highway=residential```. The shortcut keys for copy and paste attributes in JOSM are ```ctrl+c/ctrl+shift+v```. We can use ```ctrl+i``` to show osm node or line infomation.
 
-* Run OSRM
+* Install and Run OSRM
+
+The installation tutorial could be found on [github project](https://github.com/Project-OSRM/osrm-backend).  Make sure you have installed OSRM-backend, and then keep track of the foollowing:
 
 ```
 osrm-extract data.osm -p profiles/car.lua
 osrm-partition data.osrm
 osrm-customize data.osrm
 ```
-The above commands would produce usable 
+The above commands would produce a serial of usable .osrm* files which are used for OSRM to route.  
+For shortest path, we should modify original ```car.lua``` to
+```
+weight_name  = 'distance',
+continue_straight_at_waypoint = false
+```
+
+* Produce routing from planning points
+
+Run executable file in osrm project, and produce position.txt saving routing points. The details are referred to [github project](https://github.com/bryanibit/RoutingWithOSRM)
+
+* OSM2geojson/geojson2OSM
+
+Refer to the [project](https://github.com/tyrasd/osmtogeojson)  
+Finish installation of the project, the following execution is shown as:  
+```
+geojsontoosm data.json > datatran.osm
+osmtogeojson data.osm > datatran.json
+```
+From the foregoing commands, we can deduce no matter whether .osm or .json is just text file. QGIS(Quantum GIS) can load geojson as map tiles.
