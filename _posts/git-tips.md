@@ -235,7 +235,7 @@ git pull
 ```
 There is an another way (```git submodule update --remote <submodulename>```) to synchronize the project(easy to cause **detached HEAD(HEAD points commit ID)**):
 ```
-# Just update DGPS submodule
+### Just update DGPS submodule
 
 git submodule update --remote DGPS # outside submode, in main project
 cd DGPS
@@ -250,7 +250,45 @@ git submodule update --remote --merge
 ```
 The foregoing commands means that you should create a new branch to save your modifications if you want to modify submodules. If not, those changes will be lost the next time running *git submodule update*.  
 
-## push changes in submodules
+### Ignore changes in git submodules
+
+In my opinion one should not change anything within submodules (in superproject) but rather change it in the original repository (in subproject) and then update the submodule. So we are going to ignore dirty and untracked files within all our submodules. Append ```ignore = dirty``` to **.gitsubmodules** and ```git status``` will ignore submodules.  
+
+### git status show status of submodules
+
+```
+git config (--global) status.submoduleSummary true
+```
+
+### Basic Operation
+
+:rocket: Add submodule to repoA and update it from repoB
+
+```
+A) git submodule add <url> <path> # staged .gitmodules and a subdir
+A) git commit -m "add submodule" 
+A) git push
+B) git submodule init # register .gitmodules
+B) git submodule update # append files to subdir
+# at this time, B) subdir is HEAD detached status like commitID (fe64799)
+```
+
+:penguin: Modify submodule in repoA and update it from repoB
+
+```
+A) git commit -am "modify submodule" # in submodule
+A) git push # in submodule
+A) git commit -m "update submodule" # in root
+A) git push   # That needs two commits and two necessary pushes
+B) git pull # in root
+# git status shows <following shown SH>
+B) git submodule update # in root, subdir is still in HEAD Detached like another commitID (5e73195)
+```
+
+:banana: push changes in submodules
+
+The above said we need two commits and two necessary pushes. If not, there will be ```fatal: reference is not a tree```, because of lack of push submodules.
+So the following commands can make sure one push with some arguments.
 
 ```
 $ git push --recurse-submodules=check
@@ -266,7 +304,95 @@ the main project push will also fail.
 $ git push
 In each submodule and main project
 ```
-The last but not least, you can revise and push DGPS in its project and cd the big(parent) project to use git submodule update --remote
+If you think it is too nagging, append the config to git: ```git config --global alias.spush 'push --recurse-submodules=on-demand```
+
+At last but not least, how to Removing a submodule, please refer to [medium of Christophe Porteneuve](https://medium.com/@porteneuve/mastering-git-submodules-34c65e940407)
+
+**SH:**
+```
+B) (master * u=) $ git status
+On branch master
+Your branch is up-to-date with 'origin/master'.
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  modified: vendor/plugins/demo (new commits)
+Submodules changed but not updated:
+* vendor/plugins/demo 0e90143...fe64799 (2):
+  < Pseudo-commit #2
+  < Pseudo-commit #1
+no changes added to commit (use "git add" and/or "git commit -a")
+```
+In **SH**, The current prompt, with its asterisk (*), does hint at local modifications, because our working directory is not in sync with the index, the latter being aware of the newly referenced submodule commit IDs. The **angle brackets point left** (<)? Git sees that the current WD does not have these two commits, contrary to the container project’s expectations.
+
+The left content is how to solve the HEAD detached status:  
+
+:peach: Directly method
+```
+subdir ((remotes/origin/HEAD)) $ git checkout master
+Previous HEAD position was 0e90143... Pseudo-commit #2
+Switched to branch 'master'
+Your branch is behind 'origin/master' by 2 commits, and can be fast-forwarded.
+  (use "git pull" to update your local branch)
+
+subdir (master u-2) $ git pull --rebase
+First, rewinding head to replay your work on top of it...
+Fast-forwarded master to 0e9014309fe6c663e806c9f91297a592ee04cb6c.
+demo (master u=) $
+```
+
+:eggplant: Simple way
+
+```
+B) (master u=) $ git submodule update --remote --rebase -- <subdir>
+```
+
+
+### git submodules alternatives
+
+**Repo**
+
+Repo is a tool created by Google to manage the rather large Android project, which is spread across multiple different Git project repositories. It essentially works by providing a way to check out multiple projects (Git repositories) in parallel based on a manifest file (which basically serves the purpose that a parent repository does for Git submodules – tracking which submodule commits go together). It also provides a way to submit an atomic changeset that includes changes to multiple different projects.  
+The downside is that Repo doesn’t handle merging very well: it essentially expects you to rebase your changes when you want to bring in outside updates, effectively bringing things back to the equivalent of svn update. If you’re a fan of many small commits over a few large ones, this can get onerous.
+
+**Gitslave**
+
+Gitslave is a wrapper around Git that multiplexes git commits into multiple repositories. It effectively implements the “have parallel branches for each of your projects” solution to the merging problem by doing that for you – if you create a branch, it gets created everywhere. If you commit, all of your repositories create a commit, and so on.  
+Of course, this can get rather hectic if you have a large number of projects and start running into things like merge conflicts in 5 different repositories. It also means you potentially wind up making a lot of pointless extra branches in projects that you didn’t happen to touch while touching another project.
+
+**Git Subtree**
+
+Git Subtree is a tool that uses Git’s “subtree merge” functionality to get a similar result to submodules, but via actually storing the files in the main repository and merging in changes directly to that repository.  
+The upside is that you avoid all the issues with submodule merging because the contents of your subprojects are stored directly in the parent repository and thus are treated like any other tracked files when pulling and merging.  
+The downside is that all of your subproject files are present in the parent repository, which means you’re giving up some of the reason for originally splitting up your project repositories: having one canonical repository for a given set of shared code. If someone makes a change to a subproject, they can merge it with other changes locally, but they’d have to explicitly split that change back out of their project if they wanted to share it with projects.
+
+### untracked content
+
+If something new is created in submodules, ```git status``` in parent repo will show
+```
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+  (commit or discard the untracked or modified content in submodules)
+
+	modified:   Channel_ANS_test (untracked content)
+```
+
+If the content in submodules has been committed, the status shows that
+```
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git checkout -- <file>..." to discard changes in working directory)
+
+	modified:   Channel_ANS_test (new commits)
+
+Submodules changed but not updated:
+
+* Channel_ANS_test 480c2e3...78636ff (1):
+  > add gitignore for n.cc and codegenProtos.hh
+
+no changes added to commit (use "git add" and/or "git commit -a")
+```
 
 ## Workflow for integration
 
