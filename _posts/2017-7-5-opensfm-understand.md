@@ -20,7 +20,7 @@ description: 边看程序，边总结代码书写风格，与程序有关的东�
 
 # Other Software
 
-visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
+**visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.**
 
 ![Feature of Different SOFT](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/2017-3-sfm-situation.PNG)
 
@@ -28,56 +28,46 @@ visualSfM, PhotoScan, ReCap 360, RealityCapture, Acute 3D Context Capture, etc.
 # 一 控制整个工程的参数方法
 
 **renew a file called config.py**
-```
+```python
 import os
 import yaml
-default_config_yaml = '''
-\# Metadata
-use_exif_size: yes
+default_config_yaml =
+'''use_exif_size: yes
 default_focal_prior: 0.85'''
 def default_config():
     '''Return default configuration
     '''
     return yaml.load(default_config_yaml)
 ```
----
 
-The above function default_config() return a dict, {'use_exif_size': yes  }
+The above function **default_config()** return a dict -- ```{'use_exif_size': yes}```
 
-# 三 Feature Detection
+# 二 Feature Detection
 
 - Feature detection returns 3 values: **p_unsorted**, **f_unsorted**, **c_unsorted**
 - Corresponding to point positions and other things like size, respond, octave, etc, feature descriptor(n×128), color
 - p_unsorted is a matrix of NumFeatures * 6 for SIFT and SURF *4 for HAHOG
 
-# 二 Incremental reconstruction
+# 三 Incremental reconstruction
 
 
-## 2.1 Initialization from 2 images with most matches
+## 3.1 Initialization from 2 images with most matches
 
 **找到两张图共有的feature（feature-id, feature-x-y, feature-color, ）后，执行一下步骤**
 
-### 2.1.1 two_view_reconstruction
+### 3.1.1 two_view_reconstruction
 
-- pixel_bearing
-
-首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))
-
-该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]
-
-如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape
-
-K为np.array([[a,b,c],[a,b,c],[a,b,c]])
-
-distortion为np.array([a,b,c,d])
-
-将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1
-
-homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]
-
+- pixel_bearing  
+首先将每张图片对应的feature points通过cv2.undistorPoints(Point,K, distortion).reshape((-1,2))  
+该函数要求Point需要是三维的数组，namely,[[[a,b]],[[c,d]],[[e,f]]]  
+如果是[[],[],[]]这种，用reshape((-1,1,2)) np.array子函数reshape  
+K为np.array([[a,b,c],[a,b,c],[a,b,c]])  
+distortion为np.array([a,b,c,d])  
+将上述函数得到的结果扩展一列，变为齐次坐标homogeneous，然后取范数为1  
+homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]  
 求范数可在在Python tips中找到为何加[:, np.newaxis](https://bryanibit.github.io/blog/2017/07/05/python-tips/)
 
-### 2.1.2 R, t and inliers
+### 3.1.2 R, t and inliers
 
 > 通过OpenGV找到矫正feature points关系,得到矫正后的2D points: b1 and b2，**算出两视图R和t(with OpenGV)**，及使用到的inliers
 
@@ -92,7 +82,7 @@ homogeneous / np.linalg.norm(homogeneous, axis = 1)[:, np.newaxis]
 
 $$X_2^T E X_1 = 0$$
 
-We know $$E X_1 = 0$$ points epipolar line(一副图中的一点乘以E等于另一个视角中的极线)
+We know $$E X_1 = 0$$, means epipolar line.(一副图中的一点乘以E等于另一个视角中的极线)
 
 ![epipolar point 1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point1.PNG)
 ![epipolar point 2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/epipolar_point2.PNG)
@@ -132,12 +122,10 @@ def _two_view_reconstruction_inliers(b1, b2, R, t, threshold):
 - 解释：p（br1）是3D points 在第一视图坐标系下表示的， br2是3D points 在第二视图坐标系下表示
 R, t 是**第二视图变换到第一视图**的坐标变换阵，hence， R×br2 + t = br1 ==> (p-t).dot(R)
 
-> 以上是使用了两种方法计算inliers，RANSAC和非线性优化方法，同时优化R,t
+* 以上是使用了两种方法计算inliers，RANSAC和非线性优化方法，同时优化R,t  
+* RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
 
-> RANSAC和非线性优化方法：RANSAC是使用最小配置解，然后迭代找最优；Non-linear一次使用所有的点求最优
-
-1. if len(inliers) > 5: Bundle Adjustment 优化
-
+1. if len(inliers) > 5: Bundle Adjustment 优化  
 2. triangulation and bundle adjustment
 
 ### Triangulation
@@ -335,5 +323,3 @@ There are [*links to relative benchmarks](http://www2.isprs.org/commissions/comm
 **If you think this useful for you, you can donate for me. Thank you for your support!**
 
 ![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
-
-

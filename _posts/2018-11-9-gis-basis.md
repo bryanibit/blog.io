@@ -12,8 +12,9 @@ description: GIS basic knowledge and QGIS tutorial
 :penguin: EPSG (European Petroleum Survey Group) is founded in 1986 and then is renamed to OGP (Internation Association of Oil & Gas Producers). It is in charge of publish CRS (Coordinate Reference System) and coordinate transformations.  
 目前已有的椭球体，投影坐标系等不同组合都对应着不同的ID号，这个号在EPSG中被称为EPSG code，它代表**特定的椭球体**(Spheroid)、**单位**、**地理坐标系或投影坐标系**等信息。  
 
-:blowfish: EPSG:4326是一张世界地图，因为由美国主导的GPS系统就是在用它，它还有一个名气更大的别名叫作WGS84，WGS(World Geodetic System)是世界大地测量系统的意思，由于是1984年定义的，所以叫WGS84。  
-EPSG:3857也是一张世界地图，目前主要是各大互联网地图公司以它为基准，例如Google地图，Microsoft地图都在用它。  
+:blowfish: **EPSG:4326**是一张世界地图，因为由美国主导的GPS系统就是在用它，它还有一个名气更大的别名叫作WGS84，WGS(World Geodetic System)是世界大地测量系统的意思，由于是1984年定义的，
+所以叫WGS84。  
+**EPSG:3857**也是一张世界地图，目前主要是各大互联网地图公司以它为基准，例如Google地图，Microsoft地图都在用它。  
 
 ## 投影坐标系 :bear:
 
@@ -24,9 +25,9 @@ EPSG:3857也是一张世界地图，目前主要是各大互联网地图公司�
 
 ![Transverse Mercator](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/traverse_mercator.png)
 
-## Install QGIS 2 and 3
+## Install QGIS 2 and 3 :beetle:
 
-```
+```sh
 sudo apt-get --purge remove # remove QGIS
 sudo apt autoremove # remove qgis libs
 ```
@@ -37,20 +38,20 @@ deb-src *repository* *codename* main
 ```
 
 In conclusion, use the following command for qgis3.0 on ubuntu 16.04：
-```
+```sh
 sudo sh -c 'echo "deb https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
 ```
 
 And use the following for qgis 2.x on ubuntu 16.04:
-```
+```sh
 sudo sh -c 'echo "deb https://qgis.org/ubuntu-ltr xenial main" >> /etc/apt/sources.list'
 sudo sh -c 'echo "deb-src https://qgis.org/ubuntu-ltr xenial main" >> /etc/apt/sources.list'
 ```
 
 If ```apt update``` echos ```The following signatures couldn't be verified because the public key is not available: NO_PUBKEY CAEB3DC3BDF7FB45```, then we need import pub key. The official document explains [the acceident](https://www.qgis.org/en/site/forusers/alldownloads.html#debian-ubuntu).
 
-```
+```sh
 wget -O - http://qgis.org/downloads/qgis-2017.gpg.key | gpg --import
 gpg --fingerprint CAEB3DC3BDF7FB45
 ```
@@ -62,9 +63,13 @@ uid                  QGIS Archive Automatic Signing Key (2017) <qgis-developer@l
 sub   2048R/E959BBCF 2017-08-16 [expires: 2019-08-16]
 ```
 then use:
-```
+```sh
 sudo apt-get update
+```
+```sh
 gpg --export --armor CAEB3DC3BDF7FB45 | sudo apt-key add -
+```
+```sh
 sudo apt-get update (again to see if there are still any errors)
 ```
 
@@ -73,18 +78,17 @@ sudo apt-get update (again to see if there are still any errors)
 1. pass
 2. pass
 
-## QGIS Library of network analysis: description and examples
+## QGIS Library of network analysis: description and examples :ram:
 
-In QGIS, features mean point, line and polygon, which can be added :pencil: to separated layer.  
-
+:ant: In QGIS, features mean point, line and polygon, which can be added :pencil: to separated layer.  
 Algorithm application network-analysis library can be written in three steps:  
-* Get Count of geographic data  
-* Run Count Analysis  
-* Use the analysis results for their own purposes, for example, to visualize  
-writing and updating (to a limited extent) ESRI Shapefiles, and the associated a
-Converting from a vector layer to the graph([QgsGraph](https://qgis.org/api/classQgsGraph.html) objects) is done using the [*QgsGraphBuilder*](http://qgis.org/api/classQgsGraphBuilder.html) programming pattern with basic setting ordered by [*QgsLineVectorLayerDirector*](http://qgis.org/api/classQgsLineVectorLayerDirector.html).
+1. Get Count of geographic data  
+2. Run Count Analysis  
+3. Use the analysis results for their own purposes, for example, to visualize  
 
-```
+:crocodile: Writing and updating (to a limited extent) ESRI Shapefiles, and the associated a Converting from a vector layer to the graph([QgsGraph](https://qgis.org/api/classQgsGraph.html) objects) is done using the [*QgsGraphBuilder*](http://qgis.org/api/classQgsGraphBuilder.html) programming pattern with basic setting ordered by [*QgsLineVectorLayerDirector*](http://qgis.org/api/classQgsLineVectorLayerDirector.html).
+
+```python
 -------省略初始化-----------
 pStart = QgsPoint(116.104052, 40.166027)
 pStop = QgsPoint(116.1052922, 40.1661006)
@@ -103,20 +107,21 @@ idStop_final = graph.findVertex(tStop_final)
 (tree, cost) = QgsGraphAnalyzer.dijkstra(graph, idStart, 0)
 ```
 
-## Shapefile :fire:
+## Shapefile :tiger2:
 
 What is Shapefile?  
 The file format actually consists of three files.  
-:kiss: XXX.shp - holds the actual vertices.
-:kiss: XXX.shx - hold index data pointing to the structures in the .shp file.
-:kiss: XXX.dbf - holds the attributes in xBase (dBase) format.
+:kiss: XXX.shp - holds the actual vertices.  
+:kiss: XXX.shx - hold index data pointing to the structures in the .shp file.  
+:kiss: XXX.dbf - holds the attributes in xBase (dBase) format.  
 
-## openstreetmap element
+## openstreetmap element :fish:
 
 OSM consists of:  
-* nodes (defining points feature in space)  
-* ways (defining linear features and area boundaries)  
-* relations (which are sometimes used to explain how other elements work together)  
+1. nodes (defining points feature in space)  
+2. ways (defining linear features and area boundaries)  
+3. relations (which are sometimes used to explain how other elements work together)  
+
 All of the above can have one or more associated tags.  
 
 1. **Node**: Each node comprises at least an **id number** and a pair of **coordinates**.  
@@ -127,10 +132,10 @@ All of the above can have one or more associated tags.
 
 At least, how to navigate using OSM, please [check this link](https://www.mapbox.com/mapping/mapping-for-navigation/).
 
-## OSRM Usage Method
+## OSRM Usage Method :boar:
 
-OSRM (OpenStreetRoutingMachine) has high performance routing engine written in C++14 designed to run on OpenStreetMap data. It has 2 projects mainly: osrm-backend and osrm-frontend.  
-osrm-frontend is used to display tile map online and uses the local server to route a path on online map. It is written in javascript, therefore, not our today's key point. osrm-backend is written in C++ and all algorithms are summed up to:  
+:racehorse: OSRM (OpenStreetRoutingMachine) has high performance routing engine written in C++14 designed to run on OpenStreetMap data. It has 2 projects mainly: osrm-backend and osrm-frontend.  
+:wolf: osrm-frontend is used to display tile map online and uses the local server to route a path on online map. It is written in javascript, therefore, not our today's key point. :koala: osrm-backend is written in C++ and all algorithms are summed up to:  
 * Nearest - Snaps coordinates to the street network and returns the nearest matches  
 * Route - Finds the fastest route between coordinates  
 * Table - Computes the duration or distances of the fastest route between all pairs of supplied coordinates  
@@ -138,7 +143,7 @@ osrm-frontend is used to display tile map online and uses the local server to ro
 * Trip - Solves the Traveling Salesman Problem using a greedy heuristic  
 * Tile - Generates Mapbox Vector Tiles with internal routing metadata  
 
-Let me introduce the one of all projects - **Route**.
+Let me introduce the one of all projects -- **Route**.
 
 * Creating inputFile - data.osm  
 We can download .osm dataset from Internet or We can create .osm via openstreetmap editor called JOSM(Java OpenSteetMap).  
@@ -183,16 +188,15 @@ $ python
 >> osrm.simple_route((14.4458221,35.8868013), (14.4296317, 35.9152936), overview="full", output="route", geometry="wkt")
 ```
 
-* Produce routing from planning points
-
+* Produce routing from planning points  
 Run executable file in osrm project, and produce position.txt saving routing points. The details are referred to [github project](https://github.com/bryanibit/RoutingWithOSRM)
 
-* OSM2geojson/geojson2OSM
-
+* OSM2geojson/geojson2OSM  
 Refer to the [project](https://github.com/tyrasd/osmtogeojson)  
 Finish installation of the project, the following execution is shown as:  
 ```
 geojsontoosm data.json > datatran.osm
 osmtogeojson data.osm > datatran.json
 ```
+
 From the foregoing commands, we can deduce no matter whether .osm or .json is just text file. QGIS(Quantum GIS) can load geojson as map tiles.

@@ -10,7 +10,7 @@ description: grid_map description
 ## Grid map can contain multiple map layers
 
 The following map is constructed with one layer called "elevation".
-```
+```CPP
 using namespace grid_map;
 GridMap map({"elevation"});
 for (GridMapIterator it(map); !it.isPastEnd(); ++it){
@@ -19,7 +19,3 @@ for (GridMapIterator it(map); !it.isPastEnd(); ++it){
   map.at("elevation", *it) = -0.04 + 0.2 * std::sin(3.0 * time.toSec() + 5.0 * position.y()) * position.x();
   }
 ```
-
-
-
-

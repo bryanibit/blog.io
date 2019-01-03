@@ -9,7 +9,6 @@ description: Linux重装系统&软件
 
 ## First part for reinstall Ubuntu
 
-
 ### Ubuntu partition
 
          \boot (primary)  300M
@@ -17,89 +16,72 @@ description: Linux重装系统&软件
          \swap  memory * 2
          \home
 
-如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。
+如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。  
+分区完成后，选择*/home*作为Ubuntu安装位置.  
+*device for boot loader installation:*  
+选择 Ubuntu安装的/boot位置.
 
-分区完成后，选择/home 作为Ubuntu安装位置
-
-device for boot loader installation:
-
-选择 Ubuntu安装的/boot位置
-
-         Note that: reinstall partition should have something different from before!!
+**Note that**: reinstall partition should have something different from before!!
 
 
 ### 如果需要安装系统的电脑是dell-Inspiron-7559
 
 当安装完Windows后，确认安全启动和快速启动关闭，进入Ubuntu安装盘，如果长时间没有进入，卡在Ubuntu这几个字的紫色背景页面，请跳转到以下链接
-
 [connorkuehl](https://connorkuehl.github.io/dell-inspiron-7559-linux-guide/index.html)
 
-> Highlight the Install Ubuntu entry and press e on your keyboard.
-> Modify the line that contains quiet splash at the end and change it to:
-
+- Highlight the Install Ubuntu entry and press e on your keyboard.  
+- Modify the line that contains quiet splash at the end and change it to:
 ```
 nomodeset i915_bpo.nomodeset=1 quiet splash
 ```
-这是为了关闭显卡，使用BIOS安装功能，这是由于电脑本身的缺陷
+这是为了关闭显卡，使用BIOS安装功能，这是由于电脑本身的缺陷.  
 
-> Press F10 to boot.
+- Press F10 to boot.
+- Proceed with the installation as normal.
+- Reboot.
 
-> Proceed with the installation as normal.
-
-> Reboot.
-
-开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接
-
-Now I think I should do it, write them down and log everything. I am exciting now.
+开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接  
+Now I think I should do it, write them down and log everything. I am exciting now.  
 
 ### Install Sougou pinyin
 
-
 Ubuntu 14.04 install sougoupinyin
 
-
-> First, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
-
-> Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
-
-> Reboot!
+- First, download .deb install package and install, then go to language support and modify keyboard input system to fcitx and apply all system.
+- Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
+- Reboot!
 
 ### SSH Installation
 
-```sudo apt-get install openssh-server```后，可以使用ssh连接其他电脑，即```ssh bryan@192.168.1.254```.
+```sudo apt-get install openssh-server```后，可以使用ssh连接其他电脑，即
+```ssh bryan@192.168.1.254```.
 
 ### Setting github ssh
 
 1. Install git | Sign up an account for github
 
 2. 配置Name和Email
-
-        命令格式：    git config --global user.name "your name"
-                      git config --global user.email "your email address"
-
-3. 成Public/Private RSA Key
-
-        命令格式：    ssh-keygen -C "your email address" -t rsa
-
- 注意图中红色数字标注：
-
-        1、设置Public RSA Key的保存位置，直接回车采用默认地址；
-        2、设置一个密码，并再次输入确认(这里不建议设置，方便本地使用)
-        3、Public RSA Key的保存路径：c:\users\username\.ssh\id_rsa.pub(windows) /home/inin/.ssh/id_rsa.pub(linux)
-
+```
+命令格式：   git config --global user.name "your name"
+            git config --global user.email "your email address"
+```
+3. Create Public/Private RSA Key
+```
+命令格式：    ssh-keygen -C "your email address" -t rsa
+```
+注意图中红色数字标注：  
+        - 设置Public RSA Key的保存位置，直接回车采用默认地址  
+        - 设置一个密码，并再次输入确认(这里不建议设置，方便本地使用)  
+        - Public RSA Key的保存路径：*c:\users\username\.ssh\id_rsa.pub*(windows) and */home/inin/.ssh/id_rsa.pub*(linux)  
 4. 将Public Key告知Github
+```
+请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
+点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
+```
 
-        请首先注册一个github账号，Home Page：https://github.com/ 。然后进入Account Settings页面，打开SSH Keys，
-        点击“Add SSH Key”。打开c:\users\username\.ssh\id_rsa.pub，把里面的内容全部Copy到Key对应的输入框内，点击“Add Key”。
-
-5. Now you can try push a project now:
-
-在 github.com 上
-
->new repository (选add readme）
-
+5. Now you can try push a project now:  
+在 github.com 上*new repository* (选add readme）  
 在本地文件夹下
-
 ```
 git clone git@github.com:bryanibit/pySfM.git
 git init
@@ -125,8 +107,7 @@ $ sudo add-apt-repository ppa:zarquon42/meshlab
 $ sudo apt-get update
 $ sudo apt-get install meshlab
 ```
-
-  Optional, to remove meshlab, do:
+Optional, to **remove** meshlab first, do:
 
 ```
 $ sudo apt-get remove meshlab
@@ -141,8 +122,7 @@ $ sudo ppa-purge ppa:zarquon42/meshlab
 
 ### Install pycharm and crack it
 
-Install from PPA
-
+:panda_face: Install from PPA
 ```
 sudo add-apt-repository ppa:mystic-mirage/pycharm
 sudo apt-get update
@@ -153,10 +133,12 @@ sudo apt-get install pycharm  ## professional version
 * go to [crack](http://idea.lanyus.com/)
 * add “0.0.0.0 account.jetbrains.com” to /etc/hosts file
 
-**1. Active server:** http://www.activejetbrains.gq (2017.3.4以上紧急车道 其他车辆请避让)
+:dragon_face: Activate Pycharm
 
-**2.激活server：** http://idea.imsxm.com/
+**1. Active server:** http://www.activejetbrains.gq (2017.3.4以上紧急车道 其他车辆请避让)  
+**2. 激活server：** http://idea.imsxm.com/
 
+:monkey_face: Append exe to path env
 ```
 select 'for all users'
 PATH=$PATH:/home/inin/{installation path}/bin
@@ -165,35 +147,31 @@ PATH=$PATH:/home/inin/{installation path}/bin
 #### 配置pycharm/clion使用ros
 
 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
-
 ```
-gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户可用
+gedit ~/.local/share/applications/jetbrains-pycharm.desktop   #如果选择安装为当前用户
 ```
 
 或者
-
 ```
-gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户可用
+gedit /usr/share/applications/jetbrains-pycharm.desktop       #如果选择为全部用户
 ```
 
 修改Exec变量一行，在=后添加 bash -i -c 即改为（若为zsh，则改为zsh)
-
 ```
 Exec= bash -i -c "/home/ubu/tools/pycharm-professional-2016.2.3/bin/pycharm.sh" %f
 ```
 
-在clion中 Opening catkin packages (remember to source devel/setup.bash)
-
+在clion中 Opening catkin packages (remember to ```source devel/setup.bash```)
+```
 File > Open Select the src/CMakeLists.txt (```catkin_init_workspace``` produces cmakelists.txt and cp it into your catkin_ws)
 and open as Project (or open the folder containing CMakeLists.txt)
+```
 
 在clion调试中include经常找不到生成的自定义message，在clion-file-settings-build-CMake中，在CMake options内填入
-
 ```
 -DCATKIN_DEVEL_PREFIX=/home/bryan/catkin_ws/devel
 -DCMAKE_INSTALL_PREFIX=/home/bryan/catkin_ws/install
 ```
-
 选择build目录为*../build*.
 
 #### 使用pycharm时import第三方库
@@ -201,33 +179,35 @@ and open as Project (or open the folder containing CMakeLists.txt)
 Pycharm 和 Clion 2018.1 版本下载地址 (链接: https://pan.baidu.com/s/1mniZLPgLqr9ViwfM7QfBGA 密码: bqwc)
 
 ```
-settings--project interpreter--more(the bottom of add local)--show path for the selected interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
+settings--project interpreter--more(the bottom of add local)--show path for the selected
+```
+```
+interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
 ```
 
-#### Configure vitualenv environment
-
+#### Configure VitualEnv
 **To create a virtual environment**  
     1. In the *Settings/Preferences* dialog (*Ctrl+Alt+S*), select Project: ```<project name> | Project Interpreter```.  
-    2. In the *Project Interpreter* page, click icons :gear: and select *Add*.
+    2. In the *Project Interpreter* page, click icons :gear: and select *Add*.  
     3. In the left-hand pane of the *Add Python Interpreter* dialog box, select *Virtualenv Environment*. The following actions depend on whether the virtual environment existed before.
 
-    If **New environment** is selected (not run ```virtualenv ENV```):
+If **New environment** is selected (not run ```virtualenv ENV```):
 
        1. Specify the location of the new virtual environment in the text field, or click (virtual environment location) and find location in your file system. Note that the directory where the new virtual environment should be located, must be empty!
-	
+
        2. Choose the base interpreter from the drop-down list, or click (choose the base interpreter) and find the base interpreter in the your file system.
 
        3. Select the *Inherit global site-packages* check-box if you want to inherit your global site-packages directory. This check-box corresponds to the *--system-site-packages* option of the **virtualenv** tool.
 
        4. Select the *Make available to all projects* check-box, if needed.
 
-    If **Existing environment** is selected (have run ``` virtualenv ENV```):
+If **Existing environment** is selected (have run ``` virtualenv ENV```):
 
        1. Specify the required interpreter: use the drop-down list, or click (Select an interpreter) and find ```bin/python2.7``` in your file system.
 
        2. Select the check-box *Make available to all projects*, if needed.
 
-    4. Click OK to complete the task.
+       3. Click OK to complete the task.
 
 ### install zsh
 
@@ -237,7 +217,6 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/mas
 chsh -s /bin/zsh
 sudo reboot
 ```
-Copy ros content in .bashrc to .zshrc
 
 ### install vim
 
@@ -246,7 +225,6 @@ sudo apt-get install vim
 ```
 
 Renew a file called .vimrc:
-
 ```
 set nu
 set confirm
@@ -286,7 +264,7 @@ syntax on
 
           sudo service lightdm stop
 
-###(Thinkpad T480/T470P)
+### (Thinkpad T480/T470P)
 
 安装上面的教程将nouveau关闭,然后按照following:
 
@@ -296,7 +274,7 @@ $ sudo apt update (re-run if any warning/error messages)
 $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, may cause login loops) ## 查找对应的驱动型号
 ```
 
-###(Dell 7557)
+### (Dell 7557)
 
 1. 去官网下载驱动后，给驱动run文件赋予执行权限：
 
@@ -314,7 +292,7 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 **Table 1. CUDA Toolkit and Compatible Driver Versions**
 
 | CUDA Toolkit | Linux x8664 Driver Version | Windows x86_64 Driver Version |
-| ----------------- | ----------------------- | -------------------------------- |
+|:-----------------:|:-----------------------:|:--------------------------------:|
 | CUDA 10.0.130      |  >= 410.48  | 	>= 411.31 |
 | CUDA 9.2 (9.2.148 Update 1) |  	>= 396.37 |  	>= 398.26 |
 | CUDA 9.2 (9.2.88)  | 	>= 396.26  | 	>= 397.44 |
@@ -323,21 +301,19 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 | CUDA 8.0 (8.0.61 GA2) |  >= 375.26  | >= 376.51 |
 | CUDA 8.0 (8.0.44)  | 	>= 367.48  | 	>= 369.30 |
 | CUDA 7.5 (7.5.16)  |  >= 352.31  | 	>= 353.66 |
-| CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 |
+| CUDA 7.0 (7.0.28)  | 	>= 346.46  |  	>= 347.62 |  
 
-4. Add Path and Env
-
+Last but not least: Add Path and Env
 ```
 export PATH=$PATH:/usr/local/cuda-10.0/bin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib64 ## 64-bit
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda-10.0/lib ##32-bit
 ```
-关于安装驱动和CUDA的官方指导请查看[链接](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
+关于安装驱动和CUDA的更详细官方指导请查看[链接](https://docs.nvidia.com/cuda/cuda-installation-guide-linux/index.html)
 
 ## Install tensorflow
 
-推荐两种安装方式：virtualenv，docker
-
+推荐两种安装方式：**VirtualEnv**，**Docker**  
 查看[官网](https://www.tensorflow.org/install/)的安装指导，注意tensorflow >=1.5需要cuda9.0版本，如果已经安装cuda8.0，可以采用下面方法
 
 ```
@@ -345,27 +321,21 @@ pip3 uninstall tensorflow-gpu
 pip3 install --upgrade tensorflow-gpu==1.4
 ```
 
-1. ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
+- ImportError: libcudnn.so.6: cannot open shared object file: No such file or directory
 
-到[官网](https://developer.nvidia.com/cudnn)下载相应的cudnn库，在注册完帐号之后即可下载（应该选择自己对应的版本）。
-
-从下载完的文件中，将libcudnn.so.6.XXX（具体可修改到自己下载的版本）文件放在/usr/local/cuda/lib64/文件目录下
-
-从下载完的文件中，将cudnn.h（具体可修改到自己下载的版本）文件放在/usr/local/cuda/include/文件目录下
-
+到[官网](https://developer.nvidia.com/cudnn)下载相应的*cudnn*库，在注册完帐号之后即可下载（应该选择自己对应的版本）.  
+从下载完的文件中，将*libcudnn.so.6.XXX*（具体可修改到自己下载的版本）文件放在*/usr/local/cuda/lib64/*文件目录下  
+从下载完的文件中，将*cudnn.h*（具体可修改到自己下载的版本）文件放在*/usr/local/cuda/include/*文件目录下
 
 ## Launch a Website with a Custom URL using Github Pages
 
-1. Add ```connorleech.info\n www.connorleech.info``` to **CNAME**
+1. Add ```connorleech.info``` and ```www.connorleech.info``` to **CNAME**
 2. Add the changes to git and push them to your repo.
 3. Add two “@” type A records that point to the GitHub ips *192.30.252.153* and *192.30.252.154* and one “www” CNAME record that points to your **USERNAME.github.io** url.
 
-![Custom URL](img/doc/customURLSetting.png)
+![Custom URL](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/customURLSetting.png)
 
 ## Donation
 
-**If you think this useful for you, you can donate for me. Thank you for your support!**
-
-![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
-
-
+**If you think this useful for you, you can donate for me. Thank you for your support!**    
+![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
