@@ -7,6 +7,40 @@ tags: [技术总结]
 description: Laser data Process
 ---
 
+# Velodyne Laser
+
+:octopus: Hardware requirements  
+> 12V power supply  
+> Gigabit Ethernet connection to an ECU, or network switch  
+>> It’s strongly recommended to provide a direct connection from the LiDAR to the ECU  
+> ECU with PolySync Core installed  
+> Velodyne Interface Box  
+
+:camel: Configuring the sensor  
+* Velodyne provides a web interface to configure and verify the sensor is powered and working  
+    ○ Enter the IP address of the sensor (default: 192.168.2.201) in the web browser URL
+
+* To configure multiple HDL-32E sensors on the same machine or network, the UDP broadcast port on each sensor must be unique along with the Telemetry Port  
+    ○ Under Network, edit the IP Address so that it is unique. Press the set button after you finish editing  
+    ○ Under Host, edit the telemetry port so that it is unqiue. Press the set button after you finish editing  
+  ![configure](http://docs.polysync.io/images/velodyne_web_interface_2.png)
+    
+    ○ Press the Save Configuration button.  
+* You will need to power cycle the sensor and PolySync Dynamic Driver to see changes
+
+:dog: Configuring the ECU
+
+* Linux network set up
+
+The Ethernet network must be properly configured before PolySync can communicate with the sensor on the target ECU.  
+It’s highly recommended to use point-to-point Ethernet communication between the sensor and the ECU to lower the latency. You may connect the sensor to a switch but may be prone to high latency.  
+
+* Setting the ECUs static IP address
+
+Once the LiDAR’s IP address is known, set a static IP address for the ECUs NIC in the same IP subnet range as the LiDAR.  
+For example if the LiDAR’s IP address is 192.168.2.201, it’s said to be on the 192.168.2 subnet, and the ECU should be configured with IP address 192.168.2.X.  
+
+
 ## Euler and Quaternion
 
 ### From Euler to Quaternion:
