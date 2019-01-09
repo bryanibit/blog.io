@@ -80,6 +80,8 @@ Firefox is already running, but is not responding. To open a new window, you mus
          sudo /usr/sbin/update-grub
 
 ## install ros an error code
+
+```
 dpkg: error processing package ros-kinetic-desktop-full (--configure):
  dependency problems - leaving unconfigured
 No apport report written because MaxReports is reached already
@@ -99,14 +101,15 @@ Errors were encountered while processing:
  ros-kinetic-perception
  ros-kinetic-desktop-full
 E: Sub-process /usr/bin/dpkg returned an error code (1)
+```
 
-**solution:**
-
-          cd /var/lib/dpkg
-	  sudo mv info info.bak
-	  sudo mkdir info
-
-重新sudo apt-get install ××××××
+**solution:**  
+```
+cd /var/lib/dpkg
+sudo mv info info.bak
+sudo mkdir info
+```
+重新```sudo apt-get install ××××××```
 
 ## Apport错误提示，要求发送错误报告
 
@@ -124,9 +127,8 @@ sudo /etc/default/apport
 
 **Problem:** .bashrc文件无论写入什么东西似乎都没有用
 
-**Solution:**
-
-*原理：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile。
+**Solution:**  
+*原理：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile.
 
 所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了rm -rf *)
 
@@ -139,12 +141,10 @@ sudo /etc/default/apport
 
 ```
 \# .bash_profile
-
 \# If .bash_profile exists, bash doesn't read .profile
 if [[ -f ~/.profile ]]; then
   . ~/.profile
 fi
-
 \# If the shell is interactive and .bashrc exists, get the aliases and functions
 if [[ $- == *i* && -f ~/.bashrc ]]; then
     . ~/.bashrc
@@ -236,12 +236,9 @@ unlink /usr/local/include/Eigen
 update-alternatives --config <file-name>
 ```
 
-if Eigen file is existed, then use -fs
-
-unlink can remove the old file, so do it warely.
-
-这是由于eigen在安装后在子目录中，所以可以参考这个[链接的说明](https://askubuntu.com/questions/491067/eigen-installation-seemed-to-work-but-i-still-cant-make-eigen-work)
-
+if Eigen file is existed, then use -fs  
+unlink can remove the old file, so do it warely.  
+这是由于eigen在安装后在子目录中，所以可以参考这个[链接的说明](https://askubuntu.com/questions/491067/eigen-installation-seemed-to-work-but-i-still-cant-make-eigen-work)  
 如果不更改可能需要将头文件的目录更改。
 
 ## 在nvidia tx2 16.10编译orb-slam ros时，出现错误2：
@@ -268,18 +265,18 @@ make: *** [all] Error 2
 The problem is described as libboost_system.so找不到链接目录
 
 解决方案为:
-
+```
 locate  boost_system
-//查找到目录
-
+```
+查找到目录为：
+```
 /usr/lib/x86_64-linux-gnu/libboost_system.a
 /usr/lib/x86_64-linux-gnu/libboost_system.so
 /usr/lib/x86_64-linux-gnu/libboost_system.so.1.58.0
 /usr/local/MATLAB/R2017a/bin/glnxa64/libboost_system.so.1.56.0
+```
 
-
-将libboost_system.so复制到ORB_SLAM2/lib下，并且将ORBSLAM2/Examples/ROS/ORBSLAM2下的Cmakelists.txt中加入库目录，具体为在
-
+将```libboost_system.so```复制到```ORB_SLAM2/lib```下，并且将```ORBSLAM2/Examples/ROS/ORBSLAM2```下的**CMakelists.txt**中加入库目录，具体在
 ```
 set(LIBS
 ${OpenCV_LIBS}
@@ -290,10 +287,10 @@ ${PROJECT_SOURCE_DIR}/../../../Thirdparty/g2o/lib/libg2o.so
 ${PROJECT_SOURCE_DIR}/../../../lib/libORB_SLAM2.so
 ```
 之后加入
-
+```
 ${PROJECT_SOURCE_DIR}/../../../lib/libboost_system.so
-
-问题得以解决
+```
+至此，问题得以解决。
 
 ## 在nvidia tx2 16.10编译orb-slam ros时，出现错误3：
 
@@ -465,41 +462,29 @@ c:\user> exit # exit terminal and continue boot
 
 ## Ubuntu unmet dependencies
 
-Such as ``` libudev-dev : depends: libudev1 (= 229-4ubuntu21.6) but 229-4ubuntu21.4 is to be installed udev : depends: libudev1 (= 229-4ubuntu21) but 229-4ubuntu21.4 is to be installed``` or sth. else like ```<some-package>: Depends: <other-package> (= version) but this-version is to be installed```, the universal solutions are the following:
+Such as ```libudev-dev : depends: libudev1 (= 229-4ubuntu21.6) but 229-4ubuntu21.4 is to be installed udev : depends: libudev1 (= 229-4ubuntu21) but 229-4ubuntu21.4 is to be installed``` or sth. else like ```<some-package>: Depends: <other-package> (= version) but this-version is to be installed```, the universal solutions are the following:  
+Make sure that the restricted and universe repositories are enabled: [software sources](https://i.stack.imgur.com/cGmRz.png).
 
-Make sure that the restricted and universe repositories are enabled:  
-[software sources](https://i.stack.imgur.com/cGmRz.png)
-
-* :skull: The possible cause of unmet dependencies could be corrupted package database, or unproperly installed packages. For fixing the problem, use ```sudo apt-get clean``` or ```sudo apt-get autoclean```.  
-```apt-get clean``` clears out the local repository of retrieved package files (the .deb files). It removes everything but the lock file from ```/var/cache/apt/archives/``` and ```/var/cache/apt/archives/partial/```. ```apt-get autoclean``` clears out the local repository of retrieved package files, but unlike ```apt-get clean```, it only removes package files that can no longer be downloaded, and are largely useless.
-
-* :feet: One of the most basic fixes to resolve dependencies problems is to run:
-```
-sudo apt-get -f install
-```
-
+:skull: The possible cause of unmet dependencies could be corrupted package database, or unproperly installed packages. For fixing the problem, use ```sudo apt-get clean``` or ```sudo apt-get autoclean```.  
+:ghost: ```apt-get clean``` clears out the local repository of retrieved package files (the .deb files). It removes everything but the lock file from ```/var/cache/apt/archives/``` and ```/var/cache/apt/archives/partial/```. ```apt-get autoclean``` clears out the local repository of retrieved package files, but unlike ```apt-get clean```, it only removes package files that can no longer be downloaded, and are largely useless.  
+:feet: One of the most basic fixes to resolve dependencies problems is to run:
+```sudo apt-get -f install```
 Then run:
-
 ```
 sudo dpkg --configure -a
 ```
-
 Then run this again:
-
 ```
 sudo apt-get -f install
 ```
 
 If the output is:
-
 ```
 0 upgraded, 0 newly installed, 0 to remove and 1 not upgraded.
 ```
-
 That means it failed.
 
-* :droplet: Next solution is to run:
-
+:droplet: Next solution can be found the foregoing link:  
 The more advanced method is found in [askUbuntu](https://askubuntu.com/questions/140246/how-do-i-resolve-unmet-dependencies-after-adding-a-ppa).
 
 ## apt-get error: can not install package

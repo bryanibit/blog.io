@@ -7,7 +7,7 @@ header-img: "img/tree.jpg"
 
 我是于华超。  
 现在研习 **三维重建（SfM）**, **无人驾驶**，**系统集成**。  
-![Mo](img/originbear.png)
+![Mo](img/Dogtor.JPG)
 
 ### 关注：
 

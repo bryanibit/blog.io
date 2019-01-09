@@ -167,7 +167,7 @@ File > Open Select the src/CMakeLists.txt (```catkin_init_workspace``` produces 
 and open as Project (or open the folder containing CMakeLists.txt)
 ```
 
-在clion调试中include经常找不到生成的自定义message，在clion-file-settings-build-CMake中，在CMake options内填入
+在clion调试中include经常找不到生成的自定义message，在clion-file-settings-build-CMake中，在CMake Default populate option
 ```
 -DCATKIN_DEVEL_PREFIX=/home/bryan/catkin_ws/devel
 -DCMAKE_INSTALL_PREFIX=/home/bryan/catkin_ws/install

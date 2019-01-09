@@ -2,7 +2,7 @@
 layout: page
 title: "Tags"
 description: "You! Yes! It's you!"  
-header-img: "img/Animal.png"  
+header-img: "img/summer.jpg"  
 ---
 
 <div id='tag_cloud'>

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Leetcode
+title: Laser Process
 date: 2018-6-13
 categories: blog
 tags: [技术总结]
@@ -73,7 +73,7 @@ pose(1,3) = pos_y;
 pose(2,3) = pos_z;
 ```
 
-## an affine transformation to an isometric transformation
+## Affine transformation to an isometric transformation
 
 b.rotation() extract the rotation part of the transformation. It involves a SVD, and thus it is read-only. On the left hand side, you have to use .linear():
 
