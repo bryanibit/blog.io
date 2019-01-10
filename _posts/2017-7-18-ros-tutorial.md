@@ -504,7 +504,12 @@ int main(int argc, char **argv) {
   return 0;
 }
 ```
-
+You can modify param in the process of code running: 
+```
+# /cloud_to_map_node is node name
+rosrun dynamic_reconfigure dynparam set /cloud_to_map_node 
+"{'int_param':1, 'double_param':5.0, 'double_param':'velodyne_top'}"
+```
 
 
 

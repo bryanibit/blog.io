@@ -18,15 +18,14 @@ description: Linux重装系统&软件
 
 如果将/boot单独分区，则/boot为主分区，而/分区不必是主分区。  
 分区完成后，选择*/home*作为Ubuntu安装位置.  
-*device for boot loader installation:*  
-选择 Ubuntu安装的/boot位置.
+**device for boot loader installation:**  
+选择*Ubuntu安装的/boot位置*.
 
-**Note that**: reinstall partition should have something different from before!!
-
+**Note that**: reinstall ubuntu, partition should have something different from before!!
 
 ### 如果需要安装系统的电脑是dell-Inspiron-7559
 
-当安装完Windows后，确认安全启动和快速启动关闭，进入Ubuntu安装盘，如果长时间没有进入，卡在Ubuntu这几个字的紫色背景页面，请跳转到以下链接
+当安装完Windows后，确认BIOS中的**安全启动**和**快速启动**关闭，进入Ubuntu安装盘，如果长时间没有进入，卡在Ubuntu这几个字的紫色背景页面，请跳转到以下链接
 [connorkuehl](https://connorkuehl.github.io/dell-inspiron-7559-linux-guide/index.html)
 
 - Highlight the Install Ubuntu entry and press e on your keyboard.  
@@ -43,7 +42,25 @@ nomodeset i915_bpo.nomodeset=1 quiet splash
 开机后如果无法关机，请按照【Ubuntu unmet problem】显卡安装的方法，安装显卡驱动，或者参考以上链接  
 Now I think I should do it, write them down and log everything. I am exciting now.  
 
-### Install Sougou pinyin
+### 如果需要安装系统的电脑是XPS15-i5
+
+You should be able to get away with switching from RAID to AHCI without re-imaging windows using [these instuctions](http://triplescomputers.com/blog/uncategorized/solution-switch-windows-10-from-raidide-to-ahci-operation/).
+
+1. Right-click the Windows Start Menu. Choose Command Prompt (Admin).
+* If you don’t see Command Prompt listed, it’s because you have already been updated to a later version of Windows.  If so, use this method instead to get to the Command Prompt:  
+- Click the Start Button and type cmd  
+- Right-click the result and select Run as administrator  
+2. Type this command and press ENTER: ```bcdedit /set {current} safeboot minimal```  
+* If this command does not work for you, try ```bcdedit /set safeboot minimal```(useful for me)  
+3. Restart the computer and enter BIOS Setup (the key to press varies between systems).  
+4. Change the SATA Operation mode to **AHCI** from either **IDE or RAID** (again, the language varies).  
+5. Save changes and exit Setup and Windows will automatically boot to Safe Mode.  
+6. Right-click the Windows Start Menu once more. Choose Command Prompt (Admin).  
+7. Type this command and press ENTER: ```bcdedit /deletevalue {current} safeboot```  
+* If you had to try the alternate command above, you will likely need to do so here also: ```bcdedit /deletevalue safeboot```  
+8. Reboot once more and Windows will automatically start with **AHCI** drivers enabled.  
+
+## Install Sougou pinyin
 
 Ubuntu 14.04 install sougoupinyin
 
@@ -51,12 +68,12 @@ Ubuntu 14.04 install sougoupinyin
 - Go to fcitx configure (in windows and search a penguin called fcitxconfigure) and click + and cancle only show current language , at the same time find Sogou Pinyin and add.
 - Reboot!
 
-### SSH Installation
+## SSH Installation
 
 ```sudo apt-get install openssh-server```后，可以使用ssh连接其他电脑，即
 ```ssh bryan@192.168.1.254```.
 
-### Setting github ssh
+## Setting github ssh
 
 1. Install git | Sign up an account for github
 
@@ -92,7 +109,7 @@ git remote add origin https://github.com/findingsea/myRepoForBlog.git
 git push -u origin master (-u is the first time to upload)
 ```
 
-### Install Cmake 3.0 +
+## Install Cmake 3.0 +
 
 ```
 sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
@@ -100,7 +117,7 @@ sudo -E apt-get update
 sudo apt-get install cmake
 ```
 
-### Install meshlab
+## Install meshlab
 
 ```
 $ sudo add-apt-repository ppa:zarquon42/meshlab
@@ -120,7 +137,7 @@ $ sudo apt-get install ppa-purge
 $ sudo ppa-purge ppa:zarquon42/meshlab
 ```
 
-### Install pycharm and crack it
+## Install pycharm and crack it
 
 :panda_face: Install from PPA
 ```
@@ -144,7 +161,7 @@ select 'for all users'
 PATH=$PATH:/home/inin/{installation path}/bin
 ```
 
-#### 配置pycharm/clion使用ros
+### 配置pycharm/clion使用ros
 
 设置快捷键，使从快捷方式启动PyCharm的同时加载ROS环境变量
 ```
@@ -174,7 +191,7 @@ and open as Project (or open the folder containing CMakeLists.txt)
 ```
 选择build目录为*../build*.
 
-#### 使用pycharm时import第三方库
+### 使用pycharm时import第三方库
 
 Pycharm 和 Clion 2018.1 版本下载地址 (链接: https://pan.baidu.com/s/1mniZLPgLqr9ViwfM7QfBGA 密码: bqwc)
 
@@ -185,7 +202,8 @@ settings--project interpreter--more(the bottom of add local)--show path for the 
 interpreter-add+--/home/inin/OpenDroneMap/Superbuild/install/python2.7/dist-package
 ```
 
-#### Configure VitualEnv
+### Configure VitualEnv
+
 **To create a virtual environment**  
     1. In the *Settings/Preferences* dialog (*Ctrl+Alt+S*), select Project: ```<project name> | Project Interpreter```.  
     2. In the *Project Interpreter* page, click icons :gear: and select *Add*.  
@@ -209,7 +227,7 @@ If **Existing environment** is selected (have run ``` virtualenv ENV```):
 
        3. Click OK to complete the task.
 
-### install zsh
+## install zsh
 
 ```
 sudo apt-get install zsh
@@ -218,7 +236,7 @@ chsh -s /bin/zsh
 sudo reboot
 ```
 
-### install vim
+## install vim
 
 ```
 sudo apt-get install vim
