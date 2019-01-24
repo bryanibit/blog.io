@@ -39,8 +39,9 @@ deb-src *repository* *codename* main
 
 In conclusion, use the following command for qgis3.0 on ubuntu 16.04：
 ```sh
-sudo sh -c 'echo "deb https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
-sudo sh -c 'echo "deb-src https://qgis.org/ubuntu xenial main" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list'
+sudo sh -c 'echo "deb-src https://qgis.org/ubuntugis xenial main" >> /etc/apt/sources.list'
+sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
 ```
 
 And use the following for qgis 2.x on ubuntu 16.04:
@@ -71,6 +72,7 @@ gpg --export --armor CAEB3DC3BDF7FB45 | sudo apt-key add -
 ```
 ```sh
 sudo apt-get update (again to see if there are still any errors)
+sudo apt install qgis qgis-plugin-grass python-qgis
 ```
 
 ## 地球坐标系 :dolphin:
@@ -200,3 +202,9 @@ osmtogeojson data.osm > datatran.json
 ```
 
 From the foregoing commands, we can deduce no matter whether .osm or .json is just text file. QGIS(Quantum GIS) can load geojson as map tiles.
+
+## Qt QML
+
+Why is it here? I was enlightened by ArcGIS QML, so the content of qml is temporary here. Let's cut out the bullshit and start now!
+
+

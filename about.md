@@ -5,7 +5,7 @@ description: "只有在安静平和的心境下，才能寻得最接近真像的
 header-img: "img/tree.jpg"
 ---
 
-我是于华超。  
+我是于华超, keep changing!  
 现在研习 **三维重建（SfM）**, **无人驾驶**，**系统集成**。  
 ![Mo](img/Dogtor.JPG)
 

@@ -46,3 +46,21 @@ We just look at the mountains ahead of us, and forget the mountains behind us we
 
 Legends, however, are generally the result of exaggeration.  
 Keep your expectations grounded. 
+
+#1-18
+
+1. up for
+Are you up for going out tonight?  
+I am up for sth. means I am willing to do  
+The same is ```be down to do```  
+I am down to go outside == I want to go outside  
+2. run into
+I ran into my teacher last night. means I met my teacher by chance.  
+3. turn on
+He turns me on. means he is attractive to me  
+The similar is She turns me off means I don't find her attractive  
+4. get away with
+How did you get away with that? 逃离脱身  
+Most native speakers usually drop t when saying ge(t) away with 
+5. put up with sb
+tolerate sb
