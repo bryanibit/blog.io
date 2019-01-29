@@ -47,7 +47,7 @@ We just look at the mountains ahead of us, and forget the mountains behind us we
 Legends, however, are generally the result of exaggeration.  
 Keep your expectations grounded. 
 
-#1-18
+# 1-18
 
 1. up for
 Are you up for going out tonight?  

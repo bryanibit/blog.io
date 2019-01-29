@@ -185,30 +185,23 @@ CMAKE_CXX_FLAGS 设置C++编译选项
 
 ## cmake常见问题解析
 
-1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}
-
-> Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")
-
-> 设置include为库安装目录，解决问题
-
-2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html)
-
-> Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)
-
-> Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)
-
-> The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.
+1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}  
+* Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")  
+* 设置include为库安装目录，解决问题  
+2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html)  
+* Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)  
+* Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)  
+* The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.  
+3. undefined reference  
+Maybe most people met the hardship often, the basic reason is that functions have no definitions. For instance, ```add_executable``` command doesn't add some cpp files which have definitions used in *another cpp file*, such as *main.cpp*. Sometimes, the situation happen because of no corresponding header file and source file.
 
 ## cmakelists中关键字（函数）
 
 ```
-cmakelists              makefile
-
-target_link_libraries  ==> -l
-
-include_directories  ==> -I/path
-
-link_directories  ==> -L/path
+cmakelists             ==>  makefile  
+target_link_libraries  ==>  -l  
+include_directories    ==>  -I/path  
+link_directories       ==>  -L/path  
 ```
 
 CMake provides direct support for two forms of packages, Config-file Packages and Find-module Packages. Indirect support for pkg-config packages is also provided via the FindPkgConfig module. In all cases, the basic form of find_package() calls is the same: *find_package(Qt5Core 5.1.0 REQUIRED)*
@@ -218,9 +211,9 @@ find_package(Qt5Core 5.1.0 CONFIG REQUIRED) //显示说明使用Config-file (mor
 find_package(Qt4 4.7.0 MODULE REQUIRED) //显示说明使用find-module
 ```
 
-findXXX.cmake中需要手动设置一些变量，包括<package>_FOUND等，而config.cmake中，一旦找到包，将自动设置该变量，config.cmake是一种更高级的方法。
-
-find_package() 命令会在模块路径中寻找 Find<name>.cmake ，这是查找库的一个典型方式。首先CMake查看${CMAKE_MODULE_PATH} 中的所有目录，然后再查看它自己的模块目录 <CMAKE_ROOT>/Modules/ ，这种称为模块模式。如果没找到这样的文件，会寻找 <Name>Config.cmake 或者 <lower-case-name>-config.cmake ，它们是假定库会安装的文件（但是目前还没有多少库会安装它们），这种叫做配置模式。在配置模式下，如果没有找到config.cmake，CMake expects the user to specify the location of this file by filling a cache entry called <name>_DIR (this entry is created by CMake automatically).无论哪种模式，只要找到包，就会定义下面的这些变量，只是这些变量在findXXX.cmake中需要显示声明，在config.cmake中不需要显示声明：
+* findXXX.cmake中需要手动设置一些变量，包括<package>_FOUND等，而config.cmake中，一旦找到包，将自动设置该变量，config.cmake是一种更高级的方法。  
+* find_package() 命令会在模块路径中寻找 Find<name>.cmake ，这是查找库的一个典型方式。首先CMake查看${CMAKE_MODULE_PATH} 中的所有目录，然后再查看它自己的模块目录 <CMAKE_ROOT>/Modules/ ，这种称为模块模式。如果没找到这样的文件，会寻找 <Name>Config.cmake 或者 <lower-case-name>-config.cmake ，它们是假定库会安装的文件（但是目前还没有多少库会安装它们），这种叫做配置模式。  
+* 在配置模式下，如果没有找到config.cmake，CMake expects the user to specify the location of this file by filling a cache entry called <name>_DIR (this entry is created by CMake automatically).无论哪种模式，只要找到包，就会定义下面的这些变量，只是这些变量在findXXX.cmake中需要显示声明，在config.cmake中不需要显示声明：
 
 ```
 <NAME>_FOUND
@@ -233,10 +226,10 @@ Find_package自动搜索<name>_DIR，查找config.cmake，并执行，config.cma
 
 ## 指定动态库动态加载时的目录
 
-使用GCC编译动态链接库的项目时，在其他目录下执行很可以出现找不到动态链接库的问题。
-这种情况多发生在动态链接库是自己开发的情况下，原因就是程序运行时找不到去何处加载动态链接库。  
-可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。-L等效为```include_directories```或者```eport LD_LIBRARY_PATH=...```。  
-程序执行时动态链接库加载不到动态链接库，解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。如：  
+1. 使用GCC编译动态链接库的项目时，在其他目录下执行很可以出现找不到动态链接库的问题。  
+2. 这种情况多发生在动态链接库是自己开发的情况下，原因就是程序运行时找不到去何处加载动态链接库。  
+3. 可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。-L等效为```include_directories```或者```eport LD_LIBRARY_PATH=...```。  
+4. 程序执行时动态链接库加载不到动态链接库，解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。如：  
 
 ```
 gcc -o foo foo.c -L. -lfoo -Wl,-rpath=./
@@ -274,7 +267,11 @@ In CMake there are two types of variables: *normal variables* and *cache variabl
 * The code ```set(FOO "x" CACHE …)``` checks for *FOO* in the cache, ignoring any normal variable of the same name. If *FOO* is in the cache then nothing happens to either the normal variable or the cache variable. If *FOO* is not in the cache, then it is added to the cache.  
 * whenever a cache variable is added or modified by a command, *CMake also removes the normal variable of the same name from the current scope* so that an immediately following evaluation of it will **expose the newly cached value**.  
 * No need to use ```find_library``` in root directory after applying ```set(<libname> <libvalue> CACHE STRING "description" FORCE)``` before or after *add_library and target_link_directories* in subdirectory.  
-As usual, you sould add include_directories of subdirectory to root cmakelists: ```set(${PROJECT_SOURCE_DIR}_lib ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)```
+As usual, you sould add include_directories of subdirectory to root cmakelists:
+```
+set(DSV_LIB ${PROJECT_NAME} CACHE INTERNAL "description" FORCE)
+set(DSV_INCLUDE ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)
+```
 
 ## Load Script in CMakeLists.txt
 
