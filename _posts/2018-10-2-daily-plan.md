@@ -176,3 +176,8 @@ game vpn creation对应的GitHub fork的两个工程的作用：shadowsocks_inst
 
 # 10-31
 *AIzaSyDLRnQ_0bD2edUmazUSNFCVaICtpgi58ew* Google map platform .
+
+# 1-2 
+
+rewrite rcswrapper(nodelet)
+Peking code

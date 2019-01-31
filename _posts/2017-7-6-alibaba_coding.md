@@ -46,12 +46,21 @@ add_definitions(${PCL_DEFINITIONS})
 find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
 include_directories(${Boost_INCLUDE_DIRS})
 
+# Find Vimba(no .cmake or .pc, not pkg-config)
+link_directories("/opt/Vimba2.0/VimbaCPP/DynamicLib/x86_64bit")
+#Another way to find dynamic lib
+find_library(vimba VimbaCPP /opt/Vimba2.0/VimbaCPP/DynamicLib/x86_64bit)
+
 # Add source directory
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 # set(OpenCV_LIBRARIES ${OpenCV_LIBS}) is content of OpenCVConfig.cmake
-target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBS} ${Boost_LIBRARIES} ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES})
+target_link_libraries(${PROJECT_NAME}
+${OpenCV_LIBS} ${Boost_LIBRARIES}
+${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES}
+libVimbaCPP.so #Find Vimba
+)
 ```
 
 这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置
