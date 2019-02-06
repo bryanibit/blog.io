@@ -181,3 +181,9 @@ game vpn creation对应的GitHub fork的两个工程的作用：shadowsocks_inst
 
 rewrite rcswrapper(nodelet)
 Peking code
+
+# 7th Feb.
+
+nodelet understanding:  
+nodelet.cpp add_library, then how to subscribe or publish and how to make it executable.  
+Watch OpenCourse: self-driveless car
