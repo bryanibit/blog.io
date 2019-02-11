@@ -304,6 +304,28 @@ Advantage： 1. 支持断点续传 2. 支持**代理服务器** 3. 支持FTP和H
 
 ```
 
+# Technique about shell
 
+## Quickly backup a file
 
+```
+#backup file called filename.orig
+cp filename{,.orig}
+```
+
+## Delete all files in a folder that don't match a certain file extension
+
+```
+rm !(*.foo | *.bar | *.baz)
+```
+
+## Convert uppercase files to lowercase files
+```
+rename 'y/A-Z/a-z/' *
+```
+
+## Find duplicate files (based on MD5 hash)
+```
+find -type f -exec md5sum '{}' ';' | sort | uniq --all-repeated=separate -w 33
+```
 

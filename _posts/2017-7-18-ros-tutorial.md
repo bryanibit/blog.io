@@ -564,3 +564,32 @@ listener.lookupTransform("/map", "/base_link", ros::Time(0), transform);
 ```
 
 ## Public param or private param
+
+**略**
+
+## Nodelet
+
+The main goal is to set up a nodelet library and a wrapping node executable that can be run standalone. Thanks to pluginlib, you don't even need to link your node executable against your nodelet library in CMakeLists.
+
+**nodelet usage:**
+```
+nodelet load pkg/Type manager - Launch a nodelet of type pkg/Type on manager manager
+nodelet standalone pkg/Type   - Launch a nodelet of type pkg/Type in a standalone node
+nodelet unload name manager   - Unload a nodelet a nodelet by name from manager
+nodelet manager               - Launch a nodelet manager node
+```
+
+For example, the first usage can be shown as: 
+```
+<node pkg="nodelet" type="nodelet" name="$(arg LiDAR_top_id)_rcswriter_nodelet" args="load rcs_msg_wrapper/RCSWriterHDL64Nodelet $(arg LiDAR_top_manager)" >
+</node>
+```
+In using nodelet, manager is responsable for managing thread pool. A nodelet will be run inside a NodeletManager. A nodelet manager is a c++ program which is setup to listen to ROS services and will be the executable in which the nodelet is dynamically loaded.
+
+### Threading Model
+
+* A nodelet manager has a pool of threads which is shared across all nodelets run within the manager. This is set by the parameter "num_worker_threads".  
+* There are two possible threading APIs to use in code running in nodelets. The default threading model has a single thread for all callbacks. There is a multithreaded API as well.  
+* Using the methods *getNodeHandle()* and *getPrivateNodeHandle()* will guarantee that all callbacks arrive serially.(single thread); Using the methods *getMTNodeHandle()* and *getMTPrivateNodeHandle()* callbacks will be distributed over the thread pool of the manager.  
+
+The tutorial can be found in [github online](https://github.com/bryanibit/nodelet_tutorial)
