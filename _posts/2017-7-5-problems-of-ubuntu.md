@@ -534,6 +534,17 @@ sudo rm /var/lib/dpkg/lock
           2. Run postinst script, if provided by the package.
 ```
 
+## error: expected unqualified-id before ‘(’ token 
+
+There is a header file including ```#define min(a,b) (((a) < (b)) ? (a) : (b))``` in C++. In main file, I include the header and use std, and then I find the following error.  
+*#define* does not respect any C++ scope. There is no such thing as a "local" *#define* (local means like static for global variables). It'll be in effect until it is ```#undef```-ed.  
+Therefore, we can add
+```
+#undef min
+```
+to main file before after including header files.
+
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**
