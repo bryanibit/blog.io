@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Linux small tools
+title: Linux Small Tools
 date: 2017-8-22
 categories: blog
 tags: [技术总结]
@@ -228,5 +228,3 @@ systemctl is-enabled <app>.service //输出是否
 **If you think this useful for you, you can donate for me. Thank you for your support!**
 
 ![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
-
-

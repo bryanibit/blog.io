@@ -1,6 +1,6 @@
 ---
 layout: post
-title: socket tcp python实现
+title: Socket TCP Python实现
 date: 2017-7-29
 categories: blog
 tags: [技术总结]

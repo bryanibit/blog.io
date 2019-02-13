@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Ubuntu unmet problems
+title: Ubuntu Unmet Problems
 date: 2017-7-5
 categories: blog
 tags: [技术总结]
@@ -450,7 +450,7 @@ c:\user> diskpart
 DISKPART> list disk
 DISKPART> select disk X # X points 0, 1 or etc
 DISKPART> list partition
-DISKPART> select partition X # X points windows C disk 
+DISKPART> select partition X # X points windows C disk
 DISKPART> active
 DISKPART> exit
 c:\user> bootrec /fixmbr # Operation completed successfully
@@ -493,7 +493,7 @@ The more advanced method is found in [askUbuntu](https://askubuntu.com/questions
 
 ```
 E: Could not get lock /var/lib/dpkg/lock - open (11 Resource temporarily unavailable)
-E: Unable to lock the administration directory (/var/lib/dpkg/) is another process using it? 
+E: Unable to lock the administration directory (/var/lib/dpkg/) is another process using it?
 ```
 
 **Answer:**
@@ -534,7 +534,7 @@ sudo rm /var/lib/dpkg/lock
           2. Run postinst script, if provided by the package.
 ```
 
-## error: expected unqualified-id before ‘(’ token 
+## error: expected unqualified-id before ‘(’ token
 
 There is a header file including ```#define min(a,b) (((a) < (b)) ? (a) : (b))``` in C++. In main file, I include the header and use std, and then I find the following error.  
 *#define* does not respect any C++ scope. There is no such thing as a "local" *#define* (local means like static for global variables). It'll be in effect until it is ```#undef```-ed.  
@@ -550,5 +550,3 @@ to main file before after including header files.
 **If you think this useful for you, you can donate for me. Thank you for your support!**
 
 ![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
-
-

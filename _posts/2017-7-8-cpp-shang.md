@@ -1,6 +1,6 @@
 ---
 layout: post
-title: C++ textbook 上
+title: C++ Textbook 上
 date: 2017-07-08
 categories: blog
 tags: [技术总结]
@@ -147,7 +147,7 @@ int fac(int n)
 - 这样可以使不同人编写的程序中全局变量更规范，防止其他文件引用
 
 ### 4.8 内部函数与外部函数
-   
+
 #### 4.8.1 内部函数
 
 - static int fun(int a, int b)
@@ -311,7 +311,7 @@ int *p[4];
               //string name[]={"basic","fortune","c++","pascal"};
               sort_select(name,4);
               print_screen(name, 4);
-          
+
           }
           //传进来的正是指针，所以修改了name内容
           void sort_select(char **name,int n)//void sort_select(char *name[],int n)
@@ -406,7 +406,7 @@ int main(int argc,char **argv)
 	int a,b;
 	swap(&a,&b);
 }
-``` 
+```
 
 ```
 void swap(int &p1, int &p2);
@@ -497,4 +497,3 @@ union data
 
 
 ***
-

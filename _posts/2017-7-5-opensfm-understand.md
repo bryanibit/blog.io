@@ -1,6 +1,6 @@
 ---
 layout: post
-title: OpenSfM opensource textbook
+title: OpenSfM Opensource Textbook
 date: 2017-07-14
 categories: blog
 tags: [理论梳理]

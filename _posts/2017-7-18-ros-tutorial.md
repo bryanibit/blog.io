@@ -1,6 +1,6 @@
 ---
 layout: post
-title: ROS tutorials
+title: ROS Tutorials
 date: 2017-07-18
 categories: blog
 tags: [技术总结]
@@ -296,6 +296,29 @@ ros::spinOnce();
 
 If you were to add a subscription into this application, and did not have ros::spinOnce() here, your callbacks would never get called.
 
+## ros::spinone() and ros::spin()
+
+```
+ros::init(argc, argv, "my_node");
+ros::NodeHandle nh;
+ros::Subscriber sub = nh.subscribe(...);
+...
+//all user callbacks will be called from within the
+//ros::spin() call. ros::spin() will not return
+//until the node has been shutdown
+ros::spin();
+-----------------------------------------
+ros::Rate r(10); // 10 hz
+while (ros::ok())
+{
+  ... do some work, publish some messages, etc. ...
+  //ros::spinOnce() will call all the callbacks
+  //waiting to be called at this point in time periodically.
+  ros::spinOnce();
+  r.sleep();
+}
+```
+
 ## Write a subscribe node
 
         ros::NodeHandle n;
@@ -457,7 +480,7 @@ Now that we have a generator (```gen```) we can start to define parameters. The 
 * description - string which describes the parameter
 * default - specifies the default value
 * min - specifies the min value (optional and does not apply to strings and bools)
-* max - specifies the max value (optional and does not apply to strings and bools) 
+* max - specifies the max value (optional and does not apply to strings and bools)
 
 For using cfg file, make it executable like ```chmod a+x cfg/Tutorials.cfg```.  
 we need to add the following lines to our CMakeLists.txt.
@@ -483,16 +506,16 @@ add_dependencies(example_node ${PROJECT_NAME}_gencfg)
 // called when the dynamic_reconfigure server is sent a new configuration
 // The first param is new config
 void callback(dynamic_tutorials::TutorialsConfig &config, uint32_t level) {
-  ROS_INFO("Reconfigure Request: %d %f %s %s %d", 
-            config.int_param, config.double_param, 
-            config.str_param.c_str(), 
-            config.bool_param?"True":"False", 
+  ROS_INFO("Reconfigure Request: %d %f %s %s %d",
+            config.int_param, config.double_param,
+            config.str_param.c_str(),
+            config.bool_param?"True":"False",
             config.size);
 }
 int main(int argc, char **argv) {
   ros::init(argc, argv, "dynamic_tutorials");
 // As long as the server lives (in this case until the end of main())
-// the node listens to reconfigure requests. 
+// the node listens to reconfigure requests.
   dynamic_reconfigure::Server<dynamic_tutorials::TutorialsConfig> server;
 // we define a variable (f) to represent our callback and then send it to the server
 // Now when the server gets a reconfiguration request it will call our callback function
@@ -504,10 +527,10 @@ int main(int argc, char **argv) {
   return 0;
 }
 ```
-You can modify param in the process of code running: 
+You can modify param in the process of code running:
 ```
 # /cloud_to_map_node is node name
-rosrun dynamic_reconfigure dynparam set /cloud_to_map_node 
+rosrun dynamic_reconfigure dynparam set /cloud_to_map_node
 "{'int_param':1, 'double_param':5.0, 'double_param':'velodyne_top'}"
 ```
 
@@ -579,7 +602,7 @@ nodelet unload name manager   - Unload a nodelet a nodelet by name from manager
 nodelet manager               - Launch a nodelet manager node
 ```
 
-For example, the first usage can be shown as: 
+For example, the first usage can be shown as:
 ```
 <node pkg="nodelet" type="nodelet" name="$(arg LiDAR_top_id)_rcswriter_nodelet" args="load rcs_msg_wrapper/RCSWriterHDL64Nodelet $(arg LiDAR_top_manager)" >
 </node>

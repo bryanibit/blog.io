@@ -1,17 +1,15 @@
 ---
 layout: post
-title: 2018-Alibaba-coding-online
+title: 2018 Alibaba Coding Online
 date: 2017-7-5
 categories: blog
 tags: [考试经验总结]
 description: c++问题
 ---
 
-该题目的介绍以及初步程序代码已经上传[GitHub](https://github.com/bryanibit/2018-alibaba-CodeTest-online)
-
 在此整理一些编程问题
 
-7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num_all_point == num_hull 
+7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num_all_point == num_hull
 
 博主有空将尽快更新
 
@@ -95,7 +93,7 @@ argb[1] is the input path, char* type
 using namespace boost::filesystem;
 for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i++)
     {
-        if (!is_directory(i->path())) 
+        if (!is_directory(i->path()))
         {
 		string p_a = i->path().filename().string();
             cout << string(argv[1]) + "/" + p_a << endl;
@@ -191,7 +189,7 @@ for(auto iterator = v.begin(); iterator != v.end(); ++iterator)
 }
 ```
 
-### 平面点集表示 vector<pair<double, double>> 
+### 平面点集表示 vector<pair<double, double>>
 
 使用std::vector<string> point(每个string的
 形式为 "3.5,12.3" 形式)填满point_num
@@ -260,7 +258,3 @@ int main()
     return 0;
 }
 ```
-
-
-
-

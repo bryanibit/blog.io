@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Effective C++
+title: Effective C++ by Scott Meyers
 date: 2018-09-28
 categories: blog
 tags: [技术总结]
@@ -2188,5 +2188,3 @@ reallyAsync(F&& f, Ts&&... params)
 **If you think this useful for you, you can donate for me. Thank you for your support!**
 
 ![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
-
-

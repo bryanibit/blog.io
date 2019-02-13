@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Harxon smart antenna
+title: Harxon Smart Antenna
 date: 2017-8-9
 categories: blog
 tags: [技术总结]
