@@ -24,7 +24,7 @@ description: Laser data Process
     ○ Under Network, edit the IP Address so that it is unique. Press the set button after you finish editing  
     ○ Under Host, edit the telemetry port so that it is unqiue. Press the set button after you finish editing  
   ![configure](http://docs.polysync.io/images/velodyne_web_interface_2.png)
-    
+
     ○ Press the Save Configuration button.  
 * You will need to power cycle the sensor and PolySync Dynamic Driver to see changes
 
@@ -89,3 +89,86 @@ If you know that 'a' is an isometry and only want to cast it to an Isometry 3f, 
 ```
 b = a.matrix();
 ```
+
+## sensor_msgs::PointCloud2
+
+```python
+---------------sensor_msgs::PointCloud2-------------------
+Header header
+# If the cloud is unordered, height is 1 and width is the length of the point cloud.
+uint32 height
+uint32 width
+# Describes the channels and their layout in the binary data blob.
+PointField[] fields
+bool    is_bigendian # Is this data bigendian?
+uint32  point_step   # Length of a point in bytes
+uint32  row_step     # Length of a row in bytes
+uint8[] data         # Actual point data, size is (row_step*height)
+bool is_dense        # True if there are no invalid points
+---------------sensor_msgs::PointField--------------------
+uint8 INT8    = 1
+uint8 UINT8   = 2
+uint8 INT16   = 3
+uint8 UINT16  = 4
+uint8 INT32   = 5
+uint8 UINT32  = 6
+uint8 FLOAT32 = 7
+uint8 FLOAT64 = 8
+string name      # Name of field
+uint32 offset    # Offset from start of point struct
+uint8  datatype  # Datatype enumeration, see above
+uint32 count     # How many elements in the field
+```
+**For sensor_msgs::PointCloud2**:  
+* **point_step** is the size of one point in bytes, which you need to manually calculate for your particular format as specified in **msg.fields**. (with pen & paper). For example if msg.fields[0] has datatype uint16 (2 bytes) and count 3, then your write down 23=6 bytes for that field. Plus the rest of msg.fields. A common use case would be for you to have 3 entries in msg.fields (for x, y and z) where each has datatype = FLOAT32, which is 4 bytes. So point_step would be 34=12.
+* **row_step** is should be just *width*point_step*. Seems rather odd me, because that is redundant.
+* **data** then contains your actual data as specified in fields. So in the simple use case from above it would just be x1, y1,z1, x2, y2, z3, x3, y3, z3, ....
+* What "**is_dense** = true" means is: this dataset has *no invalid* points (e.g., NaN, Inf).  
+
+The following laser packet PointCloud2 is shown:
+
+```js
+header:
+  seq: 7647
+  stamp:
+    secs: 946657304
+    nsecs: 802155000
+  frame_id: "pandar"
+height: 1
+width: 43294
+fields:
+
+    name: "x"
+    offset: 0
+    datatype: 7
+    count: 1
+
+    name: "y"
+    offset: 4
+    datatype: 7
+    count: 1
+
+    name: "z"
+    offset: 8
+    datatype: 7
+    count: 1
+
+    name: "intensity"
+    offset: 16
+    datatype: 7
+    count: 1
+
+    name: "timestamp"
+    offset: 24
+    datatype: 8
+    count: 1
+
+    name: "ring"
+    offset: 32
+    datatype: 4
+    count: 1
+is_bigendian: False
+point_step: 48
+row_step: 2078112
+```
+From the above explanation, we can compute the value of *point_step*: according to *fields* value and the definition of *point_step*, the types of fields members are **7, 7 ,7 ,7 ,8 ,4 = 4B for 4 + 8B + 4B = 24B**, plus, 6 count values are summed to 24B. Therefore *point_step* is 48B.

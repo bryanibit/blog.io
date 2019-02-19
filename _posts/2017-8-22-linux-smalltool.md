@@ -101,6 +101,51 @@ sudo apt-get install openssh-server
 ssh <user_name>@<host_ip>
 ```
 
+## 网络下载工具 wget
+
+```
+wget [参数] [URL地址]
+```
+
+Advantage： 1. 支持断点续传 2. 支持**代理服务器** 3. 支持FTP和HTTP下载 4. 程序小，完全免费
+
+下载参数：
+
+```
+–spider  测试下载速度
+-c, –continue 接着下载没下载完的文件
+–bind-address=ADDRESS 指定本地使用地址(主机名或IP，当本地有多个IP或名字时使用)
+-Y, –proxy=on/off 打开或关闭代理
+–limit-rate=RATE 限定下载输率
+-r, –recursive 递归下载(real entire website)
+-l, –level=NUMBER 最大递归深度 (inf 或 0 代表无穷)
+
+```
+
+At this time, we can use *wget* to download the entire website with command:
+```
+$ wget \
+     --recursive \
+     --no-clobber \
+     --page-requisites \
+     --html-extension \
+     --convert-links \
+     --restrict-file-names=windows \
+     --domains website.org \
+     --no-parent \
+         www.website.org/tutorials/html/
+```
+The options are:
+
+* -- recursive: download the entire Web site.
+* -- domains website.org: don't follow links outside website.org.
+* --no-parent: don't follow links outside the directory tutorials/html/.
+* --page-requisites: get all the elements that compose the page (images, CSS and so on).
+* --html-extension: save files with the .html extension.
+* --convert-links: convert links so that they work locally, off-line.
+* --restrict-file-names=windows: modify filenames so that they will work in Windows as well.
+* --no-clobber: don't overwrite any existing files (used in case the download is interrupted and resumed).
+
 ## Docker CE install and use on Ubuntu
 
 ```

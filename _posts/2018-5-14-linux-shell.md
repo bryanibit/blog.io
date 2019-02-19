@@ -7,6 +7,8 @@ tags: [技术总结]
 description: Linux shell tips
 ---
 
+## **Basic Operation**
+
 ## Require root privilage
 
 ```
@@ -80,6 +82,8 @@ a
 b
 c
 ```
+
+## **文件操作**
 
 ## 查看两个文件夹不同点
 
@@ -248,7 +252,7 @@ $wc -w file // 统计单词数
 $wc -c file // 统计字符数
 ```
 
-# Linux shell脚本入门之磁盘管理
+## **Linux shell脚本入门之磁盘管理**
 
 ## 查看磁盘空间
 
@@ -283,28 +287,7 @@ bzip2 -d  demo.tar.bz2
 tar -xvf  demo.tar
 ```
 
-# 网络下载工具 wget
-
-```
-wget [参数] [URL地址]
-```
-
-Advantage： 1. 支持断点续传 2. 支持**代理服务器** 3. 支持FTP和HTTP下载 4. 程序小，完全免费
-
-下载参数：
-
-```
-–spider  测试下载速度
--c, –continue 接着下载没下载完的文件
-–bind-address=ADDRESS 指定本地使用地址(主机名或IP，当本地有多个IP或名字时使用)
--Y, –proxy=on/off 打开或关闭代理
-–limit-rate=RATE 限定下载输率
--r, –recursive 递归下载(real entire website)
--l, –level=NUMBER 最大递归深度 (inf 或 0 代表无穷)
-
-```
-
-# Technique about shell
+## **Smart Technique about shell**
 
 ## Quickly backup a file
 
