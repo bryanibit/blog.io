@@ -124,4 +124,11 @@ Stifle your mild disbelief at the necessary circumlocution.
 
 ## Zero to One
 
-Outsiders are fascinated by the greate fortunes being made inside China. However, they pay less attentions to wealthy people trying hard to get the money out of the country. Poorer people save everything they can and hope it can be enough. Every class of people in China takes the future deadly seriously.
+Outsiders are fascinated by the greate fortunes being made inside China. However, they pay less attentions to wealthy people trying hard to get the money out of the country. Poorer people save everything they can and hope it can be enough. Every class of people in China takes the future deadly seriously.  
+
+## 涛动周期论
+
+* 人生就是一场康波  
+康德拉季耶夫周期是一个甲子，分为回升、繁荣、衰退、萧条四个阶段。人生财富分为以下几个大类：大宗商品、房地产（20年，5年下降）、股票（随时波动）、艺术品市场。第一目标是保值，第二目标才是赚钱，要持有高流动性资产，比如一级市场的股权、新三板等都是流动性差的资产。  
+60年中会套着3个房地产周期，20年波动一次。一个房地产周期套着两个固定资产投资周期，10年波动一次。一个固定资产投资周期套着三个库存周期。  
+* 繁荣的起点
