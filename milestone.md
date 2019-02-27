@@ -9,7 +9,7 @@ header-img: "img/Country.jpg"
     <p><img src="https://vignette1.wikia.nocookie.net/gameofthrones/images/6/6c/Sam_S2.jpg/revision/latest?cb=20120324131039" align="center"></p>
 </center>
 
-**Even in the unlikely place, hope can still be found.**
+**"Even in the unlikely place, hope can still be found." by Samwell Tarly from Game of Throne**
 
 ### 通识类：
 
@@ -29,8 +29,7 @@ header-img: "img/Country.jpg"
 
 - [《一只特立独行的猪》](http://product.dangdang.com/24516890.html)
 
-- [Shoe Dog](127.0.0.1)
-
 ### 非通识类：
 
 - [Introduction to R for Natural Resource Scientists](bstaton1.github.io/au-r-workshop)
+- [Effective C++ by Scott Meyers](https://pan.baidu.com/s/1a5xf5o0OwQzcZ6SAhNWcCw)
