@@ -170,6 +170,10 @@ fields:
 is_bigendian: False
 point_step: 48
 row_step: 2078112
+data:
+    32 34 \*
+is_dense:
+    false
 ```
 From the above explanation, we can compute the value of *point_step*: according to *fields* value and the definition of *point_step*, the types of fields members are **7, 7 ,7 ,7 ,8 ,4 = 4B for 4 + 8B + 4B = 24B**, plus, 6 count values are summed to 24B. Therefore *point_step* is 48B.
 
@@ -179,7 +183,8 @@ The hardware sensor delivers a 360 horizontal Field of View (HFOV) and a 26.8 ve
 From 64E-S3-Manual, we can conclude that a Ethernet packet of HDL64 consists of 1206 bytes for 12 blocks and 6 byte of other info. Such a clear description is as follow:  
 ![DataPacketConstruct](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/HDL-64_data_packet_format.jpeg)
 What is a block? I think it means laser scan which points an emit and a receive of upper and lower laser. It is ....
-The default spin rate is 600 RPM(10Hz). The changing spin do not change the data rate -- the unit will send out the same number of packets(at a rate of 1.3 million data points per second, and ethernet rate is 1 packet/100us) regardless of spin rate. The angular resolution is as follow:
+The default spin rate is 600 RPM(10Hz). The changing spin do not change the data rate -- the unit will send out the same number of packets(at a rate of 1.3 million data points per second) regardless of spin rate. Six firings of each block takes 139 μs and then the collected data is transmitted. It takes 100 μs to transmit
+the entire 1248 byte Ethernet packet. This is equal to 32×12points/239μs, and then 1.6million/1s The angular resolution is as follow:
 
 | --RPM-- | --Points per Round-- | --Points per Round per laser-- | --Angle Resolution-- |
 | :---------: | :----------------: | :--------------------------: | :----------------: |

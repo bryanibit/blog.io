@@ -233,19 +233,31 @@ cp -r /etc/ssh ~/    # backup ssh key
 * You have installed the exact same version and type (CE/EE) of GitLab Omnibus with which the backup was created. 在[dockerImage](https://hub.docker.com/r/gitlab/gitlab-ce/tags/)上查找一定版本tag，即gitlab/gitlab-ce:{tag_name}。
 * GitLab is running. If not, start it using sudo gitlab-ctl start.
 
+```sh
+#stop the processes that are connected to the database, leave the rest of GitLab running
+sudo gitlab-ctl stop unicorn
 ```
-sudo gitlab-ctl stop unicorn  // Stop the processes that are connected to the database. Leave the rest of GitLab running.
+```sh
 sudo gitlab-ctl stop sidekiq
-sudo gitlab-ctl status // verify the two processes are down
-sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce //overwrite the contents of your GitLab database!.
+```
+```sh
+#verify the two processes are down
+sudo gitlab-ctl status
+```
+```sh
+#overwrite the contents of your GitLab database!
+sudo gitlab-rake gitlab:backup:restore BACKUP=1493107454_2018_04_25_10.6.4-ce
 ```
 
 Make sure your backup tarball (1493107454_2018_04_25_10.6.4-ce_gitlab_backup.tar) is in the backup directory described in the *gitlab.rb* configuration *gitlab_rails['backup_path']*. The default is */var/opt/gitlab/backups*.
 
 Restore ```/etc/gitlab/gitlab-secrets.json``` and ```/etc/ssh``` if necessary as mentioned above.
 
+```sh
+#Restart and check GitLab
+sudo gitlab-ctl restart
 ```
-sudo gitlab-ctl restart  //Restart and check GitLab
+```
 sudo gitlab-rake gitlab:check SANITIZE=true
 ```
 
@@ -268,4 +280,4 @@ docker update --restart=no {my-container}
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**
 
-![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg) | ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)
+![weixin](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/wx.jpg)   ![zhifubao](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/zfb.jpg)

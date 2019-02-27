@@ -30,13 +30,25 @@ you can choose to use different bash of different workspace especially for same 
 
 - publish topic with commands
 ```
-rostopic pub [topic] [msg_type] [args]
+rostopic pub [topic_name] [topic_type] [args]
 ```
-e.g.控制乌龟运动
+And the format of args is shown with ```rosmsg show /topic_type```  
 
+e.g.控制乌龟运动
 ```
- rostopic pub -1(数字) /turtle1/command_velocity       turtlesim/Velocity     -- 2.0  1.8
-                  topic_name                    (topic type /topic_name)    (rosmsg show /topic_type)
+$ rostopic pub -r 10 /cmd_vel geometry_msgs/Twist  '{linear:  {x: 0.1, y: 0.0, z: 0.0}, 
+angular: {x: 0.0,y: 0.0,z: 0.0}}'
+```
+And ```rosmsg show geometry_msgs/Twist``` exhibits 
+```
+geometry_msgs/Vector3 linear
+  float64 x
+  float64 y
+  float64 z
+geometry_msgs/Vector3 angular
+  float64 x
+  float64 y
+  float64 z
 ```
 
 ## ROS Node
