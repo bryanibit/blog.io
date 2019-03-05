@@ -32,16 +32,15 @@ switch(表达式)
 while()
 do{}while()
 ```
-- 后者先执行一次，然后在判断条件
+- 后者先执行一次，然后再判断条件
 - continue结束本次循环，继续下一次循环
 - break跳出整个循环
 
 ## 4.函数预处理
 
-- 大部分函数，除main以外都封装到class中。
-- main只实现调用其他函数的功能
-
-- 定义函数是平行的/独立的，函数不能嵌套定义，更不能将函数定义写在main中（函数声明可以写在main中）。
+- 大部分函数，除main以外都封装到class中  
+- main只实现调用其他函数的功能  
+- 定义函数是平行的/独立的，函数不能嵌套定义，更不能将函数定义写在main中（函数声明可以写在main中）
 
 ```
 int main()
@@ -72,11 +71,11 @@ int main()
 
 - 函数类型和形参**类型**不具体指定，函数体/形参个数相同
 ```
-template \<typename T1, class T2\>
+template <typename T1, class T2>
 通用函数定义
 ```
 ```
-template \<class T\>
+template <class T>
 通用函数定义
 ```
 
@@ -89,23 +88,24 @@ template \<class T\>
 
 ### 4.6 局部变量和全局变量（内部变量，外部变量）
 
-- mian中定义的变量只在main中有效，不会在整个文件或程序中有效
+- main中定义的变量只在main中有效，不会在整个文件或程序中有效
 - 函数声明的变量名是忽略的，可以认为其在该句结束后失效
 
 - 全局变量范围为定义变量开始到本源文件结束为止
 - 全局变量增加了函数间的数据联系
-- 全局变量违背模块话思想，降低函数的通用性
-*如果将一个文件移动到另一个工程中时，要将有关的外部变量一起移动过去，若该外部变量与其他文件变量同名，就会出现问题*
+- 全局变量违背模块话思想，降低函数的通用性  
+
+- 如果将一个文件移动到另一个工程中时，要将有关的外部变量一起移动过去，若该外部变量与其他文件变量同名，就会出现问题
 - 在同一个源文件中，局部变量和全局变量同名，全局变量被屏蔽
 
 ### 4.7 动态存储与静态存储
 
-- 存储空间分为
+**存储空间分为:**  
 * 程序区
 * 静态存储区：全局变量
 * 动态存储区：函数调用的形参，函数中的自动变量（未加static的局部变量），函数调用的现场保护和返回地址
-**C++变量属性包括数据类型，存储类别**，数据在内存中的存储方法为静态和动态，
-具体包括：自动，静态，寄存器，外部的
+
+**C++变量属性包括数据类型，存储类别**，数据在内存中的存储方法为静态和动态，具体包括：自动，静态，寄存器，外部的
 
 #### 4.7.1 static局部变量
 
@@ -119,7 +119,7 @@ int fun(int a)
   c=c+1;
 }
 ```
-**每次调用fun（）时，c一直保留,所以多次调用fun后，c一直在增加，但是b一直固定为2**
+**结果：** 每次调用fun（）时，c一直保留,所以多次调用fun后，c一直在增加，但是b一直固定为2.
 
 #### 4.7.2 register声明寄存器变量（编译器会自动优化，不需要自己设置）
 
@@ -133,13 +133,14 @@ int fac(int n)
   return fi;
 }
 ```
-- 以上程序当n较大的时候可以省去很多时间
+**注**: 以上程序当n较大的时候可以省去很多时间
 
 #### 4.7.3 用extern声明外部变量
+
 - 用extern变量声明全局变量，扩展全局变量的作用域
 - 对于全局变量提前引用（未定义）作声明
 - 在任何一个文件中定义外部变量num，而在另一个文件中用extern对num作外部变量声明
-- extern int num；
+- *extern int num；*
 
 #### 4.7.4 static静态外部变量
 
@@ -156,66 +157,73 @@ int fac(int n)
 #### 4.8.2 外部函数
 
 - 调用外部文件的函数（定义在其他文件中），和extern修饰变量方法相同
-- 函数默认都是外部的
+- 函数默认都是**外部**的
 
 ### 4.9 条件编译
 
 ```
-\#ifdef 标识符
+#ifdef 标识符
   程序段
-\#else
+#else
   程序段
-\#endif
+#endif
 ```
 ```
-\#ifndef 标识符
+#ifndef 标识符
   程序段
-\#else
+#else
   程序段
-\#endif
+#endif
 ```
 ```
-\#if 表达式
+#if 表达式
   程序段
-\#else
+#else
   程序段
-\#endif
+#endif
 ```
 
 ## 5. 数组
 
 - 有序数据的集合
-- 数组的定义
-  int a [10]
-  编译的时候就需要确定数组的长度，不能在执行的时候才确定
+- 数组的定义  
+  ```int a [10]```编译的时候就需要确定数组的长度，不能在执行的时候才确定
 
 ### 5.1 一维数组的初始化
 
-- int a[10]={0,1,2,3,4} correct
+```int a[10]={0,1,2,3,4} //correct```
 
 ### 5.2 数组名作为函数参数
 
 ```
 void select_sort(int array[], int n);
+void select_sort(int* array, int n); // ditto
 ```
 
 ### 5.3 字符数组
 
-- char str[] = {"I am happy"} <== \> char str[]="I am happy"
-- char str[] = {'I',' ','a','m',' ','h','a','p','p','y','\0'}
-- 以上三种写法等价，和下面这种不一样
-- char str[] = {'I',' ','a','m',' ','h','a','p','p','y'}
-- 输出一个字符串数组，cout << str,只要遇到'\0'即停止输出
+```
+char str[] = {"I am happy"} <==> char str[]="I am happy"  
+char str[] = {'I',' ','a','m',' ','h','a','p','p','y','\0'}
+```
+- 以上三种写法等价，和下面这种不一样:  
+```char str[] = {'I',' ','a','m',' ','h','a','p','p','y'}```
+- 输出一个字符串数组，cout << str,只要遇到'\0'即停止输出  
 
-### 5.4 字符串处理函数简介
+### 5.4 字符串处理C函数简介
 
-- #include <cstring\> <string\> or <strng.h\>
+- #include <cstring\>
+
+在s1末尾追加s2:
 - char *strcat(char *restrict s1, const char *restrict s2);
-- 在s1末尾追加s2
+
+清空s1，将s2赋值到s1中:
 - char *strcpy(char *restrict s1, const char *restrict s2, int n);
-- 清空s1，将s2赋值到s1中
+
+直到出现第一个不相同的字符，以此为标准输出:
 - int strcmp(const char *restrict s1, const char *restrict s2);
-- 直到出现第一个不相同的字符，以此为标准输出
+
+char*数组长度（不含'\0'）:
 - int strlen(const char * s)
 
 #### 5.4.1 遍历char*
@@ -242,13 +250,13 @@ void foreach(char* str)
 ### 5.5 字符串变量(避免数组越界)
 - str1=str2 *correct*
 - string word="then";
-  word[2]='a'; *correct*
+- word[2]='a'; *correct*
 - 字符串常量以'\0'结尾，但是将字符串常量存在字符串变量中，只存放字符串本身，无'\0'，这与char *不同
 
 ### 5.6 字符串变量的运算
 
-- string1 = string2  char *strcpy 复制
-- string1 = string1+ string2 连接
+- ```string1 = string2``` in C++ correspond to ```char *strcpy``` in C
+- ```string1 = string1+ string2``` correspond to ```char *strcat``` in C
 - 直接使用== > 来控制
 
 ### 5.7 字符串数组
@@ -261,21 +269,22 @@ void foreach(char* str)
 ```
 int a[10];
 int *p;
-p= &a;
+p= a;
 ```
 ```
 const char *str = "I love you";
 string str = "I love you";
 char str[]="I love you";
 ```
-- char *背后的含义是：给我个字符串，我要修改它,传给函数的字面常量是没法被修改的,所以说，比较和理的办法是把参数类型修改为const char *
+- char *背后的含义是：给我个字符串，我要修改它,传给函数的字面常量是没法被修改的,所以说，比较合理的办法是把参数类型修改为const char *
 
 ```
 int two_dimen_array[3][4] = { {1,2,3,4},{5,6,7,8},{1,2,3,4} };
 ```
 * 针对以上二维数组，two_dimen_array+1和two_dimen_array[0]+1在内存中移动的位数不同的
-* 前者移动了4*4=16个字节，后者只移动了4个字节，已知int型占4个字节
-* 所以说指针类型很重要，在定义一个指针时必不可少的部分
+* 前者移动了4*4=16个字节，后者只移动了4个字节，(已知int型占4个字节)
+* 所以说**指针类型很重要**，在定义一个指针时必不可少的部分
+
 ### 6.1 函数指针
 
 - 函数在编译时分配一个入口地址就是函数的指针
@@ -290,11 +299,12 @@ p=max;//由于max才是函数入口，而不是max(int a,int b)
 int a=0,b=0;
 m=p(a,b);
 ```
-#### 6.2 指针数组
+### 6.2 指针数组
+
 ```
 int *p[4];
 ```
-有点迷惑了吧
+a little confused! Think about ```char* str[]```.
 
 下面举个例子
 - 对一个数组{"basic","fortune","c++","pascal"}进行排序并显示输出
@@ -349,8 +359,8 @@ char* a;
 string (a);
 ```
 
-- std::string to double/float
-**If cout transformed string has missing numbers, it must be cout's error not transform**
+- std::string to double/float  
+**If cout transformed string has missing numbers, it must be cout's error not transform**  
 **Use compiler to see the double or use**
 ```
 double d = 3.14159265358979
@@ -359,6 +369,7 @@ cout << "Pi: " << fixed << d << endl;
 // or
 //should include <iomanip>
 cout << std::setprecision (15) << d << endl;
+```
 ```
 //C++ 11
 std::stod("2.345");
@@ -389,16 +400,18 @@ int **p
 ```
 指针的使用优势：1.提高程序效率 2.在调用函数的时候，如果改变被调用函数中某些变量的值，这些值能为主调函数使用 3.实现动态存储分配
 
-#### 6.3 引用
+### 6.3 引用
 - int a;
 - int &b=a;
 - b是a的一个引用，b和a占内存同一个存储单元，具有同一个地址
 - 引用不能用来代表数组和指针
+
 #### 引用作为函数参数
+
 - 它作为函数参数，可以扩充函数传递数据的功能
 - 当引用作为函数参数，可以看成传进函数的是地址，所以形参也会跟着被调用函数操作而变化
 
-e.g. 值传递的不同方式
+*e.g* 值传递的不同方式
 ```
 void swap(int * p1, int * p2);
 int main(int argc,char **argv)
@@ -416,6 +429,7 @@ int main(int argc,char **argv)
 	swap(a,b);
 }
 ```
+
 ## 7.自定义数据类型 struct
 
 ```
@@ -431,7 +445,7 @@ Student *p = &stu;
 ```
 - p->name, ->是指向运算符
 
-#### 7.1 使用结构体设计链表
+### 7.1 使用结构体设计链表
 ```
 struct Student
 {
@@ -442,24 +456,29 @@ struct Student
 ```
 * 所有结点不是临时开辟的，不能用完后释放，这种链表称为静态链表。对其访问可以使用next指针也可以使用结构体变量a,b,c去访问
 * 各结点可以随时插入和删除，这些结点并没有变量名，只能先找到上一个结点，才能根据找到该结点
-#### 7.2 结构体类型数据作为函数参数
-（1）用结构体变量名作为函数参数。改变结构体内容，无法传出到调用函数
 
-（2）用指向结构体变量的指针作实参，将结构体地址传给形参
+### 7.2 结构体类型数据作为函数参数
 
-（3）用结构体变量的引用作函数参数
-#### 7.3 动态分配和撤销内存的运算符new和delete
-- new delete 和++ — 一样是运算符
-- C中运用malloc和free来分配和撤销内存，C++使用new和delete取代前两者
-- 一般格式为：  new 类型[初值]
-- new返回指定某存储空间的地址
-e.g.
+（1）用结构体变量名作为函数参数。改变结构体内容，无法传出到调用函数  
+（2）用指向结构体变量的指针作实参，将结构体地址传给形参  
+（3）用结构体变量的引用作函数参数  
+
+### 7.3 动态分配和撤销内存的运算符new和delete
+
+- ```new``` and ```delete``` 和++ — 一样是运算符
+- **C**中运用```malloc和free```来分配和撤销内存，C++使用```new和delete```取代前两者
+- 一般格式为： ```new 类型[初值]```
+- new**返回**指向```存储空间的地址```  
+e.g.  
 - new int;        开辟存放int型的存储空间，返回一个指向该存储空间的地址（返回指针）
 - int *pt = new int[10];    开辟一个存放int型数组，返回首元素地址
 - new int[9][9];
 - float *p = new float(3.1415);开辟一个存放单精度空间，初值为3.1415，返回指针赋值到p
-
-* 用new分配数组空间时，不能指定初值，new返回为NULL时，分配不成功
+- 用new分配数组空间时，不能指定初值，new返回为NULL时，分配不成功. 这里的new和delete中[]指代是数组
+```
+int* p = new int; //allocate memory
+new (p) int;   // not allocate memory just renew a object
+```
 
 ---
 
@@ -467,9 +486,7 @@ e.g.
 - delete p;
 - delete [] pt;
 
-- 总结就是new和delete中[]指代是数组
-
-#### 7.4 共用体（union）类型
+### 7.4 共用体（union）类型
 ```
 union data
 {
@@ -480,7 +497,7 @@ union data
 ```
 - 节省存储空间，每次只能存在一个成员变量，对新的成员变量赋值，其他成员变量就消失，其在内存中所占的存储空间是最长的字符所占的存储空间
 
-#### 7.5 枚举类型
+### 7.5 枚举类型
 
 - enum weekday{Sun=7,Mon=1,Tue,Wed,Tur,Fri,Sat};
 - enum 枚举类型名 {枚举常量列表}
@@ -490,7 +507,7 @@ union data
 * 不能直接对枚举类型赋值 Sun=0；
 * 不能直接这样： workday = 0；
 
-#### 7.6 typedef
+### 7.6 typedef
 
 空
 
