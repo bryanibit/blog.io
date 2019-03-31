@@ -1,21 +1,11 @@
 ---
 layout: post
-title: 2018 Alibaba Coding Online
+title: 2018 CPP Coding Techniques
 date: 2017-7-5
 categories: blog
 tags: [考试经验总结]
 description: c++问题
 ---
-
-在此整理一些编程问题
-
-7月6日前的代码没有考虑几个特殊情况，例如3个点，4个点时候的情况，以及num_all_point == num_hull
-
-博主有空将尽快更新
-
-首先这道算法题应该就是先找到凸包点，之后遍历点对，查询其余点在该点对生成直线的两侧的数量，
-
-进而得到两侧中较大的数字，加上2（脑补一下）就是实际上其能看到的城堡数量
 
 ## CMakeLists.txt
 
@@ -35,13 +25,14 @@ include_directories(${OpenCV_INCLUDE_DIRS})
 
 # Find PCL
 # lowcase common and io, correspond to libpcl_common,libpcl_io.so, both files are located in ${PCL_COMMON_LIBRARY}
-find_package(PCL 1.3 REQUIRED COMPONENTS common io)//
+find_package(PCL 1.3 REQUIRED COMPONENTS common io)
 include_directories(${PCL_INCLUDE_DIRS})
 link_directories(${PCL_LIBRARY_DIRS})
 add_definitions(${PCL_DEFINITIONS})
 
 # Find Boost
-find_package(Boost REQUIRED COMPONENTS thread system date_time)//asio.h
+# asio.h
+find_package(Boost REQUIRED COMPONENTS thread system date_time)
 include_directories(${Boost_INCLUDE_DIRS})
 
 # Find Vimba(no .cmake or .pc, not pkg-config)
@@ -61,35 +52,27 @@ libVimbaCPP.so #Find Vimba
 )
 ```
 
-这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置
-
-有篇[CMakeLists的博文](https://bryanibit.github.io/blog/2017/07/05/cmakelists/),里面写了指定${CMAKE_MODULE_PATH},
-
+这里主要想说的是OpenCV如果作死不装在默认路径上（/usr/local/），需要指定.cmake 位置  
+有篇[CMakeLists的博文](https://bryanibit.github.io/blog/2017/07/05/cmakelists/),里面写了指定${CMAKE_MODULE_PATH},  
 然后把.cmake copy 到工程根目录下
 
 ## C++数据结构 (*). == ->
 
 ### c++ 文件结构
 
-在编程快结束后，博主感觉还是需要找到凸包上的点，于是在网上找了一个程序，
-凸包查找（找到后附上链接），该链接将一些数学问题很好的整理，只要
-include<cmath>即刻，但是存在复制的代码和自己的代码数据结构不同的情况。
-
-此时新建一个.cpp和.h，将函数具体实现放在.cpp中并include**.h;
-头文件和struct和class放在.h中，并
-
-//#ifndef __hull__
-//#define __hull__ #endif
-
-在自己的.cpp(main(int argc,char** argv)在此)加上include ".h"
+防止头文件重定义的方法
+```
+#ifndef __hull__
+#define __hull__ #endif
+```
 
 ### 获取文件夹下的文件名称
 
-```
-argb[1] is the input path, char* type
-\#include <string>
-\#include <iostream>
-\#include "boost/filesystem.hpp"
+```c
+// argb[1] is the input path, char* type
+#include <string>
+#include <iostream>
+#include "boost/filesystem.hpp"
 using namespace boost::filesystem;
 for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i++)
     {
@@ -104,45 +87,41 @@ for (auto i = directory_iterator(string(argv[1])); i != directory_iterator(); i+
 
 ### 读取文件C++
 
-         #include<fstream>
-         // read-mode
-         std::ifstream infile;
-         infile.open("./1.txt");
-         string s;
-         while(infile >> s) //读取一个word
-         //while(std::getline(infile, s)) //读取一行
+```c
+#include<fstream>
+// read-mode
+std::ifstream infile;
+infile.open("./1.txt");
+string s;
+while(infile >> s) //读取一个word
+//while(std::getline(infile, s)) //读取一行
+```
 
 ### 写入文件c++
 
-```
+```c
  //write-mode
  std::ofstream onfile;
  double x = 80.90809;
  onfile.open("absolute dir", std::ios::app);
- onfile<<std::fixed<<std::setprecision(8)<<x<<endl;
+ if(onfile.is_open()){
+   onfile<<std::fixed<<std::setprecision(8)<<x<<endl;
+ }
 ```
 
 ### 文件打开方式
 
-用oftream或者ifstream对象的构造函数或者open()函数指定一种打开方式
+用**oftream**或者**ifstream**对象的构造函数或者open()函数指定一种打开方式:  
+ios::in        打开文件进行读操作，即读取文件中的数据  
+ios::out     打开文件进行写操作，即输出数据到文件中  
+ios::ate    打开文件时文件指针指向文件末尾，但是你可以在文件中的任何地方写数据  
+ios::app   打开文件不会清空数据，文件指针始终在文件末尾，因此只能在文件末尾写数据  
+ios:trunc  默认，若打开文件已存在，测清空文件的内容  
+ios::nocreate    若打开文件不存在则不建立，返回打开失败信息  
+ios::noreplace  打开文件时不能覆盖，若文件存在测返回打开失败信息  
+ios::binary          打开文件为二进制文件，否则为文本文件  
+**注：** ate 是 at end 的缩写，trunc是truncate(截断)的缩写，app是append(追加)的缩写
 
-ios::in        打开文件进行读操作，即读取文件中的数据
-
-ios::out     打开文件进行写操作，即输出数据到文件中
-
-ios::ate    打开文件时文件指针指向文件末尾，但是你可以在文件中的任何地方写数据
-
-ios::app   打开文件不会清空数据，文件指针始终在文件末尾，因此只能在文件末尾写数据
-
-ios:trunc  默认，若打开文件已存在，测清空文件的内容
-
-ios::nocreate    若打开文件不存在则不建立，返回打开失败信息
-
-ios::noreplace  打开文件时不能覆盖，若文件存在测返回打开失败信息
-
-ios::binary          打开文件为二进制文件，否则为文本文件
-
-注：ate 是 at end 的缩写，trunc是truncate(截断)的缩写，app是append(追加)的缩写
 
 ### C++ split()
 
@@ -150,20 +129,14 @@ ios::binary          打开文件为二进制文件，否则为文本文件
 std::vector<std::string> split(const std::string& s, char seperator)
 {
 	std::vector<std::string> output;
-
 	std::string::size_type prev_pos = 0, pos = 0;
-
 	while ((pos = s.find(seperator, pos)) != std::string::npos)
 	{
 		std::string substring(s.substr(prev_pos, pos - prev_pos));
-
 		output.push_back(substring);
-
 		prev_pos = ++pos;
 	}
-
 	output.push_back(s.substr(prev_pos, pos - prev_pos)); // Last word
-
 	return output;
 }
 ```
