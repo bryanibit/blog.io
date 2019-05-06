@@ -95,6 +95,7 @@ infile.open("./1.txt");
 string s;
 while(infile >> s) //读取一个word
 //while(std::getline(infile, s)) //读取一行
+infile.close();
 ```
 
 ### 写入文件c++
@@ -107,6 +108,7 @@ while(infile >> s) //读取一个word
  if(onfile.is_open()){
    onfile<<std::fixed<<std::setprecision(8)<<x<<endl;
  }
+ onfile.close();
 ```
 
 ### 文件打开方式

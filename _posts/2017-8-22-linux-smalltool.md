@@ -268,6 +268,13 @@ systemctl is-active <app>.service //输出是否
 systemctl is-enabled <app>.service //输出是否
 ```
 
+## Switch nvidia and intel Graphic card
+
+```
+sudo prime-select nvidia/intel
+sudo reboot # if needed
+```
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**
