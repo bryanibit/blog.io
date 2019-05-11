@@ -7,6 +7,24 @@ tags: [理论梳理]
 description: Leetcode & Codeing skill
 ---
 
+## vector operations
+
+1. erase()
+```
+void removeDuplicate(std::vector<string>& s)
+	{
+		sort(s.begin(), s.end());
+		for (int i = 1; i < s.size(); ++i)
+		{
+			if (s[i - 1] == s[i])
+			{
+				s.erase(s.begin()+i-1);
+				--i; // point is here
+			}
+		}
+	}
+```
+
 ## 将string类型变量转换为常用的数值类型
 //模板函数：（此方法具有普遍适用性）
 \#include <sstream>  

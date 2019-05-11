@@ -45,7 +45,7 @@ We just look at the mountains ahead of us, and forget the mountains behind us we
 # 10-20
 
 Legends, however, are generally the result of exaggeration.  
-Keep your expectations grounded. 
+Keep your expectations grounded.
 
 # 1-18
 
@@ -61,6 +61,13 @@ He turns me on. means he is attractive to me
 The similar is She turns me off means I don't find her attractive  
 4. get away with
 How did you get away with that? 逃离脱身  
-Most native speakers usually drop t when saying ge(t) away with 
+Most native speakers usually drop t when saying ge(t) away with
 5. put up with sb
 tolerate sb
+
+# TOFEL
+
+## Listening
+
+As the individual matures, that overt talking to oneself becomes covert talking to oneself, but thinking still shows up as a laryngeal habit.  
+Thinking is identical with the activity of muscles.
