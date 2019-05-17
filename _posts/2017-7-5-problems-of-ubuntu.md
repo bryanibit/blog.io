@@ -125,12 +125,10 @@ sudo /etc/default/apport
 ```
 ## .bashrc文件失效
 
-**Problem:** .bashrc文件无论写入什么东西似乎都没有用
-
+**Problem:** .bashrc文件无论写入什么东西似乎都没有用。  
 **Solution:**  
-*原理：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile.
-
-所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了rm -rf *)
+*Reason：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile.  
+所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了```rm -rf *```)
 
 1. 恢复.bashrc
 ```
@@ -150,6 +148,11 @@ if [[ $- == *i* && -f ~/.bashrc ]]; then
     . ~/.bashrc
 fi
 ```
+
+既然说到bashrc，我们扩展一下关于[系统级别环境变量(Environment Variables)设置的问题](https://help.ubuntu.com/community/EnvironmentVariables#System-wide_environment_variables):  
+A suitable file for environment variable settings that affect the system as a whole (rather than just a particular user) is */etc/environment*. However, variable expansion does **not** work in */etc/environment*(such as ```FOO=bar```).  
+Files with the **.sh** extension in the */etc/profile.d* directory get executed **whenever a bash login shell is entered (e.g. when logging in from the console or over ssh), as well as by the DisplayManager when the desktop session loads**. And files in */etc/profile.d* are sourced by */etc/profile*.  
+The shell config file */etc/bash.bashrc* is sometimes suggested for setting environment variables system-wide. While this may work on Bash shells for programs started from the shell, **variables set in that file are not available by default to programs started from the graphical environment in a desktop session**.  
 
 重新登录对应的账号
 
