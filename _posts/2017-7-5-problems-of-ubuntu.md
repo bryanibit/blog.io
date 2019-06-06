@@ -154,6 +154,15 @@ A suitable file for environment variable settings that affect the system as a wh
 Files with the **.sh** extension in the */etc/profile.d* directory get executed **whenever a bash login shell is entered (e.g. when logging in from the console or over ssh), as well as by the DisplayManager when the desktop session loads**. And files in */etc/profile.d* are sourced by */etc/profile*.  
 The shell config file */etc/bash.bashrc* is sometimes suggested for setting environment variables system-wide. While this may work on Bash shells for programs started from the shell, **variables set in that file are not available by default to programs started from the graphical environment in a desktop session**.  
 
+The following content is used for ```sudo -A script.sh``` without password. Because sudo -A use environment variable called *SUDO_ASKPASS*, I decide to add it to ENV and then launch it via "start application" which belongs to graphical session of desktop. So the easiest way is to add file in */etc/profile.d/sudopass.sh*. Frankly speaking, I can use the following way to finish the problem, too.
+```
+sudo visudo
+#in the bottom of file, type the following
+$USER ALL=(ALL) NOPASSWD: ALL
+#or
+$USER ALL=(ALL) NOPASSWD: scrip.sh
+```
+
 重新登录对应的账号
 
 ## ubuntu can not shutdown: nouveau problem

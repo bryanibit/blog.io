@@ -7,19 +7,112 @@ tags: [理论梳理]
 description: Leetcode & Codeing skill
 ---
 
+## BackTracking
+
+**Do not try in-place like```s = s.subtr(0, i)`` in backtracking(recursive operation)**
+
+## STL basic function arguments meaning:
+
+* substr()
+* vector<>()
+* assign()
+* std::find()
+* erase()
+
+## longest substring without repeating characters
+
+* C++ set
+```
+template < class T,                        // set::key_type/value_type
+           class Compare = less<T>,        // set::key_compare/value_compare
+           class Alloc = allocator<T>      // set::allocator_type
+           > class set;
+```
+The value in *set* container can not be modified (their elements are *const*), but they can be **removed** and **inserted**.  
+The value in *set* is ordered in according to specific weak ordering criterion. *set* containers are generally slower than *unordered_set* containers to access individual elements by their key, but they allow the **direct iteration** on subsets based on their order.
+
+**Basic Operation**:  
+```
+empty() size()  
+insert() emplace() erase() //insert and remove
+find()  
+if (m.count(val)) // val exists
+operation=// set s; set a; s = a;
+```
+
+* C++ map
+```
+template < class Key,                                     // map::key_type
+           class T,                                       // map::mapped_type
+           class Compare = less<Key>,                     // map::key_compare
+           class Alloc = allocator<pair<const Key,T> >    // map::allocator_type
+           > class map;
+```
+The value in *map* is ordered by its key in according to specific weak ordering criterion. *Map* containers are generally slower than *unordered_map* containers to access individual elements by their key, but they allow the direct iteration on subsets based on their order.
+
+**Basic Operation**:  
+```
+empty() size()  
+insert() emplace() erase() //insert and remove
+find() 
+if (m.count(key)) // key exists 
+```
+
+## DP(Dynamic Programming)
+
+*Those who cannot remember the past are condemned to repeat it.* -- **Dynamic Programming**. In a nutshell, dynamic programming is recursion without repetition.
+
+In leetcode, the DP problems can be split into two categaries: continue and discrete.  
+**review all problems**:   
+* Continue:  
+if f(i) is not only connected to f(i-1), also to f(i-2), then you do not only need one variable, such as max_val for recording the largest value, but also need another value to iterate, like a, b = a, a+b(Fibonacci numbers).
+
+* Discrete:  
+For each element, you can choose do nothing or do operations(like add it or minus it).
+
+Right now, I wanna introduce one kind of DP with conditions. The problems are both based on a 2d matrix including only "0" and "1".
+
+* First one -- leetcode 221. [Maximal Square(medium)](https://leetcode.com/problems/maximal-square/)
+Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.  
+**Iteration function**(*Initial operation is omitting*):  
+```cpp
+vector<vector<int>> dp(matrix.size(), vector<int>(matrix.at(0).size(), 0))
+if(matrix[i][j] == 1)
+	dp[i][j] = min(dp[i-1][j-1], dp[i-1][j], dp[i][j-1])
+else // do nothing
+	dp[i][j] = matrix[i][j]
+```
+
+* Second one -- leetcode 63. [Unique Paths II(medium)](https://leetcode.com/problems/unique-paths-ii/)  
+A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).  
+The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).  
+Now consider if some obstacles(use 1 to represent) are added to the grids. How many unique paths would there be?  
+**Iteration function**(I achieve it in place here):(*Initial operation is omitting*)
+```cpp
+if(grid[i][j] == 1)
+	grid[i][j] = 0
+else// grid[i][j] = 0
+	grid[i][j] = grid[i-1][j] + grid[i][j-1]]
+```
+
+## Leveshtein Distance
+
+
+
 ## Find the shortest path - SPFA
 
 The following pseudocode does not think of minus loop:
+
 ```cpp
-// 3 vector/array: dist, visited path
+// 3 vector/array: dist, visited path  
 dist[] = std::numeric_limits<>::max()
 visited[]=0
 path[]
 queue Q
 dist[start_node] = 0
-// any operations for Q will influence visited
+// any operations for Q will influence visited  
 Q.push(start_node)
-//when node is in Q, his visited is 1
+//when node is in Q, his visited is 1  
 visited[start_node] = 1
 while(!Q){
 	u = Q.front()
@@ -40,7 +133,7 @@ while(!Q){
 }
 ```
 Because of involving std::stack and std::queue, I want to introduce them right here, right now.  
-**stack** is *first in, last out*, but **queue** is different, which is *first in, first out*. Both of them have **pop()**/**push()**/**emplace()**, which have diffent location(front or back) for poping and pushing. So **stack** has **top()** func, however, **queue** has **front()** which acquires "oldest" element that will delete from queue by **pop** firstly. And **queue** has **back()** for "newest" element, too.
+**stack** is *first in, last out*, but **queue** is different, which is *first in, first out*. Both of them have **pop()**/**push()**/**emplace()**, but both have diffent location(front or back) for poping and pushing. So **stack** has **top()** func, however, **queue** has **front()** which acquires "oldest" element that will delete from queue by **pop** firstly. And **queue** has **back()** for "newest" element, too.
 
 ## DFS(Deep First Search)
 
@@ -111,6 +204,8 @@ int main(){
 	dfs(graph, 0, target, path);
 }
 ```
+
+When using variables reference and modify it in the recursive process, you should be careful. There is an example for rectify the modification after *each time of return false*. There is link of [leetcode: word search](https://leetcode.com/problems/word-search/). PS: **==** has priority to **||** or **&&**. 
 
 ## vector operations
 
