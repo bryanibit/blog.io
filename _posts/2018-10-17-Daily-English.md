@@ -69,5 +69,62 @@ tolerate sb
 
 ## Listening
 
-As the individual matures, that overt talking to oneself becomes covert talking to oneself, but thinking still shows up as a laryngeal habit.  
-Thinking is identical with the activity of muscles.
+As the individual matures, that overt talking to oneself becomes covert talking to oneself, but thinking still shows up as a laryngeal habit.    
+Thinking is identical with the activity of muscles.  
+There are charcoal marks from their **torches** on the cave walls clearly dating from thousands of years after the paintings were made.  
+
+The artists were highly skilled at using, or even enhancing, the natural shape of the cave walls to give depth and perspectives to their drawings, the sense of motion and vitality in these animals.  
+herbivores  
+Was it for their religion, magic or sheer beauty?   
+There are charcoal marks from their torches on the cave walls clearly dating from thousands of years after the paintings were made.
+
+The National Endowment for the Arts was created.  
+The government made it attractive for them to do so, by offering corporations tax"-"incentives to support the arts.  
+But they only succeeded in taking away about half the annual budget.  
+
+It seems a little all over the place, but from farther away, the true path shows and in the end it justifies all the turns along the way.  
+We can explore its analogy with the transmission of genes.  
+longevity, fecundity and fidelity  
+housefly alligator   
+function as == act as
+
+[Astronomy]  
+crater meteor crust basin diameter comets perpetually evaporation   
+tail of passing comets  
+lunar missions  
+water molecules  
+orbit around the moon's equator  
+the layer beneath the crust  
+there’s probably ice there  
+
+[Chemistry]  
+How do you determine whether the painting's authentic?  
+art historian  
+pigments ingredient deteriorated  
+binding agent
+infrared microscope  
+ultraviolet light  
+zinc or lead  
+it's not invasive    
+dissolve the paint and uncover the original  
+
+[Literature]
+orally communal realistic authoritative audience discovered    
+written version  
+Not before undergoing a process of evolution. Now, a number of things happen when an oral tale gets written down.  
+
+[carrer-service-in-university]  
+career fair  
+flyers and posters  
+recruit new employee  
+tailor your questions to the particular company  
+
+[Economic-class]  
+hysterical or irrational boom  
+
+[Bad-Blood]  
+laundry detergent  
+enzymes ravage specimen    
+close to the vest  
+severe acute respiratory syndrome  
+pragmatic and grounded  
