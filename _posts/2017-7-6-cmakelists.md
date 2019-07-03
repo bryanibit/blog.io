@@ -11,105 +11,55 @@ description: Linux中cmakelists问题
 [**CMake Docs Link**(```man cmake```)](https://cmake.org/Wiki/CMake_2.4.6_Docs)
 
 ## Use OpenCV install not in default location
+
+1. Method one: set **OpenCV_DIR** variable
 ```
   set(OpenCV_DIR "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
   ""中的内容应该包含OpenCVConfig.cmake
 ```
-
-## Using external libraries (CMake:How To Find Libraries)
-
-* Cmake help you with 'find_package' command
-* cmake comes with numerous libraries.
-
-### use cmake's own module(/usr/share/cmake/Modules)
-
-* Where is your path is?
-* The module path is /usr/share/cmake/Modules
-* cmake --help-module
-
+2. Method two: set **CMAKE_PREFIX_PATH** variable
 ```
-find_package(Bzip2)
-if(BZIP2_FOUND)
-  include_directoties(${BZIP_INCLUDE_DIRS}) # tell the compile where bzlib is
-  target_link_libraries(helloworld ${BZIP_INCLUDE_DIRS}) # need to find bzip lib to build exe
-			   |
-			executable name
-endif
+set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} "/home/inin/OpenDroneMap/Superbuild/install/share/OpenCV")
+  ""中的内容应该包含OpenCVConfig.cmake
+```
+3. Method complement
+```
+if(OpenCV_FOUND)
+  message("Found OpenCV")
+endif()
 ```
 
-### Using external libraries that CMake doesn't have module
+## How package find working?
 
-```
-find_package(libXML++ REQUIRED)
-include_directories(${libXML++ INCLUDE_DIRS})
-set(LIBS ${LIBS} ${libXML++_LIBRARIES})  #set variable
-target_link_libraries(helloworld ${LIBS})
-```
-
-For this work, you need to put FindLibXML++.cmake file to cmake module path.
-
->把FindLibXML++.cmake 放在自己project的root（source）目录下的cmake/Modules在cmakelists中加上一句
-
-            set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules")
-
-### 需要一个包的一部分
-
-* find_package(Qt COMPONENT QtOpenGL QtXML REQUIRED)
-* 对应的变量 <package>_<component>_FOUND
-* e.g. Qt_QtXML_FOUND
-* namely, if (Qt_QtXML_FOUND)  巴拉巴拉
-
-### How package find working?
-
-1. CMAKE checks all directories in ${CMAKE_MODULE_PATH}
-
-   then it looks its own directory 
-
-> <CMAKE_Root>/share/cmake-x.y/Modules
-
-> <CMAKE_Root> 一般指 /usr/
-
-
-2. If no such file is found, it looks for <NAME>Config.cmake e.g. OpenCVConfig.cmake
-   or <low-case-name>-config.cmake 
-
-   no matter what mode is used, the following will be defined:
-
+1. CMAKE checks all directories in **${CMAKE_MODULE_PATH}** then it looks for its own directory, like **<CMAKE_Root>/share/cmake-x.y/Modules** (*<CMAKE_Root>* 一般指 */usr/*).  
+2. If no such file is found, it looks for **<NAME>Config.cmake** e.g. **OpenCVConfig.cmake** or **<low-case-name>-config.cmake**. In fact, we need to define **CMAKE_PREFIXE_PATH** for stuff **not** including Find××.cmake but **××config.cmake**.  
+No matter what mode is used, the following will be defined:
 ```
    <NAME>_FOUND
    <NAME>_INCLUDE_DIRS or <NAME>_INCLUDES
    <NAME>_LIBRARIES or <NAME>_LIBS
    <NAME>_DEFINITIONS
 ```
+**ALL these variables** define in the Find<NAME>.cmake file.
 
-_All this_ takes places in the Find<NAME>.cmake file
+## pkg-config
 
-套用上页用到的if found， include， target
-
-### pkg-config
-
-小心使用
-
-pkg-config is a build-helping tool, based on '.pc' files that record the location of _ library files _ and _ include files _
-
-凡是由二进制文件（deb、源等）安装的包，都会将<package-name>.pc文件放置在 {PKG-CONFIG-PATH}所包含的路径下。*.pc的内容一般是：指明某个包include和lib的目录。
-
+**小心使用**  
+pkg-config is a build-helping tool, based on **.pc** files that record the location of _ library files _ and _ include files _.  
+凡是由二进制文件（deb、源等）安装的包，都会将<package-name>.pc文件放置在 {PKG-CONFIG-PATH}所包含的路径下。**××.pc**的内容一般是：指明某个包include和lib的目录。  
 e.g.  
-
 ```
 ➜  echo $PKG_CONFIG_PATH 
 /home/bryan/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
 ➜  ls /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
 opencv-3.3.1-dev.pc
 ➜  head -14 /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig/opencv-3.3.1-dev.pc //显示前14行
-\# Package Information for pkg-config
-
+Package Information for pkg-config
 prefix=/opt/ros/kinetic
 exec_prefix=${prefix}
 libdir=${exec_prefix}/lib/x86_64-linux-gnu
 includedir_old=${prefix}/include/opencv-3.3.1-dev/opencv
 includedir_new=${prefix}/include/opencv-3.3.1-dev
-
 Name: OpenCV
 Description: Open Source Computer Vision Library
 Version: 3.3.1
@@ -165,6 +115,7 @@ CMAKE_C_FLAGS 设置C编译选项
 CMAKE_CXX_FLAGS 设置C++编译选项
    e.g. 
      set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -march=native -O3 -pthread")
+CMAKE_FIND_DEBUG_ON 打印find_package信息
 ```
 
 ### cmake常用命令
@@ -188,7 +139,7 @@ CMAKE_CXX_FLAGS 设置C++编译选项
 1. CMake Error: The following variables are used in this project, but they are set to NOTFOUND. ${CERES_INCLUDE_DIR}  
 * Find the include dir: set(CMAKE_INCLUDE_PATH ${CMAKE_INCLUDE_PATH} "/home/inin/OpenDroneMap/SuperBuild//install/include/")  
 * 设置include为库安装目录，解决问题  
-2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html)  
+2. Could not find a package configuration file provided by "Eigen" with any of the following names: EigenConfig.cmake eigen-config.cmake [config-file and find-module](https://cmake.org/cmake/help/v3.7/manual/cmake-packages.7.html#config-file-packages)  
 * Tell Find*.cmake files where: set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} /home/inin/OpenDroneMap/SuperBuild/src/opensfm/opensfm/src/cmake/)  
 * Tell *config.cmake(no find) files where: set(CMAKE_PREFIX_PATH ${CMAKE_PREFIX_PATH} /home/bryan/Downloads/pybind11-master/pybind11-master/build/mock_install/share/cmake/pybind11/)  
 * The prefixes (directories) listed in it will be searched before the default search directories(CMAKE_MODULE_PATH), and lib/, include/ and bin/ will be appended appropriately.  
