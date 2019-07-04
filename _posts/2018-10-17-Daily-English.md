@@ -128,3 +128,23 @@ enzymes ravage specimen
 close to the vest  
 severe acute respiratory syndrome  
 pragmatic and grounded  
+
+[Biology-class]
+seed dispersal  
+dispersal disperse fossil hectare germinate expire decline rainforest
+
+[Linguistics-class]
+dialect  
+Dialect accommodation is a more manageable sort of topic.  
+
+[zero-to-one]  
+Pupils with highest marks receive status and credentials.  
+We teach each young person the same subjects in mostly the same ways, irrespective of individual talents and preferences.  
+e'lite students climb confidently until they reach a level of competition sufficiently intense to **beat their dream of them**.  
+Higher education is the place where people who have a big plan in high school **get stuck in** fierce rivalries with equally smart peers.  
+For the privilege of **being turned into conformists**, they pay hundreds of thousands of dollars **in skyrocketing tuition** that continues to **outpace inflation**.  
+
+I wish I have asked myself when I was younger.  
+with the benefit of hindsight  
+depostion 沉积物、证词 take depositions and draft business deals 起草商业交易  
+“The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.” — William Arthur Ward
