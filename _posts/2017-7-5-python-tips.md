@@ -68,13 +68,13 @@ np.nonzero(ok1 * ok2)[0]
 使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
 
 追加文件内容
-```
+```python
 with open(filename,'a') as filepoint:
     filepoint.write(string)
 ```
 
 读文件
-```
+```python
 with open(filename, 'r') as fout:
     lines = fout.readlines()
 for line in lines:
@@ -85,9 +85,10 @@ for line in lines:
 
 ## 两个数组合并/某个添加一列
 
-在shape=（432,2）的数组上加上一列使用 np.hstack()
+在shape=（432,2）的数组上加上一列使用```np.hstack()```
 
 e.g.
+
 - pixel = np.zeros((439,2), dtype=)
 - s = pixel.shape[:-1]+(1,)
 - result = np.hstack((pixel,np.ones(s)))
@@ -100,11 +101,9 @@ e.g.
 
 ## 矢量求范数
 
-bearing_b3 是一个n×3的矩阵
-
-'normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]'
-
-e.g.
+bearing_b3是一个n×3的矩阵  
+```normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]```  
+**e.g.**
 
          > bearing_b3
          array([[1, 2, 3],
@@ -123,39 +122,40 @@ e.g.
 
 ## cv2.Rodrigues
 
-Python: cv2.Rodrigues(src[, dst[, jacobian]]) → dst, jacobian¶
-
+```python
+cv2.Rodrigues(src[, dst[, jacobian]]) → dst, jacobian¶
 R' = cv2.Rodrigues(R)[0]
-
+```
 Note that: [0]
 
 ## 两个大小一致的数组，满足条件的配对
 
-```
+```python
 results = np.array([7,8,9,10])
 dists = np.array([1,2,3,4])
 good = dists &lt 2
-*array([ True, False, False, False], dtype=bool)*
+#>> array([ True, False, False, False], dtype=bool)
 matches = zip(results[good],good.nonzero()[0])
-*[(7, array([0]))]* \# matches is a list
+#>> [(7, array([0]))] 
+# matches is a list
 ```
+
 ## np.array中两个维度相同的数组互相相乘注意
 
-```
+```python
 ok1 = np.array([ True, False, False, False], dtype=bool)
 ok2 = np.array([ True, False, True, False], dtype=bool)
 ok1*ok2
-*array([ True, False, False, False], dtype=bool)*
+#>> array([ True, False, False, False], dtype=bool)
 np.nonzero(ok1*ok2)
-*(array([0]),)*
+#>> (array([0]),)
 np.nonzero(ok1*ok2)[0]
-*array([0])*
+#>> array([0])
 ```
 
 ## python运算符优先级
 
-从上到下优先级依次递减
-
+从上到下优先级依次递减  
 ![python运算符优先级](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png)
 
 ## argparse
@@ -187,14 +187,13 @@ if args.verbosity:
 
 ## ord() chr()
 
-ord('a') -> 97 # 返回ascII
-
+ord('a') -> 97 # 返回ascII  
 chr(97) --> 'a' # return 字符
 
 ## list <==> str
 
 string to list
-```
+```python
 str1='123456789'
 str2='1.2.3.65'
 str3 = 'user1 user2 user3'
@@ -210,7 +209,7 @@ list to str
 
 ## list to array
 
-```
+```python
 a = np.array([[1,2],[4,5],[2,3]])
 此时才能用切片功能,a不能是list，执行下列操作：
 plt.plot(a[:,0],a[:,1])
@@ -250,7 +249,7 @@ numpy.ndarry.tolist #numpy to list
 
 ## list.pop()使用
 
-```
+```python
 l=['a','b','c','d','e','f','g','h','i']
 for i in xrange(len(l))
   for j in xrange(i+1, len(l))
@@ -271,7 +270,7 @@ int() 直接截去小数部分
 
 已知一个二维数组，现在使用每行的第三列数据大小作为依据，将二维数组排序
 
-```
+```python
 size = p_unsorted[:, 2]
 order = np.argsort(size)
 p_sorted = p_unsorted[order, :]
@@ -279,16 +278,14 @@ p_sorted = p_unsorted[order, :]
 
 ## Python内置函数
 
-1. map(func, seq1[, seq2,…])
-第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。
+1. map(func, seq1[, seq2,…])  
+第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个**list**。如果**func为None**，作用同```zip()```  
 map相当于
-
-```
+```python
 def map(f, iterable)
     return [f(x) for x in iterable]
 ```
-
-```
+```python
 print map(lambda x , y : x ** y, [2,4,6],[3,2,1])
 [8, 16, 6]
 print map(None, [2,4,6],[3,2,1])
@@ -298,12 +295,9 @@ map(int, (1,2,3))
 map(int, '1234')
 [1, 2, 3, 4]
 ```
-
-2. reduce(func, seq1[,seu2,...])
-
+2. reduce(func, seq1[,seu2,...])  
 reduce相当于
-
-```
+```python
 def reduce(f, list)
 product = 1
 for num in list:
@@ -313,64 +307,65 @@ return product
 
 ## multiprocessing Module
 
-Python中一种多进程方法（another way: Threading.Thread())
-apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步
+Python中一种多进程方法（another way: Threading.Thread())  
+apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步  
 
 ## divmod(a,b)
 
-相当于（math.floor(a/b), a%b) if a or b is float 和 （a//b, a % b)  if a or b is int
+相当于```(math.floor(a/b), a%b)``` if a or b is float  
+```(a/b, a % b)``` if a or b is int
 
 ## Numpy使用(import numpy as np)
 
 [Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)
 
-```
-Create array from 0 to 9
+```python
+#Create array from 0 to 9
 np.arange(10)
->>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
-
-Create a 3×3 numpy array of all True’s
+#>> array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+##----------------------------------------
+#Create a 3×3 numpy array of all True’s
 np.full((3, 3), True, dtype=bool)
 np.ones((3,3), dtype=bool)
->> array([[ True,  True,  True],
->>        [ True,  True,  True],
->>        [ True,  True,  True]], dtype=bool)
-
-Extract all odd numbers from arr
+#>> array([[ True,  True,  True],
+#>>        [ True,  True,  True],
+#>>        [ True,  True,  True]], dtype=bool)
+##----------------------------------------
+#Extract all odd numbers from arr
 arr = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 arr % 2 == 1
->>array([False,  True, False,  True, False,  True, False,  True, False,True])
+#>>array([False,  True, False,  True, False,  True, False,  True, False,True])
 arr[arr % 2 == 1]
->>array([1, 3, 5, 7, 9])
-
-Replace all odd numbers in arr with -1
+#>>array([1, 3, 5, 7, 9])
+##----------------------------------------
+#Replace all odd numbers in arr with -1
 arr[arr % 2 == 1] = -1
->>array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
-
-Stack arrays a and b vertically
+#>>array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
+##----------------------------------------
+#Stack arrays a and b vertically
 a = np.arange(10).reshape(2,-1)
 b = np.repeat(1, 10).reshape(2,-1)
 np.vstack([a, b])
 np.r_[a, b]
 np.concatenate([a, b], axis=0)
->> array([[0, 1, 2, 3, 4],
->>        [5, 6, 7, 8, 9],
->>        [1, 1, 1, 1, 1],
->>        [1, 1, 1, 1, 1]])
-
-Stack the arrays a and b horizontally.
+#>> array([[0, 1, 2, 3, 4],
+#>>        [5, 6, 7, 8, 9],
+#>>        [1, 1, 1, 1, 1],
+#>>        [1, 1, 1, 1, 1]])
+##----------------------------------------
+#Stack the arrays a and b horizontally.
 a = np.arange(10).reshape(2,-1)
 b = np.repeat(1, 10).reshape(2,-1)
 np.hstack([a, b])
 np.c_[a, b]
 np.concatenate([a, b], axis=1)
->> array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
->>        [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
-
-Create the following pattern without hardcoding.
+#>> array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
+#>>        [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
+##----------------------------------------
+#Create the following pattern without hardcoding.
 a = np.array([1,2,3])
 np.r_[np.repeat(a, 3), np.tile(a, 3)]
->> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+#>> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
 ```
 
 ## Python file path not related to input file path in terminal
@@ -403,7 +398,7 @@ print(os.path.dirname(full_path))
 
 ### 默认参数
 
-```
+```python
 def add_end(L=[]):
     L.append('END')
     return L
@@ -417,7 +412,7 @@ Python函数在**定义**的时候，**默认参数L** 的值就被计算出来�
 ### 可变参数
 
 可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。
-```
+```python
 def calc(*numbers):
     sum = 0
     for n in numbers:
@@ -430,7 +425,7 @@ def calc(*numbers):
 
 关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。
 
-```
+```python
 def person(name, age, **kw):
     print('name:', name, 'age:', age, 'other:', kw)
 person('Bob', 35, city='Beijing')
@@ -443,7 +438,7 @@ person('Adam', 45, gender='M', job='Engineer')
 ### 命名关键字参数
 
 调用者可以传入不受限制的关键字参数,如果只想接受**city**和**job**相关的dict，则person函数的定义改为：
-```
+```python
 def person(name, age, *, city, job):
     print(name, age, city, job)
 ```
@@ -473,7 +468,7 @@ dict迭代的是key，```for key in d```。如果要迭代value，可以用```fo
 
 Python内置的enumerate函数可以把一个list变成索引-元素对：
 
-```
+```python
 for i, value in enumerate(['A', 'B', 'C']):
     print(i, value)
 for x, y in [(1, 1), (2, 4), (3, 9)]:
@@ -482,7 +477,7 @@ for x, y in [(1, 1), (2, 4), (3, 9)]:
 
 ### 列表生成式
 
-```
+```python
 [x * x for x in range(1, 11)]
 [m + n for m in 'ABC' for n in 'XYZ']
 [s.lower() for s in L]
@@ -491,7 +486,7 @@ for x, y in [(1, 1), (2, 4), (3, 9)]:
 ### 生成器
 
 要创建一个generator。第一种方法很简单，只要把一个列表生成式的[]改成():
-```
+```python
 L = [x * x for x in range(10)]
 g = (x * x for x in range(10))
 next(g)
@@ -499,7 +494,7 @@ next(g)
 
 第二种方法，如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
 
-```
+```python
 def odd():
     print('step 1')
     yield 1
@@ -563,7 +558,7 @@ Iterator甚至可以表示一个无限大的数据流，例如全体自然数。
 
 ### 返回函数
 
-```
+```python
 def lazy_sum(*args):
     def sum():
         ax = 0
@@ -616,7 +611,7 @@ call now();
 The above is simplified to ```now = log(now)```. But now本身而言，```now.__name__``` becomes ```wrapper```. So the above is changed and add ```@functools.wraps(func)```
 
 If I need to add param to log, then the function will modified to:
-```
+```python
 import functools
 def log(text): # text is "I " here
   def decorator(func): # param is now
@@ -635,7 +630,7 @@ The above decorator is simplified to ```now = log('execute')(now)```
 ### 偏函数
 
 functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。
-```
+```python
 int('1234', base = 10) # return 1234
 int2 = functools.partial(int, base = 2)
 int2('101') #return 5
@@ -660,7 +655,7 @@ class Student(object):
 
 ### 类的继承与多态
 
-```
+```python
 class Animal(object):
     def run(self):
         print('Animal is running...')
@@ -829,7 +824,7 @@ class Student(object):
 ### 使用property
 
 Python内置的@property装饰器就是负责把一个方法变成属性调用的：
-```
+```python
 class Student(object):
 
     @property
