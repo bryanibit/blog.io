@@ -142,6 +142,17 @@ std::vector<std::string> split(const std::string& s, char seperator)
 	return output;
 }
 ```
+
+Better way to use Boost Library, for example,
+```
+string line("test\ttest2\ttest3");
+vector<string> strs;
+boost::split(strs,line,boost::is_any_of("\t"));
+
+cout << "* size of the vector: " << strs.size() << endl;    
+for (size_t i = 0; i < strs.size(); i++)
+    cout << strs[i] << endl;
+```
 ### 遍历一个vector<double> v
 
 ```

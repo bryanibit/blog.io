@@ -210,7 +210,7 @@ When using variables reference and modify it in the recursive process, you shoul
 ## vector operations
 
 1. erase()
-```
+```cpp
 void removeDuplicate(std::vector<string>& s)
 	{
 		sort(s.begin(), s.end());
@@ -225,6 +225,26 @@ void removeDuplicate(std::vector<string>& s)
 	}
 ```
 
+## set Operation(union and intersection)
+
+There, I will introduct two STL function called ```set_union``` and ```set_intersection```.
+eg. Find the common part of each set in ```vector<set<int>> v```
+```cpp
+#include <iterator> //for inserter
+#include <algorithm> // for swap
+set<int> __intersection;
+set<int> temp = v.at(0);
+for (int i = 0; i < v.size(); ++i){
+	set_intersection(temp.begin(), temp.end(), v.at(i).begin(), v.at(i).end(),
+	std::inserter(__intersection, __intersecion.begin())); 
+	// __intersection has function insert(), so std::inserter is OK
+	// if changed to back_inserter from inserter, error for not
+	// have push_back for __intersection, because __intersection is
+	// a set not a vector
+	std::swap(__intersecion, temp);
+	__intersection.clear(); // clean set of containing each time's result
+}
+
 ## string -- int -- char
 
 ```std::string(size_type n, char c);``` Fills the string with n consecutive copies of character c.
@@ -235,8 +255,11 @@ void removeDuplicate(std::vector<string>& s)
 ```std::stoi(const string);``` Transform string to int
 
 ## 将string类型变量转换为常用的数值类型
+
 //模板函数：（此方法具有普遍适用性）
-\#include <sstream>  
+
+```cpp
+#include <sstream>  
 template <class Type>  
 Type stringToNum(const string& str)  
 {  
@@ -245,20 +268,19 @@ Type stringToNum(const string& str)
     iss >> num;  
     return num;      
 }  
-
+```
 
 ## int to string
-1.
 
-```
+1.
+```cpp
 int a = 10;
 char *intStr = itoa(a);
 string str = string(intStr);
 ```
 
 2.
-
-```
+```cpp
 int a = 10;
 stringstream ss;
 ss << a;
@@ -266,14 +288,14 @@ string str = ss.str();
 ```
 
 3.
-
-```\#include <string>
+```cpp
+#include <string>
 std::string s = std::to_string(42);
 '''
 
 ## long int to string
 
-```
+```cpp
 #include <sstream>
 std::string number;
 std::stringstream strstream;
@@ -298,10 +320,11 @@ ss >> thevalue;
 
 ## string to double
 
-```string str;
+```cpp
+string str;
 double value = atof(str.c_str());```
 
-```
+```cpp
 string word;  
 openfile >> word;
 double lol = atof(word.c_str());
@@ -309,7 +332,7 @@ double lol = atof(word.c_str());
 
 ## double to string
 
-```
+```cpp
 string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
 std::stringstream ss(s);
 double number=0;
@@ -323,11 +346,13 @@ ss>>number;
 * 插入一个数
 
 ```
+待补充
 ```
 
 * 删除一个数
 
 ```
+待补充
 ```
 
 ## 最小生成树
