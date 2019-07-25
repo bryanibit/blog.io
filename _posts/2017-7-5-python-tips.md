@@ -394,6 +394,27 @@ print("This file directory only")
 print(os.path.dirname(full_path))
 ```
 
+## How do I write a function with output parameters (call by reference)?
+Remember that arguments are **passed by assignment** in Python. Since assignment just creates references to objects, there’s no alias between an argument name in the *caller* and *callee*, and so no call-by-reference. However, there are a number of ways which achieve desired effect.  
+1. By returning the tuple of the results:
+```python
+def f(a, b):
+    a = a + 1
+    b = b + 2
+    return a, b
+```
+2. By using global variables
+3. By passing the mutable (changable in-place) object
+```python
+# a is list, and list is mutable
+def f(a, b):
+    a[0] = a[0] + b
+```
+
+Then let me show mutable and immutable objects in python:  
+**Everything** in Python is an **object**. And every **variable** holds an **object instance**. All objects in Python can be either *mutable* or *immutable*.  
+In short, objects of built-in types like (*int, float, bool, str, tuple, unicode*) are immutable. Objects of built-in types like (*list, set, dict*) are mutable. Custom classes are generally mutable. 
+
 ## 廖雪峰博客速刷
 
 ### 默认参数
