@@ -421,7 +421,6 @@ Then let me show mutable and immutable objects in python:
 **Everything** in Python is an **object**. And every **variable** holds an **object instance**. All objects in Python can be either *mutable* or *immutable*.  
 In short, objects of built-in types like (*int, float, bool, str, tuple, unicode*) are immutable. Objects of built-in types like (*list, set, dict*) are mutable. Custom classes are generally mutable. 
 
-
 ## 廖雪峰博客速刷
 
 ### 默认参数
