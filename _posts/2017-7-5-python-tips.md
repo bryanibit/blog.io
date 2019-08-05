@@ -68,13 +68,13 @@ np.nonzero(ok1 * ok2)[0]
 使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
 
 追加文件内容
-```
+```python
 with open(filename,'a') as filepoint:
     filepoint.write(string)
 ```
 
 读文件
-```
+```python
 with open(filename, 'r') as fout:
     lines = fout.readlines()
 for line in lines:
@@ -154,8 +154,7 @@ np.nonzero(ok1*ok2)[0]
 
 ## python运算符优先级
 
-从上到下优先级依次递减
-
+从上到下优先级依次递减  
 ![python运算符优先级](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/python_.png)
 
 ## argparse
@@ -187,14 +186,15 @@ if args.verbosity:
 
 ## ord() chr()
 
+```
 ord('a') -> 97 # 返回ascII
-
 chr(97) --> 'a' # return 字符
+```
 
 ## list <==> str
 
-string to list
-```
+string to list  
+```python
 str1='123456789'
 str2='1.2.3.65'
 str3 = 'user1 user2 user3'
@@ -204,19 +204,23 @@ str3.split() # 移除string空格 ['user1', 'user2', 'user3']
 str1.strip() # 移除空格和回车
 ```
 
-list to str
-''.join(list) #将list中元素组成一个string
-
+list to str  
+```python
+#将list中元素组成一个string
+''.join(list)
+```
 
 ## list to array
 
-```
+```python
 a = np.array([[1,2],[4,5],[2,3]])
-此时才能用切片功能,a不能是list，执行下列操作：
+# 此时才能用切片功能,a不能是list，执行下列操作：
 plt.plot(a[:,0],a[:,1])
 ```
-
-numpy.ndarry.tolist #numpy to list
+```python
+# numpy to list
+numpy.ndarry.tolist
+```
 
 ## 整数之间的进制转换:
     10进制转16进制: hex(16)  ==>  0x10  
@@ -250,7 +254,7 @@ numpy.ndarry.tolist #numpy to list
 
 ## list.pop()使用
 
-```
+```python
 l=['a','b','c','d','e','f','g','h','i']
 for i in xrange(len(l))
   for j in xrange(i+1, len(l))
@@ -271,7 +275,7 @@ int() 直接截去小数部分
 
 已知一个二维数组，现在使用每行的第三列数据大小作为依据，将二维数组排序
 
-```
+```python
 size = p_unsorted[:, 2]
 order = np.argsort(size)
 p_sorted = p_unsorted[order, :]
@@ -283,12 +287,12 @@ p_sorted = p_unsorted[order, :]
 第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。
 map相当于
 
-```
+```python
 def map(f, iterable)
     return [f(x) for x in iterable]
 ```
 
-```
+```python
 print map(lambda x , y : x ** y, [2,4,6],[3,2,1])
 [8, 16, 6]
 print map(None, [2,4,6],[3,2,1])
@@ -303,7 +307,7 @@ map(int, '1234')
 
 reduce相当于
 
-```
+```python
 def reduce(f, list)
 product = 1
 for num in list:
@@ -322,60 +326,60 @@ apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步
 
 ## Numpy使用(import numpy as np)
 
-[Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)
+以下是[Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)，请一定掌握！
 
-```
-Create array from 0 to 9
+```python
+# Create array from 0 to 9
 np.arange(10)
->>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+# >>array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 
-Create a 3×3 numpy array of all True’s
+# Create a 3×3 numpy array of all True’s
 np.full((3, 3), True, dtype=bool)
 np.ones((3,3), dtype=bool)
->> array([[ True,  True,  True],
->>        [ True,  True,  True],
->>        [ True,  True,  True]], dtype=bool)
+# >> array([[ True,  True,  True],
+# >>        [ True,  True,  True],
+# >>        [ True,  True,  True]], dtype=bool)
 
-Extract all odd numbers from arr
+# Extract all odd numbers from arr
 arr = np.array([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
 arr % 2 == 1
->>array([False,  True, False,  True, False,  True, False,  True, False,True])
+# >>array([False,  True, False,  True, False,  True, False,  True, False,True])
 arr[arr % 2 == 1]
->>array([1, 3, 5, 7, 9])
+# >>array([1, 3, 5, 7, 9])
 
-Replace all odd numbers in arr with -1
+# Replace all odd numbers in arr with -1
 arr[arr % 2 == 1] = -1
->>array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
+# >>array([ 0, -1,  2, -1,  4, -1,  6, -1,  8, -1])
 
-Stack arrays a and b vertically
+# Stack arrays a and b vertically
 a = np.arange(10).reshape(2,-1)
 b = np.repeat(1, 10).reshape(2,-1)
 np.vstack([a, b])
 np.r_[a, b]
 np.concatenate([a, b], axis=0)
->> array([[0, 1, 2, 3, 4],
->>        [5, 6, 7, 8, 9],
->>        [1, 1, 1, 1, 1],
->>        [1, 1, 1, 1, 1]])
+# >> array([[0, 1, 2, 3, 4],
+# >>        [5, 6, 7, 8, 9],
+# >>        [1, 1, 1, 1, 1],
+# >>        [1, 1, 1, 1, 1]])
 
-Stack the arrays a and b horizontally.
+# Stack the arrays a and b horizontally.
 a = np.arange(10).reshape(2,-1)
 b = np.repeat(1, 10).reshape(2,-1)
 np.hstack([a, b])
 np.c_[a, b]
 np.concatenate([a, b], axis=1)
->> array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
->>        [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
+# >> array([[0, 1, 2, 3, 4, 1, 1, 1, 1, 1],
+# >>        [5, 6, 7, 8, 9, 1, 1, 1, 1, 1]])
 
-Create the following pattern without hardcoding.
+# Create the following pattern without hardcoding.
 a = np.array([1,2,3])
 np.r_[np.repeat(a, 3), np.tile(a, 3)]
->> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
+# >> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
 ```
 
 ## Python file path not related to input file path in terminal
 
-```
+```python
 #!/usr/bin/env python
 import os
 
@@ -425,7 +429,7 @@ In short, objects of built-in types like (*int, float, bool, str, tuple, unicode
 
 ### 默认参数
 
-```
+```python
 def add_end(L=[]):
     L.append('END')
     return L
@@ -439,7 +443,7 @@ Python函数在**定义**的时候，**默认参数L** 的值就被计算出来�
 ### 可变参数
 
 可变参数允许你传入0个或任意个参数，这些可变参数在函数调用时自动组装为一个tuple。
-```
+```python
 def calc(*numbers):
     sum = 0
     for n in numbers:
@@ -452,7 +456,7 @@ def calc(*numbers):
 
 关键字参数允许你传入0个或任意个含参数名的参数，这些关键字参数在函数内部自动组装为一个dict。
 
-```
+```python
 def person(name, age, **kw):
     print('name:', name, 'age:', age, 'other:', kw)
 person('Bob', 35, city='Beijing')
@@ -465,12 +469,12 @@ person('Adam', 45, gender='M', job='Engineer')
 ### 命名关键字参数
 
 调用者可以传入不受限制的关键字参数,如果只想接受**city**和**job**相关的dict，则person函数的定义改为：
-```
+```python
 def person(name, age, *, city, job):
     print(name, age, city, job)
 ```
 调用方式如下：
-```
+```python
 >>> person('Jack', 24, city='Beijing', job='Engineer')
 Jack 24 Beijing Engineer
 ```
@@ -483,7 +487,7 @@ Jack 24 Beijing Engineer
 ## 高级特性
 
 ### 切片
-```
+```python
 L[:3]
 L[-2:]
 L[:] #复制一个list
@@ -495,7 +499,7 @@ dict迭代的是key，```for key in d```。如果要迭代value，可以用```fo
 
 Python内置的enumerate函数可以把一个list变成索引-元素对：
 
-```
+```python
 for i, value in enumerate(['A', 'B', 'C']):
     print(i, value)
 for x, y in [(1, 1), (2, 4), (3, 9)]:
@@ -504,7 +508,7 @@ for x, y in [(1, 1), (2, 4), (3, 9)]:
 
 ### 列表生成式
 
-```
+```python
 [x * x for x in range(1, 11)]
 [m + n for m in 'ABC' for n in 'XYZ']
 [s.lower() for s in L]
@@ -513,7 +517,7 @@ for x, y in [(1, 1), (2, 4), (3, 9)]:
 ### 生成器
 
 要创建一个generator。第一种方法很简单，只要把一个列表生成式的[]改成():
-```
+```python
 L = [x * x for x in range(10)]
 g = (x * x for x in range(10))
 next(g)
@@ -521,7 +525,7 @@ next(g)
 
 第二种方法，如果一个函数定义中包含yield关键字，那么这个函数就不再是一个普通函数，而是一个generator：每次调用next()的时候执行，遇到yield语句返回，再次执行时从上次返回的yield语句处继续执行。
 
-```
+```python
 def odd():
     print('step 1')
     yield 1
@@ -530,20 +534,20 @@ def odd():
     print('step 3')
     yield(5)
 
->>> o = odd()
->>> next(o)
-step 1
-1
->>> next(o)
-step 2
-3
->>> next(o)
-step 3
-5
->>> next(o)
-Traceback (most recent call last):
-  File "<stdin>", line 1, in <module>
-StopIteration
+# >>> o = odd()
+# >>> next(o)
+# step 1
+# 1
+# >>> next(o)
+# step 2
+# 3
+# >>> next(o)
+# step 3
+# 5
+# >>> next(o)
+# Traceback (most recent call last):
+#   File "<stdin>", line 1, in <module>
+# StopIteration
 ```
 以上函数可以增加```except StopIteration as e:```作为退出条件。
 
@@ -615,7 +619,7 @@ def f(x):
 ### 装饰器
 
 在代码运行期间动态增加功能的方式，称之为“装饰器”（Decorator）.装饰器的参数是函数，同时返回一个函数。
-```
+```python
 import functools
 def log(func):
   @functools.wraps(func)
@@ -625,20 +629,20 @@ def log(func):
   return wrapper
 ```
 以上是一个decorator，所以接受一个函数作为参数，并返回一个函数。我们要借助Python的@语法，把decorator置于函数的定义处：
-```
+```python
 @log
 def now():
     print('2015-3-25')
 ```
 这样得到的结果是：
-```
+```python
 call now();
 2015-3-25
 ```
 The above is simplified to ```now = log(now)```. But now本身而言，```now.__name__``` becomes ```wrapper```. So the above is changed and add ```@functools.wraps(func)```
 
 If I need to add param to log, then the function will modified to:
-```
+```python
 import functools
 def log(text): # text is "I " here
   def decorator(func): # param is now
@@ -657,7 +661,7 @@ The above decorator is simplified to ```now = log('execute')(now)```
 ### 偏函数
 
 functools.partial的作用就是，把一个函数的某些参数给固定住（也就是设置默认值），返回一个新的函数，调用这个新函数会更简单。
-```
+```python
 int('1234', base = 10) # return 1234
 int2 = functools.partial(int, base = 2)
 int2('101') #return 5
@@ -667,9 +671,8 @@ int2仅仅固定base参数，所以```int2('101', base = 10)```同样会返回10
 ### 类的私有对象和访问限制
 
 如果要让内部属性不被外部访问，可以把属性的名称前加上两个下划线__，在Python中，实例的变量名如果以__开头，就变成了一个私有变量（private），只有内部可以访问，外部不能访问。
-```
+```python
 class Student(object):
-
     def __init__(self, name, score):
         self.__name = name
         self.__score = score
@@ -682,7 +685,7 @@ class Student(object):
 
 ### 类的继承与多态
 
-```
+```python
 class Animal(object):
     def run(self):
         print('Animal is running...')
@@ -700,7 +703,7 @@ class Dog(Animal):
 ```
 
 Polymorphism can be accomplished by this way:
-```
+```python
 def run_twice(animal):
     animal.run()
 ```
@@ -726,7 +729,7 @@ Cat is running...
 对于静态语言（例如Java, C++）来说，如果需要传入Animal类型，则传入的对象必须是Animal类型或者它的子类，否则，将无法调用run()方法。
 
 对于Python这样的动态语言来说，则**不一定需要传入Animal类型**。我们只需要保证传入的对象有一个run()方法就可以了：
-```
+```python
 class Timer(object):
     def run(self):
         print('Start...')
@@ -734,7 +737,7 @@ class Timer(object):
 这就是动态语言的“鸭子类型”，它并不要求严格的继承体系，一个对象只要*“看起来像鸭子，走起路来像鸭子”*，那它就可以被看做是鸭子。
 
 Python的“file-like object“就是一种鸭子类型。对真正的文件对象，它有一个read()方法，返回其内容。但是，许多对象，只要有read()方法，都被视为“file-like object“。许多函数接收的参数就是“file-like object“，你不一定要传入真正的文件对象，完全可以传入任何实现了read()方法的对象。
-```
+```python
 def readImage(fp):
     if hasattr(fp, 'read'):
         return readData(fp)
@@ -873,4 +876,83 @@ class Student(object):
 Traceback (most recent call last):
 ...
 ValueError: score must between 0 ~ 100!
+```
+
+## Dict Operations
+
+### new a dict and initialize it
+
+```python
+def main():
+    '''
+    Creating empty Dictionary
+    '''
+    # Creating an empty dict using empty brackets
+    wordFrequency = {}
+    # Creating an empty dict using dict()
+    wordFrequency = dict()
+    print(wordFrequency)
+    
+    '''
+    Creating Dictionaries with literals
+    '''                                  
+    wordFrequency = {
+        "Hello" : 7,
+        "hi" : 10,
+        "there" : 45,
+        "at" : 23,
+        "this" : 77
+        }
+    print(wordFrequency)
+ 
+    '''
+    Creating Dictionaries by passing parametrs in dict constructor
+    '''
+    wordFrequency = dict(Hello =  7, 
+                         hi    = 10,
+                         there  = 45,
+                         at    = 23,
+                         this  = 77
+                         )
+    print(wordFrequency)
+    
+    '''
+    Creating Dictionaries by a list of tuples
+    '''
+    # List of tuples    
+    listofTuples = [("Hello" , 7), ("hi" , 10), ("there" , 45),("at" , 23),("this" , 77)]
+    # Creating and initializing a dict by tuple
+    wordFrequency = dict(listofTuples)        
+    print(wordFrequency)    
+
+    '''
+    Creating Dictionary by a list of keys and initialzing all with same value
+    '''    
+    listofStrings = ["Hello", "hi", "there", "at", "this"]
+    # create and Initialize a dictionary by this list elements as keys and with same value 0
+    wordFrequency = dict.fromkeys(listofStrings,0 )
+    print(wordFrequency)
+ 
+    '''
+    Creating a Dictionary by a two lists
+    '''         
+    # List of strings
+    listofStrings = ["Hello", "hi", "there", "at", "this"]
+    # List of ints
+    listofInts = [7, 10, 45, 23, 77]
+    # Merge the two lists to create a dictionary
+    wordFrequency = dict( zip(listofStrings,listofInts ))
+    print(wordFrequency)
+ 
+if __name__ == "__main__":
+    main()
+```
+
+### find the max value for some key in a dict
+
+```python
+## return a list and l[0] is key and l[1] is value
+l = max(stat.items(), key=operator.itemgetter(1))
+## dict remove a pair: stat.pop(key, default)
+stat.pop(l[0])
 ```
