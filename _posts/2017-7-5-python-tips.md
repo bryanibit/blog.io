@@ -24,28 +24,25 @@ python setup.py install
 easy_install.exe pip
 ```
 
-打开cmd后，键入 pip install numpy
-
+打开cmd后，键入 pip install numpy  
 For certain version:
 ```pip install networkx==1.9.1```
 
 enjoy!
-
 
 ## Python packaging ecosystem
 
 参考一下链接[sholmes](http://shanmo.github.io/2016/08/Python-Packaging-Ecosystem)，系统是Ubuntu 14.04 Python2.7/3.0.  
 **dist-packages** is a Debian-specific convention that is also present in its derivatives, like Ubuntu.  
 Package via *pip* are installed from the package manager and put in ```/usr/local/lib/python2.7/dist-packages```. System packages are located in
-```/usr/lib/python2.7/dist-packages``` on Ubuntu. However, if you manually install Python from source, it uses the **site-packages** directory. 
+```/usr/lib/python2.7/dist-packages``` on Ubuntu. However, if you manually install Python from source, it uses the **site-packages** directory.  
 
 ## 两个维数相同的bool类型数组做与运算
-
+```
 np.nonzero(ok1 * ok2)[0]
-
-其中ok1和ok2都是一个一维数组bool型的
-
-如果加[0]会使得到的结果仍为一维数组
+```
+其中ok1和ok2都是一个一维数组bool型的  
+如果加[0]会使得到的结果仍为一维数组  
 
          > ok1*ok2
          array([False,  True, False, False], dtype=bool)
@@ -65,7 +62,7 @@ np.nonzero(ok1 * ok2)[0]
 
 ## 文本读取打开
 
-使用例如json从文本中读取到的数字得到的是文本， 需要自己加上int、float强制转换
+使用例如json从文本中读取到的数字得到的是文本，需要加上int、float强制转换类型
 
 追加文件内容
 ```python
@@ -81,28 +78,31 @@ for line in lines:
     print line
 ```
 
-文件打开方式 a append,  w empty then write,  r read
+文件打开方式*a append, w empty then write, r read*
 
 ## 两个数组合并/某个添加一列
 
-在shape=（432,2）的数组上加上一列使用 np.hstack()
+在shape=(432,2)的数组上加上一列使用```np.hstack()```
+**e.g.**  
+```python
+pixel = np.zeros((439,2), dtype=int)
+s = pixel.shape[:-1]+(1,)
+result = np.hstack((pixel,np.ones(s)))
+```
 
-e.g.
-- pixel = np.zeros((439,2), dtype=)
-- s = pixel.shape[:-1]+(1,)
-- result = np.hstack((pixel,np.ones(s)))
-
-在shape=（432,2）的数组上加上一列使用 np.colomn_stack(())
-
-- pixel = np.zeros((439,2), dtype=int)
-- s = np.ones(439, dtype=int)
-- result = np.column_stack((pixel,s))
+在shape=(432,2)的数组上加上一列使用```np.colomn_stack(())```
+```python
+pixel = np.zeros((439,2), dtype=int)
+s = np.ones(439, dtype=int)
+result = np.column_stack((pixel,s))
+```
 
 ## 矢量求范数
 
-bearing_b3 是一个n×3的矩阵
-
-'normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]'
+bearing_b3 是一个n×3的矩阵  
+```python
+normbearing = np.linalg.norm(bearing_b3, axis=1)[:, np.newaxis]]
+```
 
 e.g.
 
@@ -131,25 +131,27 @@ Note that: [0]
 
 ## 两个大小一致的数组，满足条件的配对
 
-```
+```python
 results = np.array([7,8,9,10])
 dists = np.array([1,2,3,4])
-good = dists &lt 2
-*array([ True, False, False, False], dtype=bool)*
+# bitwise operation: 7 & 1 = 1
+good = dists & results
+# array([ True, False, False, False], dtype=bool)
 matches = zip(results[good],good.nonzero()[0])
-*[(7, array([0]))]* \# matches is a list
+# matches is a list
+# [(7, array([0]))]
 ```
 ## np.array中两个维度相同的数组互相相乘注意
 
-```
+```python
 ok1 = np.array([ True, False, False, False], dtype=bool)
 ok2 = np.array([ True, False, True, False], dtype=bool)
 ok1*ok2
-*array([ True, False, False, False], dtype=bool)*
+# >>>array([ True, False, False, False], dtype=bool)
 np.nonzero(ok1*ok2)
-*(array([0]),)*
+# >>>(array([0]),)
 np.nonzero(ok1*ok2)[0]
-*array([0])*
+# >>>array([0])
 ```
 
 ## python运算符优先级
@@ -159,30 +161,29 @@ np.nonzero(ok1*ok2)[0]
 
 ## argparse
 
-```
+```python
 parser = argparse.ArgumentParser()
 parser.add_argument("path", help="Provide ANS_test path for create_link <ANS_test_path>")
 args = parser.parse_args()
-path = args.path// path is str
-xx.py <path-name> //必须提供此参数，否则程序报错
+path = args.path # path is str
+# xx.py <path-name> //必须提供此参数，否则程序报错
 
 parser.add_argument("-v","--verbosity", type=int, choices=[0,1,2], help="increase output verbosity")
 args = parser.parse_args()
 args.verbosity
-××.py -v 1
+# ××.py -v 1
 
 parser.add_argument("-v", "--verbosity", action="count", help="increase output verbosity")
 args = parser.parse_args()
-××.py -vv --verbosity --verbosity
+# ××.py -vv --verbosity --verbosity
 
 parser.add_argument("-v", "--verbosity", action="store_true", help="increase output verbosity")
 args = parser.parse_args()
 if args.verbosity:
    do something
-××.py -v
+# ××.py -v
 ```
-
-如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
+**<Note>** 如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
 
 ## ord() chr()
 
@@ -266,10 +267,12 @@ for i in xrange(len(l))
 
 ## 小数的舍入
 
+```
 round() 四舍五入
 floor() 11.9=>11
 ceil()  11.1=>11
 int() 直接截去小数部分
+```
 
 ## 二维数组按照size排序方法
 
@@ -283,9 +286,8 @@ p_sorted = p_unsorted[order, :]
 
 ## Python内置函数
 
-1. map(func, seq1[, seq2,…])
-第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。
-map相当于
+**map(func, seq1[, seq2,…])**  
+第一个参数接受一个函数名，后面的参数接受一个或多个可迭代的序列，返回的是一个list。如果func为None，作用同zip()。map相当于
 
 ```python
 def map(f, iterable)
@@ -303,8 +305,7 @@ map(int, '1234')
 [1, 2, 3, 4]
 ```
 
-2. reduce(func, seq1[,seu2,...])
-
+**reduce(func, seq1[,seu2,...])**  
 reduce相当于
 
 ```python
@@ -325,8 +326,6 @@ apply_async(func,args=(),kwds={}, callback=None) 非阻塞式，异步
 相当于（math.floor(a/b), a%b) if a or b is float 和 （a//b, a % b)  if a or b is int
 
 ## Numpy使用(import numpy as np)
-
-以下是[Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)，请一定掌握！
 
 ```python
 # Create array from 0 to 9
@@ -376,6 +375,7 @@ a = np.array([1,2,3])
 np.r_[np.repeat(a, 3), np.tile(a, 3)]
 # >> array([1, 1, 1, 2, 2, 2, 3, 3, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3])
 ```
+以上是[Numpy小技巧前10个整理](https://www.machinelearningplus.com/101-numpy-exercises-python/)，请一定掌握！
 
 ## Python file path not related to input file path in terminal
 
