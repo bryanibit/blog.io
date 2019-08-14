@@ -148,3 +148,68 @@ I wish I have asked myself when I was younger.
 with the benefit of hindsight  
 depostion 沉积物、证词 take depositions and draft business deals 起草商业交易  
 “The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.” — William Arthur Ward
+
+[theater-history]  
+European theater  
+commercially  
+in a particular order  
+logical exposition  
+audience  
+walk out on a stage
+feuding families  
+servants  
+inciting incident  
+It sets off the plot of the play.  
+the reversals of fortune(命运) continue  
+obligatory  
+emotional pleasure  
+
+[biology-class]
+Echolocation is pretty self-explanatory  
+sound waves  
+navigation and orientation  
+The bat emits these ultrasonic pulses  
+echoes bounce back  
+beating their wings  
+In fact, we kind of assumed that they were filtering a lot out, the way a sophisticated radar system can ignore echoes from stationary objects on the ground. Radar does this to remove ground clutter, information about hills or buildings that it doesn’t need.  
+acoustical  
+
+[Library]  
+come to the student orientation  
+interlibrary loan service  
+They are in a separate room where the temperature is controlled  
+
+[geology-class]  
+basal slip (sleep)  
+slipping and sliding  
+accross bedrock  
+pressure (preciou**s**)  
+the pressure coming from the weight of the overlying ice  
+thin layer  
+This layer of water reduces friction as a lubricant.  
+ice is brittle  
+
+[anthropology]  
+birch bark  
+natural resources of the forests  
+many different types of soils  
+prevalent  
+utensil (餐具)  
+if you peel birch bark in the winter, we call it “the winter bark”  
+secure it with cords  
+canoe  
+watertight  
+maneuverable portage  
+to form alliances  
+natural waterways  
+
+[animal-behavior]  
+reproduce/breed  
+first let's recap  
+some of these factors are removed  
+habitat destruction  
+feeds *on* small shellfish, insects and plants  
+shallow depression  
+fledgling  
+dense shrubs, bushes  
+*forests* *wood*  

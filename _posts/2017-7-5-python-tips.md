@@ -283,6 +283,11 @@ size = p_unsorted[:, 2]
 order = np.argsort(size)
 p_sorted = p_unsorted[order, :]
 ```
+At this time, I will introduce you *argsort(axis=, kind=, order=)*.  
+* kind : {‘quicksort’, ‘mergesort’, ‘heapsort’, ‘stable’}, optional
+Sorting algorithm. The default is ‘quicksort’. Note that both ‘stable’ and ‘mergesort’ use timsort under the covers and, in general, the actual implementation will vary with data type. The ‘mergesort’ option is retained for backwards compatibility.
+
+Changed in version 1.15.0.: The ‘stable’ option was added.
 
 ## Python内置函数
 
