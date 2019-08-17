@@ -1,8 +1,6 @@
 ##说明
 
-2016-02-29  更新 _config.yml 可用
-
-此博客 fork 自 [Azeril](http://azeril.me/)，感谢。
+The project forks from [Azeril](http://azeril.me/). Thank you!
 
 <center>
     <p><img src="http://img.aoji.cn/2016/1012/WfyYOJe2jy9t.png" align="center"></p>
@@ -10,12 +8,15 @@
 
 ##
 
-为了使本地编译可以使用,需要安装jekyll和gem(ruby)
+As for building locally, jekyll和gem(ruby) need to be installed. Using following commands in terminal, and then enter *127.0.0.1:4000* in browser.  
+You can see your blog website display result.
 
 ```
 jekyll build -w
 jekyll serve
 ```
 
-如果想在markdown中加入公式,可以参考[这里](http://gastonsanchez.com/visually-enforced/opinion/2014/02/16/Mathjax-with-jekyll/)
+##
+
+If you wanna add math equations, please refer to [the link](http://gastonsanchez.com/visually-enforced/opinion/2014/02/16/Mathjax-with-jekyll/)
 
