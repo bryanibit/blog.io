@@ -48,29 +48,21 @@ description: word技巧总结
 **Deactivate Bluetooth LE**
 
 1. Edit Bluetooth configuration file:
-
 ```
 sudo vim /etc/bluetooth/main.conf
 ```
-
 2. Replace:
-
 ```
 #ControllerMode = dual
 ```
-
 to:
-
 ```
 ControllerMode = bredr
 ```
-
 3. Restart Bluetooth
-
 ```
 sudo service bluetooth restart
 ```
-
 4. Go to System Setting > Bluetooth > Sound Setting
 
 ## Install and Configure Huawei E353 USB Modem on Ubuntu (used on Thinkpad)
@@ -93,31 +85,74 @@ usb_modeswitch -v 0x12d1 -p 0x1f01 -V 0x12d1 -P 0x14dc -M "555342430000000000000
 
 ## 激活visual studio 2015
 
-[Visual Studio 2015](https://www.cnblogs.com/bwlluck/p/5514424.html)
+[Visual Studio 2015简体中文企业版/专业版下载+有效激活密钥](https://www.cnblogs.com/bwlluck/p/5514424.html)  
+Visual Studio Professional 2015简体中文版（专业版）下载地址:[http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso](http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso) 其中SHA1: 629E7154E2695F08A3C692C0B3F6CE19DF6D3A72  
+该中文版激活密钥：```HMGNV-WCYXV-X7G9W-YCX63-B98R2```
 
-Visual Studio Professional 2015简体中文版（专业版）下载地址：
+Visual Studio Enterprise 2015简体中文版（企业版）下载地址:[http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso](http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso) 其中SHA1: 4FFA1EE3E2D3337D3EDAE550A3583ABE9C426BEF  
+该中文版激活密钥：```HM6NR-QXX7C-DFW2Y-8B82K-WTYJV```
 
-　　*http://download.microsoft.com/download/B/8/9/B898E46E-CBAE-4045-A8E2-2D33DD36F3C4/vs2015.pro_chs.iso*
-
-　　SHA1: 629E7154E2695F08A3C692C0B3F6CE19DF6D3A72
-
-     ```激活密钥：HMGNV-WCYXV-X7G9W-YCX63-B98R2```
-
-　Visual Studio Enterprise 2015简体中文版（企业版）下载地址：
-
-　　*http://download.microsoft.com/download/B/8/F/B8F1470D-2396-4E7A-83F5-AC09154EB925/vs2015.ent_chs.iso*
-
-　　SHA1: 4FFA1EE3E2D3337D3EDAE550A3583ABE9C426BEF
-
-    ```激活密钥：HM6NR-QXX7C-DFW2Y-8B82K-WTYJV```
-
-UltrISO激活注册码
+## UltrISO激活注册码
 
 ```
 名：王涛
 域：7C81-1689-4046-626F
 ```
 
-Git win 下载
+## Git win 下载
 
 [GitHub地址](https://github.com/waylau/git-for-win)
+
+## Excel Pratices
+
+**shortcut**
+
+1. *ctrl + \*, 比较多列之间每行的不同  
+2. 缩放到选取（视图），方便查看选中的区域
+3. *ctrl+enter*快速填充， usually replace copy and paste
+4. *Alt+↓*快速调出选单，选单只能用于文本格式
+5. *shift+mouse拖拽*增加空行
+
+**安全设置**
+
+保护工作表（审阅）：保护单元格，只保护选定的单元格
+
+**数据操作**
+
+数据+模式：```:A21&"-"&A22```  
+数据split：需要分隔符分开数据  
+mouse变成＋后，可以选择拉到底，也可以选择双击自动到底  
+分列（数据）：格式转换（重置格式）
+TXT文本导入 - 分列 - 分隔符  
+
+**快速定位的应用**
+
+活动单元格内容为文本-mouse右键-定义名称-左上角下拉选择名称  
+公式-根据所选内容创建定义名称-以列明为名称  
+F3 shortcut for 粘贴名称对话框  
+要打开“名称管理器”对话框，请在“公式”选项卡上的“定义的名称”组中单击“名称管理器”  
+开始-查找和选择-定位条件-可见单元格 选择未被隐藏的行（对象、空值、行内容差异单元格等）  
+
+**vlookup(你想要查找的内容, 要查找的位置, 包含要返回的值的区域中的列号, 返回近似或精确匹配-表示为 1/TRUE 或 0/假))**
+
+固定公式中的某个量，用取值符号$A$1，这也称为相对地址
+```
+=VLOOKUP(B9,人事表!B:G,6,FALSE)
+=VLOOKUP(B8,renshi,6,FALSE)
+renshi是表名称
+```
+
+**rank**
+排序  
+补充：如果使用开始-排序和筛选-升序，不需要选择多个单元格，只需要放在需要排序的列上，点击升序就可以
+
+**sumif**
+
+**数据透视表**（插入）
+
+光标放在表里，单击插入中的数据透视表，前提是原始数据是字段表，什么数据放在行列就是分类，什么数据放在数值就是汇总，即
+```
+名称 职务 年龄 工资
+A    搞笑 23  2330
+......
+```

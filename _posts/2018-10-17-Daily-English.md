@@ -213,3 +213,54 @@ shallow depression
 fledgling  
 dense shrubs, bushes  
 *forests* *wood*  
+
+[chemistry]  
+it groups elements into *categories* that share certain *properties*  
+The number of *protons*(质子) in each atom of an element  
+spectroscopy/catastrophe  
+discredited  
+synthesize an element  
+radioactive element  
+Uranium  
+spontaneous fission  
+ore samples  
+
+[history]  
+literacy  
+sb. was literate  
+candles  
+quartz[ko:z] clear rock  
+independent discovery  
+judge and doctor  
+
+[The-Arrival-of-Plant-Life-in-Hawaii]  
+angiosperm 被子植物  
+lichen 青苔  
+fern 蕨类植物
+spore 孢子   
+algae 藻类  
+dormant 休眠的  
+hibernate 冬眠v  
+flora 植物群  
+fauna 动物群  
+molten 熔化的  
+symbiosis 共生  
+
+[reflection-in-teaching]  
+paucity 缺少  
+flourish 繁荣  
+utilitarian 功利的  
+inhibitions 阻碍、抑制  
+vaguely 模糊的  
+as opposed to  截然相反  
+compelling 引人注目的，令人信服的  
+justify 证明  
+
+[Colonizing-the-Americas-via-the-Northwest-Coast]  
+corridor 走廊  
+crumble 崩溃  
+watercraft 船只  
+proponent 支持者 propone 支持v  
+caribou 北美驯鹿  
+impetus 动力，促进n  
+inflexibly 不屈的，执拗的adv
