@@ -62,6 +62,7 @@ Firefox is already running, but is not responding. To open a new window, you mus
            pkill firefox
            cd /home/inin/.mozilla/firefox/×××××.default
            rm .parentlock
+
 ## Upgrade to Ubuntu 16.04 /boot空间不足问题
 
 1. df -h （查看Ubuntu的文件系统 使用情况）
@@ -75,7 +76,7 @@ Firefox is already running, but is not responding. To open a new window, you mus
 - Removing symbolic link vmlinuz.old
 - you may need to re-run your boot loader[grub]
 - The link /initrd.img.old is a damaged link
-- Removing symbolic link initrd.img.old
+- Removing symbolic link initrd.img.old  
 **solution:**
          sudo /usr/sbin/update-grub
 
@@ -236,15 +237,20 @@ sub   2048g/10AF40FE 2009-02-01
 
 Use ```apt-key del D50582E6``` to delete one key.
 
-```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted.
+```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted.  
+```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts.  
+```/etc/apt/trustdb.gpg```: Local trust database of archive keys.  
+```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys.  
+```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys.  
 
-```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts.
+## 添加一个public key for apt update
 
-```/etc/apt/trustdb.gpg```: Local trust database of archive keys.
-
-```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys.
-
-```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys.
+Terminal says *The following signatures couldn't be verified because the public key is not available: NO_PUBKEY F42ED6FBAB17C654*, when we use *apt update*.  
+*solution*:  
+```
+sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
+```
+That is because maybe I lost the process *set up your keys* when installing ROS.
 
 ## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
