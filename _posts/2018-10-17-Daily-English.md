@@ -1,3 +1,12 @@
+---
+layout: post
+title: Daily English
+data: 2018-10-17
+categories: blog
+tags: [技术总结]
+description: daily english notes
+---
+
 # 10-7
 temperament
 deficient deficiency
@@ -263,4 +272,152 @@ watercraft 船只
 proponent 支持者 propone 支持v  
 caribou 北美驯鹿  
 impetus 动力，促进n  
-inflexibly 不屈的，执拗的adv
+inflexibly 不屈的，执拗的adv  
+
+[environmental-science-class]  
+microbe 微生物  
+tundra （苔原） has two layer: active layer and permafrost.  
+permafrost 永久冻土  
+vegetation 植被  
+plant 植物  
+impermeable 不可渗透过的  
+deep root 根深  
+interfere with their growth 干扰生长  
+result[zo:] in  
+microbes, microscopic organisms  
+nitrogen 氮  
+nutrient 营养物  
+nutrition 营养学  
+precipitation 沉淀  
+insulating 隔热的  
+thaw[o:] 融化v  
+etc/ɪt'sɛtərə, ɛt-/ 等等  
+soil  windy  
+
+[reading]  
+instigate 唆使v  
+status 身份，状态  
+porcelain 瓷器  
+pottery 陶器  
+ceramic 制陶业  
+ritual 仪式n，adj rival rivalry  
+ware 器皿  
+religious 宗教的，修道士  
+glaze 上釉v  
+Dynasty 第一个音节  
+delineate 描绘  
+ornament 装饰n，v  
+motif 动机 第二个音节  
+oxide 氧化物  
+spout 喷水口  
+religious and secular context  
+
+[geology-class]  
+Arabian Peninsula 阿拉伯半岛  
+pretty desolate 第一个音节 荒凉的  
+monsoon 第二个音节 季风  
+rain soaked（浸入） the Empty Quater  
+barren 荒凉的  
+limestone formation 石灰岩构建  
+butte [ju:] 孤立的丘 hill 山丘  
+torrent 奔流（第一个音节） torrential 猛烈如注的（第二个音节）  
+sand dune/djuːn/ 山丘  
+other types of particles  
+clay 黏土 silt 淤泥  
+full of hollows and ridges(山脊)  
+
+[linguistics]  
+discrete 不连续的 discreteness n  
+discreet 谨慎的  
+prairie /'prɛri/ dogs 北美的草原土拨鼠/草原犬鼠 are not actually dogs but a type of rodent/'rodnt/.  
+particularly in primates /'praɪmet/  灵长目动物  
+pragmatic function 语用功能、实用功能  
+peculiar /pɪ'kjulɪɚ/特有adj/n  
+adjective /'ædʒɪktɪv/   
+high-pitched/t/ barks 声调高的叫声  
+the discrete units that make up language can be put together in different ways.  
+language is abstract enough that we can talk about things that aren't present here and now.  
+show any inclination to describe sth.  
+abstract /'æbstrækt/  
+aren't /'a:rnt/  
+
+[Seventeenth-Century-European-Economic-Growth]  
+rural 乡下的  
+urban 城市的  
+land reclamation /,rɛklə'meʃən/ 土地开垦  
+surplus 顺差 盈余  
+intrinsic part  
+woolens and textile 毛料衣服和纺织品  
+cottage 农舍小屋 cotton 棉花  
+Members of poor peasant families spun（spin) or wove（weave） cloth and linens/'lɪnɪn/(亚麻布) at home for scant（不足的） remuneration /rɪ,mjunə'reʃən/ （报酬） in an attempt to supplement /'sʌplɪmənt/ meager/'migɚ/（贫乏的；瘦的） family income.  
+indicate == show  
+promissory 约定的，许诺的  
+infusion 灌输 注入n == influx  
+fusion 融合，核聚变  
+joint 关节，连接  
+
+[photograph]  
+catch the **flavor** of the month and be **trendy**  
+uninspired  
+Keep up with **trends**, even think about how your work might fit in with them, but don't **mindlessly follow** them.  
+stay true to do  
+it is so much more at stake ?  
+get stuff **exhibited**  
+on hand == readily available, present  
+
+[marine-biology-class]  
+whale wave  
+evolved from 由。。进化而来  
+land creatures  
+skull: the bony skeleton of the head of vertebrates  
+aquatic mammals/creatures  
+the ear area of the skull  
+limb /lim/ 肢 lime 石灰  
+long th/f/in tail  
+Egypt/'i:dʒipt/  
+DNA is the genetic/dʒi'netik/ code for any organism.  
+contradict 矛盾  
+sperm whales and killer whales 抹香鲸和虎鲸  
+
+[European-history-class]  
+Asia /ˈeɪʒə/  
+squash 把……压扁v  南瓜属植物n  
+Italian dishes 意大利菜  
+Nightshade family 茄科植物  
+a category of plants  
+tobacco 烟草  
+inedible/ɪn'ɛdəbl/ 不能吃的  
+a scholar who was way ahead of his time in many ways  
+He didn’t let the conventional thinking of his day restrain his ideas.  
+as a matter of fact  
+subsist /səb'sɪst/ on grains  
+Mediterranean Sea  
+abundant/abandon  
+nutritious  
+
+[bookstore]  
+*employee* in the university bookstore  
+at the beginning of the *semester*  
+for a *full refund*  
+specific courses 专项课程  
+this fall semester  
+in full gear/gɪə/ 如火如荼进行  
+the *policies* are generally pretty *rigid*   
+miscalculated  
+on the syllabus /'sɪləbəs/ 在教学大纲上  
+I am really intrigued 我很感兴趣  
+
+[begging-by-nestling]  
+**impose** on 利用，强迫，**施加影响**  
+**derive** 源自于，**获得**  
+**artificial 人造的，虚假的**  
+nestling 雏鸟  
+nestle /'nɛsl/ 依偎；舒适地坐  
+cheep 吱吱的叫声n  
+raccoon 浣熊  
+**swallow 燕子n，吞下v**  
+pinpoint 精确找到  
+vigorously 精神旺盛地  
+outweigh 比...有价值  
+deprive 剥夺，使丧失  
+The answer lies apparently not in the increased energy costs of exaggerated begging—such energy costs are small relative to the potential gain in calories—but rather in the damage that any successful cheater would do to its siblings, which share genes with one another. An individual's success in propagating his or her genes can be affected by more than just his or her own personal reproductive success. Because close relatives have many of the same genes, animals that harm their close relatives may in effect be destroying some of their own genes. Therefore, a begging nestling that secures food at the expense of its siblings might actually leave behind fewer copies of its genes overall than it might otherwise.  
