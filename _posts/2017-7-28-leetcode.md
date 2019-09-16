@@ -370,3 +370,28 @@ ss>>number;
 ## 最大子数组
 
 * 求取相邻子数组之和最大值：可以理解为在已知股价折线图上求最大收益的时间段
+
+## Topological Sorting
+
+Topological sorting is not possible if a graph is not a *DAG*(Directed **Acyclic** Graph). Topological Sorting is mainly used for **scheduling jobs** from the given dependencies among jobs.  
+Topological sorting can be used to find circle in a directed graph.  
+e.g. we can find collapse dependence for course schedule in [leetcode-example](https://leetcode.com/problems/course-schedule/).  
+Detailed description shown below as presudocode of topological sorting:
+```python
+for node in all_node:
+    if node is not visited or not visiting:
+	    dfs(node)
+def dfs(node):
+	# for list visited, 2:visiting, 1:visited
+	# if visited[node] = 1, never consider it again.
+	visited[node] = 2
+	# if neighbor is 2, has circle, if 1, skip it over, if 0, dfs it.
+	for node_neighbor in node.neighbor:
+		if visited[node_neighbor] == 2:
+			mark as circle
+			break # if not break, dead loop
+		if visited[node_neighbor] != 1:
+			dfs(node_neighbor)
+	stack.append(node) # no neighbor or visited[neighbor] == 1
+	visited[node] = 1
+```
