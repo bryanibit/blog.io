@@ -961,3 +961,20 @@ l = max(stat.items(), key=operator.itemgetter(1))
 ## dict remove a pair: stat.pop(key, default)
 stat.pop(l[0])
 ```
+
+### sort a 2D list
+
+sort a 2D list according to the second element, and consider second if the first element of two elements is equal
+```python
+# first method:
+courses = sorted(courses, key=lambda sl: (-sl[0],sl[1]))
+# second method:
+li.sort(key=itemgetter(1))
+li.sort(key=itemgetter(0), reverse = True)
+```
+
+### new a 2-D array/list full of zeros
+```
+L = [[0 for _ in range(n)] for _ in range(n)]
+L = np.zeros((n, n), dtype=int)
+```

@@ -568,6 +568,18 @@ Therefore, we can add
 ```
 to main file before after including header files.
 
+## Ubuntu Recovery Mode - R/W File System
+
+When you mess up your file system and reboot ubuntu, then it cannot be entered. Here is how to boot into Ubuntu recovery mode and access the file system as root in **write mode**.  
+1. Hold 'shift' while the machine is starting up to load up GNU GRUB.  
+2. Start up Ubuntu in recovery mode.
+3. Choose 'drop to root shell promtp'. 
+4. By default, this will allow you to enter *read-only* mode.
+5. Switch to read/write mode by executing the following:
+```
+mount -o remount,rw /
+```
+
 
 ## Donation
 
