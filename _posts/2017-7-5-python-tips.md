@@ -973,8 +973,36 @@ li.sort(key=itemgetter(1))
 li.sort(key=itemgetter(0), reverse = True)
 ```
 
-### new a 2-D array/list full of zeros
+### new a 2-D array/list full of zeros  
 ```
 L = [[0 for _ in range(n)] for _ in range(n)]
 L = np.zeros((n, n), dtype=int)
 ```
+
+### python mutable variable by reference or by value  
+The following code is an example of leetcode called *subset*:  
+```python
+class Solution(object):    
+    def subsets(self, nums):
+        """
+        :type nums: List[int]
+        :rtype: List[List[int]]
+        """
+        solutions = []
+        self._get_subset(nums, 0, [], solutions)
+        return solutions
+
+    @staticmethod
+    def _get_subset(nums, curr, path, solutions):
+        if curr>= len(nums):
+            # path[:] is a copy of path
+            # solutions.push_back(path[:])
+            # pass by reference: element of solution changes with path changing
+            solutions.append(path)
+            return
+        path.append(nums[curr])
+        Solution._get_subset(nums, curr+1, path, solutions)
+        path.pop()
+        Solution._get_subset(nums, curr+1, path, solutions)
+```
+All mutable varible is transformed by reference.  

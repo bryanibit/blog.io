@@ -395,3 +395,46 @@ def dfs(node):
 	stack.append(node) # no neighbor or visited[neighbor] == 1
 	visited[node] = 1
 ```
+
+## memory limited  
+
+When occuring into memory limited situation, check whether *vector* or other data structure costs much resources **copying**.
+
+## delete a node in a tree
+
+```c
+void dfs(TreeNode* root, const vector<int>& to_delete){
+        if(root->left != nullptr)
+            dfs(root->left, to_delete);
+        if(root->right != nullptr)
+            dfs(root->right, to_delete);
+        if(std::find(to_delete.begin(), to_delete.end(), root->val) != to_delete.end()){
+            if(root->left != nullptr)
+                forest.push_back(root->left);
+            if(root->right != nullptr)
+                forest.push_back(root->right);
+			// the flowing code can not delete node *root*
+            root->val = NULL;
+            root->left = nullptr;
+            root->right = nullptr;
+            root = nullptr; 
+		}
+}
+```	
+If you wanna delete a node whose value *to_delete* contains from a tree and you can use dfs like this:
+```c
+TreeNode* dfs(TreeNode* root, const vector<int>& to_delete){
+        if(root->left != nullptr)
+            root->left = dfs(root->left, to_delete);
+        if(root->right != nullptr)
+            root->right = dfs(root->right, to_delete);
+        if(std::find(to_delete.begin(), to_delete.end(), root->val) != to_delete.end()){
+            if(root->left != nullptr)
+                forest.push_back(root->left);
+            if(root->right != nullptr)
+                forest.push_back(root->right);
+			return nullptr;
+		}
+		return root;
+}
+```
