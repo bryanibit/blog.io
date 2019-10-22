@@ -29,14 +29,16 @@ for node in graph:
 L = []
 L.append(startnode)
 while L:
-    current = node #node is a node with **smallest distance** in L
-    # at this moment, priority queue is the best choice.
+    #node is a node with smallest distance in L
+    current = node
+    # at this moment, priority queue is the best choice
     L.remove(current)
     for node in current.adjancent:
         if node.distance > current.distance + node_to_current_distance:
             node.distance = current.distance + node_to_current_distance
             node.parent = current
-            L.append(node) # if node is not in L
+            # if node is not in L
+            L.append(node)
 ```
 
 ### A* algorithm  
@@ -53,15 +55,18 @@ L = []
 start.g = 0
 start.f = H(start)
 L.append(start)
-# on each iteration, the most likely to be on the shortest path from start(g) to destination(f)
+# On each iteration, the most likely to be on the
+# shortest path from start(g) to destination(f)
 while L:
-    current = node # the node with **smallest f value**
+    # the node with smallest f value
+    current = node
     L.remove(current)
     for node in current.adjacent:
         if node.g > current.g + node_to_current_distance:
             node.g = current.g + node_to_current_distance
             node.f = node.g + H(node)
             node.parent = current
-            L.append(node) # if node is not in L
+            # if node is not in L
+            L.append(node)
 ```
 
