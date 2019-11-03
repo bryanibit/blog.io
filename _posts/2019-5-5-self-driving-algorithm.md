@@ -20,10 +20,8 @@ SONAR: Sound Navigation And Ranging
 
 ## Path Planning (upenn)
 
-### Dijkstra's algorithm  
-
-**pseudo code**  
 ```python
+## Dijkstra's algorithm  
 for node in graph:
     node.distance = Inf
 L = []
@@ -39,24 +37,19 @@ while L:
             node.parent = current
             # if node is not in L
             L.append(node)
-```
 
-### A* algorithm  
-
-a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms.  
-**pseudo code**  
-```python
+## a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called  
+## A* algorithm
 for node in graph:
     node.f = Inf
     node.g = Inf
 L = []
-# g denotes distance from current node to start node
-# f denotes the sum of g and the left distance of current node to goal node
-start.g = 0
-start.f = H(start)
-L.append(start)
-# On each iteration, the most likely to be on the
-# shortest path from start(g) to destination(f)
+# g denotes distance from current node to start node  
+# f denotes the sum of g and the left distance of current node to goal node  
+start.g = 0  
+start.f = H(start)  
+L.append(start)  
+# On each iteration, the most likely to be on the shortest path from start(g) to destination(f)  
 while L:
     # the node with smallest f value
     current = node
