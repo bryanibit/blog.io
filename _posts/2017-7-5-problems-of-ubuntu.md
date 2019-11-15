@@ -580,6 +580,15 @@ When you mess up your file system and reboot ubuntu, then it cannot be entered. 
 mount -o remount,rw /
 ```
 
+## ubuntu can not boot  
+
+Enter Ubuntu recovery mode because of not booting(black screen) but it shows 
+```
+Kernel Panic - not syncing: VFS: Unable to mount root fs on unknown-block(0, 0)
+```
+
+Then how to fix the above that ubuntu recovery mode can not access as well.  
+It is possible that I miss the initramfs for that kernel. Choose **another** kernel from the GRUB menu under **Advanced options for Ubuntu** and run ```sudo update-initramsf -u -k <version>``` to generate the initrd for *version* (replace <version> with the kernel version string such as ```4.15.0-36-generic```), and then ```sudo update-grub```.  
 
 ## Donation
 
