@@ -104,7 +104,7 @@ else// grid[i][j] = 0
 The following pseudocode does not think of minus loop:
 
 ```cpp
-// 3 vector/array: dist, visited path  
+// 3 vector/array: dist, visited, path  
 dist[] = std::numeric_limits<>::max()
 visited[]=0
 path[]
@@ -123,7 +123,7 @@ while(!Q){
 		//fasten
 		if(dist[u] + edgesTov < dist[v]){
 			path[u] = v
-			dist[v] = dist[u] + edgesTov
+			dist[v] = dist[u] + edgesTov  
 			if(!visited[v]){
 				Q.push(v)
 				visited[v] = 1;
@@ -133,7 +133,7 @@ while(!Q){
 }
 ```
 Because of involving std::stack and std::queue, I want to introduce them right here, right now.  
-**stack** is *first in, last out*, but **queue** is different, which is *first in, first out*. Both of them have **pop()**/**push()**/**emplace()**, but both have diffent location(front or back) for poping and pushing. So **stack** has **top()** func, however, **queue** has **front()** which acquires "oldest" element that will delete from queue by **pop** firstly. And **queue** has **back()** for "newest" element, too.
+**stack** is *first in, last out*, but **queue** is different, which is *first in, first out*. Both of them have **pop()**/**push()**/**emplace()**, but both have diffent location(front or back) for poping and pushing. So **stack** has **top()** func, however, **queue** has **front()** which just acquires "oldest" element that **pop** will delete from queue. And **queue** has **back()** for "newest" element, too.
 
 ## DFS(Deep First Search)
 
@@ -228,6 +228,7 @@ void removeDuplicate(std::vector<string>& s)
 ## set Operation(union and intersection)
 
 There, I will introduct two STL function called ```set_union``` and ```set_intersection```.
+
 eg. Find the common part of each set in ```vector<set<int>> v```
 ```cpp
 #include <iterator> //for inserter
@@ -244,6 +245,7 @@ for (int i = 0; i < v.size(); ++i){
 	std::swap(__intersecion, temp);
 	__intersection.clear(); // clean set of containing each time's result
 }
+```
 
 ## string -- int -- char
 
