@@ -25,3 +25,26 @@ Eigen::Transform<float,3,Affine> combined =
 
 {Note that} ```combined = A*B*C*D*E```, so combined applied to a *vector v* is ```combined*v = A*B*C*D*E*v = A*(B*(C*(D*(E*v))))```.
 
+## MatrixXd/VectorXd
+
+For dynamic matrix or vector, the error wil be shown like that, if the matrix or vector are not assigned memory before.
+```
+Eigen::DenseCoeffsBase<Derived, 1>::Scalar& Eigen::DenseCoeffsBase<Derived, 1>::operator()(Eigen::Index) 
+[with Derived = Eigen::Matrix<double, -1, 1>; Eigen::DenseCoeffsBase<Derived, 1>::Scalar = double; Eigen::Index = long int]:
+Assertion `index >= 0 && index < size()'
+```
+
+So the right operation is assign value before assign memory, like,
+```cpp
+#include <Eigen/Dense>
+using namespace Eigen;
+MatrixXd A(3,3);
+VectorXd B(3);
+// the back of << should have 9 elements
+A << 1,2,3,4,5,6,7,8,9;
+// the back of << should have 3 elements
+B << 1,2,3;
+```
+
+## pitfall of Eigen
+[common pitfalls](https://eigen.tuxfamily.org/dox-devel/TopicPitfalls.html#TopicPitfalls_auto_keyword)
