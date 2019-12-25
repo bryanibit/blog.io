@@ -324,7 +324,8 @@ ss >> thevalue;
 
 ```cpp
 string str;
-double value = atof(str.c_str());```
+double value = atof(str.c_str());
+```
 
 ```cpp
 string word;  
@@ -440,3 +441,17 @@ TreeNode* dfs(TreeNode* root, const vector<int>& to_delete){
 		return root;
 }
 ```
+
+## Someone needs to recall what he has done before  
+
+### Best time to buy and sell
+
+This kind of problems involves some basic conditions or limits. For example, 
+1. You may **not** engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).  
+2. You may complete as many transactions as you like (i.e., *buy one and sell one share of the stock multiple times*). The limit may be suitable for all *buy and sell* problem, because you have no need to buy and sell twice if the pirces of consistent two day have rised. You just buy in the first day and sell int the tird day. Not to mention that there may be a transaction fee.    
+
+The following problems can be derived from the above:  
+1. You may complete as many transactions as you like (i.e., buy one and sell one share of the stock multiple times). Ans: plus all positive diff_prices  
+2. You may complete at most two or *K* transactions. Ans: for each price, you can hold buy it or sell it.  
+3. buy and sell combines one transaction with a positive fee. Ans: if next price - last pirce - fee > 0 prove that can be added to final profits.  
+4. buy and sell with a cooldown day. Ans: use DP algorithm. dp[i] denotes the max profit of the first i days, and then dp[i] = max(dp[i] , dp[i - 1], prices[i] - prices[j] + dp[j - 2]), here, j means buy time and i is sell time.  
