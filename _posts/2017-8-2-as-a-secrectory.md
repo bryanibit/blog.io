@@ -156,3 +156,7 @@ renshi是表名称
 A    搞笑 23  2330
 ......
 ```
+
+## Stop iphone upgrade automatically
+
+[tvos11.mobileconfig](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/tvOS11.mobileconfig)

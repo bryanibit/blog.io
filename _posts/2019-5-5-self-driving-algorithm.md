@@ -21,25 +21,34 @@ SONAR: Sound Navigation And Ranging
 ## Path Planning (upenn)
 
 ```python
-## Dijkstra's algorithm  
+## Dijkstra's algorithm
+
 for node in graph:
     node.distance = Inf
 L = []
 L.append(startnode)
 while L:
-    #node is a node with smallest distance in L
+
+    # node is a node with smallest distance in L
     current = node
     # at this moment, priority queue is the best choice
     L.remove(current)
+    
     for node in current.adjancent:
         if node.distance > current.distance + node_to_current_distance:
             node.distance = current.distance + node_to_current_distance
             node.parent = current
-            # if node is not in L
-            L.append(node)
 
-## a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called  
+            # if node is not in L
+
+            L.append(node)
+```
+
+a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
+
+```python
 ## A* algorithm
+
 for node in graph:
     node.f = Inf
     node.g = Inf
