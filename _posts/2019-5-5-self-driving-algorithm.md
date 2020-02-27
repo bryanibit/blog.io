@@ -26,12 +26,13 @@ SONAR: Sound Navigation And Ranging
 for node in graph:
     node.distance = Inf
 L = []
+startnode.distance = 0
 L.append(startnode)
 while L:
 
-    # node is a node with smallest distance in L
+    # node is a node with smallest distance in L   
     current = node
-    # at this moment, priority queue is the best choice
+    # at this moment, priority queue is the best choice   
     L.remove(current)
     
     for node in current.adjancent:
@@ -53,8 +54,8 @@ for node in graph:
     node.f = Inf
     node.g = Inf
 L = []
-# g denotes distance from current node to start node  
-# f denotes the sum of g and the left distance of current node to goal node  
+# g denotes distance from current node to start node   
+# f denotes the sum of g and the left distance of current node to goal node   
 start.g = 0  
 start.f = H(start)  
 L.append(start)  
@@ -63,6 +64,8 @@ while L:
     # the node with smallest f value
     current = node
     L.remove(current)
+    if current == goal:
+        report success
     for node in current.adjacent:
         if node.g > current.g + node_to_current_distance:
             node.g = current.g + node_to_current_distance

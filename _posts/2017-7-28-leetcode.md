@@ -21,7 +21,7 @@ description: Leetcode & Codeing skill
 
 ## longest substring without repeating characters
 
-* C++ set
+*C++ set*  
 ```
 template < class T,                        // set::key_type/value_type
            class Compare = less<T>,        // set::key_compare/value_compare
@@ -29,8 +29,7 @@ template < class T,                        // set::key_type/value_type
            > class set;
 ```
 The value in *set* container can not be modified (their elements are *const*), but they can be **removed** and **inserted**.  
-The value in *set* is ordered in according to specific weak ordering criterion. *set* containers are generally slower than *unordered_set* containers to access individual elements by their key, but they allow the **direct iteration** on subsets based on their order.
-
+The value in *set* is ordered in according to specific weak ordering criterion. *set* containers are generally slower than *unordered_set* containers to access individual elements by their key, but they allow the **direct iteration** on subsets based on their order.  
 **Basic Operation**:  
 ```
 empty() size()  
@@ -40,7 +39,7 @@ if (m.count(val)) // val exists
 operation=// set s; set a; s = a;
 ```
 
-* C++ map
+*C++ map*  
 ```
 template < class Key,                                     // map::key_type
            class T,                                       // map::mapped_type
@@ -48,8 +47,7 @@ template < class Key,                                     // map::key_type
            class Alloc = allocator<pair<const Key,T> >    // map::allocator_type
            > class map;
 ```
-The value in *map* is ordered by its key in according to specific weak ordering criterion. *Map* containers are generally slower than *unordered_map* containers to access individual elements by their key, but they allow the direct iteration on subsets based on their order.
-
+The value in *map* is ordered by its key in according to specific weak ordering criterion. *Map* containers are generally slower than *unordered_map* containers to access individual elements by their key, but they allow the direct iteration on subsets based on their order.  
 **Basic Operation**:  
 ```
 empty() size()  
@@ -60,18 +58,14 @@ if (m.count(key)) // key exists
 
 ## DP(Dynamic Programming)
 
-*Those who cannot remember the past are condemned to repeat it.* -- **Dynamic Programming**. In a nutshell, dynamic programming is recursion without repetition.
-
+*Those who cannot remember the past are condemned to repeat it.* -- **Dynamic Programming**. In a nutshell, dynamic programming is recursion without repetition.  
 In leetcode, the DP problems can be split into two categaries: continue and discrete.  
 **review all problems**:   
-* Continue:  
+1. Continue:  
 if f(i) is not only connected to f(i-1), also to f(i-2), then you do not only need one variable, such as max_val for recording the largest value, but also need another value to iterate, like a, b = a, a+b(Fibonacci numbers).
-
-* Discrete:  
-For each element, you can choose do nothing or do operations(like add it or minus it).
-
-Right now, I wanna introduce one kind of DP with conditions. The problems are both based on a 2d matrix including only "0" and "1".
-
+2. Discrete:  
+For each element, you can choose do nothing or do operations(like add it or minus it).  
+Right now, I wanna introduce one kind of DP with conditions. The problems are both based on a 2d matrix including only "0" and "1".  
 * First one -- leetcode 221. [Maximal Square(medium)](https://leetcode.com/problems/maximal-square/)
 Given a 2D binary matrix filled with 0's and 1's, find the largest square containing only 1's and return its area.  
 **Iteration function**(*Initial operation is omitting*):  
@@ -82,12 +76,11 @@ if(matrix[i][j] == 1)
 else // do nothing
 	dp[i][j] = matrix[i][j]
 ```
-
 * Second one -- leetcode 63. [Unique Paths II(medium)](https://leetcode.com/problems/unique-paths-ii/)  
 A robot is located at the top-left corner of a m x n grid (marked 'Start' in the diagram below).  
 The robot can only move either down or right at any point in time. The robot is trying to reach the bottom-right corner of the grid (marked 'Finish' in the diagram below).  
 Now consider if some obstacles(use 1 to represent) are added to the grids. How many unique paths would there be?  
-**Iteration function**(I achieve it in place here):(*Initial operation is omitting*)
+**Iteration function**(I achieve it in place here):(*Initial operation is omitting*)  
 ```cpp
 if(grid[i][j] == 1)
 	grid[i][j] = 0
@@ -194,7 +187,8 @@ void dfs(vector<vector<int>>& graph, int source, int target, vector<vector<int>>
 	}
 	for (auto i : graph[source])
 	{
-			dfs(graph, i, target, path);//every recursive location, think about the following pop_back
+			dfs(graph, i, target, path);
+			//every recursive location, think about the following pop_back
 			onePath.pop_back();
 	}
 }
@@ -227,8 +221,7 @@ void removeDuplicate(std::vector<string>& s)
 
 ## set Operation(union and intersection)
 
-There, I will introduct two STL function called ```set_union``` and ```set_intersection```.
-
+There, I will introduct two STL function called ```set_union``` and ```set_intersection```.  
 eg. Find the common part of each set in ```vector<set<int>> v```
 ```cpp
 #include <iterator> //for inserter
@@ -280,7 +273,6 @@ int a = 10;
 char *intStr = itoa(a);
 string str = string(intStr);
 ```
-
 2.
 ```cpp
 int a = 10;
@@ -288,12 +280,11 @@ stringstream ss;
 ss << a;
 string str = ss.str();
 ```
-
 3.
 ```cpp
 #include <string>
 std::string s = std::to_string(42);
-'''
+```
 
 ## long int to string
 
@@ -307,15 +298,13 @@ strstream >> number;
 
 ## string to int
 
-```
-1.
+```cpp
+//1.
 string str="123";
 atoi( str.c_str() );
-
-2.
+//2.
 std::stoi(str);
-
-3.
+//3.
 std::stringstream ss(str);
 ss >> thevalue;
 ```
@@ -381,22 +370,29 @@ Topological sorting can be used to find circle in a directed graph.
 e.g. we can find collapse dependence for course schedule in [leetcode-example](https://leetcode.com/problems/course-schedule/).  
 Detailed description shown below as presudocode of topological sorting:
 ```python
-for node in all_node:
-    if node is not visited or not visiting:
-	    dfs(node)
 def dfs(node):
 	# for list visited, 2:visiting, 1:visited
+
 	# if visited[node] = 1, never consider it again.
+
 	visited[node] = 2
+
 	# if neighbor is 2, has circle, if 1, skip it over, if 0, dfs it.
+
 	for node_neighbor in node.neighbor:
 		if visited[node_neighbor] == 2:
 			mark as circle
 			break # if not break, dead loop
+
 		if visited[node_neighbor] != 1:
 			dfs(node_neighbor)
 	stack.append(node) # no neighbor or visited[neighbor] == 1
+
 	visited[node] = 1
+
+for node in all_node:
+    if node is not visited or not visiting:
+	    dfs(node)
 ```
 
 ## memory limited  
@@ -405,7 +401,7 @@ When occuring into memory limited situation, check whether *vector* or other dat
 
 ## delete a node in a tree
 
-```c
+```cpp
 void dfs(TreeNode* root, const vector<int>& to_delete){
         if(root->left != nullptr)
             dfs(root->left, to_delete);
@@ -416,7 +412,7 @@ void dfs(TreeNode* root, const vector<int>& to_delete){
                 forest.push_back(root->left);
             if(root->right != nullptr)
                 forest.push_back(root->right);
-			// the flowing code can not delete node *root*
+		// the flowing code can not delete node *root*
             root->val = NULL;
             root->left = nullptr;
             root->right = nullptr;
@@ -425,7 +421,7 @@ void dfs(TreeNode* root, const vector<int>& to_delete){
 }
 ```	
 If you wanna delete a node whose value *to_delete* contains from a tree and you can use dfs like this:
-```c
+```cpp
 TreeNode* dfs(TreeNode* root, const vector<int>& to_delete){
         if(root->left != nullptr)
             root->left = dfs(root->left, to_delete);
@@ -442,9 +438,7 @@ TreeNode* dfs(TreeNode* root, const vector<int>& to_delete){
 }
 ```
 
-## Someone needs to recall what he has done before  
-
-### Best time to buy and sell
+## Best time to buy and sell
 
 This kind of problems involves some basic conditions or limits. For example, 
 1. You may **not** engage in multiple transactions at the same time (i.e., you must sell the stock before you buy again).  
@@ -455,3 +449,151 @@ The following problems can be derived from the above:
 2. You may complete at most two or *K* transactions. Ans: for each price, you can hold buy it or sell it.  
 3. buy and sell combines one transaction with a positive fee. Ans: if next price - last pirce - fee > 0 prove that can be added to final profits.  
 4. buy and sell with a cooldown day. Ans: use DP algorithm. dp[i] denotes the max profit of the first i days, and then dp[i] = max(dp[i] , dp[i - 1], prices[i] - prices[j] + dp[j - 2]), here, j means buy time and i is sell time.  
+
+## Base a or Base a()  
+
+*Base* is a c++ class. *Base a()* just declear a function which return a Base object. So it will **not** call Base constructor. However, *Base a* is similar to *Base a{}*.
+
+## Template Specialization in C++  
+
+```cpp
+template<class T>
+class Test{};
+// specialization of above class
+template<>
+class Test<int>{};
+```
+The following is the same with the above and *operator()* overloading will be added to the specialization.
+```cpp
+template<class T>
+class Test{};
+template<>
+class Test<int> {
+public:
+	int operator()(int h) {
+		return h*h;
+	}
+};
+int main() {
+	// return x = 9
+	// ()return Test object and 
+	// (3) overload operation()
+	auto x = Test<int>()(3);
+	return 0;
+}
+```
+
+## Use user-defined class as key in unordered_set(unordered_map)/set(map)
+
+### unordered_set<Test>
+
+```cpp
+#include <unordered_set>
+class Test {
+private:
+	int x;
+	int y;
+public:
+	Test(int xx, int yy) {
+		x = xx;
+		y = yy;
+	}
+	int getX() const{
+		return x;
+	}
+	int getY() const{
+		return y;
+	}
+	bool operator==(Test t2) const {
+		return x == t2.x && y == t2.y;
+	}
+};
+namespace std {
+	template<>
+	struct hash<Test>{
+		int operator()(const Test t) const{
+			return hash<int>()(t.getX()) ^ (hash<int>()(t.getY()));
+		}
+	};
+}
+int main() {
+	unordered_set<Test> t;
+	t.insert(Test(1, 2));
+	t.insert(Test(2, 3));
+	t.insert(Test(2, 3));
+	// size == 2
+	cout << t.size() << endl;
+	return 0;
+}
+```
+
+### set<Test>
+
+```cpp
+#include <set>
+class Test {
+private:
+	int x;
+	int y;
+public:
+	Test(int xx, int yy) {
+		x = xx;
+		y = yy;
+	}
+	int getX() const{
+		return x;
+	}
+	int getY() const{
+		return y;
+	}
+	bool operator< (Test t2) const {
+		return x + y < t2.x + t2.y;
+	}
+};
+int main() {
+	set<Test> t2;
+	t2.insert(Test(1, 2));
+	t2.insert(Test(2, 3));
+	t2.insert(Test(1, 2));
+	// size == 2
+	std::cout << t2.size() << std::endl;
+	return 0;
+}
+```
+
+In conclusion, you can specialize *hash<user-defined-class>* in namespace std and overload *operator==* as member function if you use *unordered_set* or *unordered_map*. Similarly, you can overload *operator<* as member function if you use ordered-key *set* or *map*. Note that the overloading operator function should be **const**. If not, *const Test* can not call that.
+
+## Quick Soring
+
+```cpp
+void quickSort(vector<int> &nums, int left, int right) {
+		int i = left;
+		int j = right;
+		int pivot = nums[left];
+		while (i < j) {
+			// key point is you need to find val from right
+			// if the following whiles are changed in order, then
+			// nums[i]/[j] is larger than nums[left].
+			// There is an error when exchange nums[left] = nums[i] out of the range
+			while (i < j && nums[j] >= pivot)
+				--j;
+			// <= is necessary, because i should be started from left not left + 1
+			while (i < j && nums[i] <= pivot)
+				++i;
+			auto temp = nums[i];
+			nums[i] = nums[j];
+			nums[j] = temp;
+		}
+		nums[left] = nums[i];
+		nums[i] = pivot;
+		if (i > left)
+			quickSort(nums, left, i - 1);
+		// not else if, you need to iterate two segment
+		if (i < right)
+			quickSort(nums, i + 1, right);
+	}
+	vector<int> sortArray(vector<int>& nums) {
+		quickSort(nums, 0, nums.size() - 1);
+		return nums;
+	}
+```

@@ -33,14 +33,18 @@ endif()
 
 1. CMAKE checks all directories in **${CMAKE_MODULE_PATH}** then it looks for its own directory, like **<CMAKE_Root>/share/cmake-x.y/Modules** (*<CMAKE_Root>* 一般指 */usr/*).  
 2. If no such file is found, it looks for **<NAME>Config.cmake** e.g. **OpenCVConfig.cmake** or **<low-case-name>-config.cmake**. In fact, we need to define **CMAKE_PREFIXE_PATH** for stuff **not** including Find××.cmake but **××config.cmake**.  
-No matter what mode is used, the following will be defined:
+No matter what mode(config:XXconfig.cmake or module:findXX.cmake) is used, the following operations will be defined:
 ```
    <NAME>_FOUND
    <NAME>_INCLUDE_DIRS or <NAME>_INCLUDES
    <NAME>_LIBRARIES or <NAME>_LIBS
    <NAME>_DEFINITIONS
 ```
-**ALL these variables** define in the Find<NAME>.cmake file.
+**ALL these variables** define in the Find<NAME>.cmake or <NAME>config.cmake file.  
+In face, you should generate .cmake file when you write a lib, which is achieved by the following lines in file *CMakeLists.txt*. It can generate .cmake file and save it to *{CMAKE_MODULE_PATH}* or user-defined path.
+```
+install(EXPORT <name> DESTINATION <path>)
+```
 
 ## pkg-config
 
@@ -48,12 +52,12 @@ No matter what mode is used, the following will be defined:
 pkg-config is a build-helping tool, based on **.pc** files that record the location of _ library files _ and _ include files _.  
 凡是由二进制文件（deb、源等）安装的包，都会将<package-name>.pc文件放置在 {PKG-CONFIG-PATH}所包含的路径下。**××.pc**的内容一般是：指明某个包include和lib的目录。  
 e.g.  
-```
+```sh
 ➜  echo $PKG_CONFIG_PATH 
 /home/bryan/catkin_ws/devel/lib/pkgconfig:/opt/ros/kinetic/lib/pkgconfig:/opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
 ➜  ls /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig
 opencv-3.3.1-dev.pc
-➜  head -14 /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig/opencv-3.3.1-dev.pc //显示前14行
+➜  head -14 /opt/ros/kinetic/lib/x86_64-linux-gnu/pkgconfig/opencv-3.3.1-dev.pc #显示前14行
 Package Information for pkg-config
 prefix=/opt/ros/kinetic
 exec_prefix=${prefix}
@@ -70,9 +74,11 @@ Cflags: -I${includedir_old} -I${includedir_new}
 
 ## INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES
 
+```
 INCLUDE_DIRECTORIES 增加include路径
 LINK_DIRECOTRIES（"×××.so"） 添加需要链接的库文件路径
 TARGET_LINK_LIBRARIES(myProject hello)，连接libhello.so库
+```
 
 ## CMake中一些预定义变量
 
