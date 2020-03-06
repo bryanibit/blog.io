@@ -244,6 +244,7 @@ As usual, you sould add include_directories of subdirectory to root cmakelists:
 set(DSV_LIB ${PROJECT_NAME} CACHE INTERNAL "description" FORCE)
 set(DSV_INCLUDE ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)
 ```
+<Complement>: set(<var> <value> CACHE) is a common way to set **cmake variables** and another way is `cmake -D<var>=<value>` which sets cache variable. There are lots of cmake variables you can find all of them in [its website](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html).
 
 ## Load Script in CMakeLists.txt
 
