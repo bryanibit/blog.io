@@ -72,6 +72,17 @@ Libs.private: -ldl -lm -lpthread -lrt
 Cflags: -I${includedir_old} -I${includedir_new}
 ```
 
+If you wanna use pkg-config to find packages instead of find_package (depend on .cmake), you can use the following code in CMakeLists.txt. For changing pkg-config finding package path, you can set *CMAKE_PREFIX_PATH*or *ENV{PKG_CONFIG_PATH}* And keep in mind that it is dependent on the cmake version, so it varies with cmake version and is not welcomed (based on cmake 3.5.1 here)
+```sh
+find_package(PkgConfig REQUIRED)
+# OpenCV is <prefix>, it's ok using others
+pkg_check_modules(OpenCV REQUIRED opencv)
+# using pkg_search_module to replace the above is ok
+# the following is similar to find_package()
+include_directories(<prefix>_INCLUDE_DIRS)
+target_link_libraries(<exe> <prefix>_LIBRARIES)
+```
+
 ## INCLUDE_DIRECTORIES LINK_DIRECOTRIES LINK_LIBRARIES
 
 ```
@@ -183,10 +194,14 @@ Find_package自动搜索<name>_DIR，查找config.cmake，并执行，config.cma
 
 ## 指定动态库动态加载时的目录
 
+Before talking about dynamic library loading, we should distinguish library different using time: build time and running time.  
+In static linking(build time), compilor uses *-l lib* to search lib and uses **-L lib_path** or **LD_LIBRARY_PATH** to create a list of paths outside the standard paths.  
+In dynamic linking(running time), program uses *-r lib* to search running loading lib and used **-R lib** or **LD_LIBRARY_PATH** to create a list of paths.
+
 1. 使用GCC编译动态链接库的项目时，在其他目录下执行很可以出现找不到动态链接库的问题。  
 2. 这种情况多发生在动态链接库是自己开发的情况下，原因就是程序运行时找不到去何处加载动态链接库。  
-3. 可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。-L等效为```include_directories```或者```eport LD_LIBRARY_PATH=...```。  
-4. 程序执行时动态链接库加载不到动态链接库，解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。如：  
+3. 可能会说在编译时指定了链接的目录啊！编译时指定的 -L的目录，只是在程序链接成可执行文件时使用的。-L等效为```link_directories```或者```eport LD_LIBRARY_PATH=...```。  
+4. 程序执行时动态链接库加载不到动态链接库，解决办法有两种，第一程序链接时指定链接库的位置，就是使用-wl,-rpath=<link_path>参数，<link_path>就是链接库的路径。(Detailed explanation can be found via *ld --help | grep library*)如：  
 
 ```
 gcc -o foo foo.c -L. -lfoo -Wl,-rpath=./
@@ -206,7 +221,7 @@ gcc -o foo foo.c -L$(prefix)/lib -lfoo -Wl,-rpath=$(prefix)/lib
 /usr/local/lib
 ```
 
-然后执行如下命令：*ldconfig*
+然后执行如下命令：*ldconfig*, ldconfig is executed, then lib*.so or lib*.so.3 or lib*.so.3.3.0 symbolic links will be created and these librarys in the location will be cached in another varible, like LD_PRELOD(not it, just an instance).  
 
 
 ## Set with keyword **CACHE**
@@ -229,6 +244,7 @@ As usual, you sould add include_directories of subdirectory to root cmakelists:
 set(DSV_LIB ${PROJECT_NAME} CACHE INTERNAL "description" FORCE)
 set(DSV_INCLUDE ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)
 ```
+<Complement>: set(<var> <value> CACHE) is a common way to set **cmake variables** and another way is `cmake -D<var>=<value>` which sets cache variable. There are lots of cmake variables you can find all of them in [its website](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html).
 
 ## Load Script in CMakeLists.txt
 

@@ -45,6 +45,7 @@ aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
 add_executable(${PROJECT_NAME} ${SRC_LIST})
 # set(OpenCV_LIBRARIES ${OpenCV_LIBS}) is content of OpenCVConfig.cmake
+# sometimes OpenCV_LIBRARIES is the same with OpenCV_LIBS
 target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS} ${Boost_LIBRARIES}
 ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES}
