@@ -244,3 +244,82 @@ int main()
     return 0;
 }
 ```
+
+## Virtual Function
+
+
+
+## C++ six components
+
+## template achievement 
+
+C++ template is similar to **macro in C**, but macro is a kind of text replacement without type or syntax checking. Compiler will produce a class with certain type in **compiling time** for a C++ template. For instance, ```template<typename T> class A``` may be instanciated to ```A_T``` in compiling time. Since that, member function in template class are usually **inline**. That means that declaration and definition should be existed both.  
+C++ template class specialization doesn't copy generic template class content to specialized template. In fact, the specialized class is indenpendent to generic template class. At this point, it is different with C++ inheritance.   
+```cpp
+template <typename T> class TypeToID
+{
+public:
+    static int const NotID = -2;
+};
+template <> class TypeToID<float>
+{
+public:
+    static int const ID = 1;
+};
+void PrintID()
+{
+    cout << "ID of float: " << TypeToID<float>::ID << endl; // Print "1"
+    cout << "NotID of float: " << TypeToID<float>::NotID << endl; // Error! TypeToID<float>使用的特化的类，这个类的实现没有NotID这个成员。
+    cout << "ID of double: " << TypeToID<double>::ID << endl; // Error! TypeToID<double>是由模板类实例化出来的，它只有NotID，没有ID这个成员。
+}
+```
+
+## C++ name resolution
+
+Simply saying, name resolution in C++ consists of two phase, dependent name or independent on **T**. The first phase resolves independent name in *template definition*, such as *void fool(const T){// no relation with T}* and the second occurs in *template instanciation* to dependent name like *template<class T> class A{}*.  
+
+## typename in template  
+
+If a type should be confirmed to a type in template instanciation not in template definition, then **typename** should be adopted.  
+```cpp
+class Y {
+        typedef X<T>     _D;          // X 的内部，既然外部高枕无忧，内部更不用说了
+        typedef X<T>::Y  _E;          // 嗯，这里也没问题，编译器知道Y就是当前的类型，
+                                      // 这里在VS2015上会有错，需要添加 typename，
+                                      // Clang 上顺利通过。
+        typedef typename X<T*>::Y _F; // 这个居然要加 typename！
+                                      // 因为，X<T*>和X<T>不一样哦，
+                                      // 它可能会在实例化的时候被别的偏特化给抢过去实现了。
+};
+typedef typename B<T>::type _I;
+```
+
+## Variadic Template
+
+```cpp
+template <typename... Ts> class tuple;
+```
+
+## enable_if
+
+std/boost库中的 enable_if 是 SFINAE 最直接也是最主要的应用。所以我们通过下面 enable_if 的例子，来深入理解一下 SFINAE 在模板编程中的作用。
+
+## STL components 
+
+* container:vector<T>
+* iterator
+* generic_algorithm:*for_each()*
+* allocator: template < class T, class Alloc = allocator<T> > class vector;
+* adaptor
+
+Some of containers provide **sequential storage**:
+1. vector<T>: random access, varying length, constant time delete/insert at end
+2. deque<T>:random access, varying length, constant time delete/insert at either end
+3. list<T>:linear time access, varying length, constant time delete/insert anywhere in list
+
+Constant iterator must be used when object is const – typically for parameters, for example, 
+```cpp
+void ivecPrint(const vector<int> V, ostream& Out){
+	vector<int>::const_iterator It;
+}
+```

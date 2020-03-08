@@ -9,6 +9,8 @@ description: Fork from wuye9036/CppTemplateTutorial
 
 # C++ Template 进阶指南
 
+本文摘自 https://github.com/wuye9036/CppTemplateTutorial
+
 ## 0. 前言
 
 ### 0.1 C++另类简介：比你用的复杂，但比你想的简单
