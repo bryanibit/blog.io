@@ -199,7 +199,7 @@ int main(){
 }
 ```
 
-When using variables reference and modify it in the recursive process, you should be careful. There is an example for rectify the modification after *each time of return false*. There is link of [leetcode: word search](https://leetcode.com/problems/word-search/). PS: **==** has priority to **||** or **&&**. 
+When using variables reference and modify it in the recursive process, you should be careful. There is an example for rectify the modification after *each time of return false*. There is link of [leetcode: word search](https://leetcode.com/problems/word-search/). PS: **==** has priority to || or **&&**. 
 
 ## vector operations
 
@@ -333,18 +333,51 @@ ss>>number;
 
 ## 二叉搜索树
 
-同一层的情况下，右边的元素一定比左边的大
+同一层的情况下，右边的元素一定比左边的大，树的节点值都不相同。
 
 * 插入一个数
 
-```
-待补充
+```cpp
+TreeNode* InsertNodeBST(TreeNode* root, const int insertVal){
+	if(root->val < insertVal){
+		if(root->right)
+			root->right = InsertNodeBST(root->right, insertVal);
+		else
+			root->right = new TreeNode(insertVal);
+	}
+	else {
+		if(root->left)
+			root->left = InsertNodeBST(root->left, insertVal);
+		else
+			root->left = new TreeNode(insertVal);
+	}
+	return root;
+}
 ```
 
 * 删除一个数
 
-```
-待补充
+```cpp
+TreeNode* deleteNodeBST(TreeNode* root, const int deleteVal){
+	if(root->val < insertVal)
+		root->right = deleteNodeBST(root->right, deleteVal);
+	else if(root->val > insertVal)
+		root->left = deleteNodeBST(root->left, deleteVal);
+	else{
+		if(!root->left || !root->right){
+			auto nonempty = root->left == nullptr? root->right: root->left;
+			return nonempty;
+		}
+		else{
+			auto min_node = root->right;
+			while(min_node->left)
+				min_node = min_node->left;
+			root->val = min_node->val;
+			root->right = deleteNodeBST(root->right, min_node->val);
+		}
+	}
+	return root;
+}
 ```
 
 ## 最小生成树

@@ -31,37 +31,41 @@ L.append(startnode)
 while L:
 
     # node is a node with smallest distance in L   
+
     current = node
     # at this moment, priority queue is the best choice   
+
     L.remove(current)
     
     for node in current.adjancent:
         if node.distance > current.distance + node_to_current_distance:
             node.distance = current.distance + node_to_current_distance
             node.parent = current
-
-            # if node is not in L
-
+            # if node is not in L  
             L.append(node)
 ```
 
 a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
 
 ```python
-## A* algorithm
+# Conventional(traditional) A* algorithm
 
 for node in graph:
     node.f = Inf
     node.g = Inf
 L = []
 # g denotes distance from current node to start node   
+
 # f denotes the sum of g and the left distance of current node to goal node   
+
 start.g = 0  
 start.f = H(start)  
 L.append(start)  
-# On each iteration, the most likely to be on the shortest path from start(g) to destination(f)  
+# On each iteration, the most likely to be on the shortest path from start(g) to destination(f)   
+
 while L:
-    # the node with smallest f value
+    # the node with smallest f value  
+     
     current = node
     L.remove(current)
     if current == goal:
@@ -75,3 +79,8 @@ while L:
             L.append(node)
 ```
 
+## Hybrid A*
+
+1. So from each node, you drive forward with a distance of d with three different angles, and if the car can **reverse**, you need to reverse with the same distance and three angles. So from each node, you end up with **6 child nodes**. For each child, you have to calculate the cost (g-cost) and heuristic (h-cost). The self-driving car Junior used a more complicated heuristic, but you can use the traditional Euclidean distance as the heuristic before you begin calculate something more advanced.  
+2. You also need a few **extra costs**. You should also add an extra cost if the node is **close to an obstacle**, or if you are **reversing**.  
+3. Make the Hybrid A star better. These methods include: Reeds-Shepp paths (faster), Flowfield (cost function), or Voronoi field (cost function).  

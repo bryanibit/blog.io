@@ -201,16 +201,21 @@ exec user process caused "exec format error"
 
 在原来PC上使用一下命令，并copy到新PC上
 ```
-docker save -o gitlab.docker
+docker export -o gitlab.docker
 ```
 
 在新PC上使用
 ```
-docker load -i gitlab.docker
+docker import gitlab.docker gitlab:cpone
 ```
 此时完成image拷贝到新电脑的过程，然后按照**启动Gitlab**中的步骤，启动container for gitlab.  
 最后一步就是复制数据到新电脑上  
 将gitlab整个文件夹打包/压缩后复制到新PC。
+Here, I wanna add something involving the difference between *save* and *export*:
+1. *save* command will fetch an image as opposite to *load*. such as `docker save -o <user-defined-name> <image-id-name>`.  
+2. *export* command will fetch the whole container including filesystem as opposite to *import*. such as `docker export -o <user-defined-name> <container-id-name>`.  
+3. *run* command will spin up a **new** container for you to use.  
+4. *exec* command will allow you to use a container that is **already running**.  
 
 ## Remove and Restore for DOCKER Gitlab installations
 

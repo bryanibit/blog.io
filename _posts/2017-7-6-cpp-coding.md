@@ -248,7 +248,7 @@ int main()
 
 ## Virtual Function
 
-
+Overhead is virtual function table.
 
 ## C++ six components
 
@@ -322,5 +322,40 @@ Constant iterator must be used when object is const – typically for parameters
 ```cpp
 void ivecPrint(const vector<int> V, ostream& Out){
 	vector<int>::const_iterator It;
+}
+```
+
+## Abstract Class 
+
+*Abstract* means no implementation, namely, cannot be instantiated (no object), but can be used as a base class. What is abstract in C++? In short, if a class includes **pure virtual functions**, then it is an abstract function.  
+There are several rules about abstract class.  
+1. A class is abstract if it has at least one pure virtual function.  
+2. We can have pointers and references of abstract class type.  
+3. If we do not override the pure virtual function in derived class, then derived class also becomes abstract type.  
+4. An abstract class can have constructors which may be used in derived class constructor to initialize base class (abstract class) member variables.  
+
+```cpp
+// abstract class rule1
+class Base{
+	int x;
+public:
+    // constructor rule4
+	Base(int i):x(i){}
+	virtual void fun() = 0;
+};
+class Derived: public Base{
+	int y;
+public:
+    // constrct Base rule4
+	Derived(int i, int j):Base(i),y(j){}
+	void fun(){
+		std::cout << "derived class\n";
+	}
+};
+int main(){
+	// rule 1
+	Base b; // error
+	// rule2 abstract class type(polymorph)
+	Base *bp = new Derived();
 }
 ```
