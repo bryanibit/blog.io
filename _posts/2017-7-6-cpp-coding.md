@@ -311,12 +311,16 @@ std/boost库中的 enable_if 是 SFINAE 最直接也是最主要的应用。所�
 * iterator
 * generic_algorithm:*for_each()*
 * allocator: template < class T, class Alloc = allocator<T> > class vector;
-* adaptor
+* container adaptor
 
 Some of containers provide **sequential storage**:
 1. vector<T>: random access, varying length, constant time delete/insert at end
 2. deque<T>:random access, varying length, constant time delete/insert at either end
-3. list<T>:linear time access, varying length, constant time delete/insert anywhere in list
+3. list<T>:linear time access, varying length, constant time delete/insert anywhere in list  
+4. stack:container adaptor, encapsulate list or deque  
+5. queue:container adaptor, encapsulate list or deque  
+6. priority_queue:一般vector为底层容器，堆heap为处理规则来管理底层容器实现  
+7. set,multiset, map, multimap:红黑树为其底层数据结构  
 
 Constant iterator must be used when object is const – typically for parameters, for example, 
 ```cpp
@@ -327,7 +331,7 @@ void ivecPrint(const vector<int> V, ostream& Out){
 
 ## Abstract Class 
 
-*Abstract* means no implementation, namely, cannot be instantiated (no object), but can be used as a base class. What is abstract in C++? In short, if a class includes **pure virtual functions**, then it is an abstract function.  
+*Abstract* means no implementation, namely, cannot be instantiated (no object), but can be used as a base class. What is abstract in C++? In short, if a class includes **pure virtual functions**, then it is an abstract function. Classes that can be used to instantiate objects are called **concrete classes**.   
 There are several rules about abstract class.  
 1. A class is abstract if it has at least one pure virtual function.  
 2. We can have pointers and references of abstract class type.  
@@ -359,3 +363,5 @@ int main(){
 	Base *bp = new Derived();
 }
 ```
+
+

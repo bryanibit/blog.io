@@ -596,7 +596,11 @@ int main() {
 
 In conclusion, you can specialize *hash<user-defined-class>* in namespace std and overload *operator==* as member function if you use *unordered_set* or *unordered_map*. Similarly, you can overload *operator<* as member function if you use ordered-key *set* or *map*. Note that the overloading operator function should be **const**. If not, *const Test* can not call that.
 
-## Quick Soring
+## Sorting
+
+There are many ways for sorting, at least 10 kinds of sorting. I just choose several important sorting ways. Quick sort, heap sort and merge sort (time complexity: O(nlgn)).  
+
+### Quick Sort
 
 ```cpp
 void quickSort(vector<int> &nums, int left, int right) {
@@ -629,4 +633,107 @@ void quickSort(vector<int> &nums, int left, int right) {
 		quickSort(nums, 0, nums.size() - 1);
 		return nums;
 	}
+```
+
+### Merge Sort
+
+Like QuickSort, Merge Sort is a Divide and Conquer algorithm.  
+```
+MergeSort(arr[], l,  r)
+If r > l
+     1. Find the middle point to divide the array into two halves:  
+             middle m = (l+r)/2
+     2. Call mergeSort for first half:   
+             Call mergeSort(arr, l, m)
+     3. Call mergeSort for second half:
+             Call mergeSort(arr, m+1, r)
+     4. Merge the two halves sorted in step 2 and 3:
+             Call merge(arr, l, m, r)
+```
+
+The process is illustrated as  
+![Merge-Sort](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/Merge-Sort.png)  
+The C++ instance is shown the following:  
+```cpp
+class Solution {
+public:
+	void merge(vector<int> &nums, int l, int m, int r) {
+		vector<int> left;
+		vector<int> right;
+		copy(nums.begin() + l, nums.begin() + m + 1, std::back_inserter(left));
+		copy(nums.begin() + m + 1, nums.begin() + r + 1, std::back_inserter(right));
+		int i = 0;
+		int j = 0;
+		int k = l;
+		while (i < left.size() && j < right.size()) {
+			if (left[i] < right[j]) {
+				nums[k] = left[i];
+				++i;
+			}
+			else {
+				nums[k] = right[j];
+				++j;
+			}
+			++k;
+		}
+		while (i < left.size()) {
+			nums[k] = left[i];
+			++k; ++i;
+		}
+		while (j < right.size()) {
+			nums[k] = right[j];
+			++k; ++j;
+		}
+	}
+	void mergeSort(vector<int> &nums, int l, int r) {
+		int m = l + (r - l) / 2;
+		if(l < m)
+			mergeSort(nums, l, m);
+		if(m + 1 < r)
+			mergeSort(nums, m + 1, r);
+		merge(nums, l, m, r);
+	}
+};
+```
+
+### Heap Sort
+
+Heap is an array whose rule is maintained by full binary tree. Max heap has the feature: every node's value is larger or equal to its children values (left and right). Min heap is on the contrary.  
+```cpp
+class Solution {
+public:
+	// put ith element of nums in right place
+	void build_heap(vector<int> &nums, int size, int i) {
+		int large = i;
+		if (i * 2 + 1 < size && nums[large] < nums[i * 2 + 1])
+			large = i * 2 + 1;
+		if (i * 2 + 2 < size && nums[large] < nums[i * 2 + 2])
+			large = i * 2 + 2;
+		if (i != large) {
+			int temp = nums[i];
+			nums[i] = nums[large];
+			nums[large] = temp;
+			build_heap(nums, size, large);
+		}
+	}
+	vector<int> sortArray(vector<int> & nums) {
+		// node which has children is not leaf
+		// put non-leaf nodes in right place
+		for (int i = nums.size() / 2 - 1; i >= 0; --i)
+			build_heap(nums, nums.size(), i);
+		// max heap has been built now
+		for (int i = nums.size() - 1; i >= 0; --i) {
+			// swap nums[0] and nums[i]
+			// order has been finished from i to end
+			int temp = nums[0];
+			nums[0] = nums[i];
+			nums[i] = temp;
+			// the second param: i - end has order
+			// the third param: the first element(nums[0]) 
+			// changes its place. need to change it only.
+			build_heap(nums, i, 0);
+		}
+		return nums;
+	}
+};
 ```
