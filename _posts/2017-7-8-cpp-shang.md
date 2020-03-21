@@ -159,6 +159,19 @@ int fac(int n)
 - 调用外部文件的函数（定义在其他文件中），和extern修饰变量方法相同
 - 函数默认都是**外部**的
 
+#### 4.8.3 函数作用域符号::
+
+以下程序输出6 7，表示::取global变量
+```cpp
+#include <iostream>
+int i=6;
+int main()
+{
+    int i=7;
+    std::cout << ::i << ' ' << i << std::endl;
+}
+```
+
 ### 4.9 条件编译
 
 ```

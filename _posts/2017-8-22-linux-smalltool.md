@@ -24,11 +24,26 @@ set cindent
 syntax on
 ```
 
-In insert mode, other clipboard content could add to vim with CTRL-V. At this time, the format or indent could be messed up.
+In insert mode, other clipboard content could add to vim with CTRL-V. At this time, the format or indent could be messed up.  
+Inputting **=G** in normal mode could or may solve the problem. The first view of openning vim is normal mode.  
+Inputting **:** will enter command mode. The **V** can enter Visual mode, alse **i** is insert mode.  
 
-Inputting **=G** in normal mode could or may solve the problem. The first view of openning vim is mormal mode.
-
-Inputting **:** will enter command mode. The **V** can enter Visual mode, alse **i** is insert mode.
+Shortcut for vim editor:  
+1. Search/Replace:  
+/pattern  search fo pattern  
+?pattern  search backward for pattern  
+:%s/old/new/g   replace old with new throughout file  
+:%s/old/new/gc  replace old with new throughout file with confirmation  
+2. Working with multiple files:  
+:e filename  edit a file in a new buffer  
+:bn    go to next buffer  
+:bp    go to previous buffer  
+:bd    delete a buffer(close a file)  
+:ls    list all buffers  
+:sp filename  open a file in a new buffer and split window  
+:vsp filename open a file in a new buffer and split window vertically   
+ctrl + ww   switch windows  
+ctrl + wq   quit a window  
 
 ## install terminator
 
