@@ -116,6 +116,16 @@ sudo -E add-apt-repository -y ppa:george-edison55/cmake-3.x
 sudo -E apt-get update
 sudo apt-get install cmake
 ```
+I still recommand to use the official tutorial as shown the following:
+```sh
+wget https://github.com/Kitware/CMake/releases/download/v3.15.2/cmake-3.15.2.tar.gz
+tar -zxvf cmake-3.15.2.tar.gz
+cd cmake-3.15.2
+./bootstrap
+make
+sudo make install
+cmake --version
+```
 
 ## Install meshlab
 

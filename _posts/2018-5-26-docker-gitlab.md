@@ -84,9 +84,9 @@ $ sudo usermod -aG docker $USER
 
 ### 镜像加速
 
-1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑**/etc/default/docker**文件,在其中的**DOCKER_OPTS**中添加获得的加速器配置**--registry-mirror=<加速器地址>**, 如:
+1. 对于使用upstart的系统 (ubuntu 14.04) 而言,编辑**/etc/default/docker**文件,在其中的**DOCKER_OPTS**中添加获得的加速器配置**--registry-mirror=<加速器地址>**, 如(how to access system-assigned url, please login to [the link](https://cr.console.aliyun.com/?spm=a2c63.p38356.879954.5.1b987c8f9giMyU)):
 ```
-DOCKER_OPTS="--registry-mirror=https://jxus37ad.mirror.aliyuncs.com"
+DOCKER_OPTS="--registry-mirror=https://[system-assigned-automatically].mirror.aliyuncs.com"
 ```
 重新启动服务。
 ```
@@ -96,11 +96,19 @@ $ sudo service docker restart
 ```
 systemctl enable docker
 ```
-启用服务后,编辑**/etc/systemd/system/multi-user.target.wants/docker.service**文件,找到**ExecStart=**这一行,在这行最后添加加速器地址**--registry-mirror=<加速器地址>**, 如:
+启用服务后  
+* Old way: 编辑`/etc/systemd/system/multi-user.target.wants/docker.service`文件,找到**ExecStart=**这一行,在这行最后添加加速器地址**--registry-mirror=<加速器地址>**, 如:
+`ExecStart=/usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com`.  
+* New way: renew or edit `/etc/docker/daemon.json`, and add the following content to it:
+```sh
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+		  "registry-mirrors": ["https://7pf90cz0.mirror.aliyuncs.com"]
+}
+EOF
 ```
-ExecStart=/usr/bin/dockerd --registry-mirror=https://jxus37ad.mirror.aliyuncs.com
-```
-重新加载配置并且重新启动。
+重新加载配置并且重新启动。 
 ```
 $ sudo systemctl daemon-reload
 $ sudo systemctl restart docker
