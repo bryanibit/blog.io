@@ -244,7 +244,8 @@ As usual, you sould add include_directories of subdirectory to root cmakelists:
 set(DSV_LIB ${PROJECT_NAME} CACHE INTERNAL "description" FORCE)
 set(DSV_INCLUDE ${PROJECT_SOURCE_DIR} CACHE INTERNAL "description" FORCE)
 ```
-<Complement>: set(<var> <value> CACHE) is a common way to set **cmake variables** and another way is `cmake -D<var>=<value>` which sets cache variable. There are lots of cmake variables you can find all of them in [its website](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html).
+
+**Complement**: set(var val CACHE) is a common way to set **cmake variables** and another way is `cmake -Dvar=val` which sets cache variable. There are lots of cmake variables you can find all of them in [its website](https://cmake.org/cmake/help/latest/manual/cmake-variables.7.html).
 
 ## Load Script in CMakeLists.txt
 
@@ -258,3 +259,8 @@ execute_process(COMMAND ${cmd} "script.py"
                 RESULT_VARIABLE result_generated)
 ```
 The last command means executing ```python script.py``` in directory called "${generated_path}". result_generated save whether true or not.
+
+## Running a command at configure time or at build time
+
+1. Use `execute_process` to run a process and access the results. The example is shown in the above header list. Simplily, the command will be executed when you type `cmake ..` in the terminal.
+2. Use `add_custom_command` to run a process to generate something like a header file. The generation happens when you run `make` and after his depends is complete.
