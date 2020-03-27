@@ -74,12 +74,17 @@ $ sudo apt-get install docker-ce
 $ sudo docker run hello-world
 ```
 
-### Add user to docker
+### Add user to docker?
 
 In case Docker complains about not being able to connect to the Docker daemon make sure you are in the docker group. Then you do not need to use ```sudo```, everytime you run docker image.  
 
-```
-$ sudo usermod -aG docker $USER
+```sh
+sudo usermod -aG docker $USER
+# *gpasswd --add $USER group-name* is same with above
+# group needs to be created before with *groupadd group*
+sudo service docker restart # ubuntu14.04
+newgrp docker # tune current user to new group
+docker ps # make sure no sudo
 ```
 
 ### 镜像加速

@@ -255,19 +255,19 @@ syntax on
 ## 安装NVIDIA驱动方法
 
 卸载可能存在的旧版本 nvidia 驱动（对没有安装过 nvidia 驱动的主机，这步可以省略，但推荐执行，无害）
-
+```
          sudo apt-get remove --purge nvidia*
-
+```
 安装驱动可能需要的依赖(可选)
-
+```
          sudo apt-get update
 
-         sudo apt-get install dkms build-essential linux-headers-generic
-
+         sudo apt-get install dkms build-essential
+```
 把 nouveau 驱动加入黑名单
-
+```
          sudo vim /etc/modprobe.d/blacklist-nouveau.conf
-
+```
   在文件 blacklist-nouveau.conf 中加入如下内容：
 
 ```

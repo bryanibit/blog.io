@@ -223,10 +223,8 @@ sudo apt-get udpate
 
 ## 移除一个apt-key
 
-**apt-key** is used to manage the list of keys used by apt to authenticate packages(.deb). Packages which have been authenticated using these keys will be considered trusted. *apt* uses strong security mechanisms based on the popular **GPG** encryption software to verify that the packages being distributed from the official Debian mirrors
-
-```apt-key add``` adds a key to ```/etc/apt/trusted.gpg``` by default. Use ```apt-key list``` to check the exiting key. For example, the result of list is:
-
+**apt-key** is used to manage the list of keys used by apt to authenticate packages(.deb). Packages which have been authenticated using these keys will be considered trusted. *apt* uses strong security mechanisms based on the popular **GPG** encryption software to verify that the packages being distributed from the official Debian mirrors.  
+`apt-key add` adds a key to */etc/apt/trusted.gpg* by default. Use `apt-key list` to check the exiting key. And use `apt-key del D50582E6` to delete one key. For example, the result of list is:
 ```
 pub   1024D/D50582E6 2009-02-01
 uid                  Kohsuke Kawaguchi <kkiu@kyterty.org>
@@ -235,13 +233,11 @@ uid                  [jpeg image of size 3704]
 sub   2048g/10AF40FE 2009-02-01
 ```
 
-Use ```apt-key del D50582E6``` to delete one key.
-
-```/etc/apt/trusted.gpg```: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted.  
-```/etc/apt/trusted.gpg.d/```: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts.  
-```/etc/apt/trustdb.gpg```: Local trust database of archive keys.  
-```/usr/share/keyrings/ubuntu-archive-keyring.gpg```: Keyring of Ubuntu archive trusted keys.  
-```/usr/share/keyrings/ubuntu-archive-removed-keys.gpg```: Keyring of Ubuntu archive removed trusted keys.  
+`/etc/apt/trusted.gpg`: Keyring of local trusted keys, new keys will be added here. Configuration Item: Dir::Etc::Trusted.  
+`/etc/apt/trusted.gpg.d/`: File fragments for the trusted keys, additional keyrings can be stored here (by other packages or the administrator). Configuration Item Dir::Etc::TrustedParts.  
+`/etc/apt/trustdb.gpg`: Local trust database of archive keys.  
+`/usr/share/keyrings/ubuntu-archive-keyring.gpg`: Keyring of Ubuntu archive trusted keys.  
+`/usr/share/keyrings/ubuntu-archive-removed-keys.gpg`: Keyring of Ubuntu archive removed trusted keys.  
 
 ## 添加一个public key for apt update
 
