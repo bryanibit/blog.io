@@ -737,3 +737,84 @@ public:
 	}
 };
 ```
+
+## binary search
+
+只要数组有序，就应该想到双指针技巧(包括快慢指针（链表）、**左右指针**（数组）)  
+There are two types. One of them is [l, r) and the other is [l, r]. The follwing code have the same feature: when `l == r`, `while` quite.
+```python
+def binary_search_open(l, r, cond) # r = len(nums)
+  while l < r:
+    m = l + (r - l) // 2
+    if cond(m):
+      r = m
+    else:
+      l = m + 1
+  return l
+def binary_search_close(l, r, cond):# r = len(nums) - 1
+  while l <= r: # note
+    m = l + (r - l)  // 2 # in case of overflow
+    if cond(m):
+      r = m - 1 # node
+    else:
+      l = m + 1
+  return l
+```
+
+e.g. find the bound of value in an ordered array
+```python
+# from while(l < r), use open array [l, r)
+def find_left_index(l, r, nums, target): # r = len(nums)
+    while(l < r):
+        m = l + (r - l) // 2
+        if nums[m] < target:
+            l = m + 1
+        elif nums[m] > target:
+            r = m
+        else:
+            r = m # note
+    return l
+def find_right_index(l, r, nums, target):
+    while(l < r):
+        m = l + (r - l) // 2
+        if nums[m] < target:
+            l = m + 1
+        elif nums[m] > target:
+            r = m
+        else:
+            l = m + 1 # note
+    return r - 1
+if __name__=='__main__':
+    nums = [1,2,2,2,3,3,3,4,5,5,5]
+    index = find_left_index(0, len(nums), nums, 3)
+    index_ = find_right_index(0, len(nums), nums, 3)
+    print("index from {0} to {1}".format(index, index_))	
+```
+
+## Slice Windows
+
+## Linux thread and process
+
+The thread and process have the same structure like:
+```c
+struct task_struct {
+    // 进程状态
+    long              state;
+    // 虚拟内存结构体
+    struct mm_struct  *mm; // note
+    // 进程号
+    pid_t              pid;
+    // 指向父进程的指针
+    struct task_struct __rcu  *parent;
+    // 子进程列表
+    struct list_head        children;
+    // 存放文件系统信息的指针
+    struct fs_struct        *fs;
+    // 一个数组，包含该进程打开的文件指针
+    struct files_struct        *files; // note
+};
+```
+*mm* means virtual memory and *files* can be shown like ![this image](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/task_struc_files.jpg)  
+我们知道系统调用`fork()`可以新建一个子进程，函数`pthread()`可以新建一个线程。但无论线程还是进程，都是用`task_struct`结构表示的，唯一的区别就是共享的数据区域不同。由下图可见  
+![memo1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/thread_process_memo1.jpg)
+![memo2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/thread_process_memo2.jpg)
