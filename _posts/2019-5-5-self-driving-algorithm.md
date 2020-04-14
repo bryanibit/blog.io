@@ -42,10 +42,11 @@ while L:
             node.distance = current.distance + node_to_current_distance
             node.parent = current
             # if node is not in L  
+
             L.append(node)
 ```
 
-a broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
+A broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
 
 ```python
 # Conventional(traditional) A* algorithm
@@ -53,7 +54,10 @@ a broad class of best first search algorithm compared to uniformed search algori
 for node in graph:
     node.f = Inf
     node.g = Inf
+# L is usually a priority queue
+
 L = []
+
 # g denotes distance from current node to start node   
 
 # f denotes the sum of g and the left distance of current node to goal node   
@@ -61,21 +65,32 @@ L = []
 start.g = 0  
 start.f = H(start)  
 L.append(start)  
+
 # On each iteration, the most likely to be on the shortest path from start(g) to destination(f)   
 
 while L:
+
     # the node with smallest f value  
-     
+
     current = node
     L.remove(current)
     if current == goal:
         report success
+
+    # set another set called closed_set to make sure "current" has not been arrived before
+
     for node in current.adjacent:
         if node.g > current.g + node_to_current_distance:
             node.g = current.g + node_to_current_distance
             node.f = node.g + H(node)
             node.parent = current
+
             # if node is not in L
+
+            # set another set named open_set of the same content with L
+
+            # use open_set.count(node) to make sure whether node can be added to L
+
             L.append(node)
 ```
 
