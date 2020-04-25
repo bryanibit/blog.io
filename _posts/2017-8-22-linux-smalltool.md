@@ -290,6 +290,20 @@ sudo prime-select nvidia/intel
 sudo reboot # if needed
 ```
 
+## sudo/su/root
+
+*sudo* means `superuser do` and *su* means `switch user`.  
+*su* will switch current user to *root* and *su bryan* will switch current suer to *bryan*. *su -root* will not only switch to root but switch current env to new user's env.  
+*sudo* will give root privilege temperory. And *sudo -i* means loginning with root privilege.
+```sh
+➜  ~ pwd
+/home/bryan
+➜  ~ sudo -i
+[sudo] password for bryan: 
+root@bryan-5810:~# pwd
+/root
+```
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**

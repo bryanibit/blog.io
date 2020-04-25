@@ -289,6 +289,35 @@ docker inspect {my-container} //Look for RestartPolicy in the output
 docker update --restart=no {my-container}
 ```
 
+## docker basic operations
+
+1. remove all container whether it is running or not
+```sh
+docker container stop $(docker container ls -aq)
+docker container prune
+```
+
+## Running GUI inside Docker Container  
+
+There can be two types of applications that you can containerise:  
+1. Application that run as a background service(like a Database, WebServer, etc)  
+2. GUI Applications that run in the foreground.  
+
+For the **second** one(GUI Application), we need to have a XServer which is available as part of every Linux Desktop Environment. But within a Container we don't have any XServer -- so we will
+
+* share the Host's XServer with the container by creating a volume via `--volume="$HOME/.Xauthority:/root/.Xauthority:rw"`.
+* share the Host's **DISPLAY** environment variable to the container via `--env="DISPLAY"`.
+* run container with **host** network dirver with `--net=host`. 
+
+Let's take an example. Use the *Dockerfile* to build an image via `docker build -t gui-test:latest .`.
+```sh
+# Dockerfile
+FROM ubuntu:16.04
+RUN apt-get update && apt-get install xlogo
+CMD ["/usr/bin/xlogo"]
+```
+Let's run the image via `docker run --net=host --env="DISPLAY" --volume="$HOME/.Xauthority:/root/.Xauthority:rw" gui-test:latest`.
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**

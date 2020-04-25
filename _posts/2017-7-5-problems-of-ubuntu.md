@@ -246,11 +246,18 @@ Use ```apt-key del D50582E6``` to delete one key.
 ## 添加一个public key for apt update
 
 Terminal says *The following signatures couldn't be verified because the public key is not available: NO_PUBKEY F42ED6FBAB17C654*, when we use *apt update*.  
-*solution*:  
-```
+**solution**:  
+```sh
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys F42ED6FBAB17C654
 ```
 That is because maybe I lost the process *set up your keys* when installing ROS.
+**another solution**: 
+```sh
+sudo add-apt-repository ppa:webupd8team/y-ppa-manager
+sudo apt-get update
+sudo apt-get install y-ppa-manager
+```
+In terminal, type `y-ppa-manager` and enter *Advance* and select *Try to import all missing GPG keys* and click OK.  
 
 ## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
