@@ -265,27 +265,33 @@ syntax on
 ## 安装NVIDIA驱动方法
 
 卸载可能存在的旧版本 nvidia 驱动（对没有安装过 nvidia 驱动的主机，这步可以省略，但推荐执行，无害）
-
+```
          sudo apt-get remove --purge nvidia*
-
+```
 安装驱动可能需要的依赖(可选)
-
+```
          sudo apt-get update
 
-         sudo apt-get install dkms build-essential linux-headers-generic
-
+         sudo apt-get install dkms build-essential
+```
 把 nouveau 驱动加入黑名单
-
+```
          sudo vim /etc/modprobe.d/blacklist-nouveau.conf
-
+```
   在文件 blacklist-nouveau.conf 中加入如下内容：
 
 ```
   blacklist nouveau
-  options nouveau modeset=0
   blacklist lbm-nouveau
+  blacklist nvidia-173
+  blacklist nvidia-96
+  blacklist nvidia-current
+  blacklist nvidia-173-updates
+  blacklist nvidia-96-updates
+  options nouveau modeset=0
   alias nouveau off
   alias lbm-nouveau off
+  alias nvidia nvidia_current_updates
 ```
 
 ```sudo update-initramfs -u```重启后再次进入字符终端界面，并关闭图形界面
@@ -310,7 +316,7 @@ $ sudo apt-get install nvidia- (press tab to see latest). 384 (do not use 378, m
 
 2. 后面的参数非常重要，不可省略：
 
-        sudo ./NVIDIA-Linux-x86_64-384.59.run –no-opengl-files
+        sudo ./NVIDIA-Linux-x86_64-384.59.run --no-opengl-files
         //no-opengl-files表示只安装驱动文件，不安装OpenGL文件，避免login loop。
 
 3. 安装cuda
@@ -362,6 +368,24 @@ pip3 install --upgrade tensorflow-gpu==1.4
 3. Add two “@” type A records that point to the GitHub ips *192.30.252.153* and *192.30.252.154* and one “www” CNAME record that points to your **USERNAME.github.io** url.
 
 ![Custom URL](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/customURLSetting.png)
+
+## vscode installation
+
+编译的规则由tasks.json和launch.json确定，launch.json——告诉VS Code如何执行启动任务，task.json——告诉launch或者编译器需要执行什么操作。  
+其中的可以确定的环境变量描述为：  
+| 变量名 | 含义 |
+|:-----------------:|:-----------------------:|
+| ${workspaceRoot} |  当前打开的文件夹的绝对路径+文件夹的名字  |
+| ${workspaceRootFolderName} | 当前打开的文件夹的名字 |
+| ${file}  | 	当前打开正在编辑的文件名，包括绝对路径，文件名，文件后缀名  |
+| ${relativeFile}  | 从当前打开的文件夹到当前打开的文件的路径，如当前打开的是test文件夹，当前的打开的是main.c，并有test/first/second/main.c，那么此变量代表的是  first/second/main.c |
+| ${fileBasename}  | 当前打开的文件名+后缀名，不包括路径  |
+| ${fileBasenameNoExtension} |  当前打开的文件的文件名，不包括路径和后缀名  |
+| ${fileDirname}  | 当前打开的文件所在的绝对路径，不包括文件名 |
+| ${fileExtname}  | 当前打开的文件的后缀名 |
+| ${cwd}  | 任务开始运行时的当前工作目录  |
+|${lineNumber} |  当前打开的文件，光标所在的行数  |
+
 
 ## Donation
 
