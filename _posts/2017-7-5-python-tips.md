@@ -86,15 +86,22 @@ for line in lines:
 **e.g.**  
 ```python
 pixel = np.zeros((439,2), dtype=int)
-s = pixel.shape[:-1]+(1,)
-result = np.hstack((pixel,np.ones(s)))
+s = pixel.shape[:-1]+(1,) # s (439, 1)
+result = np.hstack((pixel,np.ones(s))) # result (439, 3)
 ```
 
 在shape=(432,2)的数组上加上一列使用```np.colomn_stack(())```
 ```python
 pixel = np.zeros((439,2), dtype=int)
-s = np.ones(439, dtype=int)
+s = np.ones(439, dtype=int) 
 result = np.column_stack((pixel,s))
+```
+In conclusion, *hstack* needs to make sure two matrixes have same first dimenstion. However, *column_stack* doesn't need to do it.  
+*vstack* makes sure that the second dimension is the same. For example,  
+```python
+pixel = np.zeros((439, 2), dtype = int)
+s = (1,) + pixel.shape[-1:] # s (1, 2)
+result = np.vstack((pixel, np.ones(s))) # result(440 * 2)
 ```
 
 ## 矢量求范数
@@ -184,6 +191,23 @@ if args.verbosity:
 # ××.py -v
 ```
 **<Note>** 如果不指定参数，参数默认为None，与整数比较会报错，可以加上default=
+
+## any() all()
+
+*any*: If any one of elements is true, then return true.  
+*all*: if all of elements is ture, then return ture.  
+```python
+def any(iterable):
+	for element in iterable:
+	    if element:
+	        return True
+	return False
+def all(iterable):
+	for element in iterable:
+	    if not element:
+	        return False
+	return True	
+```	
 
 ## ord() chr()
 
@@ -859,7 +883,7 @@ class Student(object):
 ### 使用property
 
 Python内置的@property装饰器就是负责把一个方法变成属性调用的：
-```
+```python
 class Student(object):
 
     @property
@@ -1005,4 +1029,4 @@ class Solution(object):
         path.pop()
         Solution._get_subset(nums, curr+1, path, solutions)
 ```
-All mutable varible is transformed by reference.  
+Note that: All **mutable** varible is transformed **by reference**. 
