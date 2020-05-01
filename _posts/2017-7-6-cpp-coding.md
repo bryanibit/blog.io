@@ -364,4 +364,43 @@ int main(){
 }
 ```
 
+## Send a signal to a process
 
+Signals are software interrupts delivered to a process by the operating system. The following tutorial shows how to handle the signal by defining *callback functions* to manage the signal.  
+```c
+// signal example using c
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <signal.h>
+void callback_handler(int signum){
+	printf("Caught signal %d\n", signum);
+	// do some clean up work
+	exit(signum);
+}
+int main(){
+	signal(SIGINT, callback_handler);
+	while(1){
+		printf("Program processing stuff here.\n");
+		sleep(1);
+	}
+	return EXIT_SUCCESS;
+}
+```
+
+## Use double in for loop
+
+```cpp
+// not include 4.8, it has error
+// 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6,
+for(double i = 0.0; i <= 4.8; i += 0.2){
+	std::cout << i << ", ";
+}
+std::cout << std::endl;
+// add min resolution 0.2 / 10, the result has 4.8
+// 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2, 2.2, 2.4, 2.6, 2.8, 3, 3.2, 3.4, 3.6, 3.8, 4, 4.2, 4.4, 4.6, 4.8, 
+for(double i = 0.0; i < 4.8 + 0.2 / 10; i += 0.2){
+	std::cout << i << ", ";
+}
+std::cout << std::endl;
+```

@@ -145,4 +145,17 @@ A method in a class may require an additional *#include* over what the class its
 In short: avoid the use of the ternary operator (COND ? THEN : ELSE) with Eigen's expressions.  
 7. Pass-by-value  
 In short, do not use pass-by-value in Eigen. [Passing Eigen objects by value to functions](https://eigen.tuxfamily.org/dox-devel/group__TopicPassingByValue.html)  
-Passing objects by value is almost always a very bad idea in C++, as this means useless copies, and one should pass them by reference instead. 
+Passing objects by value is almost always a very bad idea in C++, as this means useless copies, and one should pass them by reference instead.  
+
+## Debug Eigen on clion or visual studio
+
+In Eigen Open Source, there are [two directories](https://github.com/PX4/eigen/tree/master/debug), which are for gdb for Linux and Microsoft VS. On VS, right click on solution manager, and then add existing item called **eigen.natvis** in *debug/msvc* directory. You can debug Eigen projects and inspect values of Eigen library.  
+Because Clion uses default compiler, gdb, and then how to debug Eigen in Clion? First, add file called **.gdbinit**, and add following content to the file.  
+```
+python
+import sys
+sys.path.insert(0, '/mypath/including/printers.py/directory/suchas/debug/gdb')
+from printers import register_eigen_printers
+register_eigen_printers (None)
+end
+```
