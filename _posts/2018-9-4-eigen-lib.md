@@ -159,3 +159,26 @@ from printers import register_eigen_printers
 register_eigen_printers (None)
 end
 ```
+
+## Eigen Slicing
+
+Eigen provides a possibility offered by *operator ()* to index sub-set of rows and columns. This API is introduced in Eigen 3.4. It supports all the features proposed by the **block API**, such as, `head(n), tail(n), segment(i,n), topLeftCorner(p, q), topRows(q) and so on`. In particular, it supports **slicing** as shown in the following:
+
+| Block operation | Version constructing a dynamic-size block expression | Version constructing a fixed-size block expression|
+|:---------------------------------------------------:|:---------------------------:|:-------------------------------:|
+| Bottom-left corner starting at row i with n columns |	A(seq(i,last), seqN(0,n))   |   A.bottomLeftCorner(A.rows()-i,n) |
+| Block starting at i,j having m rows, and n columns  |	A(seqN(i,m), seqN(i,n) 	    |   A.block(i,j,m,n)                 |
+| Block starting at i0,j0 and ending at i1,j1         |   A(seq(i0,i1), seq(j0,j1)  |	A.block(i0,j0,i1-i0+1,j1-j0+1) |
+| Even columns of A 	                              |   A(all, seq(0,last,2))     |             None                 |
+| First n odd rows A 	                              |   A(seqN(1,n,2), all) 	    |             None                 |
+| The last past one column                            |	A(all, last-1) 	            |   A.col(A.cols()-2)              |
+| The middle row                                      |	A(last/2,all)               |	A.row((A.rows()-1)/2)         | 
+| Last elements of v starting at i                    |	v(seq(i,last))              |	v.tail(v.size()-i)           |
+| Last n elements of v                                |	v(seq(last+1-n,last))       |   v.tail(n)                     |
+|---------------------------------------------------  |--------------------------------------------------------------|
+
+## Eigen Version
+
+At compile-time you have **EIGEN_WORLD_VERSION**, **EIGEN_MAJOR_VERSION** and **EIGEN_MINOR_VERSION**, you can easily embed this information in your application. *3.1.91* sounds like a beta version of 3.2. The version number macros are defined in `Macros.h` located at `eigen3\Eigen\src\Core\util\`.  
+
+Another way is to use command called `pkg-config --modversion eigen3`, and the result will be **EIGEN_WORLD_VERSION . EIGEN_MAJOR_VERSION . EIGEN_MINOR_VERSION**, such as 3.2.92.  

@@ -138,7 +138,6 @@ def match_low(feature1,feature2):
 
 1. shell command: locate opencv 发现机器上安装了很多opencv
 2. 在CMakeLists的find_package后加上
-
 ```
 message(STATUS "opencv libraty status")
 message(STATUS "opencv version: ${OPENCV_VERSION}")
