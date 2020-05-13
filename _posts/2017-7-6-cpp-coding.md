@@ -404,3 +404,17 @@ for(double i = 0.0; i < 4.8 + 0.2 / 10; i += 0.2){
 }
 std::cout << std::endl;
 ```
+
+## Use atan2/fabs to replace atan/abs in math.h(cmath)
+
+The difference between atan and atan2:  
+```cpp
+// from quadrants 1 and 4.
+double std::atan(double p);
+//  the arctangent of all four quadrants
+double std::atan2(double y, double x);
+// for float
+double fabs(double);
+// for int
+int abs(int);
+```
