@@ -182,3 +182,14 @@ Eigen provides a possibility offered by *operator ()* to index sub-set of rows a
 At compile-time you have **EIGEN_WORLD_VERSION**, **EIGEN_MAJOR_VERSION** and **EIGEN_MINOR_VERSION**, you can easily embed this information in your application. *3.1.91* sounds like a beta version of 3.2. The version number macros are defined in `Macros.h` located at `eigen3\Eigen\src\Core\util\`.  
 
 Another way is to use command called `pkg-config --modversion eigen3`, and the result will be **EIGEN_WORLD_VERSION . EIGEN_MAJOR_VERSION . EIGEN_MINOR_VERSION**, such as 3.2.92.  
+
+## Eigen element wise operation
+
+we may prefer to apply an operation to a matrix element-wise. This can be done by asking Eigen to treat the matrix as a general array by invoking the `array()`. For example,
+```cpp
+M.array().square(); // square every element of the matrix
+M.array() <= N.array();
+M.array().sqrt();
+M.array().sin();
+N = M * 2 // same with M.array() * 2
+```

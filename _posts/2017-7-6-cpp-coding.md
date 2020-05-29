@@ -418,3 +418,35 @@ double fabs(double);
 // for int
 int abs(int);
 ```
+
+## Pointer as member function
+
+If there are pointers such as char* in class member, the copy constructor and deconstructor of the class should be written explicitly.
+```cpp
+class String {
+private:
+	char* buffer;
+	size_t size;
+public:
+	String(const char* str) {
+		size = strlen(str);
+		buffer = new char[size + 1];
+		memcpy(buffer, str, size);
+		buffer[size] = 0;
+	}
+	// copy constructor makes sure deep copy
+	String(const String& src) :size(src.size), buffer(src.buffer) {
+		std::cout << "copy\n";
+		buffer = new char[size + 1];
+		memcpy(buffer, src.buffer, size);
+		buffer[size] = 0;
+	}
+	char& operator[](size_t i) {
+		return buffer[i];
+	}
+	~String() {
+		delete[] buffer;
+	}
+	friend std::ostream& operator<<(std::ostream& stream, const String& str);
+};
+```
