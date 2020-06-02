@@ -481,3 +481,40 @@ int main() {
     std::cin.get();
 }
 ```
+
+## Use Timer C++
+
+New a Timer class. Put start time to constructor and add end time to destructor.
+Ensure that you are compiling the source code at least with C++ 14.
+```cpp
+#include <thread>
+#include <chrono>
+#include <iostream>
+//The Timer class/structure can be reused in other classes
+class Timer {
+private:
+	std::chrono::time_point<std::chrono::steady_clock> start, end;
+	std::chrono::duration<float> dur;
+public:
+	Timer() {
+		start = std::chrono::high_resolution_clock::now();
+	}
+	~Timer() {
+		end = std::chrono::high_resolution_clock::now();
+		dur = end - start;
+		std::cout << "Timer is " << dur.count() * 1000 << " ms" << std::endl;
+	}
+};
+void Func(int n) {
+	Timer timer;
+	for (int i = 0; i < n; ++i) {
+		using namespace std::literals::chrono_literals;
+		std::this_thread::sleep_for(0.1s);
+	}
+}
+// output: Timer is 1106.3 ms
+int main() {
+	Func(11);
+	std::cin.get();
+}
+```
