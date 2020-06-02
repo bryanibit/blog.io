@@ -450,3 +450,34 @@ public:
 	friend std::ostream& operator<<(std::ostream& stream, const String& str);
 };
 ```
+
+## lambda basic operation
+
+```cpp
+#include <vector>
+#include <iostream>
+#include <functional>
+//fun1 and fun2 is type
+using fun1 = void(*)(int);
+typedef void(*fun2)(int);
+void ForEach(const std::vector<int> &v, std::function<void(int)> fun) {
+    for (auto val : v)
+        fun(val);		
+}
+int main() {
+    std::vector<int> v{1,2,3,4,5,6};
+    // multiple ways to express lambda_c
+    fun1 lambda_c;
+    //fun2 lambda_c;
+    //void(*lambda_c)(int);
+    //std::function<void(int)> lambda_c
+    lambda_c = [](int i) mutable {std::cout << i << std::endl; };
+    int b = 0;
+    // modify b with keyword mutable
+    // lambda is a closure after capturing b
+    // closure can be stored in std::function
+    std::function<void(int)> lambda = [b](int i) mutable {b = 1; std::cout << i << std::endl; };
+    ForEach(v,  lambda);
+    std::cin.get();
+}
+```
