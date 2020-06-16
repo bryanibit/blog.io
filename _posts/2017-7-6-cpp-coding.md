@@ -70,7 +70,7 @@ libVimbaCPP.so #Find Vimba
 ### 获取文件夹下的文件名称
 
 ```c
-// argb[1] is the input path, char* type
+// argv[1] is the input path, char* type
 #include <string>
 #include <iostream>
 #include "boost/filesystem.hpp"
@@ -518,3 +518,53 @@ int main() {
 	std::cin.get();
 }
 ```
+
+## RAII(Resource Acquisation is Initialization)
+
+Think carefully about copying behavior in resource-managing (RAII) classes. The common ways are:  
+1. copying delete: `class Mutex:private uncopyable{};` or 
+```cpp
+class Mutex{
+public:
+	Mutex(const Mutex&) = delete;
+	Mutex& operator=(const Mutex&) = delete;
+}
+```
+2. referece counting: 
+As far as I'm concerned, `std::shared_ptr` follows RAII rules. We take over it to achieve this here.
+```cpp
+class Mutex {
+public:
+	Mutex(std::mutex* m) :m_mutex(m, [](std::mutex* p) {p->unlock(); }) {
+		m_mutex.get()->lock();
+	}
+private:
+	std::shared_ptr<std::mutex> m_mutex;
+};
+```
+We use `std::shared_ptr` to encapsulate one `std::mutex` to make sure mutex has
+RAII feature. When no resource is pointed by `m_mutex`, the **deleter** of `shared_ptr` is called to unlock the mutex. Thus, there is no need for user-defined deconstructor for the above class (default deconstructor is created and called by compiler). One of constructors of `shared_ptr` is defined as (not copy or move):
+```cpp
+template< class Y, class Deleter, class Alloc >
+shared_ptr( Y* ptr, Deleter d, Alloc alloc );
+```
+Based on the definition above, another note but **nothing with** RAII reminds me. The code is as follow when a `std::shared_ptr` points `C array`:
+```cpp
+class Entity{};
+//std::shared_ptr<Entity> sp(new Entity[10], [](auto p) {delete[] p; });
+std::shared_ptr<Entity> sp(new Entity[10], [](Entity* p) {delete[] p; });
+```
+Another RAII example but nothing with **copying** for `std::thread` is
+```cpp
+class Thread {
+private:
+   	std::thread m_th;
+public:
+	Thread(std::thread t):m_th(std::move(t)) {}
+	~Thread() {
+		if (m_th.joinable())
+			m_th.detach();
+	}
+};
+```
+**More general rule for C++ copying**: a variable with pointer may include two parts of resource. Whem copying it, not only itself but its pointed resource (usually heap memory) should be copyed. For variables like **mutex**, **thread**, we can forbid copying or move its owership to another one.
