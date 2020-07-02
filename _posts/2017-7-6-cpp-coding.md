@@ -568,3 +568,95 @@ public:
 };
 ```
 **More general rule for C++ copying**: a variable with pointer may include two parts of resource. Whem copying it, not only itself but its pointed resource (usually heap memory) should be copyed. For variables like **mutex**, **thread**, we can forbid copying or move its owership to another one.
+
+## operator new (memory allocating) and new operator
+
+In C++ 98, `operator new` will allocate memory and return a `void*` object without initialize the memory. `new operator` will allocate memory and initialize it. And another is called `placement new` which initialize the exiting memory with type (class) constructors. For example,
+```cpp
+class Entity {
+private:
+	int x, y;
+public:
+	Entity() {
+		std::cout << "default ctor\n";
+	}
+};
+int main() {
+	// operator new allocate memory
+	// not call ctor
+	void * praw = operator new(sizeof(Entity));
+	// initialize memory with placement new
+	// cout "default ctor"
+	Entity* pent = new(praw) Entity;
+	pent->~Entity();
+	// correspond to operator new
+	operator delete(praw);
+	std::cin.get();
+}
+```
+Another similar instance about `operator new` is
+```cpp
+class Entity {
+private:
+	int x, y;
+public:
+    // static because returning a pointer
+    static void* operator new(size_t size){
+		std::cout << "heap memory allocated\n";
+		return ::operator new(size);
+	}
+	Entity() {
+		std::cout << "default ctor\n";
+	}
+};
+int main(){
+	//default ctor
+	Entity e1;
+	// output: heap memory allocated\n default ctor
+	Entity* e2 = new Entity;
+}
+```
+
+## Two Rules
+1. No **virtual** function, and then no **dynamic** type in C++98.
+2. All **copying** just copy object according to **static type not dynamic type**.
+```cpp
+class Entity {
+private:
+	int x;
+public:
+	Entity(int a):x(a) { std::cout << "Entity ctor\n"; }
+	// rule 1: virtual defined function
+	virtual int common() const{ return x; }
+	virtual ~Entity() = default;
+};
+class Player: public Entity {
+private:
+	int k;
+public:
+	Player(int a, int b) :Entity(a), k(b) { std::cout << "Player ctor\n"; }
+	int common() const { return k; }
+};
+// rule 2: pass by reference not by value
+void hello(Entity& e) {
+	std::cout << e.common() << std::endl;
+}
+int main() {
+	Entity e(1);
+	Player p(2, 3);
+	hello(p);
+	std::cin.get();
+}
+```
+If the above code output 3, it represents `common()` in `Player` is called. If 2 is printed,
+it means that of `Entity` is called. Only both **virtual** and **&** (reference) are existing, no copy happens and dynamic type is applied, 3 appears.
+![cpp_copy_virtual](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/cpp_copy_virtual.jpg)
+
+## delete/default keyword
+
+`default` can only be applied in ctor, such as copy, assignment copy and so on.
+`delete` is not only constrained to ctor. It can be applied to other functions, such as,
+```cpp
+// forbid class creating in heap, if put in class
+static void* operator new(size_t) = delete;
+```
