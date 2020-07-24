@@ -554,7 +554,7 @@ class Entity{};
 //std::shared_ptr<Entity> sp(new Entity[10], [](auto p) {delete[] p; });
 std::shared_ptr<Entity> sp(new Entity[10], [](Entity* p) {delete[] p; });
 ```
-Another RAII example but nothing with **copying** for `std::thread` is
+Another RAII example but nothing with **copying** for `std::thread` is as follow. It encapusulates `std::thread` with `class Thread` object. 
 ```cpp
 class Thread {
 private:
@@ -571,7 +571,13 @@ public:
 
 ## operator new (memory allocating) and new operator
 
-In C++ 98, `operator new` will allocate memory and return a `void*` object without initialize the memory. `new operator` will allocate memory and initialize it. And another is called `placement new` which initialize the exiting memory with type (class) constructors. For example,
+In C++ 98, `operator new` will allocate memory and return a `void*` object without initialize the memory. `new operator` will allocate memory and initialize it. And another is called `placement new` which initialize the exiting memory with type (class) constructors. In default, C++ provides the following `operator new` in global scope:  
+```cpp
+void* operator new(size_t) throw(std::bad_alloc);
+void* operator new(size_t, void*) throw();
+void* operator new(size_t, const std::nothrow_t&) throw();
+```
+The following code describes how to use the global default operator new to allocate space and construct objects:  
 ```cpp
 class Entity {
 private:
@@ -600,7 +606,9 @@ class Entity {
 private:
 	int x, y;
 public:
-    // static because returning a pointer
+    // static because calling it via Entity::operator new
+	// the operator new will hide other funcs of the same
+	// name outside of the scope (name-hiding rule)
     static void* operator new(size_t size){
 		std::cout << "heap memory allocated\n";
 		return ::operator new(size);
@@ -659,4 +667,39 @@ it means that of `Entity` is called. Only both **virtual** and **&** (reference)
 ```cpp
 // forbid class creating in heap, if put in class
 static void* operator new(size_t) = delete;
+```
+
+## iterator_traits STL
+
+Iterator is a glue binding STL algorithm such as `find()`, `count()` and STL containers such as `std::vector`. For deduction for all types like raw pointer, pointer to const or class pointer (iterator). The thoughts of designing iterator trait are as follow.
+```cpp
+// container iterator
+template <typename T>
+struct IteratorContainer{
+	T* ptr;
+	IteratorContainer(T* p = nullptr): ptr(p){}
+	typedef T value_type;
+};
+// STL iterator_traits
+template <typename T>
+struct iterator_traits{
+	typedef typename T::value_type value_type;
+};
+template <typename T>
+struct iterator_trait<T*>{
+	typedef T value_type;
+}// nothing with IteratorContainer
+// algorithm
+template <typename T>
+iterator_traits<T>::value_type func(T t){
+	return *t;
+}
+int main(){
+	IteratorContainter<int> p(new int(6));
+	// we need to deduct func return type:
+	// iterator_traits<IteratorContainter<int>>::value_type => 
+	// IteratorContainter<int>::value_type => int
+	std::cout << func(p) << std::endl; // output 6
+	func(new int(7)); // use iterator_traits specialization
+}
 ```
