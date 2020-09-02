@@ -215,3 +215,14 @@ Eigen::MatrixXd xy_joined(2, fpxx.size());
 xy_joined.row(0) = fpxx;
 xy_joined.row(1) = fpyy;
 ```
+
+## Eigen element wise operation
+
+we may prefer to apply an operation to a matrix element-wise. This can be done by asking Eigen to treat the matrix as a general array by invoking the `array()`. For example,
+```cpp
+M.array().square(); // square every element of the matrix
+M.array() <= N.array();
+M.array().sqrt();
+M.array().sin();
+N = M * 2 // same with M.array() * 2
+```

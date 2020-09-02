@@ -18,11 +18,11 @@ LQR: Linear Quadratic Regulation
 RADAR: Radio Detection And Ranging 
 SONAR: Sound Navigation And Ranging  
 
-## Path Planning (upenn)
+## Planning based on Search
+
+### Dijkstra algorithm
 
 ```python
-## Dijkstra's algorithm
-
 for node in graph:
     node.distance = Inf
 L = []
@@ -46,21 +46,17 @@ while L:
             L.append(node)
 ```
 
+### Conventional(traditional) A* algorithm
+
 A broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
-
 ```python
-# Conventional(traditional) A* algorithm
-
 for node in graph:
     node.f = Inf
     node.g = Inf
 # L is usually a priority queue
-
 L = []
 
-# g denotes distance from current node to start node   
-
-# f denotes the sum of g and the left distance of current node to goal node   
+# g denotes distance from current node to start node and f denotes the sum of g and the left distance of current node to goal node   
 
 start.g = 0  
 start.f = H(start)  
@@ -70,12 +66,13 @@ L.append(start)
 
 while L:
 
-    # the node with smallest f value  
+    # the first node with smallest f value in priority queue L
 
-    current = node
+    current = L.front()
     L.remove(current)
     if current == goal:
-        report success
+        if(reconstruct())
+            return true
 
     # set another set called closed_set to make sure "current" has not been arrived before
 
@@ -85,13 +82,11 @@ while L:
             node.f = node.g + H(node)
             node.parent = current
 
-            # if node is not in L
-
-            # set another set named open_set of the same content with L
-
-            # use open_set.count(node) to make sure whether node can be added to L
+            # if node is not in L, then set another set named open_set of the same content with L. Use open_set.count(node) to make sure whether node can be added to L
 
             L.append(node)
+print("Failed to find goal\n")
+return false
 ```
 
 ## Hybrid A*
