@@ -620,6 +620,10 @@ sudo umount /mnt
 ```
 8. Reboot and remove CD or USB: sudo reboot.
 
+## Break points not working in Clion
+
+Add `set(CMAKE_C_FLAGS_DEBUG "-DNDEBUG")` to CMakeLists.txt		
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**

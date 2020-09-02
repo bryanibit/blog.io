@@ -9,7 +9,8 @@ description: Determined to adopt Eigen. This is logging.
 
 ## Transform
 
-```
+Rotate or transform a vector is the same with a matrix in the first place.  
+```cpp
 Eigen::Vector3f trans_vec_A;
 //note that you have to create a Translation because multiplying a 
 //Transform with a vector will _apply_ the transform to the vector
@@ -23,7 +24,29 @@ Eigen::Transform<float,3,Affine> combined =
       translation_A * rotation_B * rotation_C * rotation_D * translation_E;
 ```
 
-{Note that} ```combined = A*B*C*D*E```, so combined applied to a *vector v* is ```combined*v = A*B*C*D*E*v = A*(B*(C*(D*(E*v))))```.
+{Note that} ```combined = A*B*C*D*E```, so combined applied to a *vector v* is ```combined*v = A*B*C*D*E*v = A*(B*(C*(D*(E*v))))```. Another way (not verified)
+to transform a matrix as shown
+```cpp
+Transform<float, 3, Affine> t = Transform<float, 3, Affine>::Identity();
+t.scale(0.8f);
+t.rotate(AngleAxisf(0.25f * M_PI, Vector3f::UnitX()));
+t.translate(Vector3f(1.5, 10.2, -5.1));
+```
+If apply a vector or matri to the transformation, like `t * v`. And a third method (not verified) of 3Drotation is
+```cpp
+Vector3f w = //rotation axis
+Vector3f c = // center of rotation
+Affine3f A = Translation3f(c) * AngleAxisf(theta, w) * Translation3f(-c); // Affine3f is Eigen::Transform<>
+// it encapsulates a Matrix4f that you get with A.matrix()
+Eigen::VectorXd p = A * v;
+```
+And the fourth way (proved) to rotate 2D matrix is 
+```cpp
+Matrix2f m;
+m = Eigen::Rotation2Df(heading); // rad
+Eigen::matrixXd p = m * v;
+```
+
 
 ## MatrixXd/VectorXd
 
@@ -182,3 +205,13 @@ Eigen provides a possibility offered by *operator ()* to index sub-set of rows a
 At compile-time you have **EIGEN_WORLD_VERSION**, **EIGEN_MAJOR_VERSION** and **EIGEN_MINOR_VERSION**, you can easily embed this information in your application. *3.1.91* sounds like a beta version of 3.2. The version number macros are defined in `Macros.h` located at `eigen3\Eigen\src\Core\util\`.  
 
 Another way is to use command called `pkg-config --modversion eigen3`, and the result will be **EIGEN_WORLD_VERSION . EIGEN_MAJOR_VERSION . EIGEN_MINOR_VERSION**, such as 3.2.92.  
+
+## Combine two vector to one matrix
+
+```cpp
+Eigen::VectorXd fpxx(5);
+Eigen::VectorXd fpyy(5);
+Eigen::MatrixXd xy_joined(2, fpxx.size());
+xy_joined.row(0) = fpxx;
+xy_joined.row(1) = fpyy;
+```
