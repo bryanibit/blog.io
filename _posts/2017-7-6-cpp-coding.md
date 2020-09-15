@@ -127,10 +127,9 @@ ios::binary          打开文件为二进制文件，否则为文本文件
 
 
 ### C++ split()
-
+// use find
 ```
-std::vector<std::string> split(const std::string& s, char seperator)
-{
+std::vector<std::string> split(const std::string& s, char seperator){
 	std::vector<std::string> output;
 	std::string::size_type prev_pos = 0, pos = 0;
 	while ((pos = s.find(seperator, pos)) != std::string::npos)
@@ -141,6 +140,20 @@ std::vector<std::string> split(const std::string& s, char seperator)
 	}
 	output.push_back(s.substr(prev_pos, pos - prev_pos)); // Last word
 	return output;
+}
+// use find_first_of and find_first_not_of
+std::vector<string> split(string& s, const string& delimiter){
+	int prev_pos = 0;
+	int pos = 0;
+        vector<string> ouput;
+	pos = s.find_first_not_of(delimiter, prev_pos);
+	prev_pos = s.find_first_of(delimiter, pos);
+	while (prev_pos != string::npos || pos != string::npos){
+		output.push_back(s.substr(prev_pos, pos - prev_pos))
+		pos = s.find_first_not_of(delimiter, prev_pos);
+		prev_pos = s.find_first_of(delimiter, pos);
+
+	}
 }
 ```
 
