@@ -212,6 +212,9 @@ gcc -o foo foo.c -L. -lfoo -Wl,-rpath=./
 ```
 gcc -o foo foo.c -L$(prefix)/lib -lfoo -Wl,-rpath=$(prefix)/lib
 ```
+One other things, the `-Wl, xxx` option for **gcc** passes a comma-separated list of token as a space-separated list of arguments to the **linker**. So repeated instances like `gcc -Wl,aaa,bbb,ccc -Wl,-rpath=.` eventually becomes a linker call `ld aaa bbb ccc -rpath=.`.  
+And `-rpath dir` means *add a directory to the runtime library search path*. This is used when linking an ELF executable with shared objects. All `-rpath` arguments are concatenated and passed to the runtime linker, which uses them to locate shared objects at runtime. It has the same function with `LD_RUN_PATH`.  
+More detailed content about **gcc argument** can be found in [ftp.gnu.org](https://ftp.gnu.org/old-gnu/Manuals/ld-2.9.1/html_node/ld_3.html#SEC3).  
 
 第二种方式就是，将链接库的目录添加到*/etc/ld.so.conf*文件中或者添加到*/etc/ld.so.conf.d/*.conf*中，然后使用ldconfig进行更新，进行动态链接库的运行时动态绑定。如：
 

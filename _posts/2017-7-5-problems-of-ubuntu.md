@@ -47,7 +47,7 @@ kill -9 <PID>
         sudo apt-get update
 
 ## uninstall sublime from terminal
-```
+```sh
 sudo rm -r /opt/Sublime\ Text\ 2
 sudo rm /usr/bin/sublime
 sudo rm /usr/share/applications/sublime.desktop
@@ -58,10 +58,13 @@ sudo sed -i 's/sublime\.desktop/gedit.desktop/g' /usr/share/applications/default
 
 Firefox is already running, but is not responding. To open a new window, you must first close the existing Firefox process, or restart your system.
 
-**solution:**
-           pkill firefox
-           cd /home/inin/.mozilla/firefox/×××××.default
-           rm .parentlock
+### Solution
+
+```sh
+pkill firefox
+cd /home/inin/.mozilla/firefox/×××××.default
+rm .parentlock
+```
 
 ## Upgrade to Ubuntu 16.04 /boot空间不足问题
 
@@ -77,8 +80,12 @@ Firefox is already running, but is not responding. To open a new window, you mus
 - you may need to re-run your boot loader[grub]
 - The link /initrd.img.old is a damaged link
 - Removing symbolic link initrd.img.old  
-**solution:**
-         sudo /usr/sbin/update-grub
+
+### Solution
+
+```sh
+sudo /usr/sbin/update-grub
+```
 
 ## install ros an error code
 
@@ -104,23 +111,25 @@ Errors were encountered while processing:
 E: Sub-process /usr/bin/dpkg returned an error code (1)
 ```
 
-**solution:**  
-```
+### Solution
+ 
+```sh
 cd /var/lib/dpkg
 sudo mv info info.bak
 sudo mkdir info
 ```
-重新```sudo apt-get install ××××××```
+
+重新`sudo apt-get install ××××××`
 
 ## Apport错误提示，要求发送错误报告
 
-```
+```sh
 ls /var/crash
 sudo rm -rf /var/crash/*
 sudo reboot
-
+```
 如果还有该错误提示
-
+```sh
 sudo /etc/default/apport
 找到 enabled=1 这一行，并改变到0(zero)
 ```
@@ -132,13 +141,13 @@ sudo /etc/default/apport
 所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了```rm -rf *```)
 
 1. 恢复.bashrc
-```
+```sh
 /bin/cp /etc/skel/.bashrc ~/
 ```
 2. touch .bash_profile
 复制以下内容到其中
 
-```
+```sh
 \# .bash_profile
 \# If .bash_profile exists, bash doesn't read .profile
 if [[ -f ~/.profile ]]; then
@@ -156,13 +165,13 @@ Files with the **.sh** extension in the */etc/profile.d* directory get executed 
 The shell config file */etc/bash.bashrc* is sometimes suggested for setting environment variables system-wide. While this may work on Bash shells for programs started from the shell, **variables set in that file are not available by default to programs started from the graphical environment in a desktop session**.  
 
 The following content is used for ```sudo -A script.sh``` without password. Because sudo -A use environment variable called *SUDO_ASKPASS*, I decide to add it to ENV and then launch it via "start application" which belongs to graphical session of desktop. So the easiest way is to add ```export SUDO_ASKPASS="/home/name/.pass.sh"``` to */etc/profile.d/sudopass.sh*. And */home/name/.pass.sh* should have the following content with executable permission.
-```
+```sh
 #!/usr/bin/env sh
 echo 'myPassword'
 ```
 
 Frankly speaking, I can use the following way to finish the problem, too.
-```
+```sh
 sudo visudo
 #in the bottom of file, type the following
 $USER ALL=(ALL) NOPASSWD: ALL
@@ -292,7 +301,7 @@ make: *** [all] Error 2
 The problem is described as libboost_system.so找不到链接目录
 
 解决方案为:
-```
+```sh
 locate  boost_system
 ```
 查找到目录为：
@@ -619,6 +628,29 @@ sudo umount /mnt/dev
 sudo umount /mnt
 ```
 8. Reboot and remove CD or USB: sudo reboot.
+
+## Break points not working in Clion
+
+Add `set(CMAKE_C_FLAGS_DEBUG "-DNDEBUG")` to CMakeLists.txt		
+
+
+## ubuntu root password lost
+
+1. Reboot ubuntu to GNU GRUB memu via pressing `SHIFT` after start computers.
+2. Once rebooting to GRUB menu, press `e` to edit boot option.
+3. Locate a line starting with `linux` and edit it to include read-write mode `rw` and `init=/bin/bash`. For example, FROM:
+```sh
+linux     /boot/vmlinuz-4-4.0-22-generic root=UUID=43ad24d3-e\
+c5b-44ee-a099-a88eb9520989 ro  quiet splash $vt_handoff
+```
+CHANGE TO:
+```sh
+linux     /boot/vmlinuz-4-4.0-22-generic root=UUID=43ad24d3-e\
+c5b-44ee-a099-a88eb9520989 rw init=/bin/bash
+```
+4. After modifying these, press `F10` or `ctrl + x` to boot.
+5. Confirm root partition should be mounted with read/wirte flags via `mount | grep -w /`.
+6. Simply run `passwd` without arguments and then enter your new root password.
 
 ## Donation
 

@@ -74,7 +74,7 @@ ${CMAKE_THREAD_LIBS_INIT} #for Pthread_create etc
 ### 获取文件夹下的文件名称
 
 ```c
-// argb[1] is the input path, char* type
+// argv[1] is the input path, char* type
 #include <string>
 #include <iostream>
 #include "boost/filesystem.hpp"
@@ -131,10 +131,9 @@ ios::binary          打开文件为二进制文件，否则为文本文件
 
 
 ### C++ split()
-
+// use find
 ```
-std::vector<std::string> split(const std::string& s, char seperator)
-{
+std::vector<std::string> split(const std::string& s, char seperator){
 	std::vector<std::string> output;
 	std::string::size_type prev_pos = 0, pos = 0;
 	while ((pos = s.find(seperator, pos)) != std::string::npos)
@@ -145,6 +144,20 @@ std::vector<std::string> split(const std::string& s, char seperator)
 	}
 	output.push_back(s.substr(prev_pos, pos - prev_pos)); // Last word
 	return output;
+}
+// use find_first_of and find_first_not_of
+std::vector<string> split(string& s, const string& delimiter){
+	int prev_pos = 0;
+	int pos = 0;
+        vector<string> ouput;
+	pos = s.find_first_not_of(delimiter, prev_pos);
+	prev_pos = s.find_first_of(delimiter, pos);
+	while (prev_pos != string::npos || pos != string::npos){
+		output.push_back(s.substr(prev_pos, pos - prev_pos))
+		pos = s.find_first_not_of(delimiter, prev_pos);
+		prev_pos = s.find_first_of(delimiter, pos);
+
+	}
 }
 ```
 
@@ -421,4 +434,289 @@ double std::atan2(double y, double x);
 double fabs(double);
 // for int
 int abs(int);
+```
+
+## Pointer as member function
+
+If there are pointers such as char* in class member, the copy constructor and deconstructor of the class should be written explicitly.
+```cpp
+class String {
+private:
+	char* buffer;
+	size_t size;
+public:
+	String(const char* str) {
+		size = strlen(str);
+		buffer = new char[size + 1];
+		memcpy(buffer, str, size);
+		buffer[size] = 0;
+	}
+	// copy constructor makes sure deep copy
+	String(const String& src) :size(src.size), buffer(src.buffer) {
+		std::cout << "copy\n";
+		buffer = new char[size + 1];
+		memcpy(buffer, src.buffer, size);
+		buffer[size] = 0;
+	}
+	char& operator[](size_t i) {
+		return buffer[i];
+	}
+	~String() {
+		delete[] buffer;
+	}
+	friend std::ostream& operator<<(std::ostream& stream, const String& str);
+};
+```
+
+## lambda basic operation
+
+```cpp
+#include <vector>
+#include <iostream>
+#include <functional>
+//fun1 and fun2 is type
+using fun1 = void(*)(int);
+typedef void(*fun2)(int);
+void ForEach(const std::vector<int> &v, std::function<void(int)> fun) {
+    for (auto val : v)
+        fun(val);		
+}
+int main() {
+    std::vector<int> v{1,2,3,4,5,6};
+    // multiple ways to express lambda_c
+    fun1 lambda_c;
+    //fun2 lambda_c;
+    //void(*lambda_c)(int);
+    //std::function<void(int)> lambda_c
+    lambda_c = [](int i) mutable {std::cout << i << std::endl; };
+    int b = 0;
+    // modify b with keyword mutable
+    // lambda is a closure after capturing b
+    // closure can be stored in std::function
+    std::function<void(int)> lambda = [b](int i) mutable {b = 1; std::cout << i << std::endl; };
+    ForEach(v,  lambda);
+    std::cin.get();
+}
+```
+
+## Use Timer C++
+
+New a Timer class. Put start time to constructor and add end time to destructor.
+Ensure that you are compiling the source code at least with C++ 14.
+```cpp
+#include <thread>
+#include <chrono>
+#include <iostream>
+//The Timer class/structure can be reused in other classes
+class Timer {
+private:
+	std::chrono::time_point<std::chrono::steady_clock> start, end;
+	std::chrono::duration<float> dur;
+public:
+	Timer() {
+		start = std::chrono::high_resolution_clock::now();
+	}
+	~Timer() {
+		end = std::chrono::high_resolution_clock::now();
+		dur = end - start;
+		std::cout << "Timer is " << dur.count() * 1000 << " ms" << std::endl;
+	}
+};
+void Func(int n) {
+	Timer timer;
+	for (int i = 0; i < n; ++i) {
+		using namespace std::literals::chrono_literals;
+		std::this_thread::sleep_for(0.1s);
+	}
+}
+// output: Timer is 1106.3 ms
+int main() {
+	Func(11);
+	std::cin.get();
+}
+```
+
+## RAII(Resource Acquisation is Initialization)
+
+Think carefully about copying behavior in resource-managing (RAII) classes. The common ways are:  
+1. copying delete: `class Mutex:private uncopyable{};` or 
+```cpp
+class Mutex{
+public:
+	Mutex(const Mutex&) = delete;
+	Mutex& operator=(const Mutex&) = delete;
+}
+```
+2. referece counting: 
+As far as I'm concerned, `std::shared_ptr` follows RAII rules. We take over it to achieve this here.
+```cpp
+class Mutex {
+public:
+	Mutex(std::mutex* m) :m_mutex(m, [](std::mutex* p) {p->unlock(); }) {
+		m_mutex.get()->lock();
+	}
+private:
+	std::shared_ptr<std::mutex> m_mutex;
+};
+```
+We use `std::shared_ptr` to encapsulate one `std::mutex` to make sure mutex has
+RAII feature. When no resource is pointed by `m_mutex`, the **deleter** of `shared_ptr` is called to unlock the mutex. Thus, there is no need for user-defined deconstructor for the above class (default deconstructor is created and called by compiler). One of constructors of `shared_ptr` is defined as (not copy or move):
+```cpp
+template< class Y, class Deleter, class Alloc >
+shared_ptr( Y* ptr, Deleter d, Alloc alloc );
+```
+Based on the definition above, another note but **nothing with** RAII reminds me. The code is as follow when a `std::shared_ptr` points `C array`:
+```cpp
+class Entity{};
+//std::shared_ptr<Entity> sp(new Entity[10], [](auto p) {delete[] p; });
+std::shared_ptr<Entity> sp(new Entity[10], [](Entity* p) {delete[] p; });
+```
+Another RAII example but nothing with **copying** for `std::thread` is as follow. It encapusulates `std::thread` with `class Thread` object. 
+```cpp
+class Thread {
+private:
+   	std::thread m_th;
+public:
+	Thread(std::thread t):m_th(std::move(t)) {}
+	~Thread() {
+		if (m_th.joinable())
+			m_th.detach();
+	}
+};
+```
+**More general rule for C++ copying**: a variable with pointer may include two parts of resource. Whem copying it, not only itself but its pointed resource (usually heap memory) should be copyed. For variables like **mutex**, **thread**, we can forbid copying or move its owership to another one.
+
+## operator new (memory allocating) and new operator
+
+In C++ 98, `operator new` will allocate memory and return a `void*` object without initialize the memory. `new operator` will allocate memory and initialize it. And another is called `placement new` which initialize the exiting memory with type (class) constructors. In default, C++ provides the following `operator new` in global scope:  
+```cpp
+void* operator new(size_t) throw(std::bad_alloc);
+void* operator new(size_t, void*) throw();
+void* operator new(size_t, const std::nothrow_t&) throw();
+```
+The following code describes how to use the global default operator new to allocate space and construct objects:  
+```cpp
+class Entity {
+private:
+	int x, y;
+public:
+	Entity() {
+		std::cout << "default ctor\n";
+	}
+};
+int main() {
+	// operator new allocate memory
+	// not call ctor
+	void * praw = operator new(sizeof(Entity));
+	// initialize memory with placement new
+	// cout "default ctor"
+	Entity* pent = new(praw) Entity;
+	pent->~Entity();
+	// correspond to operator new
+	operator delete(praw);
+	std::cin.get();
+}
+```
+Another similar instance about `operator new` is
+```cpp
+class Entity {
+private:
+	int x, y;
+public:
+    // static because calling it via Entity::operator new
+	// the operator new will hide other funcs of the same
+	// name outside of the scope (name-hiding rule)
+    static void* operator new(size_t size){
+		std::cout << "heap memory allocated\n";
+		return ::operator new(size);
+	}
+	Entity() {
+		std::cout << "default ctor\n";
+	}
+};
+int main(){
+	//default ctor
+	Entity e1;
+	// output: heap memory allocated\n default ctor
+	Entity* e2 = new Entity;
+}
+```
+
+## Two Rules
+1. No **virtual** function, and then no **dynamic** type in C++98.
+2. All **copying** just copy object according to **static type not dynamic type**.
+```cpp
+class Entity {
+private:
+	int x;
+public:
+	Entity(int a):x(a) { std::cout << "Entity ctor\n"; }
+	// rule 1: virtual defined function
+	virtual int common() const{ return x; }
+	virtual ~Entity() = default;
+};
+class Player: public Entity {
+private:
+	int k;
+public:
+	Player(int a, int b) :Entity(a), k(b) { std::cout << "Player ctor\n"; }
+	int common() const { return k; }
+};
+// rule 2: pass by reference not by value
+void hello(Entity& e) {
+	std::cout << e.common() << std::endl;
+}
+int main() {
+	Entity e(1);
+	Player p(2, 3);
+	hello(p);
+	std::cin.get();
+}
+```
+If the above code output 3, it represents `common()` in `Player` is called. If 2 is printed,
+it means that of `Entity` is called. Only both **virtual** and **&** (reference) are existing, no copy happens and dynamic type is applied, 3 appears.
+![cpp_copy_virtual](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/cpp_copy_virtual.jpg)
+
+## delete/default keyword
+
+`default` can only be applied in ctor, such as copy, assignment copy and so on.
+`delete` is not only constrained to ctor. It can be applied to other functions, such as,
+```cpp
+// forbid class creating in heap, if put in class
+static void* operator new(size_t) = delete;
+```
+
+## iterator_traits STL
+
+Iterator is a glue binding STL algorithm such as `find()`, `count()` and STL containers such as `std::vector`. For deduction for all types like raw pointer, pointer to const or class pointer (iterator). The thoughts of designing iterator trait are as follow.
+```cpp
+// container iterator
+template <typename T>
+struct IteratorContainer{
+	T* ptr;
+	IteratorContainer(T* p = nullptr): ptr(p){}
+	typedef T value_type;
+};
+// STL iterator_traits
+template <typename T>
+struct iterator_traits{
+	typedef typename T::value_type value_type;
+};
+template <typename T>
+struct iterator_trait<T*>{
+	typedef T value_type;
+}// nothing with IteratorContainer
+// algorithm
+template <typename T>
+iterator_traits<T>::value_type func(T t){
+	return *t;
+}
+int main(){
+	IteratorContainter<int> p(new int(6));
+	// we need to deduct func return type:
+	// iterator_traits<IteratorContainter<int>>::value_type => 
+	// IteratorContainter<int>::value_type => int
+	std::cout << func(p) << std::endl; // output 6
+	func(new int(7)); // use iterator_traits specialization
+}
 ```

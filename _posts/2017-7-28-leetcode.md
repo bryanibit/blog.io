@@ -331,25 +331,21 @@ double number=0;
 ss>>number;
 ```
 
-## 二叉搜索树
+## 二叉搜索树 (binary search tree)
 
-同一层的情况下，右边的元素一定比左边的大，树的节点值都不相同。
+The nodes of left tree are smaller than or equal to the root.
+The nodes of right tree are larger than or equal to the root.
 
 * 插入一个数
 
 ```cpp
 TreeNode* InsertNodeBST(TreeNode* root, const int insertVal){
-	if(root->val < insertVal){
-		if(root->right)
-			root->right = InsertNodeBST(root->right, insertVal);
-		else
-			root->right = new TreeNode(insertVal);
-	}
-	else {
-		if(root->left)
-			root->left = InsertNodeBST(root->left, insertVal);
-		else
-			root->left = new TreeNode(insertVal);
+	if(!root)
+		return new TreeNode(insertVal);
+	if(root->val < insertVal)
+		root->right = InsertNodeBST(root->right, insertVal);
+	else
+		root->left = InsertNodeBST(root->left, insertVal);
 	}
 	return root;
 }
@@ -379,6 +375,12 @@ TreeNode* deleteNodeBST(TreeNode* root, const int deleteVal){
 	return root;
 }
 ```
+
+## Tree classification
+
+* complete binary tree 完全二叉树 (最底层可能不满)
+* perfect binary tree 满二叉树 (每层都是满的)
+* full binary tree (每个节点要么没有子节点，要么是两个子节点)
 
 ## 最小生成树
 
@@ -818,3 +820,32 @@ struct task_struct {
 我们知道系统调用`fork()`可以新建一个子进程，函数`pthread()`可以新建一个线程。但无论线程还是进程，都是用`task_struct`结构表示的，唯一的区别就是共享的数据区域不同。由下图可见  
 ![memo1](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/thread_process_memo1.jpg)
 ![memo2](https://github.com/bryanibit/bryanibit.github.io/raw/master/img/doc/thread_process_memo2.jpg)
+
+## Compare two trees whether same
+
+```cpp
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode() : val(0), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
+ *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
+ * };
+ */
+class Solution {
+public:
+    bool isSameTree(TreeNode* p, TreeNode* q) {
+    // note 4 conditions
+        if(!p && !q)
+            return true;
+        if(!q || !p)
+            return false;
+        if(p->val != q->val)
+            return false;
+        return isSameTree(p->left, q->left) && isSameTree(p->right, q->right);
+    }
+};
+```
