@@ -40,6 +40,9 @@ link_directories("/opt/Vimba2.0/VimbaCPP/DynamicLib/x86_64bit")
 #Another way to find dynamic lib
 find_library(vimba VimbaCPP /opt/Vimba2.0/VimbaCPP/DynamicLib/x86_64bit)
 
+# Find pthread on Linux
+find_package(Threads REQUIRED)
+
 # Add source directory
 aux_source_directory("./src" SRC_LIST)
 # Add exectuteable
@@ -50,6 +53,7 @@ target_link_libraries(${PROJECT_NAME}
 ${OpenCV_LIBS} ${Boost_LIBRARIES}
 ${PCL_COMMON_LIBRARIES} ${PCL_IO_LIBRARIES}
 libVimbaCPP.so #Find Vimba
+${CMAKE_THREAD_LIBS_INIT} #for Pthread_create etc
 )
 ```
 
