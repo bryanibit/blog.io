@@ -48,7 +48,7 @@ while L:
 
 ### Conventional(traditional) A* algorithm
 
-A broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called the following:
+A broad class of best first search algorithm compared to uniformed search algorithm such as grassfire and Dijsktra's algorithms is called as follow. In the algorithm, there are several sets: **closed_set** (log expanded nodes), **open_set**(need to be expanded but not yet expanded and it has the same content with priority queue **L**). adjacent node (**node**) should be compared to nodes in these two sets and make sure the **node** should be added to L. So in the loop of *adjacent node*, no need to compare with other node's distance. Just compute its g and f value and compare with *close_set* and *open_set* 
 ```python
 for node in graph:
     node.f = Inf
@@ -61,8 +61,8 @@ L = []
 start.g = 0  
 start.f = H(start)  
 L.append(start)  
-
-# On each iteration, the most likely to be on the shortest path from start(g) to destination(f)   
+closed_set = []
+# On each iteration, the most likely to be on the shortest path from start(g) to destination(f)
 
 while L:
 
@@ -70,20 +70,27 @@ while L:
 
     current = L.front()
     L.remove(current)
+    closed_set.append(current)
     if current == goal:
         if(reconstruct())
             return true
 
     # set another set called closed_set to make sure "current" has not been arrived before
 
-    for node in current.adjacent:
-        if node.g > current.g + node_to_current_distance:
-            node.g = current.g + node_to_current_distance
-            node.f = node.g + H(node)
-            node.parent = current
+    for node in current.adjacent: 
+        node.g = current.g + node_to_current_distance
+        node.f = node.g + H(node)
+        node.parent = current
 
-            # if node is not in L, then set another set named open_set of the same content with L. Use open_set.count(node) to make sure whether node can be added to L
-
+        # open_set has the same content with L but different data structure. 
+        # Use open_set.count(node) (C++) to make sure whether node can be added to L
+        if node in closed_set:
+            continue
+		if node in open_set:
+            if open_set[node].g > node.g:
+                # This path is the best until now. record it
+                open_set[node] = node
+        else:
             L.append(node)
 print("Failed to find goal\n")
 return false

@@ -208,12 +208,13 @@ docker ps
 
 ## virtualenv虚拟环境
 
-virtualenv is a tool to create isolated Python environments.
+virtualenv(python2) and venv(python3) is a tool to create isolated Python environments.
 
 ### installation
 
 ```
-$ [sudo] pip install virtualenv
+$ pip install virtualenv
+$ apt-get install python3-venv
 ```
 
 ### Usage
@@ -221,7 +222,8 @@ $ [sudo] pip install virtualenv
 - [x] Virtualenv has one basic command:
 
 ```
-virtualenv ENV // mkdir a dir called ENV in inputting command dir
+python2 -m virtualenv ENV // mkdir a dir called ENV in inputting command dir
+python3 -m venv ENV
 ```
 
 - ENV/lib/ and ENV/include/ are created, containing supporting library files for a new virtualenv python.
@@ -302,6 +304,43 @@ sudo reboot # if needed
 [sudo] password for bryan: 
 root@bryan-5810:~# pwd
 /root
+```
+
+## tcpdump
+
+### Capturing packets with tcpdump
+
+To begin, use the command `tcpdump -D` to see which interfaces are available for capture:
+```
+$ sudo tcpdump -D
+1.eth0
+2.virbr0
+3.eth1
+4.lo
+5.any (Psudo-device that captures on all interfaces)
+```
+
+### Understanding the output format
+
+```
+08:41:13.729687 IP 192.168.64.28.22 > 192.168.64.1.41916: Flags [P.], seq 196:568, ack 1, win 309, options [nop,nop,TS val 117964079 ecr 816509256], length 372
+```
+The first field, 08:41:13.729687, represents the timestamp of the received packet as per the local clock.  
+Next, IP represents the network layer protocol—in this case, IPv4. For IPv6 packets, the value is IP6.  
+The next field, 192.168.64.28.22, is the source IP address and port. This is followed by the destination IP address and port, represented by 192.168.64.1.41916. 
+The next field, `192.168.64.28.22`, is the source IP address and port. This is followed by the destination IP address and port, represented by `192.168.64.1.41916`.  
+Next is the sequence number of the data contained in the packet. For the first packet captured, this is an absolute number. Subsequent packets use a relative number to make it easier to follow. In this example, the sequence is seq `196:568`, which means this packet contains bytes 196 to 568 of this flow. Finally we have the packet length, `length 372`.  
+
+### play pcap
+
+```sh
+tcpdump -nn -r webserver.pcap
+```
+
+### save pcap
+
+```sh
+tcpdump -s 65535 host 54.204.39.132 port 80 -i eth0 -w my.pcap
 ```
 
 ## Donation
