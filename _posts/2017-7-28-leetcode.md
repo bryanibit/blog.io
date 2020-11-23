@@ -31,10 +31,10 @@ template < class T,                        // set::key_type/value_type
 The value in *set* container can not be modified (their elements are *const*), but they can be **removed** and **inserted**.  
 The value in *set* is ordered in according to specific weak ordering criterion. *set* containers are generally slower than *unordered_set* containers to access individual elements by their key, but they allow the **direct iteration** on subsets based on their order.  
 **Basic Operation**:  
-```
-empty() size()  
-insert() emplace() erase() //insert and remove
-find()  
+```c
+empty() size();
+insert() emplace() erase(); //insert and remove
+find(); 
 if (m.count(val)) // val exists
 operation=// set s; set a; s = a;
 ```

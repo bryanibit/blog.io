@@ -149,15 +149,16 @@ std::vector<std::string> split(const std::string& s, char seperator){
 std::vector<string> split(string& s, const string& delimiter){
 	int prev_pos = 0;
 	int pos = 0;
-        vector<string> ouput;
+        vector<string> output;
 	pos = s.find_first_not_of(delimiter, prev_pos);
 	prev_pos = s.find_first_of(delimiter, pos);
 	while (prev_pos != string::npos || pos != string::npos){
-		output.push_back(s.substr(prev_pos, pos - prev_pos))
+		output.push_back(s.substr(prev_pos, pos - prev_pos));
 		pos = s.find_first_not_of(delimiter, prev_pos);
 		prev_pos = s.find_first_of(delimiter, pos);
 
 	}
+	return output;
 }
 ```
 
