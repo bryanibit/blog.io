@@ -405,6 +405,64 @@ int main(){
 	return EXIT_SUCCESS;
 }
 ```
+If I wanna capture multiple signals, besides **SIGINT** (ctrl + c) and **SIGTSTP** (ctrl + z), you can choose
+the following, which is similar to the above:
+    
+	#include <iostream>
+    #include <thread>
+    #include <chrono>
+    #include <atomic>
+    #include <csignal> // for struct sigaction
+    #include <cstring> // for memset
+    using namespace std;
+    class Test{
+    private:
+        std::thread one_;
+        std::thread two_;
+    public:
+        static std::atomic<bool> running_;
+        Test(){
+            one_ = std::move(std::thread([this](){this->thread_one();}));
+            two_ = std::move(std::thread([this](){this->thread_two();}));
+            std::cout << "ctor\n";
+        }
+        ~Test(){
+            if(one_.joinable())
+                one_.join();
+            if(two_.joinable())
+                two_.join();
+            std::cout << "dtor" << std::endl;
+        }
+        void thread_one() {
+            while(running_){
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
+        }
+        void thread_two() {
+            while(running_){
+                std::this_thread::sleep_for(std::chrono::seconds(1));
+            }
+        }
+        static void got_signal(int){
+            running_.store(false);
+        }
+    
+    };
+    std::atomic<bool> Test::running_{true};
+    int main(){
+        struct sigaction sa;
+        memset( &sa, 0, sizeof(sa) );
+        sa.sa_handler = Test::got_signal;
+        sigfillset(&sa.sa_mask);
+        sigaction(SIGINT,&sa,NULL);
+        sigaction(SIGTSTP, &sa, NULL);
+        Test t;
+        while (true) {
+            // this_thread::sleep_for(std::chrono::milliseconds(10));
+            if(!Test::running_.load() ) break;    // exit normally after SIGINT
+        }
+        return 0;
+    }
 
 ## Use double in for loop
 
