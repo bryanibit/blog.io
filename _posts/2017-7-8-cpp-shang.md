@@ -375,7 +375,7 @@ string (a);
 - std::string to double/float  
 **If cout transformed string has missing numbers, it must be cout's error not transform**  
 **Use compiler to see the double or use**
-```
+```c
 double d = 3.14159265358979
 cout.precision(17);
 cout << "Pi: " << fixed << d << endl;
@@ -383,7 +383,7 @@ cout << "Pi: " << fixed << d << endl;
 //should include <iomanip>
 cout << std::setprecision (15) << d << endl;
 ```
-```
+```c
 //C++ 11
 std::stod("2.345");
 // sstream
@@ -394,13 +394,20 @@ iss >> d;
 boost::lexical_cast<double>("1.234567")
 ```
 
-- double to std::string
-```
-std::to_string(123.4);
+- double to std::string `std::to_string(123.4);`
+`to_string` only transform 6 precision double. So `to_string(0.0000001)` is **0**. Instead of using `to_string`,
+the following code adopts `std::stringstream` which should include headfile **<stream>**:
+```c
+string ConvertDouble(const double num, const int precision) {
+	stringstream stream;
+	// include <iomanip> for setprecision
+	stream << std::fixed << std::setprecision(precision) << num;
+	return stream.str();
 ```
 
-data type in all
-```
+
+**data type in all**
+```c
 int i;
 int *p;
 int a[n];
