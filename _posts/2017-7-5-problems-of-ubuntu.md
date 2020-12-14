@@ -137,7 +137,7 @@ sudo /etc/default/apport
 
 **Problem:** .bashrc文件无论写入什么东西似乎都没有用。  
 **Solution:**  
-*Reason：*在linux下，如果是bash环境，用户登录时读取设置文件的顺序是/etc/profile －－> ~/.bash_profile －－> ~/.bashrc －－> /etc/bash.bashrc。注意在~/.bash_profile这一步，如果没有~/.bash_profile ，则默认读取~/.bash_login，如果没有~/.bash_login 才读取~/.profile.  
+*Reason*: 在linux下，如果是bash环境，用户登录时读取设置文件的顺序是`/etc/profile -> ~/.bash_profile -> ~/.bashrc ->  /etc/bash.bashrc`, 注意在`~/.bash_profile`这一步，如果没有`~/.bash_profile`，则默认读取`~/.bash_login`，如果没有`~/.bash_login` 才读取`~/.profile`.  
 所以以上问题的解决办法是由于没有.bash_profile, .bash_login and .profile,所以.bashrc文件没有生效，（本人是由于在/home目录下执行了```rm -rf *```)
 
 1. 恢复.bashrc
@@ -146,10 +146,9 @@ sudo /etc/default/apport
 ```
 2. touch .bash_profile
 复制以下内容到其中
-
 ```sh
-\# .bash_profile
-\# If .bash_profile exists, bash doesn't read .profile
+#.bash_profile
+#If .bash_profile exists, bash doesn't read .profile
 if [[ -f ~/.profile ]]; then
   . ~/.profile
 fi
@@ -192,19 +191,17 @@ options nouveau modeset=0
 
 然后更新内核
 
-```
+```sh
 sudo update-initramfs –u
 ```
 
-**确认更新内核成功，没有错误标示后才能重启，否则重启后无法进入系统**
+**<NOTE> 确认更新内核成功，没有错误标示后才能重启，否则重启后无法进入系统**
 
 ## Ubuntu 14.04安装jekyll，需要ruby --version 大于2.1
 
-```
+```sh
 sudo apt-get update
 sudo apt-get install git-core curl zlib1g-dev build-essential libssl-dev libreadline-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt1-dev libcurl4-openssl-dev python-software-properties libffi-dev
-
-cd
 git clone https://github.com/rbenv/rbenv.git ~/.rbenv
 echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
 echo 'eval "$(rbenv init -)"' >> ~/.bashrc
@@ -225,7 +222,7 @@ sudo apt-get remove ruby1.9.1 ## watch out
 
 ## 移除一个ppa
 
-```
+```sh
 sudo add-apt-repository --remove ppa:...
 sudo apt-get udpate
 ```
@@ -263,6 +260,18 @@ sudo apt-get update
 sudo apt-get install y-ppa-manager
 ```
 In terminal, type `y-ppa-manager` and enter *Advance* and select *Try to import all missing GPG keys* and click OK.  
+
+## Solve hash sum mismatch when apt-get update
+
+```
+W: Failed to fetch gzip:/var/lib/apt/lists/partial/us.archive.ubuntu.com_ubuntu_dists_natty_main_source_Sources  Hash Sum mismatch, 
+E: Some index files failed to download. They have been ignored, or old ones used instead.
+```
+Just remove all the content of `/var/lib/apt/lists` directory:
+```sh
+sudo rm -rf /var/lib/apt/lists/*
+```
+then run: `sudo apt-get update`.
 
 ## 在nvidia tx2 Ubuntu16.04上 ORB-SLAM编译ros版本出错1：fatal error: Eigen/Core: No such file or directory
 
