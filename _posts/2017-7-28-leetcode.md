@@ -22,7 +22,7 @@ description: Leetcode & Codeing skill
 ## longest substring without repeating characters
 
 *C++ set*  
-```
+```cpp
 template < class T,                        // set::key_type/value_type
            class Compare = less<T>,        // set::key_compare/value_compare
            class Alloc = allocator<T>      // set::allocator_type
@@ -40,7 +40,7 @@ operation=// set s; set a; s = a;
 ```
 
 *C++ map*  
-```
+```cpp
 template < class Key,                                     // map::key_type
            class T,                                       // map::mapped_type
            class Compare = less<Key>,                     // map::key_compare
@@ -58,7 +58,8 @@ if (m.count(key)) // key exists
 
 ## DP(Dynamic Programming)
 
-*Those who cannot remember the past are condemned to repeat it.* -- **Dynamic Programming**. In a nutshell, dynamic programming is recursion without repetition.  
+*Those who cannot remember the past are condemned to repeat it.* -- **Dynamic Programming**.  
+In a nutshell, dynamic programming is recursion without repetition.  
 In leetcode, the DP problems can be split into two categaries: continue and discrete.  
 **review all problems**:   
 1. Continue:  
@@ -90,12 +91,40 @@ else// grid[i][j] = 0
 
 ## Leveshtein Distance
 
-
+```cpp
+string word1 = "hello";
+string word2 = "hall";
+// m means the number of word1
+// n means the number of word2
+// del, rep, ins represents change from word1 to word2
+int m = word1.size();
+int n = word2.size();
+vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
+dp[0][0] = 0;
+for(int i = 1; i <= m; ++i){
+	dp[i][0] = i;
+	for(int j = 1; j <= n; ++j){
+		dp[0][j] = j;
+		int del = dp[i - 1][j] + 1;
+		int ins = dp[i][j - 1] + 1;
+		// do nothing and replace a letter
+		int rep = word1[i] == word2[j]? dp[i - 1][j - 1]: dp[i - 1][j - 1] + 1;
+		// "aaa" "aa" word1[2] == word1[1] and min step is delete(dp[i-1][j]) 
+		// not do nothing(dp[i-1][j-1])
+		// the following is wrong
+		// if(word1[i] == word2[j])
+		//     dp[i][j] = min(del, ins);
+		// else
+		//     dp[i][j] = min({del, ins, dp[i - 1][j - 1] + 1});
+		dp[i][j] = min({del, ins, rep});
+	}
+}
+return dp[m][n];
+```
 
 ## Find the shortest path - SPFA
 
-The following pseudocode does not think of minus loop:
-
+The following pseudocode does not think of minus loop:  
 ```cpp
 // 3 vector/array: dist, visited, path  
 dist[] = std::numeric_limits<>::max()
@@ -116,9 +145,9 @@ while(!Q){
 		//fasten
 		if(dist[u] + edgesTov < dist[v]){
 			path[u] = v
-			dist[v] = dist[u] + edgesTov  
-
-			if(!visited[v]){
+			dist[v] = dist[u] + edgesTov        
+                                                
+        if(!visited[v]){
 				Q.push(v)
 				visited[v] = 1;
 			}
@@ -131,8 +160,8 @@ Because of involving std::stack and std::queue, I want to introduce them right h
 
 ## DFS(Deep First Search)
 
-在DFS中，当某节点的**左右节点都为空**，或者该节点的**左右树都已经遍历完成**，则会return，也就是跳出DFS function，也就是开始**退栈**。举例：理解下面的函数，就要理解*pop_back*的作用，也就是在退栈的时候会执行，而什么时候会退栈？就是左右节点为空，或者左右树都已经遍历完成。
-```c
+在DFS中，当某节点的**左右节点都为空**，或者该节点的**左右树都已经遍历完成**，则会return，也就是跳出DFS function，也就是开始**退栈**。举例：理解下面的函数，就要理解*pop_back*的作用，也就是在退栈的时候会执行，而什么时候会退栈？就是左右节点为空，或者左右树都已经遍历完成。  
+```cpp
 void pointToVector(TreeNode * p, vector<int>& res)
 	{
 		res.push_back(p->val);
@@ -152,7 +181,7 @@ void pointToVector(TreeNode * p, vector<int>& res)
 ```
 
 For a directed or undirected graph, the following code is the best pseudocode to iterate each node for only once.
-The code has no loop to entire graph instead of using recursion.
+The code has no loop to entire graph instead of using recursion.  
 ```cpp
 DFS(G, u)
     u.visited = true
@@ -168,7 +197,7 @@ init() {
 ```
 
 DFS is normally implemented recursively, rather than using an explicit stack:
-```
+```python
 DFS(v):
 if v is not marked
 	mark v
@@ -200,11 +229,10 @@ int main(){
 }
 ```
 
-When using variables reference and modify it in the recursive process, you should be careful. There is an example for rectify the modification after *each time of return false*. There is link of [leetcode: word search](https://leetcode.com/problems/word-search/). PS: **==** has priority to || or **&&**. 
+When using variables reference and modify it in the recursive process, you should be careful. There is an example for rectify the modification after *each time of return false*. There is the link of [leetcode: word search](https://leetcode.com/problems/word-search/).(PS: **==** has priority to || or **&&**)  
 
 ## vector operations
 
-1. erase()
 ```cpp
 void removeDuplicate(std::vector<string>& s)
 	{
@@ -225,8 +253,10 @@ void removeDuplicate(std::vector<string>& s)
 There, I will introduct two STL function called ```set_union``` and ```set_intersection```.  
 eg. Find the common part of each set in ```vector<set<int>> v```
 ```cpp
-#include <iterator> //for inserter
-#include <algorithm> // for swap
+//for inserter
+#include <iterator>
+// for swap
+#include <algorithm>
 set<int> __intersection;
 set<int> temp = v.at(0);
 for (int i = 0; i < v.size(); ++i){
@@ -252,18 +282,27 @@ for (int i = 0; i < v.size(); ++i){
 
 ## 将string类型变量转换为常用的数值类型
 
-//模板函数：（此方法具有普遍适用性）
-
 ```cpp
-#include <sstream>  
-template <class Type>  
-Type stringToNum(const string& str)  
+#include <sstream>   
+long long int stringToNum(const string& str)
 {  
     istringstream iss(str);  
-    Type num;  
+    long long int num;  
     iss >> num;  
     return num;      
-}  
+}
+```
+如果需要转换的int字符太长，上述的stream方法仍然无效，可以采用下面的方法，使用map将每个字符映射成数字：
+```cpp
+long long int stringToNum(const string &str)
+{
+	map<char, int> m;
+	long long int x = 0;
+	for(int i = 0; i< str.size(); ++i){
+		x = x * 10 + m[i];
+	}
+	return x;
+}
 ```
 
 ## int to string
@@ -291,6 +330,7 @@ std::string s = std::to_string(42);
 
 ```cpp
 #include <sstream>
+
 std::string number;
 std::stringstream strstream;
 strstream << 1L;
@@ -326,7 +366,8 @@ double lol = atof(word.c_str());
 ## double to string
 
 ```cpp
-string s="235.19123";   **最后输出的number只能显示s中的六位（从高位数）**
+//**最后输出的number只能显示s中的六位（从高位数）**
+string s="235.19123";
 std::stringstream ss(s);
 double number=0;
 ss>>number;
@@ -765,7 +806,8 @@ def binary_search_close(l, r, cond):# r = len(nums) - 1
 e.g. find the bound of value in an ordered array
 ```python
 # from while(l < r), use open array [l, r)
-def find_left_index(l, r, nums, target): # r = len(nums)
+# r = len(nums)
+def find_left_index(l, r, nums, target):
     while(l < r):
         m = l + (r - l) // 2
         if nums[m] < target:
