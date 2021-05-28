@@ -262,6 +262,37 @@ set cindent
 syntax on
 ```
 
+## install g++/gcc
+
+通过键入以下命令安装所需的GCC和G++版本：
+```sh
+sudo apt install gcc-8 g++-8 gcc-9 g++-9 gcc-10 g++-10
+```
+
+以下命令为每个版本配置替代版本，并将优先级与之关联。默认版本是优先级最高的版本，在本例中为gcc-10。
+```sh
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 100 --slave /usr/bin/g++ g++ /usr/bin/g++-10 --slave /usr/bin/gcov gcov /usr/bin/gcov-10
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-9 90 --slave /usr/bin/g++ g++ /usr/bin/g++-9 --slave /usr/bin/gcov gcov /usr/bin/gcov-9
+sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 80 --slave /usr/bin/g++ g++ /usr/bin/g++-8 --slave /usr/bin/gcov gcov /usr/bin/gcov-8
+```
+
+以后，如果要更改默认版本，请使用以下update-alternatives命令：
+```sh
+sudo update-alternatives --config gcc
+
+There are 3 choices for the alternative gcc (providing /usr/bin/gcc).
+ Selection Path Priority Status
+------------------------------------------------------------
+* 0 /usr/bin/gcc-10 100 auto mode
+ 1 /usr/bin/gcc-10 100 manual mode
+ 2 /usr/bin/gcc-8 80 manual mode
+ 3 /usr/bin/gcc-9 90 manual mode
+
+Press <enter> to keep the current choice[*], or type selection number:
+```
+系统将为您提供Ubuntu系统上所有已安装的GCC版本的列表。输入您要用作默认版本的版本号，然后按Enter。 
+该命令将创建指向GCC和G ++特定版本的符号链接。 
+
 ## 安装NVIDIA驱动方法
 
 卸载可能存在的旧版本 nvidia 驱动（对没有安装过 nvidia 驱动的主机，这步可以省略，但推荐执行，无害）

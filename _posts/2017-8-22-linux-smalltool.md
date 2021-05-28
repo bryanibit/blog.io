@@ -343,6 +343,13 @@ tcpdump -nn -r webserver.pcap
 tcpdump -s 65535 host 54.204.39.132 port 80 -i eth0 -w my.pcap
 ```
 
+## search a package derived from apt
+
+`apt-cache search pcl` to check all package including pcl in name. Use `apt-cache policy libpcl-dev` to check if
+install the package and its version.  
+
+Likely you can use `ldconfig -p| grep pcl` to print its cache to check if the library is installed in system.
+
 ## Donation
 
 **If you think this useful for you, you can donate for me. Thank you for your support!**
